@@ -56,7 +56,7 @@ Projet est réalisé par::
 - https://github.com/Tilian-HURE[Tilian HURÉ]
 - https://github.com/RepliKode[Vincent MIQUEU-DENJEAN]
 
-Tuteur/tutrice enseignant(e) de l'équipe:: mailto:marianne.de-michiel@univ-tlse2.fr[MDM]
+Tuteur/tutrice enseignant(e) de l'équipe: mailto:marianne.de-michiel@univ-tlse2.fr[MDM]
 
 == Contexte général
 

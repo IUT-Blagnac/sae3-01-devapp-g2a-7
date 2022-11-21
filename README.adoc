@@ -51,11 +51,12 @@ toc::[]
 
 Projet est réalisé par::
 
-- https://github.com/janeDoe[Jane Doe]
-- https://github.com/johnSmith[John Smith]
-...
+- https://github.com/Furiza31[Hugo Wendjaneh]
+- https://github.com/SOLUPRED3[Matéo PÉPIN]
+- https://github.com/Tilian-HURE[Tilian HURÉ]
+- https://github.com/RepliKode[Vincent Miqueu-Denjean]
 
-Tuteur/tutrice enseignant(e) de l'équipe:: mailto:jean-michel.bruel@univ-tlse2.fr[JMB]
+Tuteur/tutrice enseignant(e) de l'équipe:: mailto:marianne.de-michiel@univ-tlse2.fr[MDM]
 
 == Contexte général
 

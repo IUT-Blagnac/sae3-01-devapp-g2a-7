@@ -23,9 +23,10 @@ def checkConfigExist():
     global pwd
     global defaultConfig
     try:
-        file = open(f"{pwd}/config.json", 'r', 0o666)
+        file = open(f"{pwd}/config.json", 'r', 0o444)
+        file.close()
     except FileNotFoundError:
-        file = open(f"{pwd}/config.json", 'w', 0o666)
+        file = open(f"{pwd}/config.json", 'w', 0o222)
         file.write(defaultConfig)
         file.close()
 

@@ -34,3 +34,5 @@ bin/
 build/
 /bin1/
 java/build/**
+
+Application_IoT/codePython/*.json

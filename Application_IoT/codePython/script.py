@@ -1,14 +1,20 @@
 import json
 import paho.mqtt.client as mqtt
+import sys
+
+# get the path of the directory where the script is
+pwd = sys.path[0]
 
 # Read the config file
 def getConfig():
-    res = open('config.json', "r", 0o444)
+    global pwd
+    res = open(f"{pwd}/config.json", 'r', 0o444)
     return json.load(res)
 
 # Write the data received in a data.json file
 def writeData(data):
-    file = open('data.json', "w", 0o222)
+    global pwd
+    file = open(f"{pwd}/data.json", 'w', 0o222)
     file.write(json.dumps(data))
     file.close()
     
@@ -26,7 +32,7 @@ def on_message(client, userdata, msg):
         data = {}
         for key, value in config.items():
             if (value == True):
-                data[key] = message['object'][key]
+                data[key] = message["object"][key]
         writeData(data)
     except Exception as e:
         print(e)

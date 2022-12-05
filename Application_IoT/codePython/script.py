@@ -5,31 +5,6 @@ import sys
 # get the path of the directory where the script is
 pwd = sys.path[0]
 
-# default config
-defaultConfig = """{
-    "activity": true,
-    "co2": true,
-    "humidity": true,
-    "illumination": true,
-    "infrared": true,
-    "infrared_and_visible": true,
-    "pressure": true,
-    "temperature": true,
-    "tvoc": true
-}"""
-
-# Check if the config.json exists. If not, create it
-def checkConfigExist():
-    global pwd
-    global defaultConfig
-    try:
-        file = open(f"{pwd}/config.json", 'r', 0o444)
-        file.close()
-    except FileNotFoundError:
-        file = open(f"{pwd}/config.json", 'w', 0o222)
-        file.write(defaultConfig)
-        file.close()
-
 # Read the config file
 def getConfig():
     global pwd
@@ -65,7 +40,6 @@ def on_message(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-checkConfigExist()
 config = getConfig()
 
 # Connect to the server

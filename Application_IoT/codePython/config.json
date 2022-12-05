@@ -1,0 +1,11 @@
+{
+    "activity": true,
+    "co2": true,
+    "humidity": true,
+    "illumination": true,
+    "infrared": true,
+    "infrared_and_visible": true,
+    "pressure": true,
+    "temperature": true,
+    "tvoc": true
+}

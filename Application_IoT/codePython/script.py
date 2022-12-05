@@ -6,6 +6,12 @@ def getConfig():
     res = open('config.json', "r", 0o444)
     return json.load(res)
 
+# Write the data received in a data.json file
+def writeData(data):
+    file = open('data.json', "w", 0o222)
+    file.write(json.dumps(data))
+    file.close()
+    
 # Fonction on connection
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -17,9 +23,11 @@ def on_message(client, userdata, msg):
     global config
     try:
         message = json.loads(msg.payload)
+        data = {}
         for key, value in config.items():
             if (value == True):
-                print(f"{key}: {message['object'][key]}")
+                data[key] = message['object'][key]
+        writeData(data)
     except Exception as e:
         print(e)
 

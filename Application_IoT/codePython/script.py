@@ -9,6 +9,9 @@ pwd = sys.path[0]
 # Data to write in data.json
 data = {}
 
+# Payload received from devices
+payload = {}
+
 # Read the config file
 def get_config():
     global pwd
@@ -41,18 +44,19 @@ def on_connect(client, userdata, flags, rc):
 
 # When data is received
 def on_message(client, userdata, msg):
-    global config, data
-    # Reset the config
-    config = get_config()
-    message = json.loads(msg.payload)
-    for key, value in config.items():
-        if (value == True):
-            data[key] = message["object"][key]
+    global payload
+    payload = json.loads(msg.payload)
 
 # When a signal of type SIGALRM is received
 def on_alarm(signum, frame):
     print("Alarm received, 60 second, I'm writing data ...")
-    global data
+    global data, payload, config
+    # Reload the config
+    config = get_config()
+    # Read the payload with the keys in the config
+    for key, value in config.items():
+        if value:
+            data[key] = payload["object"][key]
     # Write the data in data.json file
     write_data(data)
     # Reset the timer of 60 seconds
@@ -68,6 +72,9 @@ signal.signal(signal.SIGALRM, on_alarm)
 
 # Get the config
 config = get_config()
+
+# Create a default data.json file if it does not exist
+write_data(data)
 
 # Connect to the server
 client.connect("chirpstack.iut-blagnac.fr", 1883, 60)

@@ -2,27 +2,34 @@ import json
 import paho.mqtt.client as mqtt
 import sys
 import os
+import signal
 
 # get the path of the directory where the script is
 pwd = sys.path[0]
+# Data to write in data.json
+data = {}
 
 # Read the config file
-def getConfig():
+def get_config():
     global pwd
-    res = ""
-    file = os.open(f"{pwd}/config.json", os.O_RDONLY, 0o444)
-    reader = os.read(file, 1024)
-    while len(reader) > 0:
-        res += reader.decode("utf-8")
+    try:
+        res = ""
+        file = os.open(f"{pwd}/config.json", os.O_RDONLY)
         reader = os.read(file, 1024)
-    os.close(file)
-    return json.loads(res)
+        while len(reader) > 0:
+            res += reader.decode("utf-8")
+            reader = os.read(file, 1024)
+        os.close(file)
+        return json.loads(res)
+    except FileNotFoundError:
+        # If the config.json file does not exist
+        return {}
     
 
 # Write the data received in a data.json file
-def writeData(data):
+def write_data(data):
     global pwd
-    file = os.open(f"{pwd}/data.json", os.O_WRONLY | os.O_TRUNC | os.O_CREAT, 0o222)
+    file = os.open(f"{pwd}/data.json", os.O_WRONLY | os.O_TRUNC | os.O_CREAT, 0o666)
     os.write(file, json.dumps(data).encode("utf-8"))
     os.close(file)
     
@@ -32,26 +39,41 @@ def on_connect(client, userdata, flags, rc):
     # Subscribe to the device
     client.subscribe("application/1/device/+/event/up")
 
-# When data is recived
+# When data is received
 def on_message(client, userdata, msg):
-    global config
-    try:
-        message = json.loads(msg.payload)
-        data = {}
-        for key, value in config.items():
-            if (value == True):
-                data[key] = message["object"][key]
-        writeData(data)
-    except Exception as e:
-        print(e)
+    global config, data
+    # Reset the config
+    config = get_config()
+    message = json.loads(msg.payload)
+    for key, value in config.items():
+        if (value == True):
+            data[key] = message["object"][key]
 
+# When a signal of type SIGALRM is received
+def on_alarm(signum, frame):
+    print("Alarm received, 60 second, I'm writing data ...")
+    global data
+    # Write the data in data.json file
+    write_data(data)
+    # Reset the timer of 60 seconds
+    signal.alarm(60)
+
+# Launch the client
 client = mqtt.Client()
+
+# Set  handlers
 client.on_connect = on_connect
 client.on_message = on_message
-config = getConfig()
+signal.signal(signal.SIGALRM, on_alarm)
+
+# Get the config
+config = get_config()
 
 # Connect to the server
 client.connect("chirpstack.iut-blagnac.fr", 1883, 60)
+
+# Start the timer of 60 seconds
+signal.alarm(60)
 
 # Infinity loop
 client.loop_forever()

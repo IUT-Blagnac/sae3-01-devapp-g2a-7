@@ -12,10 +12,12 @@
 
 <body>
     <header>
-        <a href="" class="logo">
-            <img src="../public/images/logo.png" alt="Revive">
-            <span>REVIVE</span>
-        </a>
+        <div>
+            <a href="" class="logo">
+                <img src="../public/images/logo.png" alt="Revive">
+                <span>REVIVE</span>
+            </a>
+        </div>
         <nav>
             <a href="">
                 <img src="../public/images/information.png" alt="Information">
@@ -32,12 +34,28 @@
         </nav>
         <div class="searchBox">
             <form action="" method="GET">
-                <input type="text" placeholder="Rechercher un produit...">
+                <input type="text" placeholder="Rechercher un produit..." name="query">
                 <button><img src="../public/images/loupe.png" alt="Rechercher"></button>
             </form>
         </div>
     </header>
-    <div class="subHeader"></div>
+    <div class="subHeader">
+        <ul class="navbar">
+            <li>
+                <a href="#" class="titleSubmenu">
+                    <img src="../public/images/menuIcon.png" alt="Menu Icon"> Nos produit
+                </a>
+                <ul>
+                    <li><a href="#">Téléphone</a></li>
+                    <li><a href="#">Bidet</a></li>
+                    <li><a href="#">Ordinateur</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">REVENDRE</a>
+            </li>
+        </ul>
+    </div>
 </body>
 
 </html>

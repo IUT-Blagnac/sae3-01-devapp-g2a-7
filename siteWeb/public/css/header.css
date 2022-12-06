@@ -1,0 +1,139 @@
+header {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    width: 100vw;
+    height: 100px;
+    background-color: var(--dark-grey);
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+header a {
+    color: var(--white);
+}
+
+header a.logo, header nav, header div.searchBox {
+    width: calc(100% / 3);
+}
+
+header a.logo {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+
+header a.logo img {
+    position: relative;
+    display: block;
+    height: 70px;
+    width: 70px;
+}
+
+header a.logo span {
+    position: relative;
+    display: block;
+    font-size: 50px;
+    margin-left: 15px;
+}
+
+header nav {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 30px;
+}
+
+header nav a {
+    transition-duration: 0.3s;
+}
+header nav a:hover {
+    color: var(--green-blue);
+}
+
+header nav a.connection {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+}
+
+header nav a.connection img {
+    position: relative;
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+
+header div.searchBox {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+header div.searchBox form {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+header div.searchBox input {
+    position: relative;
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 50%;
+    transition-duration: 0.3s;
+    outline: none;
+    padding-left: 25px;
+    background-color: var(--white);
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height: 45px;
+}
+
+header div.searchBox input:focus {
+    width: 75%;
+}
+
+header div.searchBox button {
+    position: relative;
+    display: block;
+    background-color: var(--white);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    outline: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 45px;
+    padding-right: 15px;
+}
+
+header div.searchBox button img {
+    position: relative;
+    display: block;
+    height: calc(45px / 2);
+    width: calc(45px / 2);
+}

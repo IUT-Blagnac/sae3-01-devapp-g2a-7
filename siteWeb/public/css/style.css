@@ -1,0 +1,18 @@
+:root {
+    --dark-grey: #2F2F2F;
+    --green-blue: #44DBBD;
+    --grey: #B5B5B5;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-size: 17px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}

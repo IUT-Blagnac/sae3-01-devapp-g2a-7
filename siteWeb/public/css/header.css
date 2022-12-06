@@ -137,3 +137,18 @@ header div.searchBox button img {
     height: calc(45px / 2);
     width: calc(45px / 2);
 }
+
+div.subHeader {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    width: 100vw;
+    height: 75px;
+    background-color: var(--light-grey);
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}

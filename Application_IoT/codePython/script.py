@@ -57,6 +57,10 @@ def on_alarm(signum, frame):
     for key, value in config.items():
         if value:
             data[key] = payload["object"][key]
+        else:
+            # if the key is false remove it if exists
+            if key in data:
+                del data[key]
     # Write the data in data.json file
     write_data(data)
     # Reset the timer of 60 seconds

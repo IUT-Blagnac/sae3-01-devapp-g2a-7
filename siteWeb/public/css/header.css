@@ -164,6 +164,7 @@ div.subHeader ul.navbar li {
     list-style: none;
     background-color: var(--green-blue);
     margin-left: 35px;
+    z-index: 999;
 }
 
 div.subHeader ul.navbar a {

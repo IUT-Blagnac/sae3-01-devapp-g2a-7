@@ -142,7 +142,9 @@ header div.searchBox button img {
 
 div.subHeader {
     position: relative;
-    display: block;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     width: 100vw;
     height: 75px;
     background-color: var(--light-grey);
@@ -151,13 +153,12 @@ div.subHeader {
 div.subHeader ul {
     position: relative;
     display: block;
-    top: 17px;
 }
 
 div.subHeader ul.navbar li {
     position: relative;
     display: block;
-    width: 150px;
+    width: 200px;
     float: left;
     text-align: center;
     list-style: none;
@@ -167,7 +168,7 @@ div.subHeader ul.navbar li {
 
 div.subHeader ul.navbar a {
     position: relative;
-    padding: 10px;
+    padding: 15px;
     text-decoration: none;
     color: var(--white);
     display: block;
@@ -198,6 +199,8 @@ div.subHeader ul.navbar li ul {
 div.subHeader ul.navbar li:hover ul,
 div.subHeader ul.navbar li:focus ul {
     display: block;
+    position: absolute;
+    top: 100%;
 }
 
 div.subHeader ul.navbar li ul li {

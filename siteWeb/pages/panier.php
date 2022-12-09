@@ -57,11 +57,11 @@
                 </div>
                 <div class="livraison">
                     <p>Frais de livraison</p>
-                    <p>4,50</p>
+                    <p>GRATUIT</p>
                 </div>
                 <div class="prixTotal">
                     <p>Total</p>
-                    <p>45,16</p>
+                    <p>30,66</p>
                 </div>
                 <div class="valider">
                     <form action="" method="post">

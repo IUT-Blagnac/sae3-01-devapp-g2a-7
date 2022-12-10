@@ -1,0 +1,116 @@
+body {
+    margin:0;
+}
+
+section {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    margin-top:120px;
+    height:100vh;
+}
+
+section > div {
+    /*border:2px solid var(--dark-grey);*/
+    box-shadow:1px 1px 5px var(--dark-grey);
+    padding:30px;
+    max-width:500px;
+    border-radius:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+h1 {
+    font-size:35px;
+    color:var(--green-blue);
+}
+
+form {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+#form-connexion {
+    height:280px;
+}
+
+#form-creationCompte {
+    height:450px;
+}
+
+form > div {
+    width:82%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    color:var(--dark-grey)
+    border:1px solid var(--dark-grey);
+    border-radius:10px;
+    display:block;
+    padding-left:15px;
+    width:calc(100% - 21px);
+    max-width:750px;
+    height:50px;
+    outline-color:var(--green-blue);
+}
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color:var(--grey);
+}
+
+input[type="checkbox"] {
+    width:30px;
+    height:30px;
+    border:2px solid var(--dark-grey);
+    border-radius:10px;
+    accent-color:var(--green-blue);
+}
+
+input[type="submit"] {
+    display:block;
+    background-color:var(--green-blue);
+    border-radius:10px;
+    border:1px solid white;
+    color:white;
+    padding:15px;
+    width:40%;
+    max-width:280px;
+    transition-duration:0.2s;
+}
+input[type="submit"]:hover {
+    border:1px solid var(--green-blue);
+    color:var(--green-blue);
+    background-color:white;
+    cursor:pointer;
+    transition-duration:0.2s;
+}
+
+section a {
+    font-size:16px;
+    color:var(--dark-grey);
+    font-weight:bold;
+}
+section a:hover {
+    text-decoration:underline;
+}
+
+#info {
+    font-size:15px;
+    width:100%;
+    text-align:justify;
+}

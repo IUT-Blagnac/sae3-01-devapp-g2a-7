@@ -7,7 +7,6 @@
             )
           )";
     $connect = oci_connect("SAEBD07", "M0ntBlanc1UT", $db);
-    
     // si la connexion a échoué, on affiche le message d'erreur
     if (!$connect) {
         $e = oci_error();

@@ -15,102 +15,103 @@
 
 <?php
     include("../include/header.php");
-    require_once("../include/connect.inc.php");
-    $idClient = 1;
+    require_once("../include/panier.php");
+    $idClient = 27;
 
-    $sqlContenir = "SELECT * FROM CONTENIR
-    WHERE CONTENIR.IDPANIER IN (
-        SELECT IDPANIER FROM PANIER
-        WHERE PANIER.IDCLIENT = :idClient
-    )";
+    $_SESSION['connecte'] = true;
+    if(!isset($_SESSION['panier'])) {
+        $panier = new Panier($idClient);
+        $_SESSION['panier'] = serialize($panier);
+    }
 
-    $contenir = oci_parse($connect, $sqlContenir);
-    oci_bind_by_name($contenir, ":idClient", $idClient);
-    $resultContenir = oci_execute($contenir);
+    if (isset($_POST['quantiteProduit'])) {
+        $panier = unserialize($_SESSION['panier']);
+        $panier->changeQuantiteProduit($_POST['idProduit'], $_POST['quantiteProduit']);
+        $_SESSION['panier'] = serialize($panier);
+    }
 
-    $sqlProduits = "SELECT * FROM PRODUIT
-    WHERE PRODUIT.IDPRODUIT IN (
-        SELECT IDPRODUIT FROM CONTENIR
-        WHERE CONTENIR.IDPANIER IN (
-            SELECT IDPANIER FROM PANIER
-            WHERE PANIER.IDCLIENT = :idClient
-        )
-    )";
+    if (isset($_POST['supprimer'])) {
+        $panier = unserialize($_SESSION['panier']);
+        $panier->enleverProduit($_POST['idProduit']);
+        $_SESSION['panier'] = serialize($panier);
+    }
 
-    $produits = oci_parse($connect, $sqlProduits);
-    oci_bind_by_name($produits, ":idClient", $idClient);
-    $resultProduits = oci_execute($produits);
-
-    $sqlCategorie = "SELECT * FROM CATEGORIE
-    WHERE CATEGORIE.IDCATEGORIE IN (
-        SELECT IDCATEGORIE FROM PRODUIT
-        WHERE PRODUIT.IDPRODUIT IN (
-            SELECT IDPRODUIT FROM CONTENIR
-            WHERE CONTENIR.IDPANIER IN (
-                SELECT IDPANIER FROM PANIER
-                WHERE PANIER.IDCLIENT = :idClient
-            )
-        )
-    )";
-
-    $categorie = oci_parse($connect, $sqlCategorie);
-    oci_bind_by_name($categorie, ":idClient", $idClient);
-    $resultCategorie = oci_execute($categorie);
-
-    
+    $panier = unserialize($_SESSION['panier']);
 
 ?>
 
 <section>
     <h1>Récapitulatif de mon panier</h1>
     <div class="commande">
-        <div class="produits">
-            <div class="produit">
-                <div class="image">
-                    <img src="../public/images/produit1.png" alt="NOM DU PRODUIT">
-                </div>
-                <div class="objet">
-                    <h2>CATEGORIE - NOM DU PRODUIT</h2>
-                    <p class="detail">Details objet/produit</p>
-                    <p>15,33€</p>
-                </div>
-                <div class="prix">
-                    <form action="" method="post">
-                        <select name="" id="" onchange="this.form.submit()">
-                            <?php for($i = 1; $i <= 100; $i++) { ?>
-                                <option value="<?= $i; ?>"><?= $i; ?></option>
-                            <?php } ?>
-                        </select>
-                    </form>
-                    <p>15,33€</p>
-                </div>
-                <div class="supprimer">
-                    <form action="" method="get">
-                        <button><img src="../public/images/poubelle.png" alt="Supprimer"></button>
-                    </form>
+        <?php if (count($panier->getProduits()) == 0) { ?>
+            <p>Votre panier est vide</p>
+        <?php } else { ?>
+            <div class="produits">
+                <?php foreach($panier->getProduits() as $produit) { ?>
+                    <div class="produit" id="<?= $produit->getIdProduit(); ?>">
+                        <div class="image">
+                            <img src="../public/images/<?= $produit->getIdProduit(); ?>.<?= $produit->getExtensionImgProduit(); ?>" alt="NOM DU PRODUIT">
+                        </div>
+                        <div class="objet">
+                            <h2><?= $produit->getCategorie(); ?> - <?= $produit->getNomProduit(); ?></h2>
+                            <p class="detail"><?= $produit->getDescriptionProduit(); ?></p>
+                            <p><?= $produit->getPrixProduit(); ?>€</p>
+                        </div>
+                        <div class="prix">
+                            <form action="./panier.php#<?= $produit->getIdProduit(); ?>" method="post">
+                                <select name="quantiteProduit" onchange="this.form.submit()">
+                                    <?php 
+                                    $quantiteStockProduit = $produit->getQuantiteStockProduit();
+                                    for($i = 1; $i <= $quantiteStockProduit; $i++) {
+                                        if ($i == $produit->getQuantiteProduit()) { ?>
+                                            <option value='<?= $i; ?>' selected><?= $i; ?></option>
+                                        <?php } else { ?>
+                                            <option value='<?= $i; ?>'><?= $i; ?></option>
+                                        <?php }
+                                    } ?>
+                                </select>
+                                <input type="hidden" name="idProduit" value="<?= $produit->getIdProduit(); ?>">
+                            </form>
+                            <p>
+                                <?php 
+                                    $prixProduit = $produit->getPrixProduit();
+                                    $quantiteProduit = $produit->getQuantiteProduit();
+                                    $prixTotal = $prixProduit * $quantiteProduit;
+                                    echo $prixTotal;
+                                ?>€
+                            </p>
+                        </div>
+                        <div class="supprimer">
+                            <form action="./panier.php" method="post">
+                                <input type="hidden" name="idProduit" value="<?= $produit->getIdProduit(); ?>">
+                                <button type="submit" name="supprimer"><img src="../public/images/poubelle.png" alt="Supprimer"></button>
+                            </form>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="total">
+                <div class="sticky">
+                    <div class="prix">
+                        <?php $prixTotalProduits = $panier->prixTotalProduits(); ?>
+                        <p>Produits</p>
+                        <p><?= $prixTotalProduits; ?>€</p>
+                    </div>
+                    <div class="livraison">
+                        <p>Frais de livraison</p>
+                        <p>GRATUIT</p>
+                    </div>
+                    <div class="prixTotal">
+                        <p>Total</p>
+                        <p><?= $prixTotalProduits; ?>€</p>
+                    </div>
+                    <div class="valider">
+                        <form action="" method="post">
+                            <button>Valider ma commande</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="total">
-            <div class="sticky">
-                <div class="prix">
-                    <p>Produits</p>
-                    <p>30,66</p>
-                </div>
-                <div class="livraison">
-                    <p>Frais de livraison</p>
-                    <p>GRATUIT</p>
-                </div>
-                <div class="prixTotal">
-                    <p>Total</p>
-                    <p>30,66</p>
-                </div>
-                <div class="valider">
-                    <form action="" method="post">
-                        <button>Valider ma commande</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </section>

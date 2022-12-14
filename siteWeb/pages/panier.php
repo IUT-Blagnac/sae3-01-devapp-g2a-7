@@ -16,11 +16,6 @@
 <?php
     include("../include/header.php");
     require_once("../include/panier.php");
-    $_SESSION['CLIENT'] = array(
-        'idClient' => 27,
-        'mainClient' => 'mainClient',
-        'mdpClient' => 'FJBAKLFBLAHFBBH'
-    );
 
     // CHECKING FOR PAINIER -------------------------------------------------------
 

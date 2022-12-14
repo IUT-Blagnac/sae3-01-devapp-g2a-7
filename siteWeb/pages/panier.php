@@ -16,27 +16,46 @@
 <?php
     include("../include/header.php");
     require_once("../include/panier.php");
-    $idClient = 27;
+    $_SESSION['CLIENT'] = array(
+        'idClient' => 27,
+        'mainClient' => 'mainClient',
+        'mdpClient' => 'FJBAKLFBLAHFBBH'
+    );
 
-    $_SESSION['connecte'] = true;
-    if(!isset($_SESSION['panier'])) {
-        $panier = new Panier($idClient);
-        $_SESSION['panier'] = serialize($panier);
+    // CHECKING FOR PAINIER -------------------------------------------------------
+
+    switch (true) {
+        case isset($_SESSION['CLIENT']) && !isset($_SESSION['panier']):
+            $panier = new Panier($_SESSION['CLIENT']['idClient']);
+            break;
+        case !isset($_SESSION['CLIENT']) && !isset($_COOKIE['panier']):
+            $panier = new Panier();
+            break;
+        case isset($_SESSION['CLIENT']) && isset($_SESSION['panier']):
+            $panier = unserialize($_SESSION['panier']);
+            break;
+        case !isset($_SESSION['CLIENT']) && isset($_COOKIE['panier']):
+            $panier = unserialize($_COOKIE['panier']);
+            break;
     }
 
+    // CHECKING FOR PAINIER -------------------------------------------------------
+
+    // Changer la quantité d'un produit dans le panier
     if (isset($_POST['quantiteProduit'])) {
-        $panier = unserialize($_SESSION['panier']);
         $panier->changeQuantiteProduit($_POST['idProduit'], $_POST['quantiteProduit']);
-        $_SESSION['panier'] = serialize($panier);
+        if (isset($_SESSION['CLIENT'])) {
+            $_SESSION['panier'] = serialize($panier);
+        }
     }
 
+    // Supprimer un produit du panier
     if (isset($_POST['supprimer'])) {
-        $panier = unserialize($_SESSION['panier']);
         $panier->enleverProduit($_POST['idProduit']);
-        $_SESSION['panier'] = serialize($panier);
+        if (isset($_SESSION['CLIENT'])) {
+            $_SESSION['panier'] = serialize($panier);
+        }
     }
-
-    $panier = unserialize($_SESSION['panier']);
 
 ?>
 

@@ -3,12 +3,16 @@
     class Panier {
         private $produits;
         private $idClient;
+        private $tempSemaine = 60 * 60 * 24 * 7;
 
         public function __construct($idClient = null) {
             $this->produits = array();
             $this->idClient = $idClient;
             if ($this->idClient != null) {
                 $this->setProduitsPanierBaseDeDonne();
+            } else {
+                // cookie expire dans 1 semaine
+                setcookie("panier", serialize($this), time() + $tempSemaine);
             }
         }
 
@@ -17,19 +21,51 @@
         }
 
         public function enleverProduit($idProduit) {
-            foreach ($this->produits as $key => $produit) {
-                if ($produit->getIdProduit() == $idProduit) {
-                    unset($this->produits[$key]);
-                }
+            unset($this->produits[$idProduit]);
+            if ($this->idClient != null) {
+                $this->enleverProduitBaseDeDonne($idProduit);
+            } else {
+                setcookie("panier", serialize($this), time() + $tempSemaine);
             }
         }
 
+        private function enleverProduitBaseDeDonne($idProduit) {
+            global $connect;
+            $sqlEnleverProduit = "DELETE FROM CONTENIR
+            WHERE CONTENIR.IDPANIER IN (
+                SELECT IDPANIER FROM PANIER
+                WHERE PANIER.IDCLIENT = :idClient
+            )
+            AND CONTENIR.IDPRODUIT = :idProduit";
+            $enleverProduit = oci_parse($connect, $sqlEnleverProduit);
+            oci_bind_by_name($enleverProduit, ":idClient", $this->idClient);
+            oci_bind_by_name($enleverProduit, ":idProduit", $idProduit);
+            oci_execute($enleverProduit);
+        }
+
         public function changeQuantiteProduit($idProduit, $quantite) {
-            foreach ($this->produits as $key => $produit) {
-                if ($produit->getIdProduit() == $idProduit) {
-                    $this->produits[$key]->setQuantiteProduit($quantite);
-                }
+            $this->produits[$idProduit]->setQuantiteProduit($quantite);
+            if ($this->idClient != null) {
+                $this->changeQuantiteProduitBaseDeDonne($idProduit, $quantite);
+            } else {
+                setcookie("panier", serialize($this), time() + $tempSemaine);
             }
+        }
+
+        private function changeQuantiteProduitBaseDeDonne($idProduit, $quantite) {
+            global $connect;
+            $sqlChangeQuantiteProduit = "UPDATE CONTENIR
+            SET CONTENIR.QUANTITEPRODUIT = :quantite
+            WHERE CONTENIR.IDPANIER IN (
+                SELECT IDPANIER FROM PANIER
+                WHERE PANIER.IDCLIENT = :idClient
+            )
+            AND CONTENIR.IDPRODUIT = :idProduit";
+            $changeQuantiteProduit = oci_parse($connect, $sqlChangeQuantiteProduit);
+            oci_bind_by_name($changeQuantiteProduit, ":idClient", $this->idClient);
+            oci_bind_by_name($changeQuantiteProduit, ":idProduit", $idProduit);
+            oci_bind_by_name($changeQuantiteProduit, ":quantite", $quantite);
+            oci_execute($changeQuantiteProduit);
         }
 
         public function __toString() {
@@ -59,7 +95,7 @@
             $contenir = oci_parse($connect, $sqlContenir);
             oci_bind_by_name($contenir, ":idClient", $this->idClient);
             $resultContenir = oci_execute($contenir);
-            return ($resultContenir) ? $contenir : false;
+            return $contenir;
         }
 
         private function getProduitsBaseDeDonne() {
@@ -76,24 +112,22 @@
             $produits = oci_parse($connect, $sqlProduits);
             oci_bind_by_name($produits, ":idClient", $this->idClient);
             $resultProduits = oci_execute($produits);
-            return ($resultProduits) ? $produits : false;
+            return $produits;
         }
 
         private function setProduitsPanierBaseDeDonne() {
             $contenir = $this->getContenirBaseDeDonne();
             $produits = $this->getProduitsBaseDeDonne();
-            if ($contenir && $produits) {
-                while ($rowContenir = oci_fetch_array($contenir, OCI_ASSOC+OCI_RETURN_NULLS)) {
-                    $rowProduit = oci_fetch_array($produits, OCI_ASSOC+OCI_RETURN_NULLS);
-                    $produit = new Produit( $rowProduit['IDPRODUIT'],
-                                            $rowProduit['NOMPRODUIT'],
-                                            $rowContenir['PRIXPRODUIT'],
-                                            $rowContenir['DESCRIPTIFPRODUIT'],
-                                            $rowContenir['QUANTITEPRODUIT'],
-                                            $rowProduit['EXTENSIONIMGPRODUIT'],
-                                            $rowProduit['QUANTITESTOCKPRODUIT']);
-                    array_push($this->produits, $produit);
-                }
+            while ($rowContenir = oci_fetch_array($contenir, OCI_ASSOC+OCI_RETURN_NULLS)) {
+                $rowProduit = oci_fetch_array($produits, OCI_ASSOC+OCI_RETURN_NULLS);
+                $produit = new Produit( $rowProduit['IDPRODUIT'],
+                                        $rowProduit['NOMPRODUIT'],
+                                        $rowContenir['PRIXPRODUIT'],
+                                        $rowContenir['DESCRIPTIFPRODUIT'],
+                                        $rowContenir['QUANTITEPRODUIT'],
+                                        $rowProduit['EXTENSIONIMGPRODUIT'],
+                                        $rowProduit['QUANTITESTOCKPRODUIT']);
+                $this->produits[$rowProduit['IDPRODUIT']] = $produit;
             }
         }
 

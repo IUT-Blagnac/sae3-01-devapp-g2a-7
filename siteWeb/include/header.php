@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once("../include/connect.inc.php");
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

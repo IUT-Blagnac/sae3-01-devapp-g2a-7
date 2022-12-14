@@ -1,5 +1,4 @@
 <?php
-    require_once("../include/connect.inc.php");
     class Panier {
         private $produits;
         private $idClient;

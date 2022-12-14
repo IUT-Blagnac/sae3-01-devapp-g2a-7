@@ -1,5 +1,8 @@
 <?php
     session_start();
+    require_once("../include/connect.inc.php");
+    require_once("../include/panier.php");
+
     // CHECKING FOR PAINIER -------------------------------------------------------
 
     switch (true) {
@@ -18,6 +21,7 @@
     }
 
     // CHECKING FOR PAINIER -------------------------------------------------------
+
 ?>
 <header>
     <div>

@@ -15,7 +15,6 @@
 
 <?php
     include("../include/header.php");
-    require_once("../include/panier.php");
 
     // Changer la quantité d'un produit dans le panier
     if (isset($_POST['quantiteProduit'])) {
@@ -39,7 +38,7 @@
     <h1>Récapitulatif de mon panier</h1>
     <div class="commande">
         <?php if (count($panier->getProduits()) == 0) { ?>
-            <p>Votre panier est vide</p>
+            <p style="text-align: center; width: 100%;">Votre panier est vide</p>
         <?php } else { ?>
             <div class="produits">
                 <?php foreach($panier->getProduits() as $produit) { ?>

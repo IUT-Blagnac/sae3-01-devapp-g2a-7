@@ -8,6 +8,8 @@ import signal
 pwd = sys.path[0]
 # Data to write in data.json
 data = {}
+# Alarm timer
+alarmTimer = 60
 
 # Payload received from devices
 payload = {}
@@ -49,21 +51,27 @@ def on_message(client, userdata, msg):
 
 # When a signal of type SIGALRM is received
 def on_alarm(signum, frame):
-    print("Alarm received, 60 second, I'm writing data ...")
+    print(f"Alarm received, {alarmTimer} second, I'm writing data ...")
     global data, payload, config
     # Reload the config
     config = get_config()
     # Read the payload with the keys in the config
-    for key, value in config.items():
+    for key, value in config["donne"].items():
+        # check if we neeed to collect the data of the key
         if value:
-            data[key] = payload["object"][key]
+            # If we need to collect the data of the key, we add it to the data and we check if the value is above the threshold
+            if key in config["seuil"]:
+                data[key] = [payload["object"][key], True if payload["object"][key] > config["seuil"][key] else False]
+            else:
+                data[key] = [payload["object"][key], None]
         else:
+            # If we don't need to collect the data of the key, we delete it
             if key in data:
                 data.pop(key)
     # Write the data in data.json file
     write_data(data)
     # Reset the timer of 60 seconds
-    signal.alarm(60)
+    signal.alarm(alarmTimer)
 
 # Launch the client
 client = mqtt.Client()
@@ -76,14 +84,14 @@ signal.signal(signal.SIGALRM, on_alarm)
 # Get the config
 config = get_config()
 
-# Create a default data.json file if it does not exist
+# Create a default data.json file
 write_data(data)
 
 # Connect to the server
 client.connect("chirpstack.iut-blagnac.fr", 1883, 60)
 
 # Start the timer of 60 seconds
-signal.alarm(60)
+signal.alarm(alarmTimer)
 
 # Infinity loop
 client.loop_forever()

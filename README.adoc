@@ -90,7 +90,8 @@ TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
 == Réalisations 
 
 TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/66-cr%C3%A9er-le-header/Application_IoT/codePython/script.py[Script python (application IoT)]
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/66-cr%C3%A9er-le-header/Application_IoT/codePython/script.py[Script Python] (application IoT)
 
 == Gestion de projet & Qualité
 

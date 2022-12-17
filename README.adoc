@@ -91,6 +91,18 @@ TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
 
 TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
 
+=== Base de données du site web
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/scriptCreationBD.sql[Script SQL-LDD] : création de tables, contraintes et séquences pour la base de données
+
+=== Site web
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/index.html[Page d'accueil]
+
+=== Application IoT
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Application_IoT/codePython/script.py[Script Python] : lecture d'un fichier de configuration ``config.json`` et écriture d'un fichier ``data.json`` avec les données récupérées depuis le réseau IoT.
+
 == Gestion de projet & Qualité
 
 Chaque sprint (semaine) vous devrez livrer une nouvelle version de votre application (release).
@@ -98,7 +110,7 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v0.1.2[v0.1.2]
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v1[v1]
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant

@@ -97,7 +97,8 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 
 === Site web
 
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/index.html[Page d'accueil]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/include/footer.php[Footer]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/index.php[Page d'accueil]
 
 === Application IoT
 

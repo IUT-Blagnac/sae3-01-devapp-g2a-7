@@ -37,6 +37,6 @@
         }, 100);
         setTimeout(() => {
             close_info_popup();
-        }, 5000);
+        }, 6000);
     }
 </script>

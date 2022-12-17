@@ -1,6 +1,10 @@
+<?php
+    require_once("checkConnexion.php");
+?>
+
 <header>
     <div>
-        <a href="" class="logo">
+        <a href="../pages/index.php" class="logo">
             <img src="../public/images/logo.png" alt="Revive">
             <span>REVIVE</span>
         </a>
@@ -10,10 +14,17 @@
             <img src="../public/images/information.png" alt="Information">
             <span>INFORMATION</span>
         </a>
-        <a href="">
-            <img src="../public/images/userIcon.png" alt="Icon utilisateur">
-            <span>CONNEXION</span>
-        </a>
+        <?php if (isset($_SESSION['CLIENT']) || isset($_SESSION['ADMIN'])) { ?>
+            <a href="./consultCompte.php">
+                <img src="../public/images/userIcon.png" alt="Icon utilisateur">
+                <span>MON PROFIL</span>
+            </a>
+        <?php } else { ?>
+            <a href="./connexion.php">
+                <img src="../public/images/userIcon.png" alt="Icon utilisateur">
+                <span>CONNEXION</span>
+            </a>
+        <?php } ?>
         <a href="">
             <img src="../public/images/pannier.png" alt="Panier">
             <span>PANIER</span>

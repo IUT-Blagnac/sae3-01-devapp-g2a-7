@@ -99,6 +99,9 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/include/footer.php[Footer]
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/index.php[Page d'accueil]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/connexion.php[Page de connexion] : en tant que client ou qu'administrateur
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/creationCompte.php[Page de création d'un compte] : uniquement pour créer un compte client
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/consultCompte.php[Page de consultation d'un compte] : en tant que client ou qu'administrateur
 
 === Application IoT
 

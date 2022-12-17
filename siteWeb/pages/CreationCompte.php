@@ -20,8 +20,13 @@
         $messageErreur = "";
 
         // Vérifie la syntaxe de l'adresse mail
-        if (!preg_match("#^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$#", $mail)) {
+        if (!preg_match("/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/", $mail)) {
             $messageErreur = "L'adresse mail donnée est incorrecte.";
+        }
+
+        // Vérifie la syntaxe du mot de passe
+        else if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", $mdp)) {
+            $messageErreur = "Le mot de passe donné doit faire au moins 8 caractères dont au moins 1 majuscule, 1 chiffre et 1 caractère spécial parmi {@, $, !, %, *, #, ?, &}.";
         }
 
         // Vérifie si l'adresse mail n'existe pas déjà (chez les clients et les admins)

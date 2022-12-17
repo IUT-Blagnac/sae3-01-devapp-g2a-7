@@ -101,7 +101,7 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 
 === Application IoT
 
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Application_IoT/codePython/script.py[Script Python] : lecture d'un fichier de configuration ``config.json`` et écriture d'un fichier ``data.json`` avec les données récupérées depuis le réseau IoT.
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Application_IoT/codePython/script.py[Script Python] : lecture d'un fichier de configuration ``config.json`` et écriture d'un fichier ``data.json`` avec les données récupérées depuis le réseau IoT
 
 == Gestion de projet & Qualité
 

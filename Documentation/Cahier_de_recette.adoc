@@ -124,3 +124,5 @@ Un navigateur web quelconque.
 ^|1 ^|Accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page et affichage des données du compte administrateur ^|OK
 
 |====
+
+*TO COMPLETE*

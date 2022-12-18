@@ -1,0 +1,50 @@
+= Cahier De Recette
+:toc:
+:toc-title: Sommaire
+
+
+== I. Introduction
+=== 1. Objet :
+[.text-justify]
+Ce document a été produit dans le cadre d'un projet d'élaboration d'un site web pour l'entreprise REVIVE. Ce document spécifie l'ensemble des cas testés pour le site web.
+
+
+== II. Pre-Requis :
+[.text-justify]
+L'exécution des tests requiert :
+
+* L'accès au http://193.54.227.164/~SAESYS07/pages/[site web REVIVE]
+
+
+=== 1. Éléments à tester :
+[.text-justify]
+Les éléments testés concernent les User-Stories spécifiées dans le *CDCF*.
+
+
+=== 2. Environnement de test :
+[.text-justify]
+Navigateur web quelconque.
+
+
+
+== III. Cas de test :
+=== 1. Connexion et données de compte :
+==== 1.1 Connexion :
+
+|====
+
+>|Cas de test 3+|Test-01-01-01
+>|Titre 3+|Connexion en tant client
+>|Objectif 3+| Vérifier qu'il est possible de se connecter en tant que client sur la page connexion.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|3 ^|Saisir des données de client correctes ^|Connexion en tant que client et redirection vers la page d'accueil ^|OK
+
+
+|====
+
+

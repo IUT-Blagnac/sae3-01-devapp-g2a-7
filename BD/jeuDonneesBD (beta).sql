@@ -1,3 +1,6 @@
+/* Jeu de données généré sur le site https://filldb.info/ */
+
+
 -- Administrateurs
 INSERT INTO Administrateur (idAdmin, nomAdmin, prenomAdmin, mailAdmin, mdpAdmin, dateCompteAdmin) VALUES (1, 'Wyman', 'Zack', 'wmorissette@labadie.org', 'Commodi amet saepe omnis imped', TO_DATE('1992-07-04 23:05:34', 'YYYY-MM-DD HH24:MI:SS'));
 INSERT INTO Administrateur (idAdmin, nomAdmin, prenomAdmin, mailAdmin, mdpAdmin, dateCompteAdmin) VALUES (2, 'Zboncak', 'Ken', 'carolyne26@crooks.com', 'Doloribus nihil assumenda quib', TO_DATE('1980-11-10 13:39:32', 'YYYY-MM-DD HH24:MI:SS'));
@@ -6,7 +9,7 @@ INSERT INTO Administrateur (idAdmin, nomAdmin, prenomAdmin, mailAdmin, mdpAdmin,
 INSERT INTO Administrateur (idAdmin, nomAdmin, prenomAdmin, mailAdmin, mdpAdmin, dateCompteAdmin) VALUES (5, 'Kling', 'Jade', 'padberg.barton@oharagerlach.in', 'Ea sunt illum dolorum facere i', TO_DATE('1987-12-18 14:07:12', 'YYYY-MM-DD HH24:MI:SS'));
 
 UPDATE Administrateur
-SET mdpAdmin = '$2y$10$fiFm3IbSO/fyRY62y6ExyuSyDVpG3FSlHu.U.k3KSgI2M3LLebet.';
+SET mdpAdmin = '$2y$10$Xc41k8dDJScxqkvRHQD3deQ2NQYtdV4ZiLoJorMnGWj0VE47ugMh6';
 
 
 -- Clients
@@ -62,7 +65,7 @@ INSERT INTO Client (idClient, nomClient, prenomClient, mailClient, mdpClient, ad
 INSERT INTO Client (idClient, nomClient, prenomClient, mailClient, mdpClient, adresseClient, dateCompteClient, accepterAnnonceClient) VALUES (50, 'Yost', 'Gregoria', 'kris.thurman@johnson.biz', 'Accusantium ex quia incidunt q', '43039 Fahey Fort Suite 193\nQui', TO_DATE('1995-06-14 19:55:49', 'YYYY-MM-DD HH24:MI:SS'), 0);
 
 UPDATE Client
-SET mdpClient = '$2y$10$fiFm3IbSO/fyRY62y6ExyuSyDVpG3FSlHu.U.k3KSgI2M3LLebet.';
+SET mdpClient = '$2y$10$Xc41k8dDJScxqkvRHQD3deQ2NQYtdV4ZiLoJorMnGWj0VE47ugMh6';
 
 
 -- Revendeurs
@@ -120,7 +123,7 @@ INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (28, '
 INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (29, 'Nintendo', 21);
 
 
--- Produits (TODO)
+-- Produits (temporaires)
 INSERT INTO Produit (idProduit, nomProduit, extensionImgProduit, prixProduit, prixBaseProduit, detailsProduit, quantiteStockProduit, vendreProduit, idRevendeur, idCategorie, delaiLivraisonProduit, dateRetractationProduit, garantieProduit, verifierProduit) VALUES (1, 'itaque', 'jpeg', 3637.41, 12408.54, 'Quam ut enim voluptatem qui officiis. Consequatur in perspiciatis doloremque aut esse ut. Qui officia inventore quidem occaecati ut id. Dignissimos unde optio ut magnam aut suscipit sint.', 994, 0, 10, 10, 25, TO_DATE('1977-10-20', 'YYYY-MM-DD'), 26, 0);
 INSERT INTO Produit (idProduit, nomProduit, extensionImgProduit, prixProduit, prixBaseProduit, detailsProduit, quantiteStockProduit, vendreProduit, idRevendeur, idCategorie, delaiLivraisonProduit, dateRetractationProduit, garantieProduit, verifierProduit) VALUES (2, 'doloremque', 'jpg', 27486.77, 38499.8, 'Modi cupiditate et accusantium delectus ut. Voluptas repudiandae sequi nisi aspernatur culpa harum atque fuga. Itaque quae illo laboriosam ipsum est laboriosam voluptatum.', 739, 1, 1, 11, 27, TO_DATE('1995-12-28', 'YYYY-MM-DD'), 29, 0);
 INSERT INTO Produit (idProduit, nomProduit, extensionImgProduit, prixProduit, prixBaseProduit, detailsProduit, quantiteStockProduit, vendreProduit, idRevendeur, idCategorie, delaiLivraisonProduit, dateRetractationProduit, garantieProduit, verifierProduit) VALUES (3, 'voluptatem', 'jpeg', 26758.86, 15315.4, 'Velit aspernatur incidunt incidunt dolore dolore ducimus. Aut ipsum rerum possimus tempora natus dicta. Eum beatae consequatur dolorem sed est ea.', 197, 1, 8, 8, 9, TO_DATE('1981-04-25', 'YYYY-MM-DD'), 11, 0);
@@ -178,7 +181,7 @@ prixProduit = prixBaseProduit
 WHERE Produit.prixProduit > Produit.prixBaseProduit;
 
 
--- Choix (TODO)
+-- Choix (à compléter)
 INSERT INTO Choix (idChoix, libelleChoix, tauxChoix) VALUES (1, '64 Go', 1.1);
 INSERT INTO Choix (idChoix, libelleChoix, tauxChoix) VALUES (2, 'Parfait état', 1.23);
 INSERT INTO Choix (idChoix, libelleChoix, tauxChoix) VALUES (3, 'Rouge', 1.1);
@@ -193,7 +196,7 @@ INSERT INTO Choix (idChoix, libelleChoix, tauxChoix) VALUES (11, 'Noir', 1.42);
 INSERT INTO Choix (idChoix, libelleChoix, tauxChoix) VALUES (12, 'Mauve', 1.21);
 
 
--- Caracteristiques (TODO)
+-- Caracteristiques (temporaires)
 INSERT INTO Caracteristique (idCaracteristique, libelleCaracteristique) VALUES (15, 'saepe');
 INSERT INTO Caracteristique (idCaracteristique, libelleCaracteristique) VALUES (7, 'culpa');
 INSERT INTO Caracteristique (idCaracteristique, libelleCaracteristique) VALUES (18, 'minus');
@@ -377,7 +380,7 @@ INSERT INTO Commande (idCommande, prixCommande, dateCommande, idClient) VALUES (
 INSERT INTO Commande (idCommande, prixCommande, dateCommande, idClient) VALUES (100, 71305.81, TO_DATE('1983-12-10 06:50:34', 'YYYY-MM-DD HH24:MI:SS'), 3);
 
 
--- Contenir (TOMODIFY)
+-- Contenir (temporaire)
 INSERT INTO Contenir (idPanier, idProduit, quantiteProduit, prixProduit, descriptifProduit) VALUES (1, 1, 39, 16610.00, 'Occaecati nihil hic ad.');
 INSERT INTO Contenir (idPanier, idProduit, quantiteProduit, prixProduit, descriptifProduit) VALUES (2, 2, 12, 2749.00, 'Tempore veritatis quaerat qui.');
 INSERT INTO Contenir (idPanier, idProduit, quantiteProduit, prixProduit, descriptifProduit) VALUES (3, 3, 90, 10452.00, 'Accusamus dicta eius odit.');
@@ -433,6 +436,7 @@ UPDATE Contenir
 SET idPanier = 1
 WHERE idPanier BETWEEN 2 AND 6;
 
+
 -- Renseigner
 INSERT INTO Renseigner (idCommande, idProduit, quantiteProduit) VALUES (1, 1, 69);
 INSERT INTO Renseigner (idCommande, idProduit, quantiteProduit) VALUES (2, 2, 67);
@@ -486,7 +490,7 @@ INSERT INTO Renseigner (idCommande, idProduit, quantiteProduit) VALUES (49, 49, 
 INSERT INTO Renseigner (idCommande, idProduit, quantiteProduit) VALUES (50, 50, 45);
 
 
--- DonnerAvis (TOMODIFY)
+-- DonnerAvis (temporaire)
 INSERT INTO DonnerAvis (idClient, idProduit, descriptionAvis, noteAvis) VALUES (1, 1, 'Saepe molestiae quaerat quos adipisci quia non. Illum qui consectetur laboriosam quod. Eius corporis nostrum aliquam autem est laborum placeat.', 4);
 INSERT INTO DonnerAvis (idClient, idProduit, descriptionAvis, noteAvis) VALUES (2, 2, 'Nam hic omnis ratione eos alias debitis nulla. Veniam voluptatem quam accusamus sit. Ut nulla quasi tenetur aut sed quis. Aut ullam ut vitae impedit est dolor.', 2);
 INSERT INTO DonnerAvis (idClient, idProduit, descriptionAvis, noteAvis) VALUES (3, 3, 'Repellat aperiam molestiae deserunt accusamus quam culpa est reiciendis. Beatae culpa et explicabo iste. Dolorem vero earum est qui. Minus iusto nostrum deserunt autem est alias.', 4);
@@ -539,7 +543,7 @@ INSERT INTO DonnerAvis (idClient, idProduit, descriptionAvis, noteAvis) VALUES (
 INSERT INTO DonnerAvis (idClient, idProduit, descriptionAvis, noteAvis) VALUES (50, 50, 'Dolores quae nemo nihil corporis. Repudiandae alias ex aut expedita. Enim aut eligendi voluptas aliquid. Et iusto voluptas voluptates id nisi dignissimos omnis.', 4);
 
 
--- Affecter (TOCOMPLETE)
+-- Affecter (à compléter)
 INSERT INTO Affecter (idChoix, idProduit, typeChoix) VALUES (1, 1, 'Capacité');
 INSERT INTO Affecter (idChoix, idProduit, typeChoix) VALUES (1, 13, 'Condition');
 INSERT INTO Affecter (idChoix, idProduit, typeChoix) VALUES (2, 2, 'Capacité');
@@ -562,7 +566,7 @@ INSERT INTO Affecter (idChoix, idProduit, typeChoix) VALUES (11, 11, 'Capacité'
 INSERT INTO Affecter (idChoix, idProduit, typeChoix) VALUES (12, 12, 'Capacité');
 
 
--- Assigner (TOMODIFY)
+-- Assigner (temporaire)
 INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUES (1, 1, 'consectetur');
 INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUES (2, 2, 'beatae');
 INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUES (3, 3, 'eveniet');
@@ -588,3 +592,16 @@ INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUE
 INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUES (23, 23, 'corrupti');
 INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUES (24, 24, 'voluptatem');
 INSERT INTO Assigner (idProduit, idCaracteristique, donneeCaracteristique) VALUES (25, 25, 'deleniti');
+
+
+-- Recréation des séquences par rapport aux nombres de lignes insérées dans les tables correspondantes
+DROP SEQUENCE seq_administrateur;
+DROP SEQUENCE seq_client;
+DROP SEQUENCE seq_commande;
+DROP SEQUENCE seq_panier;
+DROP SEQUENCE seq_produit;
+CREATE SEQUENCE seq_administrateur START WITH 5 MINVALUE 5;
+CREATE SEQUENCE seq_client START WITH 50 MINVALUE 50;
+CREATE SEQUENCE seq_commande START WITH 50 MINVALUE 50;
+CREATE SEQUENCE seq_panier START WITH 50 MINVALUE 50;
+CREATE SEQUENCE seq_produit START WITH 50 MINVALUE 50;

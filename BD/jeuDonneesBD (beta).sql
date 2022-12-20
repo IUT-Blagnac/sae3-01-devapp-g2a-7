@@ -118,9 +118,9 @@ INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (23, '
 INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (24, 'Dell', 20);
 INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (25, 'MSI', 20);
 INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (26, 'Razer', 20);
-INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (27, 'Playstation', 21);
-INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (28, 'Xbox', 21);
-INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (29, 'Nintendo', 21);
+INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (27, 'Playstation', 5);
+INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (28, 'Xbox', 5);
+INSERT INTO Categorie (idCategorie, nomCategorie, idCategorieMere) VALUES (29, 'Nintendo', 5);
 
 
 -- Produits (temporaires)

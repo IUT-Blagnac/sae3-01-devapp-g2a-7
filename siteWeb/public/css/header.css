@@ -150,32 +150,40 @@ div.subHeader {
     background-color: var(--light-grey);
 }
 
-div.subHeader ul {
+div.subHeader div.navbar {
     position: relative;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    max-height:50px;
 }
 
-div.subHeader ul.navbar li {
+div.subHeader div.navbar a {
     position: relative;
     display: block;
     width: 200px;
+    height:50px;
     float: left;
     text-align: center;
     list-style: none;
     background-color: var(--green-blue);
     margin-left: 35px;
+    padding: 15px;
+    text-decoration: none;
+    color: var(--white);
+    box-sizing: border-box;
+    z-index:999;
 }
 
-div.subHeader ul.navbar a {
+/*div.subHeader ul.navbar a {
     position: relative;
     padding: 15px;
     text-decoration: none;
     color: var(--white);
     display: block;
     box-sizing: border-box;
-}
+}*/
 
-div.subHeader ul.navbar a.titleSubmenu {
+div.subHeader div.navbar a#titleSubmenu {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -183,40 +191,54 @@ div.subHeader ul.navbar a.titleSubmenu {
     align-items: center;
     align-content: center;
     gap: 10px;
+    margin-left:0;
 }
 
-div.subHeader ul.navbar a img {
+div.subHeader div.navbar a img {
     position: relative;
     display: block;
     height: 20px;
     width: 20px;
 }
 
-div.subHeader ul.navbar li ul {
-    display: none;
+#div-submenu {
+    margin-left:35px;
+    width:200px;
+    height:50px;
 }
 
-div.subHeader ul.navbar li:hover ul,
-div.subHeader ul.navbar li:focus ul {
-    display: block;
-    position: absolute;
-    top: 100%;
+/* 1st ul child */
+#div-submenu > ul {
+    /*display:block;*/
+    background-color:var(--green-blue);
+    margin-top:50px;
+    margin-left:0;
+}
+a#titleSubmenu:hover ~ ul {
+    display:block;
+}
+#div-submenu ul:hover {
+    display:block;
 }
 
-div.subHeader ul.navbar li ul li {
-    background-color: var(--green-blue);
-    margin: 0px;
+div.subHeader div.navbar ul {
+    margin-left:calc(100% + 15px);
+    margin-top:-36px;
+    position:relative;
+    z-index:50;
 }
 
-div.subHeader ul.navbar li ul li a {
-    border-bottom: 1px solid var(--dark-grey);
-    border-top: none;
+div.subHeader div.navbar li {
+    white-space:nowrap;
+    color:var(--dark-grey);
+    background-color:var(--light-grey);
+    width:170px;
+    height:20px;
+    padding:15px;
+    list-style:none;
 }
-
-div.subHeader ul.navbar li ul li:first-child {
-    border-top: 1px solid var(--dark-grey);
-}
-
-div.subHeader ul.navbar li ul li a:hover {
-    background-color: var(--green-blue);
+div.subHeader div.navbar li:hover {
+    color:white;
+    background-color:var(--green-blue);
+    cursor:pointer;
 }

@@ -1,5 +1,42 @@
 <?php
     require_once("checkConnexion.php");
+    error_reporting(0);
+
+    function afficher_categories($idCategorieMere=null, $niveau=1) {
+        global $connect;
+        if ($idCategorieMere == null) {
+            $sql = "SELECT idCategorie, nomCategorie FROM Categorie
+                WHERE idCategorieMere IS NULL";
+            $requete = oci_parse($connect, $sql);
+        } else {
+            $sql = "SELECT idCategorie, nomCategorie FROM Categorie
+                WHERE idCategorieMere = :idCategorieMere";
+            $requete = oci_parse($connect, $sql);
+            oci_bind_by_name($requete, ":idCategorieMere", $idCategorieMere);
+        }
+        $result = oci_execute($requete);
+        if (!$result) {
+            echo "<script>throw 'Une erreur est survenue avec la base de données.'</script>";
+            return null;
+        }
+        $categories = array();
+        oci_fetch_all($requete, $categories);
+        $idUl = $categories["IDCATEGORIE"][0] ?? "x";
+        echo "<ul id='ul".$idUl."'>";
+        for ($i=0; $i<count($categories["IDCATEGORIE"]); $i++) {
+            echo "<li id='li".$categories["IDCATEGORIE"][$i]."'>".
+                $categories["NOMCATEGORIE"][$i];
+            afficher_categories($categories["IDCATEGORIE"][$i], $niveau+1);
+            echo "</li>";
+        }
+        echo "</ul><style>
+            #ul".$idUl." {
+                display:none;
+            }
+            #li".$idCategorieMere.":hover #ul".$idUl." {
+                display:block;
+            } </style>";
+    }
 ?>
 
 <header>
@@ -38,19 +75,13 @@
     </div>
 </header>
 <div class="subHeader">
-    <ul class="navbar">
-        <li>
-            <a href="#" class="titleSubmenu">
+    <div class="navbar">
+        <div id="div-submenu">
+            <a href="#" id="titleSubmenu">
                 <img src="../public/images/menuIcon.png" alt="Menu Icon"> NOS PRODUITS
             </a>
-            <ul>
-                <li><a href="#">Téléphone</a></li>
-                <li><a href="#">Bidet</a></li>
-                <li><a href="#">Ordinateur</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">REVENDRE</a>
-        </li>
-    </ul>
+            <?php afficher_categories() ?>
+        </div>
+        <a href="#">REVENDRE</a>
+    </div>
 </div>

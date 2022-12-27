@@ -26,7 +26,7 @@
 
         // Vérifie la syntaxe du mot de passe
         else if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", $mdp)) {
-            $messageErreur = "Le mot de passe donné doit faire au moins 8 caractères dont au moins 1 majuscule, 1 chiffre et 1 caractère spécial parmi {@, $, !, %, *, #, ?, &}.";
+            $messageErreur = "Le mot de passe donné doit faire au moins 8 caractères dont 1 majuscule, 1 chiffre et 1 caractère spécial parmi {@, $, !, %, *, #, ?, &}.";
         }
 
         // Vérifie si l'adresse mail n'existe pas déjà (chez les clients et les admins)
@@ -69,7 +69,7 @@
         		echo '<script type="text/javascript">show_info_popup("Une erreur est survenue lors de l\'ajout des données.", "red")</script>';
         	} else {
                 // Redirection vers la page de connexion (avec message de confirmation)
-                header("Location: connexion.php?nouveauCompte=true");
+                header("Location: connexion.php?messageInfo=compteCree");
             }
         }
     }
@@ -83,6 +83,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../public/css/style.css">
         <link rel="stylesheet" href="../public/css/header.css">
+        <link rel="stylesheet" href="../public/css/footer.css">
         <link rel="stylesheet" href="../public/css/connexionStyle.css">
         <title>Création d'un compte</title>
     </head>

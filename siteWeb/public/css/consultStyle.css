@@ -1,0 +1,46 @@
+h1 {
+    font-size: 35px;
+    color: var(--green-blue);
+}
+
+body {
+    margin:0;
+}
+
+#consulte {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#produit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+}
+
+#caracteristiques {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.caracs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.carac {
+    max-width: 45px;
+    width: 45px;
+}
+
+#infos div {
+    padding: 5px;
+    padding-left: 0px;
+    min-height: 30px;
+}

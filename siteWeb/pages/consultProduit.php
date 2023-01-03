@@ -13,7 +13,7 @@
             <div id="img">
                 <img src="" alt="image du produit">
             </div>
-            <div>
+            <div id="donnees">
                 <div id="produit">
                     <h1> <?= $_GET['nomProduit'] ?> </h1>
                     <form action="post">
@@ -52,8 +52,10 @@
                                     <h3><?= $key ?></h3>
                             <?php
                             foreach($value as $infos) { ?>
-                                <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
-                            <?php } ?>
+                                <div>
+                                    <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                                </div>
+                                <?php } ?>
                             </div>
                         <?php } ?>
                         </div> 
@@ -183,7 +185,7 @@
                                 <div id="note-moyenne">
                                     <div id="moyenne-note">
                                         <div id="etoiles">
-                                            <div id="etoiles-vide"><img src="etoiles.png"></div>
+                                            <div id="etoiles-vide"><img src="../public/images/etoiles.png"></div>
                                             <div id="etoiles-bg" style="width: <?= $pourcentAvis ?>%"></div>
                                         </div>
                                         <div id="note"><?=$moyenneAvis ?>/5</div>

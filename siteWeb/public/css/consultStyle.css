@@ -4,22 +4,73 @@ h1 {
 }
 
 body {
-    margin:0;
+    margin: 0px;
 }
 
 #consulte {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    gap: 5%;
+    
 }
 
-#produit {
+div#img {
+    position: relative;
+    display: block;
+    width: 35%;
+}
+
+div#img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+div#donnees {
+    position: relative;
+    display: block;
+    width: 35%;
+}
+
+div#produit {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 20px;
+    justify-content: start;
+    gap: 10px;
+}
+
+div#produit form {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+div#produit form input {
+    position: relative;
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--green-blue);
+    background-color: var(--green-blue);
+    color: var(--white);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div#produit form div.choix div {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 #caracteristiques {
@@ -43,4 +94,23 @@ body {
     padding: 5px;
     padding-left: 0px;
     min-height: 30px;
+}
+
+div#note-moyenne {
+    display: flex;
+    flex-direction: row;
+}
+
+div#moyenne-note {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+div#etoiles-vide {
+    
+}
+
+div#etoiles-bg {
+    background-color: black;
 }

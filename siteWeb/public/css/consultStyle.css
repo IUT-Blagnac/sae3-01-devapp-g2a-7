@@ -31,8 +31,22 @@ div#img img {
 
 div#donnees {
     position: relative;
-    display: block;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 20px;
     width: 35%;
+}
+
+div#donnees > div {
+    border-top: 2px solid var(--green-blue);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+div#donnees > div:nth-child(1) {
+    border-top: none;
 }
 
 div#produit {
@@ -48,7 +62,15 @@ div#produit form {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    align-items: stretch;
     gap: 10px;
+}
+
+div#produit form div:first-child {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 div#produit form input {
@@ -70,7 +92,9 @@ div#produit form div.choix div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     gap: 10px;
+    margin-top: 5px;
 }
 
 #caracteristiques {
@@ -85,11 +109,6 @@ div#produit form div.choix div {
     justify-content: space-between;
 }
 
-.carac {
-    max-width: 45px;
-    width: 45px;
-}
-
 #infos div {
     padding: 5px;
     padding-left: 0px;
@@ -99,18 +118,103 @@ div#produit form div.choix div {
 div#note-moyenne {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 10px;
 }
 
 div#moyenne-note {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
     gap: 10px;
 }
 
 div#etoiles-vide {
-    
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+div#etoiles-vide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 div#etoiles-bg {
+    position: absolute;
+    display: block;
     background-color: black;
+    height: 100%;
+    z-index: 1;
+}
+
+div#etoiles {
+    position: relative;
+    display: block;
+    width: 112px;
+    height: 22px;
+}
+
+div.caracs {
+    width: 65%;
+    border-bottom: 1px solid var(--black);
+    padding: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div.caracs:last-child {
+    border-bottom: none;
+}
+
+h5#filtrerParNote {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+}
+
+div.selection-avis {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.bg-barre-avis {
+    height: 4px;
+    width: calc(100% - 60px * 2 - 30px * 2);
+    background-color: var(--light-grey);
+}
+
+div.barre-avis {
+    position: relative;
+    display: block;
+    height: 4px;
+    background-color: black;
+}
+
+div.selection-avis > div:first-child {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: 60px;
+}
+
+div.el-avis {
+    width: 60px;
+}
+
+div#filtres-avis {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+    
 }

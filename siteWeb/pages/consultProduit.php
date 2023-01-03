@@ -8,7 +8,45 @@
     </head>
 
     <body>
-        <?php include("../include/header.php"); ?>
+        <?php include("../include/header.php"); 
+        require_once("../include/checkConnexion.php");
+        error_reporting(0);
+        $idProduit = "1";
+
+        $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix
+                FROM Produit P, Choix C, Affecter A
+                WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
+                    AND P.idProduit = :idProduit 
+                ORDER BY TYPECHOIX";
+
+        $listeChoix = oci_parse($connect, $req) ;
+
+        oci_bind_by_name($listeChoix, ":idProduit", $idProduit);
+
+        $result = oci_execute($listeChoix);
+        if (!$result) {
+            $e = oci_error($listeChoix);  // on récupère l'exception liée au pb d'execution de la requete
+            print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+        }
+
+        $dict = array();
+        while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
+            $prixProduit = $leChoix['PRIXPRODUIT'];
+            if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
+                $dict[$leChoix['TYPECHOIX']] = array();
+            }
+            array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
+        }
+        
+        $taux = 1;
+
+        foreach ($dict as $key => $value) {
+            foreach($value as $infos) {
+                $taux *= $infos['tauxChoix'];
+            }
+        }
+        $prixProduit = $taux * $prixProduit;
+        ?>
         <div id="consulte">
             <div id="img">
                 <img src="" alt="image du produit">
@@ -17,45 +55,31 @@
                 <div id="produit">
                     <h1> <?= $_GET['nomProduit'] ?> </h1>
                     <form action="post">
-                        <input type="button" name="ajoutPanier" value="Ajouter au panier">
+                        <div>
+                            <input type="button" name="ajoutPanier" value="Ajouter au panier">
+                            <p>Prix: <?= $prixProduit ?>€</p>
+                        </div>
                     <?php
-
-                        require_once("../include/checkConnexion.php");
-                        error_reporting(0);
-                        $idProduit = "1";
-
-                        $req = "SELECT TYPECHOIX, libelleChoix, tauxChoix, A.idChoix
-                                FROM Produit P, Choix C, Affecter A
-                                WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
-                                    AND P.idProduit = :idProduit 
-                                ORDER BY TYPECHOIX";
-
-                        $listeChoix = oci_parse($connect, $req) ;
-
-                        oci_bind_by_name($listeChoix, ":idProduit", $idProduit);
-
-                        $result = oci_execute($listeChoix);
-                        if (!$result) {
-                            $e = oci_error($listeChoix);  // on récupère l'exception liée au pb d'execution de la requete
-                            print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
-                        }
-
-                        $dict = array();
-                        while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
-                            if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
-                                $dict[$leChoix['TYPECHOIX']] = array();
-                            }
-                            array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
-                        }
-                        foreach ($dict as $key => $value) { ?>
+                        foreach ($dict as $key => $value) {
+                            $first = true;
+                            ?>
                             <div class="choix">
                                     <h3><?= $key ?></h3>
                             <?php
-                            foreach($value as $infos) { ?>
+                            foreach($value as $infos) { 
+                                if ($first) { ?>
+                                    <div>
+                                        <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>" checked><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                                    </div>
+                                <?php
+                                    $first = false;
+                                } else {
+                                ?>
                                 <div>
                                     <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                 </div>
-                                <?php } ?>
+                                <?php }
+                            } ?>
                             </div>
                         <?php } ?>
                         </div> 
@@ -76,6 +100,7 @@
                         }
                         if(($lesInfos = oci_fetch_assoc($infosProduit)) != false) { ?>
                             <div id="infos">
+                            <div><h3>Details</h3></div>
                         <?php
                             $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
                         ?>
@@ -107,11 +132,12 @@
                         }
                         ?>
                         <div id="caracteristiques">
+                                <h3>Caractéristiques</h3>
                         <?php
                         while (($laCarac = oci_fetch_assoc($caracProduit)) != false) { ?>
                             <div class="caracs">
-                                    <div class="carac"><?php $laCarac['LIBELLECARACTERISTIQUE'] ?></div>
-                                    <div class="carac"><?php $laCarac['DONNEECARACTERISTIQUE'] ?> </div>
+                                    <div class="carac"><?= $laCarac['LIBELLECARACTERISTIQUE'] ?></div>
+                                    <div class="carac"><?= $laCarac['DONNEECARACTERISTIQUE'] ?> </div>
                                 </div>
                         <?php } ?>
                         </div>
@@ -174,10 +200,12 @@
                                 $pourcent21 += $avisNote['NOMBREAVIS'];
                             }
                         }
-                        $pourcent54 = round(($pourcent54 / $nbAvis) * 100);
-                        $pourcent43 = round(($pourcent43 / $nbAvis) * 100);
-                        $pourcent32 = round(($pourcent32 / $nbAvis) * 100);
-                        $pourcent21 = round(($pourcent21 / $nbAvis) * 100);
+                        if ($nbAvis !=0) {
+                            $pourcent54 = round(($pourcent54 / $nbAvis) * 100);
+                            $pourcent43 = round(($pourcent43 / $nbAvis) * 100);
+                            $pourcent32 = round(($pourcent32 / $nbAvis) * 100);
+                            $pourcent21 = round(($pourcent21 / $nbAvis) * 100);
+                        }
                     ?>
                         <div id="avis">
                             <div id="intitule-avis">
@@ -195,51 +223,58 @@
                             </div>
                     
                         <form action="post">
-                            <h5>Filtrer par note</h5>
+                            <h5 id="filtrerParNote">Filtrer par note</h5>
                             <div id="filtres-avis">
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" name="choix-avis" value="Tous"> Tous
+                                        <input type="radio" id="tous" class="el-avis" name="choix-avis" value="Tous" checked><label for="tous">Tous</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: 100%"></div>
                                     </div>
+                                    <div class="el-avis">100%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" name="choix-avis" value="4-5"> Tous
+                                        <input type="radio" id="4-5" class="el-avis" name="choix-avis" value="4-5"><label for="4-5">4-5</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent54 ?>%"></div>
                                     </div>
+                                    <div class="el-avis"><?= $pourcent54?>%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" name="choix-avis" value="3-4"> Tous
+                                        <input type="radio" id="3-4" class="el-avis" name="choix-avis" value="3-4"><label for="3-4">3-4</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent43 ?>%"></div>
                                     </div>
+                                    <div class="el-avis"><?= $pourcent43?>%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" name="choix-avis" value="2-3"> Tous
+                                        <input type="radio" id="2-3" class="el-avis" name="choix-avis" value="2-3"><label for="2-3">2-3</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent32 ?>%"></div>
                                     </div>
+                                    <div class="el-avis"><?= $pourcent32?>%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" name="choix-avis" value="1-2"> Tous
+                                        <input type="radio" id="1-2" class="el-avis" name="choix-avis" value="1-2"><label for="1-2">1-2</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent21 ?>%"></div>
                                     </div>
+                                    <div class="el-avis"><?= $pourcent21?>%</div>
                                 </div>
                             </div>
                         </div>
                     </form>
+
+                    
                 </div>
             </div>
         </div>

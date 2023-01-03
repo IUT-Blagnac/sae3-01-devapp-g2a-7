@@ -86,7 +86,7 @@
                         <?php
                         oci_free_statement($listeChoix);
 
-                        $req = "SELECT prixProduit, prixBaseProduit, delaiLivraisonProduit, dateRetractationProduit, garantieProduit, verifierProduit
+                        $req = "SELECT prixProduit, prixBaseProduit, delaiLivraisonProduit, TO_CHAR(dateRetractationProduit, 'dd/mm/YYYY') AS dateRetractationProduit, garantieProduit, verifierProduit
                                 FROM Produit
                                 WHERE idProduit = :idProduit";
 

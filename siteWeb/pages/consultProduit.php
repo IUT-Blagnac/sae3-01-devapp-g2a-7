@@ -14,7 +14,7 @@
                 <img src="" alt="image du produit">
             </div>
             <div id="produit">
-                <?php echo "<h1>", $_GET['nomProduit'], "</h1>"; ?>
+                <h1> <?= $_GET['nomProduit'] ?> </h1>
                 <form action="post">
                     <input type="button" name="ajoutPanier" value="Ajouter au panier">
                 <?php
@@ -39,7 +39,6 @@
                         print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
                     }
 
-                    echo "<div id=\"types\">";
                     $dict = array();
                     while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
                         if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
@@ -47,10 +46,18 @@
                         }
                         array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX']));
                     }
-                    foreach ($dict as $key => $value) {
-                        echo "<div class=\"choix\">
-                                <h3>", $key, "</h3>";
-                        foreach($value as $infos) {
+
+                    ?>
+
+                    <div id="types">
+
+                    <?php
+                        foreach ($dict as $key => $value) { 
+                    ?>
+                        <div class="choix">
+                            <h3> <?= $key ?> </h3>
+                        <?php
+                        foreach($value as $infos) { ?>
                             echo $infos['libelleChoix']."<input type=\"radio\" name=\"choix".$key."\" value=\"".$infos['tauxChoix']."\"><br>";
                         }
                         echo "</div>";

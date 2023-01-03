@@ -23,7 +23,7 @@
                     error_reporting(0);
                     $idProduit = "1";
 
-                    $req = "SELECT TYPECHOIX, libelleChoix, tauxChoix 
+                    $req = "SELECT TYPECHOIX, libelleChoix, tauxChoix, A.idChoix
                             FROM Produit P, Choix C, Affecter A
                             WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
                                 AND P.idProduit = :idProduit 
@@ -44,20 +44,22 @@
                         if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
                             $dict[$leChoix['TYPECHOIX']] = array();
                         }
-                        array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX']));
+                        array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
                     }
-                    foreach ($dict as $key => $value) {
-                        echo "<div class=\"choix\">
-                                <h3>", $key, "</h3>";
+                    foreach ($dict as $key => $value) { ?>
+                        <div class="choix">
+                                <h3><?= $key ?></h3>
+                        <?php
                         foreach($value as $infos) { ?>
-                            <input type="radio" name="choix-<? $key ?>" value="<? $infos['tauxChoix'] ?>"><br>";
-                        <? }
-                        echo "</div>";
-                    }
-                    echo "</div>";
+                            <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                        <?php } ?>
+                        </div>
+                    <?php } ?>
+                    </div> 
+                    <?php
                     oci_free_statement($listeChoix);
 
-                    $req = "SELECT nomprixProduit, prixBaseProduit, delaiLivraisonProduit, dateRetractationProduit, garantieProduit, verifierProduit
+                    $req = "SELECT prixProduit, prixBaseProduit, delaiLivraisonProduit, dateRetractationProduit, garantieProduit, verifierProduit
                             FROM Produit
                             WHERE idProduit = :idProduit";
 
@@ -69,20 +71,21 @@
                         $e = oci_error($infosProduit);  // on récupère l'exception liée au pb d'execution de la requete
                         print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
                     }
-                    if(($lesInfos = oci_fetch_assoc($infosProduit)) != false) {
-                        echo "<div id=\"infos\">";
-                        $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] /$lesInfos['PRIXBASEPRODUIT']))*100;
-                        echo "<div>", round($tauxReduc) , "% vs prix neuf</div>
-                              <div>Livraison en ", $lesInfos['DELAILIVRAISONPRODUIT'], " jours offerte</div>
-                              <div>Changez d'avis jusqu'au ", $lesInfos['DATERETRACTATIONPRODUIT'], "</div>
-                              <div>Garantie contractuelle ", $lesInfos['GARANTIEPRODUIT'], " mois</div>";
-                        if ($lesInfos['VERIFIERPRODUIT']) {
-                            echo "<div>Reconditionneur vérifié</div>";
-                        }
-                        echo "</div>";
-                    } else {
-                        echo "Erreur";
-                    }
+                    if(($lesInfos = oci_fetch_assoc($infosProduit)) != false) { ?>
+                        <div id="infos">
+                    <?php
+                        $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
+                    ?>
+                        <div><?= round($tauxReduc) ?>% vs prix neuf</div>
+                              <div>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</div>
+                              <div>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?> </div>
+                              <div>Garantie contractuelle <?= $lesInfos['GARANTIEPRODUIT'] ?> mois</div>
+                    <?php
+                        if ($lesInfos['VERIFIERPRODUIT']) { ?>
+                            <div>Reconditionneur vérifié</div>
+                        <?php } ?>
+                        </div>
+                    <?php }
 
                     oci_free_statement($infosProduit);
 
@@ -99,14 +102,17 @@
                         $e = oci_error($caracProduit);  // on récupère l'exception liée au pb d'execution de la requete
                         print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
                     }
-                    echo "<div id=\"caracteristiques\">";
-                    while (($laCarac = oci_fetch_assoc($caracProduit)) != false) {
-                        echo "<div class=\"caracs\">
-                                <div class=\"carac\">", $laCarac['LIBELLECARACTERISTIQUE'], "</div>
-                                <div class=\"carac\">", $laCarac['DONNEECARACTERISTIQUE'], "</div>
-                            </div>";
-                    }
-                    echo "</div>";
+                    ?>
+                    <div id="caracteristiques">
+                    <?php
+                    while (($laCarac = oci_fetch_assoc($caracProduit)) != false) { ?>
+                        <div class="caracs">
+                                <div class="carac"><?php $laCarac['LIBELLECARACTERISTIQUE'] ?></div>
+                                <div class="carac"><?php $laCarac['DONNEECARACTERISTIQUE'] ?> </div>
+                            </div>
+                    <?php } ?>
+                    </div>
+                    <?php
                     oci_free_statement($caracProduit);
                     
                     $req = "SELECT noteAvis, COUNT(*) as nombreAvis
@@ -124,7 +130,7 @@
                     $result = oci_execute($avisProduitPNote);
                     if (!$result) {
                         $e = oci_error($avisProduitPNote);  // on récupère l'exception liée au pb d'execution de la requete
-                        print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+                        print htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);	
                     }
 
                     $avisProduitTot = oci_parse($connect, $req2);
@@ -133,7 +139,7 @@
                     $result = oci_execute($avisProduitTot);
                     if (!$result) {
                         $e = oci_error($avisProduitTot);  // on récupère l'exception liée au pb d'execution de la requete
-                        print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
+                        print htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);	
                     }
 
                     if (($avisTot = oci_fetch_assoc($avisProduitTot)) != false) {
@@ -165,10 +171,10 @@
                             $pourcent21 += $avisNote['NOMBREAVIS'];
                         }
                     }
-                    $pourcent54 = round(($pourcent54 / $nbAvis)*100);
-                    $pourcent43 = round(($pourcent43 / $nbAvis)*100);
-                    $pourcent32 = round(($pourcent32 / $nbAvis)*100);
-                    $pourcent21 = round(($pourcent21 / $nbAvis)*100);
+                    $pourcent54 = round(($pourcent54 / $nbAvis) * 100);
+                    $pourcent43 = round(($pourcent43 / $nbAvis) * 100);
+                    $pourcent32 = round(($pourcent32 / $nbAvis) * 100);
+                    $pourcent21 = round(($pourcent21 / $nbAvis) * 100);
                 ?>
                     <div id="avis">
                         <div id="intitule-avis">
@@ -201,7 +207,7 @@
                                     <input type="radio" name="choix-avis" value="4-5"> Tous
                                 </div>
                                 <div class="bg-barre-avis">
-                                    <div class="barre-avis" style="width: <? $pourcent54 ?>%"></div>
+                                    <div class="barre-avis" style="width: <?= $pourcent54 ?>%"></div>
                                 </div>
                             </div>
                             <div class="selection-avis">
@@ -209,7 +215,7 @@
                                     <input type="radio" name="choix-avis" value="3-4"> Tous
                                 </div>
                                 <div class="bg-barre-avis">
-                                    <div class="barre-avis" style="width: <? $pourcent43 ?>%"></div>
+                                    <div class="barre-avis" style="width: <?= $pourcent43 ?>%"></div>
                                 </div>
                             </div>
                             <div class="selection-avis">
@@ -217,7 +223,7 @@
                                     <input type="radio" name="choix-avis" value="2-3"> Tous
                                 </div>
                                 <div class="bg-barre-avis">
-                                    <div class="barre-avis" style="width: <? $pourcent32 ?>%"></div>
+                                    <div class="barre-avis" style="width: <?= $pourcent32 ?>%"></div>
                                 </div>
                             </div>
                             <div class="selection-avis">
@@ -225,7 +231,7 @@
                                     <input type="radio" name="choix-avis" value="1-2"> Tous
                                 </div>
                                 <div class="bg-barre-avis">
-                                    <div class="barre-avis" style="width: <? $pourcent21 ?>%"></div>
+                                    <div class="barre-avis" style="width: <?= $pourcent21 ?>%"></div>
                                 </div>
                             </div>
 

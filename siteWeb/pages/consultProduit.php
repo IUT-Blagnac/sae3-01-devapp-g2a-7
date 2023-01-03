@@ -46,20 +46,12 @@
                         }
                         array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX']));
                     }
-
-                    ?>
-
-                    <div id="types">
-
-                    <?php
-                        foreach ($dict as $key => $value) { 
-                    ?>
-                        <div class="choix">
-                            <h3> <?= $key ?> </h3>
-                        <?php
+                    foreach ($dict as $key => $value) {
+                        echo "<div class=\"choix\">
+                                <h3>", $key, "</h3>";
                         foreach($value as $infos) { ?>
-                            echo $infos['libelleChoix']."<input type=\"radio\" name=\"choix".$key."\" value=\"".$infos['tauxChoix']."\"><br>";
-                        }
+                            <input type="radio" name="choix-<? $key ?>" value="<? $infos['tauxChoix'] ?>"><br>";
+                        <? }
                         echo "</div>";
                     }
                     echo "</div>";

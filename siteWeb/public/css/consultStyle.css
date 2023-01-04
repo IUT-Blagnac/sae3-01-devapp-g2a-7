@@ -225,3 +225,17 @@ div#filtres-avis {
     gap: 5px;
     
 }
+
+div.avis-produit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.haut-avis {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}

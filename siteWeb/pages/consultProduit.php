@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="../public/css/style.css">
         <link rel="stylesheet" href="../public/css/header.css">
         <link rel="stylesheet" href="../public/css/consultStyle.css">
+        <script src="../public/js/avisClientTri.js" defer></script>
     </head>
 
     <body>
@@ -80,11 +81,13 @@
                                 <div>
                                     <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                 </div>
-                                <?php }
-                            } ?>
+                                <?php 
+                                }
+                            } 
+                    ?>
                             </div>
                         <?php } ?>
-                        </div> 
+                </div> 
                         <?php
                         oci_free_statement($listeChoix);
 
@@ -114,7 +117,7 @@
                             if ($lesInfos['VERIFIERPRODUIT']) { ?>
                                 <div>Reconditionneur vérifié</div>
                             <?php } ?>
-                            </div>
+                        </div>
                         <?php }
 
                         oci_free_statement($infosProduit);
@@ -133,7 +136,7 @@
                             print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
                         }
                         ?>
-                        <div id="caracteristiques">
+                    <div id="caracteristiques">
                                 <h3>Caractéristiques</h3>
                         <?php
                         while (($laCarac = oci_fetch_assoc($caracProduit)) != false) { ?>
@@ -209,27 +212,26 @@
                             $pourcent21 = round(($pourcent21 / $nbAvis) * 100);
                         }
                     ?>
-                        <div id="avis">
-                            <div id="intitule-avis">
-                                <h4>Avis client sur <?= $nomProduit ?></h4>
-                                <div id="note-moyenne">
-                                    <div id="moyenne-note">
-                                        <div id="etoiles">
-                                            <div id="etoiles-vide"><img src="../public/images/etoiles.png"></div>
-                                            <div id="etoiles-bg" style="width: <?= $pourcentAvis ?>%"></div>
-                                        </div>
-                                        <div id="note"><?=$moyenneAvis ?>/5</div>
+                    <div id="avis">
+                        <div id="intitule-avis">
+                            <h4>Avis client sur <?= $nomProduit ?></h4>
+                            <div id="note-moyenne">
+                                <div id="moyenne-note">
+                                    <div id="etoiles">
+                                        <div id="etoiles-vide"><img src="../public/images/etoiles.png"></div>
+                                        <div id="etoiles-bg" style="width: <?= $pourcentAvis ?>%"></div>
                                     </div>
-                                    <div id="total-notes">(<?= $nbAvis ?> avis pour ce produit)</div>
+                                    <div id="note"><?=$moyenneAvis ?>/5</div>
                                 </div>
+                                <div id="total-notes">(<?= $nbAvis ?> avis pour ce produit)</div>
                             </div>
-                    
-                        <form action="post">
+                        </div>
+                        <div>
                             <h5 id="filtrerParNote">Filtrer par note</h5>
                             <div id="filtres-avis">
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" id="tous" class="el-avis" name="choix-avis" value="Tous" checked><label for="tous">Tous</label>
+                                        <input type="radio" id="tous" class="el-avis" name="choix-avis" value="tous" checked><label for="tous">Tous</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: 100%"></div>
@@ -274,9 +276,41 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <?php
+                            
+                            $req = "SELECT prenomClient, nomClient, descriptionAvis, noteAvis
+                                    FROM Client C, donnerAvis D
+                                    WHERE C.idClient = D.idClient
+                                    AND idProduit = :idProduit";
 
-                    
+                            $listeAvisProduit = oci_parse($connect, $req);
+                            oci_bind_by_name($listeAvisProduit, ":idProduit", $idProduit);
+
+                            $result = oci_execute($listeAvisProduit);
+                            if (!$result) {
+                                $e = oci_error($listeAvisProduit);  // on récupère l'exception liée au pb d'execution de la requete
+                                print htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);	
+                            } 
+                        ?>
+                        <div id= "liste-avis">
+                            <?php 
+                                while (($lavis = oci_fetch_assoc($listeAvisProduit)) != false) { ?>
+                                    <div class="avis-produit" data-note="<?= $lavis['NOTEAVIS'] ?>">
+                                        <div class="haut-avis">
+                                            <div class="nom-prenom">
+                                                <p><?= $lavis['PRENOMCLIENT'] ?> <?= $lavis['NOMCLIENT'] ?></p>
+                                            </div>
+                                            <div class="note-avis">
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="description-avis">
+                                            <p><?= $lavis['DESCRIPTIONAVIS'] ?></p>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

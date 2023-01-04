@@ -7,6 +7,10 @@ body {
     margin: 0px;
 }
 
+label {
+    cursor: pointer;
+}
+
 #consulte {
     position: relative;
     display: flex;

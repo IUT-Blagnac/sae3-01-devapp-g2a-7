@@ -52,7 +52,7 @@ div#donnees > div {
     box-sizing: border-box;
 }
 
-div#donnees > div:nth-child(1) {
+div#donnees > div:first-child {
     border-top: none;
 }
 
@@ -226,11 +226,28 @@ div#filtres-avis {
     
 }
 
+div#liste-avis {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 div.avis-produit {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--black);
+    padding: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div.avis-produit:last-child {
+    border-bottom: none;
 }
 
 div.haut-avis {

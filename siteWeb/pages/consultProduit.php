@@ -299,6 +299,7 @@
                                         <div class="haut-avis">
                                             <div class="nom-prenom">
                                                 <p><?= $lavis['PRENOMCLIENT'] ?> <?= $lavis['NOMCLIENT'] ?></p>
+                                                <p></p>
                                             </div>
                                             <div class="note-avis">
                                                 

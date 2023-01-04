@@ -20,20 +20,21 @@ body {
 }
 
 div#img {
-    position: sticky;
+    position: relative;
     display: flex;
-    flex-direction: column;
+    width: 35%;
+    flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-end;
-    width: 35%;
 }
 
 div#img img {
-    position: relative;
+    position: sticky;
     display: block;
     width: 75%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    top: 0px;
 }
 
 div#donnees {

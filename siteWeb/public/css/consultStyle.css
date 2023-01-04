@@ -184,10 +184,15 @@ div.caracs:last-child {
     border-bottom: none;
 }
 
+div#avis {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
 h5#filtrerParNote {
     position: relative;
     display: block;
-    margin-top: 15px;
 }
 
 div.selection-avis {
@@ -220,8 +225,17 @@ div.selection-avis > div:first-child {
     width: 60px;
 }
 
-div.el-avis {
+div.choix-avis {
     width: 60px;
+}
+
+div.pourcent-avis {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50px;
 }
 
 div#filtres-avis {

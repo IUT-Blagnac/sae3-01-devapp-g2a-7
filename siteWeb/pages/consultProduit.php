@@ -231,54 +231,54 @@
                             <div id="filtres-avis">
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" id="tous" class="el-avis" name="choix-avis" value="tous" checked><label for="tous">Tous</label>
+                                        <input type="radio" id="tous" class="choix-avis" name="choix-avis" value="tous" checked><label for="tous">Tous</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: 100%"></div>
                                     </div>
-                                    <div class="el-avis">100%</div>
+                                    <div class="pourcent-avis">100%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" id="4-5" class="el-avis" name="choix-avis" value="4-5"><label for="4-5">4-5</label>
+                                        <input type="radio" id="4-5" class="choix-avis" name="choix-avis" value="4-5"><label for="4-5">4-5</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent54 ?>%"></div>
                                     </div>
-                                    <div class="el-avis"><?= $pourcent54?>%</div>
+                                    <div class="pourcent-avis"><?= $pourcent54?>%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" id="3-4" class="el-avis" name="choix-avis" value="3-4"><label for="3-4">3-4</label>
+                                        <input type="radio" id="3-4" class="choix-avis" name="choix-avis" value="3-4"><label for="3-4">3-4</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent43 ?>%"></div>
                                     </div>
-                                    <div class="el-avis"><?= $pourcent43?>%</div>
+                                    <div class="pourcent-avis"><?= $pourcent43?>%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" id="2-3" class="el-avis" name="choix-avis" value="2-3"><label for="2-3">2-3</label>
+                                        <input type="radio" id="2-3" class="choix-avis" name="choix-avis" value="2-3"><label for="2-3">2-3</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent32 ?>%"></div>
                                     </div>
-                                    <div class="el-avis"><?= $pourcent32?>%</div>
+                                    <div class="pourcent-avis"><?= $pourcent32?>%</div>
                                 </div>
                                 <div class="selection-avis">
                                     <div>
-                                        <input type="radio" id="1-2" class="el-avis" name="choix-avis" value="1-2"><label for="1-2">1-2</label>
+                                        <input type="radio" id="1-2" class="choix-avis" name="choix-avis" value="1-2"><label for="1-2">1-2</label>
                                     </div>
                                     <div class="bg-barre-avis">
                                         <div class="barre-avis" style="width: <?= $pourcent21 ?>%"></div>
                                     </div>
-                                    <div class="el-avis"><?= $pourcent21?>%</div>
+                                    <div class="pourcent-avis"><?= $pourcent21?>%</div>
                                 </div>
                             </div>
                         </div>
                         <?php
                             
-                            $req = "SELECT prenomClient, nomClient, descriptionAvis, noteAvis
+                            $req = "SELECT prenomClient, nomClient, descriptionAvis, noteAvis, TO_CHAR(dateAvis, 'dd/mm/YYYY') as dateAvis
                                     FROM Client C, donnerAvis D
                                     WHERE C.idClient = D.idClient
                                     AND idProduit = :idProduit";
@@ -298,8 +298,8 @@
                                     <div class="avis-produit" data-note="<?= $lavis['NOTEAVIS'] ?>">
                                         <div class="haut-avis">
                                             <div class="nom-prenom">
-                                                <p><?= $lavis['PRENOMCLIENT'] ?> <?= $lavis['NOMCLIENT'] ?></p>
-                                                <p></p>
+                                                <p><b><?= $lavis['PRENOMCLIENT'] ?> <?= $lavis['NOMCLIENT'] ?></b></p>
+                                                <p><?= $lavis['DATEAVIS'] ?></p>
                                             </div>
                                             <div class="note-avis">
                                                 <p><?= $lavis['NOTEAVIS'] ?>/5</p>

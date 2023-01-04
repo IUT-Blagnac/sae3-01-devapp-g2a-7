@@ -26,9 +26,9 @@ function choix() {
         let noteAvis = listeAvis[i].dataset.note;
         for (let j = 0; j < note.length; j++) {
             if (note[j] == noteAvis) {
-                listeAvis[i].style.display = "block";
+                listeAvis[i].style.display = "flex";
             } else if (choixValue == "tous") {
-                listeAvis[i].style.display = "block";
+                listeAvis[i].style.display = "flex";
             }
         }
     }

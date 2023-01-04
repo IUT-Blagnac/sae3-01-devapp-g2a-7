@@ -11,9 +11,9 @@
         <?php include("../include/header.php"); 
         require_once("../include/checkConnexion.php");
         error_reporting(0);
-        $idProduit = "1";
+        $idProduit = $_GET["idProduit"];
 
-        $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix
+        $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix, nomProduit, extensionImgProduit
                 FROM Produit P, Choix C, Affecter A
                 WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
                     AND P.idProduit = :idProduit 
@@ -31,7 +31,9 @@
 
         $dict = array();
         while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
-            $prixProduit = $leChoix['PRIXPRODUIT'];
+            $prixProduit = $leChoix['PRIXPRODUIT']; 
+            $nomProduit = $leChoix['NOMPRODUIT'];
+            $extProduit = $leChoix['EXTENSIONIMGPRODUIT'];
             if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
                 $dict[$leChoix['TYPECHOIX']] = array();
             }
@@ -49,11 +51,11 @@
         ?>
         <div id="consulte">
             <div id="img">
-                <img src="" alt="image du produit">
+                <img src="../public/images/produits/<?= $_GET['idProduit'] ?>.<?= $extProduit ?>" alt="image du produit">
             </div>
             <div id="donnees">
                 <div id="produit">
-                    <h1> <?= $_GET['nomProduit'] ?> </h1>
+                    <h1> <?= $nomProduit ?> </h1>
                     <form action="post">
                         <div>
                             <input type="button" name="ajoutPanier" value="Ajouter au panier">
@@ -104,7 +106,7 @@
                         <?php
                             $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
                         ?>
-                            <div><?= round($tauxReduc) ?>% vs prix neuf</div>
+                            <div>-<?= round($tauxReduc) ?>% vs prix neuf (<?= $lesInfos['PRIXBASEPRODUIT'] ?>€)</div>
                                 <div>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</div>
                                 <div>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?> </div>
                                 <div>Garantie contractuelle <?= $lesInfos['GARANTIEPRODUIT'] ?> mois</div>
@@ -209,7 +211,7 @@
                     ?>
                         <div id="avis">
                             <div id="intitule-avis">
-                                <h4>Avis client sur <?= $_GET['nomProduit'] ?></h4>
+                                <h4>Avis client sur <?= $nomProduit ?></h4>
                                 <div id="note-moyenne">
                                     <div id="moyenne-note">
                                         <div id="etoiles">

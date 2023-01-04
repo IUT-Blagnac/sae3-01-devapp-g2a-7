@@ -302,7 +302,7 @@
                                                 <p></p>
                                             </div>
                                             <div class="note-avis">
-                                                
+                                                <p><?= $lavis['NOTEAVIS'] ?>/5</p>
                                             </div>
                                         </div>
                                         <div class="description-avis">

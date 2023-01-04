@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../public/css/header.css">
         <link rel="stylesheet" href="../public/css/consultStyle.css">
         <script src="../public/js/avisClientTri.js" defer></script>
+        <script src="../public/js/prixProduit.js" defer></script>
     </head>
 
     <body>
@@ -14,7 +15,7 @@
         error_reporting(0);
         $idProduit = $_GET["idProduit"];
 
-        $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix, nomProduit, extensionImgProduit
+        $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix, nomProduit, extensionImgProduit, quantiteStockProduit
                 FROM Produit P, Choix C, Affecter A
                 WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
                     AND P.idProduit = :idProduit 
@@ -35,20 +36,12 @@
             $prixProduit = $leChoix['PRIXPRODUIT']; 
             $nomProduit = $leChoix['NOMPRODUIT'];
             $extProduit = $leChoix['EXTENSIONIMGPRODUIT'];
+            $stockProduit = $leChoix['QUANTITESTOCKPRODUIT'];
             if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
                 $dict[$leChoix['TYPECHOIX']] = array();
             }
             array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
         }
-        
-        $taux = 1;
-
-        foreach ($dict as $key => $value) {
-            foreach($value as $infos) {
-                $taux *= $infos['tauxChoix'];
-            }
-        }
-        $prixProduit = $taux * $prixProduit;
         ?>
         <div id="consulte">
             <div id="img">
@@ -59,8 +52,21 @@
                     <h1> <?= $nomProduit ?> </h1>
                     <form action="post">
                         <div>
-                            <input type="button" name="ajoutPanier" value="Ajouter au panier">
-                            <p>Prix: <?= $prixProduit ?>€</p>
+                            <div id="ajout-panier">
+                                <select name="quantiteProduit" id="quantiteProduit">
+                                    <?php 
+                                    for($i = 1; $i <= $stockProduit; $i++) {
+                                        if ($i == 1) { ?>
+                                            <option value='<?= $i; ?>' selected><?= $i; ?></option>
+                                        <?php } else { ?>
+                                            <option value='<?= $i; ?>'><?= $i; ?></option>
+                                        <?php }
+                                    } ?>
+                                </select>
+                                <input type="hidden" name="idProduit" value="<?= $idProduit; ?>">
+                                <input type="button" name="ajoutPanier" value="Ajouter au panier">
+                            </div>
+                            <p>Prix: <span id="prixProduit" data-prix="<?= $prixProduit ?>"><?= $prixProduit ?></span>€</p>
                         </div>
                     <?php
                         foreach ($dict as $key => $value) {
@@ -72,14 +78,14 @@
                             foreach($value as $infos) { 
                                 if ($first) { ?>
                                     <div>
-                                        <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>" checked><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                                        <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos['tauxChoix'] ?>" checked><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                     </div>
                                 <?php
                                     $first = false;
                                 } else {
                                 ?>
                                 <div>
-                                    <input type="radio" id="choix-<?= $infos["idChoix"] ?>" name="choix-<?=$infos["typeChoix"]?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                                    <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                 </div>
                                 <?php 
                                 }

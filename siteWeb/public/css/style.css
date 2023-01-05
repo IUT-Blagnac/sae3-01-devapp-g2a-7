@@ -5,13 +5,14 @@
     --black: #000000;
     --white: #FFFFFF;
     --light-grey: #F0F0F0;
+    --background: #fafafa;
 }
 
 * {
     padding: 0px;
     margin: 0px;
-    font-size: 17px;
-    font-family: sans-serif;
+    font-size: 18px;
+    font-family: Sans-serif;
 }
 
 a {

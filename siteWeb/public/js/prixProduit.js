@@ -1,6 +1,7 @@
 var prix = document.getElementById("prixProduit");
 var quantite = document.getElementById("quantiteProduit");
 var choix = document.querySelectorAll(".selectionChoix");
+var prixProduitInput = document.getElementById("prixProduitInput");
 
 function getPrixProduit() {
     let prixProduit = prix.dataset.prix;
@@ -28,7 +29,9 @@ function prixTotal() {
 }
 
 function setPrixTotal() {
-    prix.innerHTML = prixTotal();
+    let prixProduitTotal = prixTotal();
+    prix.innerHTML = prixProduitTotal;
+    prixProduitInput.value = prixProduitTotal;
 }
 
 for (let i = 0; i < choix.length; i++) {

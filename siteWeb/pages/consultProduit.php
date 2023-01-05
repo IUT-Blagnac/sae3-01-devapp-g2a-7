@@ -50,7 +50,7 @@
             <div id="donnees">
                 <div id="produit">
                     <h1> <?= $nomProduit ?> </h1>
-                    <form action="post">
+                    <form action="../include/ajouterProduitPanier.php" method="POST">
                         <div>
                             <div id="ajout-panier">
                                 <select name="quantiteProduit" id="quantiteProduit">
@@ -64,8 +64,9 @@
                                     } ?>
                                 </select>
                                 <input type="hidden" name="idProduit" value="<?= $idProduit; ?>">
-                                <input type="button" name="ajoutPanier" value="Ajouter au panier">
+                                <input type="submit" name="ajoutPanier" value="Ajouter au panier">
                             </div>
+                            <input id="prixProduitInput" name="prixProduit" type="hidden" value="">
                             <p>Prix: <span id="prixProduit" data-prix="<?= $prixProduit ?>"><?= $prixProduit ?></span>€</p>
                         </div>
                     <?php

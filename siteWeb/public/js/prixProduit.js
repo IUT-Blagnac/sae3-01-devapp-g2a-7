@@ -29,14 +29,18 @@ function prixTotal() {
 }
 
 function setPrixTotal() {
-    let prixProduitTotal = prixTotal();
-    prix.innerHTML = prixProduitTotal;
-    prixProduitInput.value = prixProduitTotal;
+    prix.innerHTML = prixTotal();
+}
+
+function setPrixInput() {
+    prixProduitInput.value = prix * getTaux();
 }
 
 for (let i = 0; i < choix.length; i++) {
     choix[i].addEventListener("change", setPrixTotal);
+    choix[i].addEventListener("change", setPrixInput);
 }
 quantite.addEventListener("change", setPrixTotal);
 
 setPrixTotal();
+setPrixInput();

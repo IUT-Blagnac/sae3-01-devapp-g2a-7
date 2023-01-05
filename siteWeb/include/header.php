@@ -1,7 +1,16 @@
 <?php
+    session_start();
+    require_once("../include/connect.inc.php");
+    require_once("../include/panier.php");
     require_once("checkConnexion.php");
-?>
 
+    // CHECKING FOR PAINIER -------------------------------------------------------
+
+    $panier = creerPanier();
+
+    // CHECKING FOR PAINIER -------------------------------------------------------
+
+?>
 <header>
     <div>
         <a href="../pages/index.php" class="logo">

@@ -1,0 +1,205 @@
+section {
+    position: relative;
+    display: block;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+section h1 {
+    position: relative;
+    display: block;
+    font-size: 2em;
+    margin-bottom: 7vh;
+    text-align: center;
+}
+
+section div.commande {
+    position: relative;
+    display: flex;
+    flex-direction: row nowrap;
+    justify-content: space-between;
+}
+
+section div.commande div.produits {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 70%;
+    border: 1px solid var(--dark-grey);
+    border-radius: 10px;
+}
+
+section div.commande div.produits div.produit {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    gap: 3%;
+}
+
+section div.commande div.produits div.produit:last-child {
+    border-bottom: none;
+}
+
+section div.commande div.produits div.produit div {
+    position: relative;
+    display: block;
+    height: 100%;
+}
+
+section div.commande div.produits div.produit div.image {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20%;
+}
+
+section div.commande div.produits div.produit div.image img {
+    position: relative;
+    display: block;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px var(--dark-grey);
+}
+
+section div.commande div.produits div.produit div.objet {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    padding-top: 10px;
+    box-sizing: border-box;
+    width: 40%;
+}
+
+section div.commande div.produits div.produit div.objet p.detail {
+    font-style: italic;
+}
+
+section div.commande div.produits div.produit div.objet p:last-child {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+section div.commande div.produits div.produit div.prix {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    padding-top: 10px;
+    box-sizing: border-box;
+    width: 20%;
+    gap: 10px;
+}
+
+section div.commande div.produits div.produit div.prix select {
+    position: relative;
+    display: block;
+    padding: 10px;
+    background-color: var(--white);
+    outline: none;
+    border: 1px solid var(--dark-grey);
+}
+
+section div.commande div.produits div.produit div.prix p {
+    position: relative;
+    display: block;
+    font-weight: bold;
+}
+
+section div.commande div.produits div.produit div.supprimer {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 10px;
+    width: 20%;
+}
+
+section div.commande div.produits div.produit div.supprimer button {
+    position: relative;
+    display: block;
+    background-color: var(--white);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+section div.commande div.produits div.produit div.supprimer img {
+    position: relative;
+    display: block;
+    height: 50px;
+    width: 50px;
+}
+
+section div.commande div.total {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 25%;
+}
+
+section div.commande div.total div.sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 300px;
+}
+
+section div.commande div.total div.sticky div {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+section div.commande div.total div.sticky div.prixTotal {
+    border-top: 1px solid var(--dark-grey);
+}
+
+section div.commande div.total div.sticky div.prixTotal p {
+    font-weight: bold;
+}
+
+section div.commande div.total div.sticky div.valider form {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+section div.commande div.total div.sticky div.valider button {
+    position: relative;
+    display: block;
+    background-color: var(--green-blue);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--dark-grey);
+    color: var(--black);
+}

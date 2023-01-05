@@ -218,4 +218,22 @@
 
     }
 
+    function creerPanier() {
+        switch (true) {
+            case isset($_SESSION['CLIENT']) && !isset($_SESSION['panier']):
+                $panier = new Panier($_SESSION['CLIENT']['idClient']);
+                break;
+            case !isset($_SESSION['CLIENT']) && !isset($_COOKIE['panier']):
+                $panier = new Panier();
+                break;
+            case isset($_SESSION['CLIENT']) && isset($_SESSION['panier']):
+                $panier = unserialize($_SESSION['panier']);
+                break;
+            case !isset($_SESSION['CLIENT']) && isset($_COOKIE['panier']):
+                $panier = unserialize($_COOKIE['panier']);
+                break;
+        }
+        return $panier;
+    }
+
 ?>

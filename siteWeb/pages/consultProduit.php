@@ -63,7 +63,9 @@
                                         <?php }
                                     } ?>
                                 </select>
-                                <input type="hidden" name="idProduit" value="<?= $idProduit; ?>">
+                                <input type="hidden" name="idProduit" value="<?= $idProduit ?>">
+                                <input type="hidden" name="extensionImgProduit" value="<?= $extProduit ?>">
+                                <input type="hidden" name="quantiteStockProduit" value="<?= $stockProduit ?>">
                                 <input type="submit" name="ajoutPanier" value="Ajouter au panier">
                             </div>
                             <input id="prixProduitInput" name="prixProduit" type="hidden" value="">
@@ -79,14 +81,14 @@
                             foreach($value as $infos) { 
                                 if ($first) { ?>
                                     <div>
-                                        <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos['tauxChoix'] ?>" checked><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                                        <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos["libelleChoix"] ?>" data-taux="<?= $infos['tauxChoix'] ?>" checked><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                     </div>
                                 <?php
                                     $first = false;
                                 } else {
                                 ?>
                                 <div>
-                                    <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
+                                    <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos["libelleChoix"] ?>" data-taux="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                 </div>
                                 <?php 
                                 }

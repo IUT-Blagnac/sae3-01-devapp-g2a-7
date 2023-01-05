@@ -6,7 +6,7 @@
 
     // CHECKING FOR PAINIER -------------------------------------------------------
 
-    $panier = creerPanier();
+    $panier = Panier::creerPanier();
 
     // CHECKING FOR PAINIER -------------------------------------------------------
 

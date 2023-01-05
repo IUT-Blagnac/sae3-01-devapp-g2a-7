@@ -129,7 +129,43 @@
                 $this->produits[$rowProduit['IDPRODUIT']] = $produit;
             }
         }
+
+        public function ajouterProduit(Produit $produit) {
+            array_push($this->produits, $produit);
+            if ($this->idClient != null) {
+                $this->ajouterProduitBaseDeDonne($produit);
+            } else {
+                $this->produits[$produit->getIdProduit()] = $produit;
+                setcookie("panier", serialize($this), time() + $tempSemaine);
+            }
+
+        }
         
+        private function ajouterProduitBaseDeDonnee(Produit $produit) {
+            global $connect;
+            // récupère l'id du panier du client
+            $sqlIdPanier = "SELECT IDPANIER FROM PANIER
+            WHERE PANIER.IDCLIENT = :idClient";
+            $idPanier = oci_parse($connect, $sqlIdPanier);
+            oci_bind_by_name($idPanier, ":idClient", $this->idClient);
+            $resultIdPanier = oci_execute($idPanier);
+            $rowIdPanier = oci_fetch_array($idPanier, OCI_ASSOC+OCI_RETURN_NULLS);
+            $idPanierClient = $rowIdPanier['IDPANIER'];
+
+            // insère le produit dans la table contenir pour le panier
+            $sqlInsertContenir = "INSERT INTO Contenir VALUES (
+                                  SELECT IDPANIER FROM PANIER
+                                  WHERE PANIER.IDCLIENT = :idClient,
+            :idProduit, :quantiteProduit, :descriptifProduit)";
+
+            $insertContenir = oci_parse($connect, $sqlInsertContenir);
+            oci_bind_by_name($insertContenir, ":idPanier", $idPanierClient);
+            oci_bind_by_name($insertContenir, ":quantiteProduit", $produit->quantiteProduit);
+            oci_bind_by_name($insertContenir, ":descriptifProduit", $produit->descriptifProduit);
+            oci_bind_by_name($insertContenir, ":idProduit", $produit->idProduit);
+            oci_execute($insertContenir);
+        }
+
         public static function creerPanier() {
             switch (true) {
                 case isset($_SESSION['CLIENT']) && !isset($_SESSION['panier']):
@@ -147,6 +183,7 @@
             }
             return $panier;
         }
+
     }
 
 
@@ -162,7 +199,7 @@
 
         public function __construct($idProduit, $nomProduit, $prixProduit, $descriptionProduit, $quantiteProduit, $extensionImgProduit, $quantiteStockProduit) {
             $this->idProduit = $idProduit;
-            $this->nomProduit = $nomProduit;
+            $this->nomProduit = $nomProduit;  
             $this->prixProduit = $prixProduit;
             $this->descriptionProduit = $descriptionProduit;
             $this->quantiteProduit = $quantiteProduit;
@@ -234,5 +271,4 @@
         }
 
     }
-
 ?>

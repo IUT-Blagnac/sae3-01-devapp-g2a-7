@@ -17,7 +17,7 @@ function getTaux() {
     let taux = 1;
     for (let i = 0; i < choix.length; i++) {
         if (choix[i].checked) {
-            taux *= choix[i].value;
+            taux *= choix[i].dataset.taux;
         }        
     }
     return taux;
@@ -33,7 +33,8 @@ function setPrixTotal() {
 }
 
 function setPrixInput() {
-    prixProduitInput.value = prix * getTaux();
+    let prixProduit = prix.dataset.prix
+    prixProduitInput.value = prixProduit * getTaux();
 }
 
 for (let i = 0; i < choix.length; i++) {

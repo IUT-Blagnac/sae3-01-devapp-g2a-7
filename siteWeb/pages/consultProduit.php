@@ -26,10 +26,6 @@
         oci_bind_by_name($listeChoix, ":idProduit", $idProduit);
 
         $result = oci_execute($listeChoix);
-        if (!$result) {
-            $e = oci_error($listeChoix);  // on récupère l'exception liée au pb d'execution de la requete
-            print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
-        }
 
         $dict = array();
         while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
@@ -108,10 +104,6 @@
                         oci_bind_by_name($infosProduit, ":idProduit", $idProduit);
 
                         $result = oci_execute($infosProduit);
-                        if (!$result) {
-                            $e = oci_error($infosProduit);  // on récupère l'exception liée au pb d'execution de la requete
-                            print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
-                        }
                         if(($lesInfos = oci_fetch_assoc($infosProduit)) != false) { ?>
                             <div id="infos">
                             <div><h3>Details</h3></div>
@@ -140,10 +132,6 @@
                         oci_bind_by_name($caracProduit, ":idProduit", $idProduit);
 
                         $result = oci_execute($caracProduit);
-                        if (!$result) {
-                            $e = oci_error($caracProduit);  // on récupère l'exception liée au pb d'execution de la requete
-                            print htmlentities($e['message'].' pour cette requete : '.$e['sqltext']);	
-                        }
                         ?>
                     <div id="caracteristiques">
                                 <h3>Caractéristiques</h3>
@@ -171,19 +159,11 @@
                         oci_bind_by_name($avisProduitPNote, ":idProduit", $idProduit);
 
                         $result = oci_execute($avisProduitPNote);
-                        if (!$result) {
-                            $e = oci_error($avisProduitPNote);  // on récupère l'exception liée au pb d'execution de la requete
-                            print htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);	
-                        }
 
                         $avisProduitTot = oci_parse($connect, $req2);
                         oci_bind_by_name($avisProduitTot, ":idProduit", $idProduit);
 
                         $result = oci_execute($avisProduitTot);
-                        if (!$result) {
-                            $e = oci_error($avisProduitTot);  // on récupère l'exception liée au pb d'execution de la requete
-                            print htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);	
-                        }
 
                         if (($avisTot = oci_fetch_assoc($avisProduitTot)) != false) {
                             $moyenneAvis = round($avisTot['MOYAVIS'], 1);
@@ -220,6 +200,8 @@
                             $pourcent32 = round(($pourcent32 / $nbAvis) * 100);
                             $pourcent21 = round(($pourcent21 / $nbAvis) * 100);
                         }
+                        oci_free_statement($avisProduitPNote);
+                        oci_free_statement($avisProduitTot);
                     ?>
                     <div id="avis">
                         <div id="intitule-avis">
@@ -296,10 +278,6 @@
                             oci_bind_by_name($listeAvisProduit, ":idProduit", $idProduit);
 
                             $result = oci_execute($listeAvisProduit);
-                            if (!$result) {
-                                $e = oci_error($listeAvisProduit);  // on récupère l'exception liée au pb d'execution de la requete
-                                print htmlentities($e['message'] . ' pour cette requete : ' . $e['sqltext']);	
-                            } 
                         ?>
                         <div id= "liste-avis">
                             <?php 
@@ -318,7 +296,8 @@
                                             <p><?= $lavis['DESCRIPTIONAVIS'] ?></p>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                <?php }
+                                oci_free_statement($listeAvisProduit); ?>
                         </div>
                     </div>
                 </div>

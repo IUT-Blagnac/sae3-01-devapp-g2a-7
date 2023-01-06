@@ -24,6 +24,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setMinWidth(root.getPrefWidth());
             primaryStage.setMinHeight(root.getPrefHeight());
+            primaryStage.setTitle("Visualisation des données");
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

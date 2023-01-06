@@ -36,3 +36,4 @@ build/
 java/build/**
 
 Application_IoT/codePython/*.json
+Application_IoT/codeJava/App/out/**

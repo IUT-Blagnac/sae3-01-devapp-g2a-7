@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.mainController">
    <items>
       <AnchorPane maxWidth="310.0">
          <children>
@@ -52,14 +52,14 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Activité">
+                                    <CheckBox fx:id="activite" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Activité">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Spinner editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="seuilActivite" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -74,14 +74,14 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </HBox>
-                                    <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CO2" GridPane.rowIndex="1">
+                                    <CheckBox fx:id="CO2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CO2" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Spinner editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="seuilCO2" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -125,7 +125,7 @@
                      </children>
                   </VBox>
                   <Separator prefWidth="200.0" />
-                  <StackedBarChart VBox.vgrow="ALWAYS">
+                  <StackedBarChart fx:id="barChart" VBox.vgrow="ALWAYS">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>

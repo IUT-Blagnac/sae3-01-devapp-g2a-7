@@ -22,6 +22,8 @@ public class Main extends Application {
             SplitPane root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
+            primaryStage.setMinWidth(root.getPrefWidth());
+            primaryStage.setMinHeight(root.getPrefHeight());
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

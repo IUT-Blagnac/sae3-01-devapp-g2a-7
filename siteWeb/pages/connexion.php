@@ -3,8 +3,12 @@
     include("../include/infoPopup.php");
 
     // Affiche un message de confirmation lorsqu'un compte client a été créé
-    if (isset($_GET["nouveauCompte"]) && $_GET["nouveauCompte"] == "true") {
-        echo '<script type="text/javascript">show_info_popup("Votre compte a bien été créé, vous pouvez maintenant vous connecter.", "var(--green-blue)")</script>';
+    if (isset($_GET["messageInfo"])) {
+        if ($_GET["messageInfo"] == "compteCree") {
+            echo '<script type="text/javascript">show_info_popup("Votre compte a bien été créé, vous pouvez maintenant vous connecter.", "var(--green-blue)")</script>';
+        } else if ($_GET["messageInfo"] == "compteModifie") {
+            echo '<script type="text/javascript">show_info_popup("Votre compte a bien été modifié, vous pouvez maintenant vous re-connecter.", "var(--green-blue)")</script>';
+        }
     }
 
     // Processus de connexion
@@ -61,6 +65,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../public/css/style.css">
         <link rel="stylesheet" href="../public/css/header.css">
+        <link rel="stylesheet" href="../public/css/footer.css">
         <link rel="stylesheet" href="../public/css/connexionStyle.css">
         <title>Connexion</title>
     </head>

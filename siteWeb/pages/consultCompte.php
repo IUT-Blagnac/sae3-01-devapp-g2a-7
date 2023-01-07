@@ -105,6 +105,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../public/css/style.css">
         <link rel="stylesheet" href="../public/css/header.css">
+        <link rel="stylesheet" href="../public/css/footer.css">
         <link rel="stylesheet" href="../public/css/connexionStyle.css">
         <title>Voir le compte</title>
     </head>

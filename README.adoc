@@ -104,6 +104,7 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/connexion.php[Page de connexion] : en tant que client ou qu'administrateur
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/creationCompte.php[Page de création d'un compte] : uniquement pour créer un compte client
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/consultCompte.php[Page de consultation d'un compte] : en tant que client ou qu'administrateur
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/modifierCompte.php[Page de modification d'un compte] : en tant que client ou qu'administrateur
 
 === Application IoT
 
@@ -116,7 +117,7 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v2[v2]
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v3[v3]
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant

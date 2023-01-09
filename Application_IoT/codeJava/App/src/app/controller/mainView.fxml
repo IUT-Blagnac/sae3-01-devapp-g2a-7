@@ -18,13 +18,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.mainController">
+<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.mainController">
    <items>
-      <AnchorPane maxWidth="310.0">
+      <AnchorPane maxWidth="300.0">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane>
+                <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="400.0">
                      <children>
                         <VBox alignment="TOP_CENTER" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -43,23 +43,28 @@
                               <Separator prefWidth="200.0" />
                               <GridPane alignment="CENTER">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="96.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="120.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="144.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <CheckBox fx:id="activite" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Activité">
+                                    <CheckBox fx:id="CBActivite" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Activité">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Spinner fx:id="seuilActivite" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerActivite" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -74,14 +79,14 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </HBox>
-                                    <CheckBox fx:id="CO2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CO2" GridPane.rowIndex="1">
+                                    <CheckBox fx:id="CBCO2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CO2" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Spinner fx:id="seuilCO2" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerCO2" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -95,6 +100,120 @@
                                        <GridPane.margin>
                                           <Insets />
                                        </GridPane.margin>
+                                    </HBox>
+                                    <CheckBox fx:id="CBCO21" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Humidité" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <Spinner fx:id="spinnerCO21" editable="true" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Seuil">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <CheckBox fx:id="CBCO211" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Illumination" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <Spinner fx:id="spinnerCO211" editable="true" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Seuil">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <CheckBox fx:id="CBCO2111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Infrarouges" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <children>
+                                          <Spinner fx:id="spinnerCO2111" editable="true" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Seuil">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <CheckBox fx:id="CBCO21111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pression" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <children>
+                                          <Spinner fx:id="spinnerCO21111" editable="true" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Seuil">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <CheckBox fx:id="CBCO211111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Température" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <children>
+                                          <Spinner fx:id="spinnerCO211111" editable="true" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Seuil">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <CheckBox fx:id="CBCO2111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Qualité de l'air" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                       <children>
+                                          <Spinner fx:id="spinnerCO2111111" editable="true" prefWidth="100.0">
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Seuil">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
                                     </HBox>
                                  </children>
                                  <padding>
@@ -125,14 +244,54 @@
                      </children>
                   </VBox>
                   <Separator prefWidth="200.0" />
-                  <StackedBarChart fx:id="barChart" VBox.vgrow="ALWAYS">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </StackedBarChart>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <HBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <StackedBarChart minWidth="-Infinity" prefWidth="120.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                      <xAxis>
+                                        <CategoryAxis label="Activité" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart minWidth="-Infinity" prefWidth="120.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="CO2" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis side="LEFT" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart minWidth="-Infinity" prefWidth="120.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="Humidité" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis side="LEFT" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </VBox>
          </children></AnchorPane>

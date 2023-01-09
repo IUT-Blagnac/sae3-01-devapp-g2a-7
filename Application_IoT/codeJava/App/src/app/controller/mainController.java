@@ -18,33 +18,28 @@ public class mainController implements Initializable  {
 
     @FXML
     StackedBarChart<String, Float> barChart;
-
     @FXML
-    CheckBox activite;
-
+    CheckBox CBActivite;
     @FXML
-    Spinner<Double> seuilActivite;
-
+    Spinner<Double> spinnerActivite;
     @FXML
-    CheckBox CO2;
-
+    CheckBox CBCO2;
     @FXML
-    Spinner<Double> seuilCO2;
+    Spinner<Double> spinnerCO2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        spinners.add(seuilActivite);
-        spinners.add(seuilCO2);
+        spinners.add(spinnerActivite);
+        spinners.add(spinnerCO2);
         for (Spinner<Double> spinner : spinners) {
             spinner.setValueFactory(
-                    new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
+                new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
             );
-            // emêche la saisie de valeurs non numériques
+            // Empêche la saisie de valeurs non-numériques
             spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-                if (!newValue.matches("-{0,1}\\d*\\.\\d*")) {
+                if (!newValue.matches("-{0,1}\\d*(\\.|,){0,1}\\d*")) {
                     spinner.getEditor().setText(oldValue);
-                }
-            });
+            }});
         }
     }
     

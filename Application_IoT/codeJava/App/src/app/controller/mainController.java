@@ -36,7 +36,15 @@ public class mainController implements Initializable  {
         spinners.add(seuilActivite);
         spinners.add(seuilCO2);
         for (Spinner<Double> spinner : spinners) {
-            System.out.println(spinner);
+            spinner.setValueFactory(
+                    new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
+            );
+            // emêche la saisie de valeurs non numériques
+            spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("-{0,1}\\d*\\.\\d*")) {
+                    spinner.getEditor().setText(oldValue);
+                }
+            });
         }
     }
     

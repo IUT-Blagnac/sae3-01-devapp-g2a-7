@@ -19,17 +19,11 @@
     // Changer la quantité d'un produit dans le panier
     if (isset($_POST['quantiteProduit'])) {
         $panier->changeQuantiteProduit($_POST['idProduit'], $_POST['quantiteProduit']);
-        if (isset($_SESSION['CLIENT'])) {
-            $_SESSION['panier'] = serialize($panier);
-        }
     }
 
     // Supprimer un produit du panier
     if (isset($_POST['supprimer'])) {
         $panier->enleverProduit($_POST['idProduit']);
-        if (isset($_SESSION['CLIENT'])) {
-            $_SESSION['panier'] = serialize($panier);
-        }
     }
 
 ?>
@@ -44,7 +38,7 @@
                 <?php foreach($panier->getProduits() as $produit) { ?>
                     <div class="produit" id="<?= $produit->getIdProduit(); ?>">
                         <div class="image">
-                            <img src="../public/images/<?= $produit->getIdProduit(); ?>.<?= $produit->getExtensionImgProduit(); ?>" alt="NOM DU PRODUIT">
+                            <img src="../public/images/produits/<?= $produit->getIdProduit(); ?>.<?= $produit->getExtensionImgProduit(); ?>" alt="NOM DU PRODUIT">
                         </div>
                         <div class="objet">
                             <h2><?= $produit->getCategorie(); ?> - <?= $produit->getNomProduit(); ?></h2>

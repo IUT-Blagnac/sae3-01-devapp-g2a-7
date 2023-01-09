@@ -2,7 +2,6 @@
     class Panier {
         private $produits;
         private $idClient;
-        private $tempSemaine = 60 * 60 * 24 * 7;
 
         public function __construct($idClient = null) {
             $this->produits = array();
@@ -11,7 +10,7 @@
                 $this->setProduitsPanierBaseDeDonne();
             } else {
                 // cookie expire dans 1 semaine
-                setcookie("panier", serialize($this), time() + $tempSemaine);
+                setcookie("panier", serialize($this), time() + 604800, "/");
             }
         }
 
@@ -20,11 +19,11 @@
         }
 
         public function enleverProduit($idProduit) {
-            unset($this->produits[$idProduit]);
             if ($this->idClient != null) {
                 $this->enleverProduitBaseDeDonne($idProduit);
             } else {
-                setcookie("panier", serialize($this), time() + $tempSemaine);
+                unset($this->produits[$idProduit]);
+                setcookie("panier", serialize($this), time() + 604800, "/");
             }
         }
 
@@ -43,11 +42,11 @@
         }
 
         public function changeQuantiteProduit($idProduit, $quantite) {
-            $this->produits[$idProduit]->setQuantiteProduit($quantite);
             if ($this->idClient != null) {
                 $this->changeQuantiteProduitBaseDeDonne($idProduit, $quantite);
             } else {
-                setcookie("panier", serialize($this), time() + $tempSemaine);
+                $this->produits[$idProduit]->setQuantiteProduit($quantite);
+                setcookie("panier", serialize($this), time() + 604800, "/");
             }
         }
 
@@ -68,7 +67,7 @@
         }
 
         public function __toString() {
-            $str = "";
+            $str = "<h1>Panier:</h1> <br>";
             foreach ($this->produits as $produit) {
                 $str .= $produit . "<br>";
             }
@@ -131,14 +130,12 @@
         }
 
         public function ajouterProduit(Produit $produit) {
-            array_push($this->produits, $produit);
             if ($this->idClient != null) {
                 $this->ajouterProduitBaseDeDonne($produit);
             } else {
                 $this->produits[$produit->getIdProduit()] = $produit;
-                setcookie("panier", serialize($this), time() + $tempSemaine);
+                setcookie("panier", serialize($this), time() + 604800, "/");
             }
-
         }
         
         private function ajouterProduitBaseDeDonnee(Produit $produit) {
@@ -164,21 +161,38 @@
             oci_bind_by_name($insertContenir, ":descriptifProduit", $produit->descriptifProduit);
             oci_bind_by_name($insertContenir, ":idProduit", $produit->idProduit);
             oci_execute($insertContenir);
+            // attrape l'éventuelle erreur
+            $e = oci_error($insertContenir);
+            // si il y à une érreur, le produit existe déjà
+            if ($e) {
+                // met à jour la quantité du produit dans la table contenir
+                $sqlUpdateContenir = "UPDATE Contenir
+                                      SET QUANTITEPRODUIT = :quantiteProduit,
+                                      PRIXPRODUIT = :prixProduit,
+                                      DESCRIPTIFPRODUIT = :descriptifProduit
+                                      WHERE IDPANIER = :idPanier 
+                                      AND IDPRODUIT = :idProduit";
+                $updateContenir = oci_parse($connect, $sqlUpdateContenir);
+                oci_bind_by_name($updateContenir, ":quantiteProduit", $produit->quantiteProduit);
+                oci_bind_by_name($updateContenir, ":prixProduit", $produit->prixProduit);
+                oci_bind_by_name($updateContenir, ":descriptifProduit", $produit->descriptifProduit);
+                oci_bind_by_name($updateContenir, ":idPanier", $idPanierClient);
+                oci_bind_by_name($updateContenir, ":idProduit", $produit->idProduit);
+                
+                oci_execute($updateContenir);
+            }
         }
 
         public static function creerPanier() {
             switch (true) {
-                case isset($_SESSION['CLIENT']) && !isset($_SESSION['panier']):
+                case isset($_SESSION['CLIENT']):
                     $panier = new Panier($_SESSION['CLIENT']['idClient']);
-                    break;
-                case !isset($_SESSION['CLIENT']) && !isset($_COOKIE['panier']):
-                    $panier = new Panier();
-                    break;
-                case isset($_SESSION['CLIENT']) && isset($_SESSION['panier']):
-                    $panier = unserialize($_SESSION['panier']);
                     break;
                 case !isset($_SESSION['CLIENT']) && isset($_COOKIE['panier']):
                     $panier = unserialize($_COOKIE['panier']);
+                    break;
+                case !isset($_SESSION['CLIENT']) && !isset($_COOKIE['panier']):
+                    $panier = new Panier();
                     break;
             }
             return $panier;

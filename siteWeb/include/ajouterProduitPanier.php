@@ -1,5 +1,7 @@
 <?php
+    session_start();
     include("../include/panier.php");
+    require_once("checkConnexion.php");
     $panier = Panier::creerPanier();
     
     // Supprime les éléments "choix-avis" et "ajoutPanier" de $_POST car non utilisés
@@ -7,6 +9,8 @@
     unset($_POST['ajoutPanier']);
     
     // Définit les variables en récupérant la valeur correspondante dans $_POST et en supprimant les élément du tableau
+    $nomProduit = $_POST['nomProduit'];
+    unset($_POST['nomProduit']);
     $quantiteProduit = $_POST['quantiteProduit'];
     unset($_POST['quantiteProduit']);
     $idProduit = $_POST['idProduit'];
@@ -32,7 +36,8 @@
     $detailProduit = substr($detailProduit, 0, -2);
     
     $produit = new Produit($idProduit, $nomProduit, $prixProduit, $detailProduit, $quantiteProduit, $extensionImgProduit, $quantiteStockProduit);
-    $panier->ajoutProduit($produit);
+
+    $panier->ajouterProduit($produit);
 
     header("Location: ../pages/consultProduit.php?idProduit=$idProduit");
 ?>

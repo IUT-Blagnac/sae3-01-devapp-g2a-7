@@ -1,14 +1,10 @@
 <?php
-    session_start();
-    require_once("../include/connect.inc.php");
-    require_once("../include/panier.php");
     require_once("checkConnexion.php");
+    require_once("../include/panier.php");
 
-    // CHECKING FOR PAINIER -------------------------------------------------------
+    // PANIER CREATOR -------------------------------------------------------
 
     $panier = Panier::creerPanier();
-
-    // CHECKING FOR PAINIER -------------------------------------------------------
 
 ?>
 <header>

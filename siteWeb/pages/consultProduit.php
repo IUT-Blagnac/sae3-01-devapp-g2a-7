@@ -62,6 +62,7 @@
                                 <input type="hidden" name="idProduit" value="<?= $idProduit ?>">
                                 <input type="hidden" name="extensionImgProduit" value="<?= $extProduit ?>">
                                 <input type="hidden" name="quantiteStockProduit" value="<?= $stockProduit ?>">
+                                <input type="hidden" name="nomProduit" value="<?= $nomProduit ?>">
                                 <input type="submit" name="ajoutPanier" value="Ajouter au panier">
                             </div>
                             <input id="prixProduitInput" name="prixProduit" type="hidden" value="">

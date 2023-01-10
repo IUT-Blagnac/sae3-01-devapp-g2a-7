@@ -121,7 +121,11 @@ div#produit form div.choix div {
     justify-content: space-between;
 }
 
-#infos div {
+#infos-details div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     padding: 5px;
     padding-left: 0px;
     min-height: 30px;
@@ -263,6 +267,7 @@ div.avis-produit {
     padding: 10px;
     padding-left: 0px;
     padding-right: 0px;
+    width:100%;
 }
 
 div.avis-produit:last-child {
@@ -274,4 +279,17 @@ div.haut-avis {
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+}
+
+a#ajout-avis {
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--green-blue);
+    background-color: var(--green-blue);
+    color: var(--white);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
 }

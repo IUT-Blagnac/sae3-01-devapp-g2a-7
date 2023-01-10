@@ -125,4 +125,54 @@ Un navigateur web quelconque.
 
 |====
 
+
+==== 1.4 Modification d'un compte :
+
+|====
+
+>|Cas de test 3+|Test-01-04-01
+>|Titre 3+|Page sécurisée
+>|Objectif 3+| Vérifier que la page modifierCompte.php n'est pas accessible si l'utilisateur n'est pas connecté
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page sans être connecté  ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Accéder à la page avec de mauvaises données de session ^|Redirection vers la page de connexion ^|OK
+^|3 ^|Accéder à la page en étant connecté en tant que client ou administrateur ^|Accès à la page ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-04-02
+>|Titre 3+|Modification d'un compte client
+>|Objectif 3+| Vérifier qu'il est possible de modifier les données d'un compte client sur la page modifierCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail ou une adresse déjà existante  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais nouveau mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais ancien mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|4 ^|Saisir des données de client correctes ^|Modification des données dans la BD ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-04-03
+>|Titre 3+|Modification d'un compte administrateur
+>|Objectif 3+| Vérifier qu'il est possible de modifier les données d'un compte administrateur sur la page modifierCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail ou une adresse déjà existante  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais nouveau mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais ancien mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|4 ^|Saisir des données de client correctes ^|Modification des données dans la BD ^|OK
+
+|====
+
 *TO COMPLETE*

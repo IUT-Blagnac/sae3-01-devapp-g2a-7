@@ -1,44 +1,58 @@
+<?php 
+    require_once("../include/checkConnexion.php");
+
+    if(!isset($_GET['idProduit']) ) {
+        header("Location: ./index.php");
+    } else if (!preg_match("/[0-9]{1,}/", $_GET['idProduit'])){
+        header("Location: ./index.php");
+    }
+    $idProduit = $_GET["idProduit"];
+
+    $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix, nomProduit, extensionImgProduit, quantiteStockProduit
+            FROM Produit P, Choix C, Affecter A
+            WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
+                AND P.idProduit = :idProduit 
+            ORDER BY TYPECHOIX";
+
+    $listeChoix = oci_parse($connect, $req) ;
+
+    oci_bind_by_name($listeChoix, ":idProduit", $idProduit);
+
+    $result = oci_execute($listeChoix);
+    
+    $produitExiste = oci_parse($connect, "SELECT idProduit FROM Produit WHERE idProduit=".$_GET['idProduit']);
+    $result = oci_execute($produitExiste);
+
+    if (($existe = oci_fetch_assoc($produitExiste)) == false) {
+        header("Location: index.php");
+    }
+
+    $dict = array();
+    while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
+        $prixProduit = $leChoix['PRIXPRODUIT']; 
+        $nomProduit = $leChoix['NOMPRODUIT'];
+        $extProduit = $leChoix['EXTENSIONIMGPRODUIT'];
+        $stockProduit = $leChoix['QUANTITESTOCKPRODUIT'];
+        if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
+            $dict[$leChoix['TYPECHOIX']] = array();
+        }
+        array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../public/css/style.css">
         <link rel="stylesheet" href="../public/css/header.css">
+        <link rel="stylesheet" href="../public/css/footer.css">
         <link rel="stylesheet" href="../public/css/consultStyle.css">
         <script src="../public/js/avisClientTri.js" defer></script>
         <script src="../public/js/prixProduit.js" defer></script>
     </head>
 
     <body>
-        <?php include("../include/header.php"); 
-        require_once("../include/checkConnexion.php");
-        error_reporting(0);
-        $idProduit = $_GET["idProduit"];
-
-        $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix, nomProduit, extensionImgProduit, quantiteStockProduit
-                FROM Produit P, Choix C, Affecter A
-                WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
-                    AND P.idProduit = :idProduit 
-                ORDER BY TYPECHOIX";
-
-        $listeChoix = oci_parse($connect, $req) ;
-
-        oci_bind_by_name($listeChoix, ":idProduit", $idProduit);
-
-        $result = oci_execute($listeChoix);
-
-        $dict = array();
-        while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
-            $prixProduit = $leChoix['PRIXPRODUIT']; 
-            $nomProduit = $leChoix['NOMPRODUIT'];
-            $extProduit = $leChoix['EXTENSIONIMGPRODUIT'];
-            $stockProduit = $leChoix['QUANTITESTOCKPRODUIT'];
-            if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
-                $dict[$leChoix['TYPECHOIX']] = array();
-            }
-            array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
-        }
-        ?>
+        <?php include("../include/header.php"); ?>
         <div id="consulte">
             <div id="img">
                 <img src="../public/images/produits/<?= $_GET['idProduit'] ?>.<?= $extProduit ?>" alt="image du produit">
@@ -106,7 +120,7 @@
 
                         $result = oci_execute($infosProduit);
                         if(($lesInfos = oci_fetch_assoc($infosProduit)) != false) { ?>
-                            <div id="infos">
+                            <div id="infos-details">
                             <div><h3>Details</h3></div>
                         <?php
                             $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
@@ -218,6 +232,15 @@
                                 <div id="total-notes">(<?= $nbAvis ?> avis pour ce produit)</div>
                             </div>
                         </div>
+                        <?php if(isset($_SESSION["CLIENT"])) { ?>
+                        <div>
+                            <a id="ajout-avis" href="formulaireAjoutAvis.php?idProduit=<?= $_GET['idProduit'] ?>">Ajouter un Avis</a>
+                        </div>
+                        <?php } else { ?>
+                        <div>
+                            <a id="ajout-avis" href="./connexion.php">Connectez-vous pour donner un avis</a>
+                        </div>
+                        <?php } ?>
                         <div>
                             <h5 id="filtrerParNote">Filtrer par note</h5>
                             <div id="filtres-avis">
@@ -304,5 +327,6 @@
                 </div>
             </div>
         </div>
+        <?php include("../include/footer.php") ?>
     </body>
 </html>

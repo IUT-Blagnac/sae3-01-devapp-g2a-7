@@ -2,7 +2,7 @@ package app.controller;
 
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,71 +14,93 @@ import javafx.scene.control.SpinnerValueFactory;
 
 public class mainController implements Initializable  {
 
-    private ArrayList<Spinner<Double>> spinners = new ArrayList<Spinner<Double>>();
-    private ArrayList<StackedBarChart> barCharts = new ArrayList<StackedBarChart>();
+    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>();
+    private HashMap<String, StackedBarChart<String, Float>> barCharts = new HashMap<String, StackedBarChart<String, Float>>();
+    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>();
 
     @FXML
-    CheckBox CBActivite;
+    CheckBox cbActivite;
     @FXML
     Spinner<Double> spinnerActivite;
     @FXML
-    StackedBarChart<String, Float> BCActivite;
+    StackedBarChart<String, Float> bcActivite;
     @FXML
-    CheckBox CBCO2;
+    CheckBox cbCO2;
     @FXML
     Spinner<Double> spinnerCO2;
     @FXML
-    StackedBarChart<String, Float> BCCO2;
+    StackedBarChart<String, Float> bcCO2;
     @FXML
-    CheckBox CBHumidite;
+    CheckBox cbHumidite;
     @FXML
     Spinner<Double> spinnerHumidite;
     @FXML
-    StackedBarChart<String, Float> BCHumidite;
+    StackedBarChart<String, Float> bcHumidite;
     @FXML
-    CheckBox CBIllumination;
+    CheckBox cbIllumination;
     @FXML
     Spinner<Double> spinnerIllumination;
     @FXML
-    StackedBarChart<String, Float> BCIllumination;
+    StackedBarChart<String, Float> bcIllumination;
     @FXML
-    CheckBox CBInfrarouges;
+    CheckBox cbInfrarouges;
     @FXML
     Spinner<Double> spinnerInfrarouges;
     @FXML
-    StackedBarChart<String, Float> BCInfrarouges;
+    StackedBarChart<String, Float> bcInfrarouges;
     @FXML
-    CheckBox CBPression;
+    CheckBox cbPression;
     @FXML
     Spinner<Double> spinnerPression;
     @FXML
-    StackedBarChart<String, Float> BCPression;
+    StackedBarChart<String, Float> bcPression;
     @FXML
-    CheckBox CBTemperature;
+    CheckBox cbTemperature;
     @FXML
     Spinner<Double> spinnerTemperature;
     @FXML
-    StackedBarChart<String, Float> BCTemperature;
+    StackedBarChart<String, Float> bcTemperature;
     @FXML
-    CheckBox CBQualiteAir;
+    CheckBox cbQualiteAir;
     @FXML
     Spinner<Double> spinnerQualiteAir;
     @FXML
-    StackedBarChart<String, Float> BCQualiteAir;
+    StackedBarChart<String, Float> bcQualiteAir;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Liste des spinners
-        spinners.add(spinnerActivite);
-        spinners.add(spinnerCO2);
-        spinners.add(spinnerHumidite);
-        spinners.add(spinnerIllumination);
-        spinners.add(spinnerInfrarouges);
-        spinners.add(spinnerPression);
-        spinners.add(spinnerTemperature);
-        spinners.add(spinnerQualiteAir);
+        spinners.put("activity",spinnerActivite);
+        spinners.put("co2", spinnerCO2);
+        spinners.put("humidity", spinnerHumidite);
+        spinners.put("illumination", spinnerIllumination);
+        spinners.put("infrared", spinnerInfrarouges);
+        spinners.put("pressure", spinnerPression);
+        spinners.put("temperature", spinnerTemperature);
+        spinners.put("tvoc", spinnerQualiteAir);
+
+        // Liste des barCharts
+        barCharts.put("activity", bcActivite);
+        barCharts.put("co2", bcCO2);
+        barCharts.put("humidity", bcHumidite);
+        barCharts.put("illumination", bcIllumination);
+        barCharts.put("infrared", bcInfrarouges);
+        barCharts.put("pressure", bcPression);
+        barCharts.put("temperature", bcTemperature);
+        barCharts.put("tvoc", bcQualiteAir);
+
+        // Liste des checkBoxs
+        checkBoxs.put("activity", cbActivite);
+        checkBoxs.put("co2", cbCO2);
+        checkBoxs.put("humidity", cbHumidite);
+        checkBoxs.put("illumination", cbIllumination);
+        checkBoxs.put("infrared", cbInfrarouges);
+        checkBoxs.put("pressure", cbPression);
+        checkBoxs.put("temperature", cbTemperature);
+        checkBoxs.put("tvoc", cbQualiteAir);
+
         // Initialisation des spinners
-        for (Spinner<Double> spinner : spinners) {
+        for (Spinner<Double> spinner : spinners.values()) {
             spinner.setValueFactory(
                 new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
             );
@@ -90,15 +112,25 @@ public class mainController implements Initializable  {
                 ));
             });
         }
-        // Liste des barCharts
-        barCharts.add(BCActivite);
-        barCharts.add(BCCO2);
-        barCharts.add(BCHumidite);
-        barCharts.add(BCIllumination);
-        barCharts.add(BCInfrarouges);
-        barCharts.add(BCPression);
-        barCharts.add(BCTemperature);
-        barCharts.add(BCQualiteAir);
+
+        // Check is checkbox is active, if yes enable spinner and visible barchart else disable
+        for (String key : checkBoxs.keySet()) {
+            checkBoxs.get(key).setSelected(true);
+            checkBoxs.get(key).setOnAction(e -> {
+                if (checkBoxs.get(key).isSelected()) {
+                    spinners.get(key).setDisable(false);
+                    barCharts.get(key).setPrefWidth(150);
+                    barCharts.get(key).setVisible(true);
+                } else {
+                    spinners.get(key).setDisable(true);
+                    barCharts.get(key).setPrefWidth(0);
+                    barCharts.get(key).setVisible(false);
+                }
+            });
+        }
+
+        // Threads pour JSON
+        
     }
     
 }

@@ -111,7 +111,7 @@
                         <?php
                         oci_free_statement($listeChoix);
 
-                        $req = "SELECT prixProduit, prixBaseProduit, delaiLivraisonProduit, TO_CHAR(dateRetractationProduit, 'dd/mm/YYYY') AS dateRetractationProduit, garantieProduit, verifierProduit
+                        $req = "SELECT descriptionProduit, prixProduit, prixBaseProduit, delaiLivraisonProduit, TO_CHAR(dateRetractationProduit, 'dd/mm/YYYY') AS dateRetractationProduit, garantieProduit, verifierProduit
                                 FROM Produit
                                 WHERE idProduit = :idProduit";
 
@@ -125,10 +125,11 @@
                         <?php
                             $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
                         ?>
+                            <div><p><?= $lesInfos['DESCRIPTIONPRODUIT'] ?></p></div>
                             <div>-<?= round($tauxReduc) ?>% vs prix neuf (<?= $lesInfos['PRIXBASEPRODUIT'] ?>€)</div>
-                                <div>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</div>
-                                <div>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?> </div>
-                                <div>Garantie contractuelle <?= $lesInfos['GARANTIEPRODUIT'] ?> mois</div>
+                            <div>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</div>
+                            <div>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?> </div>
+                            <div>Garantie contractuelle <?= $lesInfos['GARANTIEPRODUIT'] ?> mois</div>
                         <?php
                             if ($lesInfos['VERIFIERPRODUIT']) { ?>
                                 <div>Reconditionneur vérifié</div>

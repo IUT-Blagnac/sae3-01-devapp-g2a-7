@@ -1,9 +1,13 @@
-package app.controller;
+package application.controller;
 
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import org.json.simple.JSONObject;
+
+import application.DialogueController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.StackedBarChart;
@@ -12,11 +16,12 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
 
-public class mainController implements Initializable  {
+public class MainController implements Initializable  {
 
     private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>();
     private HashMap<String, StackedBarChart<String, Float>> barCharts = new HashMap<String, StackedBarChart<String, Float>>();
     private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>();
+    private DialogueController dialogueController;
 
     @FXML
     CheckBox cbActivite;
@@ -67,6 +72,9 @@ public class mainController implements Initializable  {
     @FXML
     StackedBarChart<String, Float> bcQualiteAir;
 
+    /**
+     * Initialize the controller
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Liste des spinners
@@ -98,39 +106,74 @@ public class mainController implements Initializable  {
         checkBoxs.put("pressure", cbPression);
         checkBoxs.put("temperature", cbTemperature);
         checkBoxs.put("tvoc", cbQualiteAir);
+        
+    }
 
-        // Initialisation des spinners
-        for (Spinner<Double> spinner : spinners.values()) {
-            spinner.setValueFactory(
-                new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
-            );
-            // Empêche la saisie de valeurs non-numériques
-            spinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-                spinner.getEditor().setText((
-                    newValue.matches("-{0,1}\\d*(\\.|,){0,1}\\d*") ?
-                        newValue.replace(".", ",") : oldValue
-                ));
-            });
+    /**
+     * Listener de la checkbox
+     * @param pfKey
+     */
+    public void checkBoxListener(String pfKey) {
+        if (checkBoxs.get(pfKey).isSelected()) {
+            spinners.get(pfKey).setDisable(false);
+            barCharts.get(pfKey).setPrefWidth(150);
+            barCharts.get(pfKey).setVisible(true);
+        } else {
+            spinners.get(pfKey).setDisable(true);
+            barCharts.get(pfKey).setPrefWidth(0);
+            barCharts.get(pfKey).setVisible(false);
         }
+    }
 
-        // Check is checkbox is active, if yes enable spinner and visible barchart else disable
+    /**
+     * Listener du spinner
+     * @param pfNewValue
+     * @param pfOldValue
+     * @param pfKkey
+     */
+    public void spinnerListener(String pfNewValue, String pfOldValue, String pfKkey) {
+        String value = pfNewValue.matches("-{0,1}\\d*(\\.|,){0,1}\\d*") ?
+        pfNewValue.replace(".", ",") : pfOldValue;
+        spinners.get(pfKkey).getEditor().setText((value));
+    }
+
+    /**
+     * Setter du dialogueController
+     * @param pfDialogueController
+     */
+    public void setDialogueController(DialogueController pfDialogueController) {
+        this.dialogueController = pfDialogueController;
+    }
+
+    /**
+     * Initialisation des éléments de la fenêtre principale
+     */
+    public void init() {
+        // Init checkbox and checkbox listener
         for (String key : checkBoxs.keySet()) {
             checkBoxs.get(key).setSelected(true);
             checkBoxs.get(key).setOnAction(e -> {
-                if (checkBoxs.get(key).isSelected()) {
-                    spinners.get(key).setDisable(false);
-                    barCharts.get(key).setPrefWidth(150);
-                    barCharts.get(key).setVisible(true);
-                } else {
-                    spinners.get(key).setDisable(true);
-                    barCharts.get(key).setPrefWidth(0);
-                    barCharts.get(key).setVisible(false);
-                }
+                this.checkBoxListener(key);
+                dialogueController.checkBoxListener(key, checkBoxs.get(key).isSelected());
             });
         }
 
-        // Threads pour JSON
-        
+        // Init spinners and spinner listener
+        for (String key : spinners.keySet()) {
+            spinners.get(key).setValueFactory(
+                new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
+            );
+
+            // Empêche la saisie de valeurs non-numériques
+            spinners.get(key).getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+                this.spinnerListener(newValue, oldValue, key);
+                dialogueController.spinnerListener(key, newValue);
+            });
+        }
+    }
+
+    public void showData(JSONObject pfData) {
+        System.out.println(pfData.toJSONString());
     }
     
 }

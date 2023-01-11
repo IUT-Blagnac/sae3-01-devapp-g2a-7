@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.55" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.mainController">
+<SplitPane dividerPositions="0.55" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <items>
       <AnchorPane maxWidth="-Infinity" prefWidth="300.0">
          <children>
@@ -322,7 +322,7 @@
                                           <NumberAxis side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcQualiteAir" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcTemperature" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Température" side="BOTTOM">
                                              <tickLabelFont>
@@ -334,7 +334,7 @@
                                           <NumberAxis side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcTemperature" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcQualiteAir" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Qualité de l'air" side="BOTTOM">
                                              <tickLabelFont>

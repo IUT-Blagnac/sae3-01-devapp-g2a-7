@@ -172,6 +172,10 @@ public class MainController implements Initializable  {
         }
     }
 
+    /**
+     * Affichage des données // TODO
+     * @param pfData
+     */
     public void showData(JSONObject pfData) {
         System.out.println(pfData.toJSONString());
     }

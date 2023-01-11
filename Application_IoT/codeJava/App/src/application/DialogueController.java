@@ -91,6 +91,10 @@ public class DialogueController extends Application {
         JSONWriter.getInstance().updateSeuil(key, value);
     }
 
+    /**
+     * Send the data to the mainController
+     * @param pfData the data to send
+     */
     public void sendData(JSONObject pfData) {
         this.mainController.showData(pfData);
     }

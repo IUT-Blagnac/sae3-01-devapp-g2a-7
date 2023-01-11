@@ -91,6 +91,10 @@ public class JSONReader implements Runnable {
         return this.running;
     }
 
+    /**
+     * Send the data to the DialogueController
+     * @param pfData
+     */
     private void sendData(JSONObject pfData) {
         this.dialogueController.sendData(pfData);
     }

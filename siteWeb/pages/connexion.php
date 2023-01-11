@@ -76,8 +76,8 @@
                 <h1>J'ai déjà un compte</h1>
                 <form id="form-connexion" method="post">
                     <p>Entrez vos identifiants pour vous connecter :</p>
-                    <input type="email" name="mail" placeholder="Adresse e-mail">
-                    <input type="password" name="mdp" placeholder="Mot de passe">
+                    <input type="email" name="mail" placeholder="Adresse e-mail" required>
+                    <input type="password" name="mdp" placeholder="Mot de passe" required>
                     <a href="#">Mot de passe oublié ?</a>
                     <input type="submit" name="connexionForm" value="Se connecter">
                 </form>

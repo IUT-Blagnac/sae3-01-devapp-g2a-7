@@ -3,7 +3,11 @@ section {
     justify-content:center;
     align-items:center;
     width:100%;
+    padding:50px;
+    box-sizing:border-box;
+    min-height:650px;
     height:calc(100vh - 175px);
+    margin-bottom:-100px;
 }
 
 section > div {
@@ -55,13 +59,18 @@ section > div > div {
     width:490px;
 }
 
+#form-ajouterCategorie {
+    height:200px;
+}
+
 section > div > div {
     height:135px;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     color:var(--dark-grey);
     border:1px solid var(--dark-grey);
     border-radius:10px;
@@ -74,7 +83,8 @@ input[type="password"] {
 }
 input[type="text"]::placeholder,
 input[type="email"]::placeholder,
-input[type="password"]::placeholder {
+input[type="password"]::placeholder,
+select::placeholder {
     color:var(--grey);
 }
 
@@ -144,4 +154,30 @@ section a:hover {
 
 #info-label {
     text-align:center;
+}
+
+#description-avis {
+    overflow-wrap: break-word;
+    color:var(--dark-grey);
+    border:1px solid var(--dark-grey);
+    border-radius:10px;
+    display:block;
+    padding-left:15px;
+    width:calc(100% - 21px);
+    height:120px;
+    outline-color:var(--green-blue);
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+/*Formulaire avis*/
+textarea {
+    max-width:450px;
+    min-width:200px;
+    max-height: 300px;
+    min-height: 100px;
+}
+
+#form-AjouterCategorie p.info {    
+    max-width:400px;
 }

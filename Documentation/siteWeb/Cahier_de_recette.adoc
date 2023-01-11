@@ -175,4 +175,53 @@ Un navigateur web quelconque.
 
 |====
 
+=== 2. Pages produits
+==== 2.1 Consultation de produit :
+
+|====
+
+>|Cas de test 3+|Test-02-01-01
+>|Titre 3+|Page de consultation sécurisée
+>|Objectif 3+| Vérifier que la page consultProduit.php n'est pas accessible si l'id du produit n'est pas correctement renseignée
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page sans renseigner l'idProduit ^|Redirection vers la page d'accueil ^|OK
+^|2 ^|Accéder à la page avec un idProduit n'étant pas au bon format ^|Redirection vers la page d'accueil ^|OK
+^|3 ^|Accéder à la page avec un idProduit n'étant pas dans la base de données ^|Redirection vers la page d'accueil ^|OK
+^|4 ^|Accéder à la page avec un idProduit valide ^|Accès à la page ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-02-01-02
+>|Titre 3+|Ajouter au panier
+>|Objectif 3+| Vérifier que le bouton "ajouter au panier" de la page consultProduit.php ajoute le produit au panier correctement lorsqu'on clique dessus
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Le bouton est cliqué ^|Le produit est ajouté au panier ^|OK
+^|2 ^|Des cases de choix sont cochées et une quantité séléctionnée ^|Les données séléctionnées sont enregistrées dans le panier lors de l'ajout^|OK
+^|4 ^|La quantité est modifiée ^|La quantité sélectionnée ne peut pas dépasser le stock du produit en question ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-02-01-03
+>|Titre 3+|Traitement des avis
+>|Objectif 3+| Vérifier que le bouton "ajouter au panier" de la page consultProduit.php ajoute le produit au panier correctement lorsqu'on clique dessus
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Le bouton est cliqué ^|Le produit est ajouté au panier ^|OK
+^|2 ^|Des cases de choix sont cochées et une quantité séléctionnée ^|Les données séléctionnées sont enregistrées dans le panier lors de l'ajout^|OK
+^|4 ^|La quantité est modifiée ^|La quantité sélectionnée ne peut pas dépasser le stock du produit en question ^|OK
+
+|====
+
 *TO COMPLETE*

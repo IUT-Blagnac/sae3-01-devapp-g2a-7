@@ -1,0 +1,128 @@
+= Cahier De Recette du site web REVIVE
+:toc:
+:toc-title: Sommaire
+
+
+
+== I. Introduction
+=== 1. Objet :
+[.text-justify]
+Ce document a été produit dans le cadre de la conception d'un site web pour l'entreprise REVIVE. Ce document spécifie l'ensemble des cas testés pour ce dernier.
+
+
+
+== II. Pre-Requis :
+[.text-justify]
+L'exécution des tests requiert :
+
+* L'accès au http://193.54.227.164/~SAESYS07/pages/[site web REVIVE]
+
+
+=== 1. Éléments à tester :
+[.text-justify]
+Les éléments testés concernent les User-Stories spécifiées dans le *CDCF* donné dans l'appel d'offre de REVIVE.
+
+
+=== 2. Environnement de test :
+[.text-justify]
+Un navigateur web quelconque.
+
+
+
+== III. Cas de test :
+=== 1. Connexion et données de compte :
+==== 1.1 Connexion :
+
+|====
+
+>|Cas de test 3+|Test-01-01-01
+>|Titre 3+|Connexion en tant que client
+>|Objectif 3+| Vérifier qu'il est possible de se connecter en tant que client sur la page connexion.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|3 ^|Saisir des données de client correctes ^|Connexion en tant que client et redirection vers la page d'accueil ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-01-02
+>|Titre 3+|Connexion en tant qu'administrateur
+>|Objectif 3+| Vérifier qu'il est possible de se connecter en tant qu'administrateur sur la page connexion.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|3 ^|Saisir des données d'administrateur correctes ^|Connexion en tant qu'administrateur et redirection vers la page d'accueil ^|OK
+
+|====
+
+
+==== 1.2 Création d'un compte :
+
+|====
+
+>|Cas de test 3+|Test-01-02-01
+>|Titre 3+|Création d'un compte client
+>|Objectif 3+| Vérifier qu'il est possible de créer un compte client sur la page creationCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|3 ^|Saisir des données de client correctes ^|Ajout des données dans la BD et redirection vers la page de connexion ^|OK
+
+|====
+
+
+==== 1.3 Consultation d'un compte :
+
+|====
+
+>|Cas de test 3+|Test-01-03-01
+>|Titre 3+|Page sécurisée
+>|Objectif 3+| Vérifier que la page consultCompte.php n'est pas accessible si l'utilisateur n'est pas connecté
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page sans être connecté  ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Accéder à la page avec de mauvaises données de session ^|Redirection vers la page de connexion ^|OK
+^|3 ^|Accéder à la page en étant connecté en tant que client ou administrateur ^|Accès à la page ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-03-02
+>|Titre 3+|Consultation d'un compte client
+>|Objectif 3+| Vérifier qu'il est possible de consulter les données d'un compte client sur la page consultCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page en étant connecté en tant que client ^|Accès à la page et affichage des données du compte client ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-03-03
+>|Titre 3+|Consultation d'un compte administrateur
+>|Objectif 3+| Vérifier qu'il est possible de consulter les données d'un compte administrateur sur la page consultCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page et affichage des données du compte administrateur ^|OK
+
+|====
+
+*TO COMPLETE*

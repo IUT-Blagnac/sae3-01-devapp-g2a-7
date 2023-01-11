@@ -1,0 +1,50 @@
+.foot {
+    width: fit-content;
+    text-align: left;
+}
+
+#infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-bottom: 65px;
+    background-color: #f0f0f0;
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+}
+
+#vide {
+    width:100%;
+    margin-top: 40px;
+    border-top: 1.5px solid black;
+}
+
+@media screen and (max-width: 850px) {
+    footer {
+        align-items: center;
+    }
+    #infos {
+        flex-direction: column;
+        width:fit-content;
+    }
+    .foot {
+        margin-bottom: 15px;
+    }
+    #vide {
+        margin-top: 20px;
+    }
+}
+
+.foot > a {
+    color:black;
+}

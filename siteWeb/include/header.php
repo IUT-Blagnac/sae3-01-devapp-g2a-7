@@ -1,6 +1,10 @@
 <?php
     require_once("checkConnexion.php");
-    error_reporting(0);
+    //error_reporting(0);
+
+    // Récupère l'instance du panier
+    require_once("../include/panier.php");
+    $panier = Panier::creerPanier();
 
     function afficher_categories($idCategorieMere=null, $niveau=1) {
         global $connect;
@@ -25,7 +29,9 @@
         echo "<ul id='ul".$idUl."'>";
         for ($i=0; $i<count($categories["IDCATEGORIE"]); $i++) {
             echo "<li id='li".$categories["IDCATEGORIE"][$i]."'>".
-                $categories["NOMCATEGORIE"][$i];
+                "<a href='../pages/listerProduits?idCategorie=".
+                $categories["IDCATEGORIE"][$i]."'\">".
+                $categories["NOMCATEGORIE"][$i]."</a>";
             afficher_categories($categories["IDCATEGORIE"][$i], $niveau+1);
             echo "</li>";
         }
@@ -47,28 +53,28 @@
         </a>
     </div>
     <nav>
-        <a href="">
+        <a class="lien" href="">
             <img src="../public/images/information.png" alt="Information">
             <span>INFORMATION</span>
         </a>
         <?php if (isset($_SESSION['CLIENT']) || isset($_SESSION['ADMIN'])) { ?>
-            <a href="./consultCompte.php">
+            <a class="lien" href="./consultCompte.php">
                 <img src="../public/images/userIcon.png" alt="Icon utilisateur">
                 <span>MON PROFIL</span>
             </a>
         <?php } else { ?>
-            <a href="./connexion.php">
+            <a class="lien" href="./connexion.php">
                 <img src="../public/images/userIcon.png" alt="Icon utilisateur">
                 <span>CONNEXION</span>
             </a>
         <?php } ?>
-        <a href="">
+        <a class="lien" href="panier.php">
             <img src="../public/images/pannier.png" alt="Panier">
             <span>PANIER</span>
         </a>
     </nav>
     <div class="searchBox">
-        <form action="" method="GET">
+        <form action="listerProduits.php" method="GET">
             <input type="text" placeholder="Rechercher un produit..." name="query">
             <button><img src="../public/images/loupe.png" alt="Rechercher"></button>
         </form>
@@ -77,11 +83,38 @@
 <div class="subHeader">
     <div class="navbar">
         <div id="div-submenu">
-            <a href="#" id="titleSubmenu">
+            <a class="lien" id="titleSubmenu">
                 <img src="../public/images/menuIcon.png" alt="Menu Icon"> NOS PRODUITS
             </a>
             <?php afficher_categories() ?>
         </div>
-        <a href="#">REVENDRE</a>
+        <?php if (isset($_SESSION['CLIENT'])) {
+            echo '<a class="lien" href="../pages/revendreProduit.php">REVENDRE</a>';
+        }
+        if (isset($_SESSION['ADMIN'])) { ?>
+            <div id="div-submenu">
+                <a class="lien" id="titleSubmenu">GESTION</a>
+                <ul>
+                    <li><a>PRODUITS</a>
+                        <ul>
+                            <li><a href="../pages/ajouterProduit.php">Ajouter</a></li>
+                            <li><a href="../pages/supprimerProduit.php">Supprimer</a></li>
+                        </ul>
+                    </li>
+                    <li><a>CATÉGORIES</a>
+                        <ul>
+                            <li><a href="../pages/ajouterCategorie.php">Ajouter</a></li>
+                            <li><a href="../pages/supprimerCategorie.php">Supprimer</a></li>
+                        </ul>
+                    </li>
+                    <li><a>CHOIX</a>
+                        <ul>
+                            <li><a href="../pages/ajouterChoix.php">Ajouter</a></li>
+                            <li><a href="../pages/supprimerChoix.php">Supprimer</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        <?php } ?>
     </div>
 </div>

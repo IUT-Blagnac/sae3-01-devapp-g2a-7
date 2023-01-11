@@ -110,7 +110,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * Listener de la checkbox
+     * Listener of checkbox
      * @param pfKey
      */
     public void checkBoxListener(String pfKey) {
@@ -126,7 +126,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * Listener du spinner
+     * Listener of spinner
      * @param pfNewValue
      * @param pfOldValue
      * @param pfKkey
@@ -138,7 +138,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * Setter du dialogueController
+     * Setter dialogueController
      * @param pfDialogueController
      */
     public void setDialogueController(DialogueController pfDialogueController) {
@@ -146,7 +146,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * Initialisation des éléments de la fenêtre principale
+     * Initialisation of elements and listeners
      */
     public void init() {
         // Init checkbox and checkbox listener
@@ -173,7 +173,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * Affichage des données // TODO
+     * Show datas // TODO
      * @param pfData
      */
     public void showData(JSONObject pfData) {

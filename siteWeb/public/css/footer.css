@@ -14,9 +14,13 @@ footer {
     flex-direction: column;
     padding-left: 10%;
     padding-right: 10%;
-    padding-top:40px;
-    padding-bottom:65px;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-bottom: 65px;
     background-color: #f0f0f0;
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
 }
 
 #vide {
@@ -39,4 +43,8 @@ footer {
     #vide {
         margin-top: 20px;
     }
+}
+
+.foot > a {
+    color:black;
 }

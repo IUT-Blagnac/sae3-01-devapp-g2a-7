@@ -29,12 +29,12 @@ ifdef::env-github[]
 endif::[]
 
 // /!\ A MODIFIER !!!
-:baseURL: https://github.com/IUT-Blagnac/sae3-01-template
+:baseURL: https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7
 
 // Tags
 image:{baseURL}/actions/workflows/blank.yml/badge.svg[Bidon] 
 image:{baseURL}/actions/workflows/build.yml/badge.svg[Build] 
-image:{baseURL}/actions/workflows/tests.yml/badge.svg[Tests] 
+image:{baseURL}/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Tests] 
 image:https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg[License: MPL-2.0, link="https://opensource.org/licenses/MPL-2.0"]
 //---------------------------------------------------------------
 

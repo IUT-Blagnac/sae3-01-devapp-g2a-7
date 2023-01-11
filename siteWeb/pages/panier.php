@@ -11,23 +11,23 @@
     <title>Revive | Panier</title>
 </head>
 
-<body>
-
 <?php
     include("../include/header.php");
 
     // Changer la quantité d'un produit dans le panier
     if (isset($_POST['quantiteProduit'])) {
         $panier->changeQuantiteProduit($_POST['idProduit'], $_POST['quantiteProduit']);
+        echo "<script>window.location.href = './panier.php';</script>";
     }
 
     // Supprimer un produit du panier
     if (isset($_POST['supprimer'])) {
         $panier->enleverProduit($_POST['idProduit']);
+        echo "<script>window.location.href = './panier.php';</script>";
     }
-
 ?>
 
+<body>
 <section>
     <h1>Récapitulatif de mon panier</h1>
     <div class="commande">
@@ -37,10 +37,10 @@
             <div class="produits">
                 <?php foreach($panier->getProduits() as $produit) { ?>
                     <div class="produit" id="<?= $produit->getIdProduit(); ?>">
-                        <div class="image">
+                        <div class="image" onclick="location.href='consultProduit.php?idProduit=<?= $produit->getIdProduit(); ?>'">
                             <img src="../public/images/produits/<?= $produit->getIdProduit(); ?>.<?= $produit->getExtensionImgProduit(); ?>" alt="NOM DU PRODUIT">
                         </div>
-                        <div class="objet">
+                        <div class="objet" onclick="location.href='consultProduit.php?idProduit=<?= $produit->getIdProduit(); ?>'">
                             <h2><?= $produit->getCategorie(); ?> - <?= $produit->getNomProduit(); ?></h2>
                             <p class="detail"><?= $produit->getDescriptionProduit(); ?></p>
                             <p><?= $produit->getPrixProduit(); ?>€</p>
@@ -48,7 +48,7 @@
                         <div class="prix">
                             <form action="./panier.php#<?= $produit->getIdProduit(); ?>" method="post">
                                 <select name="quantiteProduit" onchange="this.form.submit()">
-                                    <?php 
+                                    <?php
                                     $quantiteStockProduit = $produit->getQuantiteStockProduit();
                                     for($i = 1; $i <= $quantiteStockProduit; $i++) {
                                         if ($i == $produit->getQuantiteProduit()) { ?>
@@ -61,7 +61,7 @@
                                 <input type="hidden" name="idProduit" value="<?= $produit->getIdProduit(); ?>">
                             </form>
                             <p>
-                                <?php 
+                                <?php
                                     $prixProduit = $produit->getPrixProduit();
                                     $quantiteProduit = $produit->getQuantiteProduit();
                                     $prixTotal = $prixProduit * $quantiteProduit;

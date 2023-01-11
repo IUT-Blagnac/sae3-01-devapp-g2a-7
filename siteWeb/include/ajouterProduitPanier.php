@@ -1,13 +1,12 @@
 <?php
-    session_start();
     include("../include/panier.php");
     require_once("checkConnexion.php");
     $panier = Panier::creerPanier();
-    
+
     // Supprime les éléments "choix-avis" et "ajoutPanier" de $_POST car non utilisés
     unset($_POST['choix-avis']);
     unset($_POST['ajoutPanier']);
-    
+
     // Définit les variables en récupérant la valeur correspondante dans $_POST et en supprimant les élément du tableau
     $nomProduit = $_POST['nomProduit'];
     unset($_POST['nomProduit']);
@@ -31,10 +30,10 @@
         // créer la chaîne detailProduit avec le nom du choix et son libellé
         $detailProduit .= $key . ": " . $value . ", ";
     }
-    
+
     // Supprime les deux derniers caractères de la chaîne "$detailProduit" (une virgule et un espace en fin de chaîne)
     $detailProduit = substr($detailProduit, 0, -2);
-    
+
     $produit = new Produit($idProduit, $nomProduit, $prixProduit, $detailProduit, $quantiteProduit, $extensionImgProduit, $quantiteStockProduit);
 
     $panier->ajouterProduit($produit);

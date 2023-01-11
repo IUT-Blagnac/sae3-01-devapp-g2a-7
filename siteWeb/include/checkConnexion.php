@@ -17,7 +17,7 @@
         // Exécute la requête
         $result = oci_execute($requete);
         if (!$result) {
-            $messageErreur = "Une erreur est survenue avec la base de données."; // TOMODIFY
+            echo "<script>throw 'Une erreur est survenue avec la base de données.'</script>";
         } else {
             $utilisateur = oci_fetch_array($requete);
             if (!$utilisateur) {

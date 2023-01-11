@@ -81,6 +81,10 @@ section div.commande div.produits div.produit div.objet {
     width: 40%;
 }
 
+div.objet:hover, div.image:hover {
+    cursor:pointer;
+}
+
 section div.commande div.produits div.produit div.objet p.detail {
     font-style: italic;
 }

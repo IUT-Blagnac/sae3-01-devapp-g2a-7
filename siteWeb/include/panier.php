@@ -7,7 +7,7 @@
             $this->produits = array();
             $this->idClient = $idClient;
             if ($this->idClient != null) {
-                $this->setProduitsPanierBaseDeDonne();
+                $this->setProduitsPanierBaseDeDonnees();
             } else {
                 // cookie expire dans 1 semaine
                 setcookie("panier", serialize($this), time() + 604800, "/");
@@ -20,14 +20,14 @@
 
         public function enleverProduit($idProduit) {
             if ($this->idClient != null) {
-                $this->enleverProduitBaseDeDonne($idProduit);
+                $this->enleverProduitBaseDeDonnees($idProduit);
             } else {
                 unset($this->produits[$idProduit]);
                 setcookie("panier", serialize($this), time() + 604800, "/");
             }
         }
 
-        private function enleverProduitBaseDeDonne($idProduit) {
+        private function enleverProduitBaseDeDonnees($idProduit) {
             global $connect;
             $sqlEnleverProduit = "DELETE FROM CONTENIR
             WHERE CONTENIR.IDPANIER IN (
@@ -43,14 +43,14 @@
 
         public function changeQuantiteProduit($idProduit, $quantite) {
             if ($this->idClient != null) {
-                $this->changeQuantiteProduitBaseDeDonne($idProduit, $quantite);
+                $this->changeQuantiteProduitBaseDeDonnees($idProduit, $quantite);
             } else {
                 $this->produits[$idProduit]->setQuantiteProduit($quantite);
                 setcookie("panier", serialize($this), time() + 604800, "/");
             }
         }
 
-        private function changeQuantiteProduitBaseDeDonne($idProduit, $quantite) {
+        private function changeQuantiteProduitBaseDeDonnees($idProduit, $quantite) {
             global $connect;
             $sqlChangeQuantiteProduit = "UPDATE CONTENIR
             SET CONTENIR.QUANTITEPRODUIT = :quantite
@@ -82,7 +82,7 @@
             return $prixTotal;
         }
 
-        private function getContenirBaseDeDonne() {
+        private function getContenirBaseDeDonnees() {
             global $connect;
             $sqlContenir = "SELECT * FROM CONTENIR
             WHERE CONTENIR.IDPANIER IN (
@@ -96,7 +96,7 @@
             return $contenir;
         }
 
-        private function getProduitsBaseDeDonne() {
+        private function getProduitsBaseDeDonnees() {
             global $connect;
             $sqlProduits = "SELECT * FROM PRODUIT
             WHERE PRODUIT.IDPRODUIT IN (
@@ -113,9 +113,9 @@
             return $produits;
         }
 
-        private function setProduitsPanierBaseDeDonne() {
-            $contenir = $this->getContenirBaseDeDonne();
-            $produits = $this->getProduitsBaseDeDonne();
+        private function setProduitsPanierBaseDeDonnees() {
+            $contenir = $this->getContenirBaseDeDonnees();
+            $produits = $this->getProduitsBaseDeDonnees();
             while ($rowContenir = oci_fetch_array($contenir, OCI_ASSOC+OCI_RETURN_NULLS)) {
                 $rowProduit = oci_fetch_array($produits, OCI_ASSOC+OCI_RETURN_NULLS);
                 $produit = new Produit( $rowProduit['IDPRODUIT'],
@@ -131,54 +131,65 @@
 
         public function ajouterProduit(Produit $produit) {
             if ($this->idClient != null) {
-                $this->ajouterProduitBaseDeDonne($produit);
+                $this->ajouterProduitBaseDeDonnees($produit);
             } else {
                 $this->produits[$produit->getIdProduit()] = $produit;
                 setcookie("panier", serialize($this), time() + 604800, "/");
             }
         }
-        
-        private function ajouterProduitBaseDeDonnee(Produit $produit) {
+
+        private function ajouterProduitBaseDeDonnees(Produit $produit) {
             global $connect;
+
+            $produitExistant = false;
+            foreach($this->produits as $prd) {
+                if ($prd->getIdProduit() == $produit->getIdProduit()) {
+                    $produitExistant = true;
+                    break;
+                }
+            }
+
             // récupère l'id du panier du client
             $sqlIdPanier = "SELECT IDPANIER FROM PANIER
             WHERE PANIER.IDCLIENT = :idClient";
             $idPanier = oci_parse($connect, $sqlIdPanier);
             oci_bind_by_name($idPanier, ":idClient", $this->idClient);
             $resultIdPanier = oci_execute($idPanier);
-            $rowIdPanier = oci_fetch_array($idPanier, OCI_ASSOC+OCI_RETURN_NULLS);
-            $idPanierClient = $rowIdPanier['IDPANIER'];
+            $rowIdPanier = array();
+            oci_fetch_all($idPanier, $rowIdPanier);
+            $idPanierClient = intval($rowIdPanier['IDPANIER'][0]);
 
-            // insère le produit dans la table contenir pour le panier
-            $sqlInsertContenir = "INSERT INTO Contenir VALUES (
-                                  SELECT IDPANIER FROM PANIER
-                                  WHERE PANIER.IDCLIENT = :idClient,
-            :idProduit, :quantiteProduit, :descriptifProduit)";
+            $quantiteProduit = $produit->getQuantiteProduit();
+            $descriptifProduit = $produit->getDescriptionProduit();
+            $idProduit = $produit->getIdProduit();
+            $prixProduit = $produit->getPrixProduit();
 
-            $insertContenir = oci_parse($connect, $sqlInsertContenir);
-            oci_bind_by_name($insertContenir, ":idPanier", $idPanierClient);
-            oci_bind_by_name($insertContenir, ":quantiteProduit", $produit->quantiteProduit);
-            oci_bind_by_name($insertContenir, ":descriptifProduit", $produit->descriptifProduit);
-            oci_bind_by_name($insertContenir, ":idProduit", $produit->idProduit);
-            oci_execute($insertContenir);
-            // attrape l'éventuelle erreur
-            $e = oci_error($insertContenir);
-            // si il y à une érreur, le produit existe déjà
-            if ($e) {
+            if (!$produitExistant) {
+
+                // insère le produit dans la table contenir pour le panier
+                $sqlInsertContenir = "INSERT INTO Contenir VALUES (:idPanier, :idProduit, :quantiteProduit, :prixProduit, :descriptifProduit)";
+
+                $insertContenir = oci_parse($connect, $sqlInsertContenir);
+                oci_bind_by_name($insertContenir, ":idPanier", $idPanierClient);
+                oci_bind_by_name($insertContenir, ":idProduit", $idProduit);
+                oci_bind_by_name($insertContenir, ":quantiteProduit", $quantiteProduit);
+                oci_bind_by_name($insertContenir, ":prixProduit", $prixProduit);
+                oci_bind_by_name($insertContenir, ":descriptifProduit", $descriptifProduit);
+                oci_execute($insertContenir);
+            } else {
                 // met à jour la quantité du produit dans la table contenir
                 $sqlUpdateContenir = "UPDATE Contenir
                                       SET QUANTITEPRODUIT = :quantiteProduit,
                                       PRIXPRODUIT = :prixProduit,
                                       DESCRIPTIFPRODUIT = :descriptifProduit
-                                      WHERE IDPANIER = :idPanier 
+                                      WHERE IDPANIER = :idPanier
                                       AND IDPRODUIT = :idProduit";
                 $updateContenir = oci_parse($connect, $sqlUpdateContenir);
-                oci_bind_by_name($updateContenir, ":quantiteProduit", $produit->quantiteProduit);
-                oci_bind_by_name($updateContenir, ":prixProduit", $produit->prixProduit);
-                oci_bind_by_name($updateContenir, ":descriptifProduit", $produit->descriptifProduit);
+                oci_bind_by_name($updateContenir, ":quantiteProduit", $quantiteProduit);
+                oci_bind_by_name($updateContenir, ":prixProduit", $prixProduit);
+                oci_bind_by_name($updateContenir, ":descriptifProduit", $descriptifProduit);
                 oci_bind_by_name($updateContenir, ":idPanier", $idPanierClient);
-                oci_bind_by_name($updateContenir, ":idProduit", $produit->idProduit);
-                
+                oci_bind_by_name($updateContenir, ":idProduit", $idProduit);
                 oci_execute($updateContenir);
             }
         }
@@ -213,7 +224,7 @@
 
         public function __construct($idProduit, $nomProduit, $prixProduit, $descriptionProduit, $quantiteProduit, $extensionImgProduit, $quantiteStockProduit) {
             $this->idProduit = $idProduit;
-            $this->nomProduit = $nomProduit;  
+            $this->nomProduit = $nomProduit;
             $this->prixProduit = $prixProduit;
             $this->descriptionProduit = $descriptionProduit;
             $this->quantiteProduit = $quantiteProduit;

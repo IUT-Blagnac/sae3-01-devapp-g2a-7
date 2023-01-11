@@ -61,7 +61,7 @@
                 <div id="produit">
                     <h1> <?= $nomProduit ?> </h1>
                     <form action="../include/ajouterProduitPanier.php" method="POST">
-                        <div>
+                        <div id="affichage-ajout-panier">
                             <div id="ajout-panier">
                                 <select name="quantiteProduit" id="quantiteProduit">
                                     <?php 
@@ -77,11 +77,12 @@
                                 <input type="hidden" name="extensionImgProduit" value="<?= $extProduit ?>">
                                 <input type="hidden" name="quantiteStockProduit" value="<?= $stockProduit ?>">
                                 <input type="hidden" name="nomProduit" value="<?= $nomProduit ?>">
-                                <input type="submit" name="ajoutPanier" value="Ajouter au panier">
+                                <input type="submit" name="ajoutPanier" value="Ajouter au panier"> 
                             </div>
                             <input id="prixProduitInput" name="prixProduit" type="hidden" value="">
                             <p>Prix: <span id="prixProduit" data-prix="<?= $prixProduit ?>"><?= $prixProduit ?></span>€</p>
                         </div>
+                        <div id="affichage-choix">
                     <?php
                         foreach ($dict as $key => $value) {
                             $first = true;
@@ -107,11 +108,13 @@
                     ?>
                             </div>
                         <?php } ?>
+                        </div>
+                    </form>
                 </div> 
                         <?php
                         oci_free_statement($listeChoix);
 
-                        $req = "SELECT descriptionProduit, prixProduit, prixBaseProduit, delaiLivraisonProduit, TO_CHAR(dateRetractationProduit, 'dd/mm/YYYY') AS dateRetractationProduit, garantieProduit, verifierProduit
+                        $req = "SELECT detailsProduit, prixProduit, prixBaseProduit, delaiLivraisonProduit, TO_CHAR(dateRetractationProduit, 'dd/mm/YYYY') AS dateRetractationProduit, garantieProduit, verifierProduit
                                 FROM Produit
                                 WHERE idProduit = :idProduit";
 
@@ -125,14 +128,14 @@
                         <?php
                             $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
                         ?>
-                            <div><p><?= $lesInfos['DESCRIPTIONPRODUIT'] ?></p></div>
-                            <div>-<?= round($tauxReduc) ?>% vs prix neuf (<?= $lesInfos['PRIXBASEPRODUIT'] ?>€)</div>
-                            <div>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</div>
-                            <div>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?> </div>
-                            <div>Garantie contractuelle <?= $lesInfos['GARANTIEPRODUIT'] ?> mois</div>
+                            <div><p><?= $lesInfos['DETAILSPRODUIT'] ?></p></div>
+                            <div><p>-<?= round($tauxReduc) ?>% vs prix neuf (<span data-prix="<?= $lesInfos['PRIXBASEPRODUIT'] ?>" id="prixBaseProduit"><?= $lesInfos['PRIXBASEPRODUIT'] ?></span>€)</p></div>
+                            <div><p>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</p></div>
+                            <div><p>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?></p></div>
+                            <div><p>Garantie contractuelle <?= $lesInfos['GARANTIEPRODUIT'] ?> mois</p></div>
                         <?php
                             if ($lesInfos['VERIFIERPRODUIT']) { ?>
-                                <div>Reconditionneur vérifié</div>
+                                <div><p>Reconditionneur vérifié</p></div>
                             <?php } ?>
                         </div>
                         <?php }

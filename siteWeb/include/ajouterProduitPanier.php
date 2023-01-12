@@ -38,5 +38,7 @@
 
     $panier->ajouterProduit($produit);
 
+    $_SESSION['ajoutPanier'] = true;
     header("Location: ../pages/consultProduit.php?idProduit=$idProduit");
+    exit();
 ?>

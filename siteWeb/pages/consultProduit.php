@@ -52,7 +52,14 @@
     </head>
 
     <body>
-        <?php include("../include/header.php"); ?>
+        <?php 
+            include("../include/header.php");
+            include("../include/infoPopup.php");
+            if ($_SESSION['ajoutPanier'] == true) {
+                echo '<script type="text/javascript">show_info_popup("Le produit a bien été ajouté à votre panier", "var(--green-blue)")</script>';
+                unset($_SESSION['ajoutPanier']);
+            }
+        ?>
         <div id="consulte">
             <div id="img">
                 <img src="../public/images/produits/<?= $_GET['idProduit'] ?>.<?= $extProduit ?>" alt="image du produit">

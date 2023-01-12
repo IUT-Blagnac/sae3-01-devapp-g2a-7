@@ -13,18 +13,6 @@
 
 <?php
     include("../include/header.php");
-
-    // Changer la quantité d'un produit dans le panier
-    if (isset($_POST['quantiteProduit'])) {
-        $panier->changeQuantiteProduit($_POST['idProduit'], $_POST['quantiteProduit']);
-        echo "<script>window.location.href = './panier.php';</script>";
-    }
-
-    // Supprimer un produit du panier
-    if (isset($_POST['supprimer'])) {
-        $panier->enleverProduit($_POST['idProduit']);
-        echo "<script>window.location.href = './panier.php';</script>";
-    }
 ?>
 
 <body>
@@ -46,7 +34,7 @@
                             <p><?= $produit->getPrixProduit(); ?>€</p>
                         </div>
                         <div class="prix">
-                            <form action="./panier.php#<?= $produit->getIdProduit(); ?>" method="post">
+                            <form action="../include/changerQuantiteProduitPanier.php" method="post">
                                 <select name="quantiteProduit" onchange="this.form.submit()">
                                     <?php
                                     $quantiteStockProduit = $produit->getQuantiteStockProduit();
@@ -70,7 +58,7 @@
                             </p>
                         </div>
                         <div class="supprimer">
-                            <form action="./panier.php" method="post">
+                            <form action="../include/supprimerProduitPanier.php" method="post">
                                 <input type="hidden" name="idProduit" value="<?= $produit->getIdProduit(); ?>">
                                 <button type="submit" name="supprimer"><img src="../public/images/poubelle.png" alt="Supprimer"></button>
                             </form>

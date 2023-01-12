@@ -24,7 +24,7 @@ section div.commande div.produits {
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     width: 70%;
     border: 1px solid var(--dark-grey);
     border-radius: 10px;
@@ -40,6 +40,7 @@ section div.commande div.produits div.produit {
     border-bottom: 1px solid black;
     box-sizing: border-box;
     gap: 3%;
+    height: 250px;
 }
 
 section div.commande div.produits div.produit:last-child {
@@ -66,7 +67,7 @@ section div.commande div.produits div.produit div.image img {
     display: block;
     height: 200px;
     width: 200px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
     box-shadow: 1px 1px 5px var(--dark-grey);
 }

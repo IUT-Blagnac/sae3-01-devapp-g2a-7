@@ -21,19 +21,19 @@
 
         $sql = "BEGIN Gestion_REVIVE.AjouterProduit(:nomProduit, :extensionImgProduit, :prixProduit, 
                                                     :prixBaseProduit, :detailsProduit, :quantiteStockProduit, 
-                                                    :delaiLivraisonProduit, :dateRetractationProduit, :garantieProduit, 
+                                                    :delaiLivraisonProduit, TO_DATE(:dateRetractationProduit, 'YYYY-MM-DD'), :garantieProduit, 
                                                     :verifierProduit, :idRevendeur, :idCategorie); END;";
         $requete = oci_parse($connect, $sql);
         oci_bind_by_name($requete, ":nomProduit", $nomProduit);
         oci_bind_by_name($requete, ":extensionImgProduit", $extensionImg);
-        oci_bind_by_name($requete, ":prixProduit", $prixProduit);
-        oci_bind_by_name($requete, ":prixBaseProduit", $prixBaseProduit);
+        oci_bind_by_name($requete, ":prixProduit", floatval($prixProduit).to_fixed(2));
+        oci_bind_by_name($requete, ":prixBaseProduit", floatval($prixBaseProduit));
         oci_bind_by_name($requete, ":detailsProduit", $detailsProduit);
-        oci_bind_by_name($requete, ":quantiteStockProduit", $quantiteStockProduit);
-        oci_bind_by_name($requete, ":delaiLivraisonProduit", $delaiLivraisonProduit);
+        oci_bind_by_name($requete, ":quantiteStockProduit", intval($quantiteStockProduit));
+        oci_bind_by_name($requete, ":delaiLivraisonProduit", intval($delaiLivraisonProduit));
         oci_bind_by_name($requete, ":dateRetractationProduit", $dateRetractationProduit);
-        oci_bind_by_name($requete, ":garantieProduit", $garantieProduit);
-        oci_bind_by_name($requete, ":verifierProduit", $verifierProduit);
+        oci_bind_by_name($requete, ":garantieProduit", intval($garantieProduit));
+        oci_bind_by_name($requete, ":verifierProduit", intval($verifierProduit));
         oci_bind_by_name($requete, ":idRevendeur", $idRevendeur);
         oci_bind_by_name($requete, ":idCategorie", $idCategorie);
 
@@ -42,6 +42,7 @@
             echo '<script type="text/javascript">show_info_popup("Le produit a bien été ajouté.", "var(--green-blue)")</script>';
         } else {
             echo '<script type="text/javascript">show_info_popup("Erreur avec la base de données.", "red")</script>';
+            echo oci_error($requete);
         }
 
         $sqlIdProduit = "SELECT MAX(idProduit) as idProduit FROM Produit";
@@ -49,8 +50,13 @@
         $result = oci_execute($recupIdProduit);
         $idProduit = oci_fetch_assoc($recupIdProduit);
 
-        echo '../public/images/' . $idProduit['IDPRODUIT'] . '.' . $extensionImg;
-        //move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
+        $extensions_autorisees = array('jpg', 'jpeg', 'png');
+        if (in_array($extensionImg, $extensions_autorisees)) {
+            
+        } {
+            
+        }
+        move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
     }
 
     $sqlCategories = "SELECT idCategorie, nomCategorie FROM Categorie";

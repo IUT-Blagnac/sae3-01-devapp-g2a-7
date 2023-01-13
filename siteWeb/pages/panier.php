@@ -82,8 +82,12 @@
                         <p><?= $prixTotalProduits; ?>€</p>
                     </div>
                     <div class="valider">
-                        <form action="" method="post">
-                            <button>Valider ma commande</button>
+                        <form action="../include/validerCommande.php" method="post">
+                            <?php if (isset($_SESSION['CLIENT'])) { ?>
+                                <button name="submit">Valider ma commande</button>
+                            <?php } else { ?>
+                                <a href="./connexion.php">Valider ma commande</a>
+                            <?php } ?>
                         </form>
                     </div>
                 </div>

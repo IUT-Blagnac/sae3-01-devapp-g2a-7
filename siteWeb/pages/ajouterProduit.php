@@ -15,6 +15,15 @@
         if(!empty($_FILES['imageProduit']) && $_FILES['imageProduit']['error'] == 0) {
             $infosImg = pathinfo($_FILES['imageProduit']['name']);
             $extensionImg = $infosImg['extension'];
+
+            $extensions_autorisees = array('jpg', 'jpeg', 'png');
+            if (in_array($extensionImg, $extensions_autorisees)) {
+                $extValide = true;
+            } else {
+                $extValide = false;
+                
+            }
+        }
         } else {
             echo '<script type="text/javascript">show_info_popup("Erreur avec l\'enregistrement de l\'image.", "red")</script>';
         }
@@ -26,7 +35,7 @@
         $requete = oci_parse($connect, $sql);
         oci_bind_by_name($requete, ":nomProduit", $nomProduit);
         oci_bind_by_name($requete, ":extensionImgProduit", $extensionImg);
-        oci_bind_by_name($requete, ":prixProduit", floatval($prixProduit).to_fixed(2));
+        oci_bind_by_name($requete, ":prixProduit", floatval($prixProduit));
         oci_bind_by_name($requete, ":prixBaseProduit", floatval($prixBaseProduit));
         oci_bind_by_name($requete, ":detailsProduit", $detailsProduit);
         oci_bind_by_name($requete, ":quantiteStockProduit", intval($quantiteStockProduit));
@@ -50,13 +59,8 @@
         $result = oci_execute($recupIdProduit);
         $idProduit = oci_fetch_assoc($recupIdProduit);
 
-        $extensions_autorisees = array('jpg', 'jpeg', 'png');
-        if (in_array($extensionImg, $extensions_autorisees)) {
-            
-        } {
-            
-        }
-        move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
+        if ($extValide) {
+            move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
     }
 
     $sqlCategories = "SELECT idCategorie, nomCategorie FROM Categorie";

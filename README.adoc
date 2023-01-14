@@ -91,7 +91,23 @@ TIP: Pensez à utiliser les salons Discord dédiés pour poser vos questions.
 
 TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre dépôt (comment on installe votre application, où sont les docs, etc.)
 
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/66-cr%C3%A9er-le-header/Application_IoT/codePython/script.py[Script Python] (application IoT)
+=== Base de données du site web
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/scriptCreationBD.sql[Script SQL-LDD] : création de tables, contraintes et séquences pour la base de données
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/jeuDonneesBD%20(beta).sql[Jeu de données] (temporaire)
+
+=== Site web
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/include/header.php[Header]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/include/footer.php[Footer]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/index.php[Page d'accueil]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/connexion.php[Page de connexion] : en tant que client ou qu'administrateur
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/creationCompte.php[Page de création d'un compte] : uniquement pour créer un compte client
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/consultCompte.php[Page de consultation d'un compte] : en tant que client ou qu'administrateur
+
+=== Application IoT
+
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Application_IoT/codePython/script.py[Script Python] : lecture d'un fichier de configuration ``config.json`` et écriture d'un fichier ``data.json`` avec les données récupérées depuis le réseau IoT
 
 == Gestion de projet & Qualité
 
@@ -100,10 +116,31 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-template/releases/tag/v2[v2]
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v2[v2]
 - Lien vers la doc technique
 - Lien vers la doc utilisateur
 - Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- Tests unitaires et plans de test
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Tests unitaires et plans de test] (cahier de recette)
 - Indicateurs de qualité du code (dette technique)
 - ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
+
+
+=== Évaluations hebdomadaires
+
+NOTE: Les notes ci-dessous sont mises à jour directement par les enseignants responsables de la compétence 5.
+
+ifdef::env-github[]
+
+image:https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1344746861&amp;format=image[link=https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1344746861&amp;format=image]
+
+endif::[]
+
+ifndef::env-github[]
+
+++++
+
+<iframe width="786" height="430" seamless frameborder="0" scrolling="no" src="[https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1344746861&amp;format=image](https://docs.google.com/spreadsheets/d/e/2PACX-1vTc3HJJ9iSI4aa2I9a567wX1AUEmgGrQsPl7tHGSAJ_Z-lzWXwYhlhcVIhh5vCJxoxHXYKjSLetP6NS/pubchart?oid=1344746861&amp%3Bformat=image&authuser=0)"></iframe>
+
+++++
+
+endif::[]

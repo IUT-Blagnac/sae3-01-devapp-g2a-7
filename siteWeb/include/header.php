@@ -92,8 +92,13 @@
             echo '<a class="lien" href="../pages/revendreProduit.php">REVENDRE</a>';
         }
         if (isset($_SESSION['ADMIN'])) { ?>
+<<<<<<< HEAD
             <div id="div-submenu2">
                 <a class="lien" id="titleSubmenu2">GESTION</a>
+=======
+            <div id="div-submenu">
+                <a class="lien" id="titleSubmenu">GESTION</a>
+>>>>>>> 3cc7881d859801e7e06a31c5efb64b11a83935d6
                 <ul>
                     <li><a>PRODUITS</a>
                         <ul>
@@ -107,12 +112,20 @@
                             <li><a href="../pages/supprimerCategorie.php">Supprimer</a></li>
                         </ul>
                     </li>
+<<<<<<< HEAD
                     <!--<li><a>CHOIX</a>
+=======
+                    <li><a>CHOIX</a>
+>>>>>>> 3cc7881d859801e7e06a31c5efb64b11a83935d6
                         <ul>
                             <li><a href="../pages/ajouterChoix.php">Ajouter</a></li>
                             <li><a href="../pages/supprimerChoix.php">Supprimer</a></li>
                         </ul>
+<<<<<<< HEAD
                     </li>-->
+=======
+                    </li>
+>>>>>>> 3cc7881d859801e7e06a31c5efb64b11a83935d6
                 </ul>
             </div>
         <?php } ?>

@@ -37,7 +37,7 @@ div#img img {
     display: block;
     width: 75%;
     aspect-ratio: 1/1;
-    object-fit: contain;
+    object-fit: cover;
     top: 0px;
 }
 
@@ -82,15 +82,7 @@ div#produit form div:first-child {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-}
-
-div#affichage-ajout-panier {
-    gap:10px;
-}
-
-select {
-    cursor: pointer;
+    justify-content: space-between;
 }
 
 div#produit form input {
@@ -115,13 +107,6 @@ div#produit form div.choix div {
     align-items: center;
     gap: 10px;
     margin-top: 5px;
-}
-
-div#affichage-choix {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 15px;
 }
 
 #caracteristiques {

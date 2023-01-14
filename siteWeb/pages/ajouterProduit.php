@@ -11,56 +11,63 @@
             $_POST[$key] = htmlentities($value);
         }
         extract($_POST);
-        
+
         if(!empty($_FILES['imageProduit']) && $_FILES['imageProduit']['error'] == 0) {
             $infosImg = pathinfo($_FILES['imageProduit']['name']);
             $extensionImg = $infosImg['extension'];
-
             $extensions_autorisees = array('jpg', 'jpeg', 'png');
             if (in_array($extensionImg, $extensions_autorisees)) {
-                $extValide = true;
+                $extensionValide = true;
             } else {
-                $extValide = false;
-                
+                $extensionValide = false;
+                echo '<script type="text/javascript">show_info_popup("L\'extension de l\'image n\'est pas valide.", "red")</script>';
             }
-        }
         } else {
             echo '<script type="text/javascript">show_info_popup("Erreur avec l\'enregistrement de l\'image.", "red")</script>';
         }
-
-        $sql = "BEGIN Gestion_REVIVE.AjouterProduit(:nomProduit, :extensionImgProduit, :prixProduit, 
-                                                    :prixBaseProduit, :detailsProduit, :quantiteStockProduit, 
-                                                    :delaiLivraisonProduit, TO_DATE(:dateRetractationProduit, 'YYYY-MM-DD'), :garantieProduit, 
+        if ($idRevendeur != "null") {
+            $sql = "BEGIN Gestion_REVIVE.AjouterProduit(:nomProduit, :extensionImgProduit, :prixProduit,
+                                                    :prixBaseProduit, :detailsProduit, :quantiteStockProduit,
+                                                    :delaiLivraisonProduit, TO_DATE(:dateRetractationProduit, 'YYYY-MM-DD'), :garantieProduit,
                                                     :verifierProduit, :idRevendeur, :idCategorie); END;";
+        } else {
+            $sql = "BEGIN Gestion_REVIVE.AjouterProduit(:nomProduit, :extensionImgProduit, :prixProduit,
+                                                    :prixBaseProduit, :detailsProduit, :quantiteStockProduit,
+                                                    :delaiLivraisonProduit, TO_DATE(:dateRetractationProduit, 'YYYY-MM-DD'), :garantieProduit,
+                                                    :verifierProduit, NULL, :idCategorie); END;";
+        }
         $requete = oci_parse($connect, $sql);
         oci_bind_by_name($requete, ":nomProduit", $nomProduit);
         oci_bind_by_name($requete, ":extensionImgProduit", $extensionImg);
-        oci_bind_by_name($requete, ":prixProduit", floatval($prixProduit));
-        oci_bind_by_name($requete, ":prixBaseProduit", floatval($prixBaseProduit));
+        oci_bind_by_name($requete, ":prixProduit", $prixProduit);
+        oci_bind_by_name($requete, ":prixBaseProduit", $prixBaseProduit);
         oci_bind_by_name($requete, ":detailsProduit", $detailsProduit);
-        oci_bind_by_name($requete, ":quantiteStockProduit", intval($quantiteStockProduit));
-        oci_bind_by_name($requete, ":delaiLivraisonProduit", intval($delaiLivraisonProduit));
+        oci_bind_by_name($requete, ":quantiteStockProduit", $quantiteStockProduit);
+        oci_bind_by_name($requete, ":delaiLivraisonProduit", $delaiLivraisonProduit);
         oci_bind_by_name($requete, ":dateRetractationProduit", $dateRetractationProduit);
-        oci_bind_by_name($requete, ":garantieProduit", intval($garantieProduit));
-        oci_bind_by_name($requete, ":verifierProduit", intval($verifierProduit));
-        oci_bind_by_name($requete, ":idRevendeur", $idRevendeur);
+        oci_bind_by_name($requete, ":garantieProduit", $garantieProduit);
+        oci_bind_by_name($requete, ":verifierProduit", $verifierProduit);
         oci_bind_by_name($requete, ":idCategorie", $idCategorie);
+        if($idRevendeur != "null")   {
+            oci_bind_by_name($requete, ":idRevendeur", $idRevendeur);
+        }
+
 
         $result = oci_execute($requete);
         if ($result) {
             echo '<script type="text/javascript">show_info_popup("Le produit a bien été ajouté.", "var(--green-blue)")</script>';
         } else {
             echo '<script type="text/javascript">show_info_popup("Erreur avec la base de données.", "red")</script>';
-            echo oci_error($requete);
+            var_dump(oci_error($requete));
         }
 
         $sqlIdProduit = "SELECT MAX(idProduit) as idProduit FROM Produit";
         $recupIdProduit = oci_parse($connect, $sqlIdProduit);
         $result = oci_execute($recupIdProduit);
         $idProduit = oci_fetch_assoc($recupIdProduit);
-
-        if ($extValide) {
-            move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
+        if ($extensionValide) {
+            //move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
+        }
     }
 
     $sqlCategories = "SELECT idCategorie, nomCategorie FROM Categorie";
@@ -126,18 +133,18 @@
                     </div>
 
                     <div>
-                        <label for="verifierProduit">Vérifier produit</label>
+                        <label for="verifierProduit">Produit vérifié</label>
                         <select name="verifierProduit" id="verifierProduit">
                             <option value="1">Oui</option>
                             <option value="0">Non</option>
                         </select>
                     </div>
-                    
+
                     <div>
                         <label for="idRevendeur">Nom du Revendeur</label>
                         <select name="idRevendeur" id="idRevendeur">
                             <option value="null">Pas de revendeur</option>
-                            <?php 
+                            <?php
                             $result = array();
                             oci_fetch_all($selectRevendeurs, $result);
                             for ($i = 0; $i < count($result["IDREVENDEUR"]); $i++) { ?>
@@ -148,7 +155,7 @@
                     <div>
                         <label for="idCategorie">Nom de la categorie</label>
                         <select name="idCategorie" id="idCategorie">
-                            <?php 
+                            <?php
                             $result = array();
                             oci_fetch_all($selectCategories, $result);
                             for ($i = 0; $i < count($result["IDCATEGORIE"]); $i++) { ?>

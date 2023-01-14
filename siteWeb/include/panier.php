@@ -18,6 +18,10 @@
             return $this->produits;
         }
 
+        public function setIdClient($pfIdClient) {
+            $this->idClient = $pfIdClient;
+        }
+
         public function enleverProduit($idProduit) {
             if ($this->idClient != null) {
                 $this->enleverProduitBaseDeDonnees($idProduit);
@@ -196,8 +200,13 @@
 
         public static function creerPanier() {
             switch (true) {
-                case isset($_SESSION['CLIENT']):
+                case isset($_SESSION['CLIENT']) && !isset($_COOKIE['panier']):
                     $panier = new Panier($_SESSION['CLIENT']['idClient']);
+                    break;
+                case isset($_SESSION['CLIENT']) && isset($_COOKIE['panier']):
+                    $panier = unserialize($_COOKIE['panier']);
+                    $panier->setIdClient($_SESSION['CLIENT']['idClient']);
+                    $panier->transformerPanierCookieEnPanierBaseDeDonnees();
                     break;
                 case !isset($_SESSION['CLIENT']) && isset($_COOKIE['panier']):
                     $panier = unserialize($_COOKIE['panier']);
@@ -209,6 +218,41 @@
             return $panier;
         }
 
+        function transformerPanierCookieEnPanierBaseDeDonnees() {
+            for($i = 0; $i < sizeof(this->produits); $i++) {
+                $this->ajouterProduitBaseDeDonnees($this->produits[$i]);
+            }
+        }
+
+        function validerCommande() {
+            global $connect;
+
+            // Lance la procédure nouvelleCommande
+            $sqlNouvelleCommande = "BEGIN Gestion_REVIVE.NouvelleCommande(:PRIXCOMMANDE, :IDCLIENT); END;";
+            $nouvelleCommande = oci_parse($connect, $sqlNouvelleCommande);
+            oci_bind_by_name($nouvelleCommande, ":PRIXCOMMANDE", $this->prixTotalProduits());
+            oci_bind_by_name($nouvelleCommande, ":IDCLIENT", $this->idClient);
+            oci_execute($nouvelleCommande);
+
+            // récupère le dernier idCommande
+            $sqlIdCommande = "SELECT MAX(IDCOMMANDE) AS IDCOMMANDE FROM Commande";
+            $idCommande = oci_parse($connect, $sqlIdCommande);
+            oci_execute($idCommande);
+            $rowIdCommande = array();
+            oci_fetch_all($idCommande, $rowIdCommande);
+            $idCommandeClient = intval($rowIdCommande['IDCOMMANDE'][0]);
+
+            // insère les produits du panier dans la table Renseigner
+            for($i = 0; $i < sizeof($this->produits); $i++) {
+                $sqlInsertRenseigner = "INSERT INTO Renseigner VALUES (:idCommande, :idProduit, :quantiteProduit, :descriptifProduit)";
+                $insertRenseigner = oci_parse($connect, $sqlInsertRenseigner);
+                oci_bind_by_name($insertRenseigner, ":idCommande", $idCommandeClient);
+                oci_bind_by_name($insertRenseigner, ":idProduit", $this->produits[$i]->getIdProduit());
+                oci_bind_by_name($insertRenseigner, ":quantiteProduit", $this->produits[$i]->getQuantiteProduit());
+                oci_bind_by_name($insertRenseigner, ":descriptifProduit", $this->produits[$i]->getDescriptionProduit());
+                oci_execute($insertRenseigner);
+            }
+        }
     }
 
 

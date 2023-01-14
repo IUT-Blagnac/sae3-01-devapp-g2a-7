@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
-<meta charset="utf-8">
-<link rel="stylesheet" href="../public/css/style.css">
-<link rel="stylesheet" href="../public/css/header.css">
-<link rel="stylesheet" href="../public/css/footer.css">
-<title>Listage des produits</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/header.css">
+    <link rel="stylesheet" href="../public/css/footer.css">
+    <link rel="stylesheet" href="../public/css/listProduit.css">
+    <title>Listage des produits</title>
+</head>
 <?php
 include("../include/header.php");
 require_once '../include/checkConnexion.php';
@@ -62,22 +67,32 @@ if(isset($_GET['idCategorie'])) {
     $laCategorie = oci_parse($connect, $reqCategorie);
     $resultCategorie = oci_execute($laCategorie);
     $nomCategorie = oci_fetch_assoc($laCategorie)['NOMCATEGORIE'];
-    echo "<H1> Les produits de la catégorie " . $nomCategorie . "</H1>";
-}
-elseif(isset($_GET['query'])) {
-    echo "<H1> Les produits contenant le mot ".$recherche."</H1>";
-} else {
-    echo "<H1> Tous les produits </H1>";
-}
+    ?>
+    <h1> Les produits de la catégorie <?= $nomCategorie ?> </h1>
+<?php }
+elseif(isset($_GET['query'])) { ?>
+    <h1> Les produits contenant le mot <?= $recherche ?></h1>
+<?php } else { ?>
+    <h1> Tous les produits </h1>
+<?php } ?>
 
+<section>
+<?php
 while (($leProduit = oci_fetch_assoc($lesProduits)) != false) {
     $url_produit = 'consultProduit.php?idProduit=' . $leProduit['IDPRODUIT'];
-    echo '<a href="' . $url_produit . '">' . $leProduit['NOMPRODUIT'] . '</a>';
-    echo "<br/>";
-}
+?>
+    <div>
+        <img src="../public/images/produits/<?= $leProduit['IDPRODUIT'] ?>.<?= $leProduit['EXTENSIONIMGPRODUIT'] ?>" alt="<?= $leProduit['NOMPRODUIT'] ?>">
+        <p> <b> <?= $leProduit['NOMPRODUIT'] ?> </b> </p>
+        <p> A partir de <?= $leProduit['PRIXPRODUIT'] ?>€ </p>
+        <a href="<?= $url_produit ?>"> Voir le produit </a>
+    </div>
+<?php } ?>
 
+</section>
+
+<?php
 // Libération des ressources réservées par le résultat Oracle
 oci_free_statement($lesProduits);
-
 include("../include/footer.php");
 ?>

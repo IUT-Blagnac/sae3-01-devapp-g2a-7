@@ -125,4 +125,172 @@ Un navigateur web quelconque.
 
 |====
 
+
+==== 1.4 Modification d'un compte :
+
+|====
+
+>|Cas de test 3+|Test-01-04-01
+>|Titre 3+|Page sécurisée
+>|Objectif 3+| Vérifier que la page modifierCompte.php n'est pas accessible si l'utilisateur n'est pas connecté
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page sans être connecté  ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Accéder à la page avec de mauvaises données de session ^|Redirection vers la page de connexion ^|OK
+^|3 ^|Accéder à la page en étant connecté en tant que client ou administrateur ^|Accès à la page ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-04-02
+>|Titre 3+|Modification d'un compte client
+>|Objectif 3+| Vérifier qu'il est possible de modifier les données d'un compte client sur la page modifierCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail ou une adresse déjà existante  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais nouveau mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais ancien mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|4 ^|Saisir des données de client correctes ^|Modification des données dans la BD ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-04-03
+>|Titre 3+|Modification d'un compte administrateur
+>|Objectif 3+| Vérifier qu'il est possible de modifier les données d'un compte administrateur sur la page modifierCompte.php
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir une mauvaise adresse mail ou une adresse déjà existante  ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais nouveau mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|2 ^|Saisir un mauvais ancien mot de passe ^|Affichage d'un message d'erreur ^|OK
+^|4 ^|Saisir des données de client correctes ^|Modification des données dans la BD ^|OK
+
+|====
+
+=== 2. Pages produits
+==== 2.1 Consultation de produit :
+
+|====
+
+>|Cas de test 3+|Test-02-01-01
+>|Titre 3+|Page de consultation sécurisée
+>|Objectif 3+| Vérifier que la page consultProduit.php n'est pas accessible si l'id du produit n'est pas correctement renseignée
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Accéder à la page sans renseigner l'idProduit ^|Redirection vers la page d'accueil ^|OK
+^|2 ^|Accéder à la page avec un idProduit n'étant pas au bon format ^|Redirection vers la page d'accueil ^|OK
+^|3 ^|Accéder à la page avec un idProduit n'étant pas dans la base de données ^|Redirection vers la page d'accueil ^|OK
+^|4 ^|Accéder à la page avec un idProduit valide ^|Accès à la page ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-02-01-02
+>|Titre 3+|Ajouter au panier
+>|Objectif 3+| Vérifier que le bouton "ajouter au panier" de la page consultProduit.php ajoute le produit au panier correctement lorsqu'on clique dessus
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Le bouton est cliqué ^|Le produit est ajouté au panier ^|OK
+^|2 ^|Des cases de choix sont cochées et une quantité séléctionnée ^|Les données séléctionnées sont enregistrées dans le panier lors de l'ajout^|OK
+^|3 ^|La quantité est modifiée ^|La quantité sélectionnée ne peut pas dépasser le stock du produit en question ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-02-01-03
+>|Titre 3+|Traitement des avis
+>|Objectif 3+|Un utilisateur peut ajouter des avis sur un produit dans la page de consultation de ce dernier
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|L'utilisateur est sur la page de consultation d'un produit ^|Il voit la liste des avis qui y sont associés ^|OK
+^|2 ^|L'utilisateur a sélectionné une intervale de note pour filtrer les avis ^|Les avis correspondant à cette note sont affichés^|OK
+^|3 ^|L'utilisateur n'est pas connecté ^|Un bouton intitulé "connectez-vous pour ajouter un avis" apparaît et mène vers la page de connexion ^|OK
+^|4 ^|L'utilisateur est connecté ^|Un bouton intitulé "Ajouter un avis" apparaît et mène vers le formulair d'ajout d'un avis ^|OK
+^|5 ^|L'utilisateur valide le formulaire d'ajout d'un avis ^|Un avis est ajouté à son nom sur le produit concerné ^|OK
+
+|====
+
+==== 2.2 Listage des produits :
+
+|====
+
+>|Cas de test 3+|Test-02-02-01
+>|Titre 3+|TO DO
+>|Objectif 3+|TO DO
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|TO DO ^|TO DO ^|OK
+^|2 ^|TO DO ^|TO DO ^|OK
+
+|====
+
+==== 2.3 Panier :
+
+|====
+
+>|Cas de test 3+|Test-02-03-01
+>|Titre 3+|Affichage du panier (connecté)
+>|Objectif 3+|Lorsqu'un utilisateur est connecté, le panier de cet utilisateur est affiché dans la page du panier
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|L'utilisateur accède à la page du panier ^|Les articles qu'il a précédemment ajouté dans son panier sont affichés ^|OK
+^|2 ^|L'utilisateur modifie la quantité d'un article ^|La quantité est modifiée dans la base de données et le prix est recalculé en conséquence ^|OK
+^|3 ^|L'utilisateur clique sur le bouton pour supprimer un article ^|L'article est supprimé de la BD et n'est plus affiché sur la page ^|OK
+
+|====
+
+
+|====
+
+>|Cas de test 3+|Test-02-03-02
+>|Titre 3+|Affichage du panier (non connecté)
+>|Objectif 3+|Lorsqu'un utilisateur n'est, il lui est affecté un panier à l'aide de cookies
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|L'utilisateur accède à la page du panier ^|Si non existant, un cookie "panier" est créé avec une durée de vie d'une semaine, si existant le panier est affiché avec les articles qu'il a mis dedans ^|OK
+^|2 ^|L'utilisateur modifie la quantité d'un article ^|La quantité est modifiée dans le cookie et le prix est recalculé en conséquence ^|OK
+^|3 ^|L'utilisateur clique sur le bouton pour supprimer un article ^|L'article est supprimé du cookie et n'est plus affiché sur la page ^|OK
+
+|====
+
+=== 3. Administration du site
+==== 3.1 CRUD des produits :
+
+|====
+
+>|Cas de test 3+|Test-03-01-01
+>|Titre 3+|Ajouter un produit
+>|Objectif 3+|Kes administrateurs du serveur peuvent ajouter un produit à la liste
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Essayer d'accéder à la page sans être connecté en tant qu'administrateur ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Essayer d'accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page ^|OK
+^|3 ^|Remplir des champs ne correspondant pas aux données à mettre dans la BD ^|Affichage d'une erreur ^|OK
+
+|====
+
 *TO COMPLETE*

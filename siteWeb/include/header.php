@@ -1,6 +1,6 @@
 <?php
     require_once("checkConnexion.php");
-    //error_reporting(0);
+    error_reporting(0);
 
     // Récupère l'instance du panier
     require_once("../include/panier.php");

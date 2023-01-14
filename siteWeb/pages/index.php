@@ -19,9 +19,9 @@
     <section>
         <!-- Rectangle noir contenant du texte -->
         <div class="blackRectangle">
-            <h1>NOS EQUIPEMENTS NE MEURTS JAMAIS !</h1>
+            <h1>NOS EQUIPEMENTS NE MEURENT JAMAIS !</h1>
             <p>Donnez une nouvelle vie aux équipements que vous n'utilisez plus.</p>
-            <p>Revendez les nous et participez à la préservation de la Planète.</p>
+            <p>Revendez-les nous et participez à la préservation de la planète.</p>
             <a href="">En savoir plus</a>
         </div>
 

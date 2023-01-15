@@ -100,7 +100,7 @@
             return $contenir;
         }
 
-        private function getProduitsBaseDeDonnees() {
+        private function getProduitsBaseDeDonnees($type) {
             global $connect;
             $sqlProduits = "SELECT * FROM PRODUIT
             WHERE PRODUIT.IDPRODUIT IN (
@@ -111,15 +111,20 @@
                 )
             )
             ORDER BY PRODUIT.IDPRODUIT";
-            $produits = oci_parse($connect, $sqlProduits);
-            oci_bind_by_name($produits, ":idClient", $this->idClient);
-            $resultProduits = oci_execute($produits);
+            $getProduits = oci_parse($connect, $sqlProduits);
+            oci_bind_by_name($getProduits, ":idClient", $this->idClient);
+            $resultProduits = oci_execute($getProduits);
+            $produits = array();
+            if ($type == "resource") {
+                return $getProduits;
+            }
+            oci_fetch_all($getProduits, $produits);
             return $produits;
         }
 
         private function setProduitsPanierBaseDeDonnees() {
             $contenir = $this->getContenirBaseDeDonnees();
-            $produits = $this->getProduitsBaseDeDonnees();
+            $produits = $this->getProduitsBaseDeDonnees("resource");
             while ($rowContenir = oci_fetch_array($contenir, OCI_ASSOC+OCI_RETURN_NULLS)) {
                 $rowProduit = oci_fetch_array($produits, OCI_ASSOC+OCI_RETURN_NULLS);
                 $produit = new Produit( $rowProduit['IDPRODUIT'],
@@ -146,8 +151,8 @@
             global $connect;
 
             $produitExistant = false;
-            foreach($this->produits as $prd) {
-                if ($prd->getIdProduit() == $produit->getIdProduit()) {
+            foreach($this->getProduitsBaseDeDonnees("array")["IDPRODUIT"] as $idProduit) {
+                if ($idProduit == $produit->getIdProduit()) {
                     $produitExistant = true;
                     break;
                 }
@@ -207,6 +212,7 @@
                     $panier = unserialize($_COOKIE['panier']);
                     $panier->setIdClient($_SESSION['CLIENT']['idClient']);
                     $panier->transformerPanierCookieEnPanierBaseDeDonnees();
+                    setcookie('panier', null, -1, "/");
                     break;
                 case !isset($_SESSION['CLIENT']) && isset($_COOKIE['panier']):
                     $panier = unserialize($_COOKIE['panier']);
@@ -219,16 +225,21 @@
         }
 
         function transformerPanierCookieEnPanierBaseDeDonnees() {
-            for($i = 0; $i < sizeof(this->produits); $i++) {
-                $this->ajouterProduitBaseDeDonnees($this->produits[$i]);
+            var_dump($this->produits);
+            echo sizeof($this->produits);
+            foreach ($this->produits as $prd) {
+                $this->ajouterProduitBaseDeDonnees($prd);
             }
+            /*for($i = 0; $i < count($this->produits); $i++) {
+                $this->ajouterProduitBaseDeDonnees($this->produits[$i]);
+            }*/
         }
 
         function validerCommande() {
             global $connect;
 
             // Lance la procédure nouvelleCommande
-            $sqlNouvelleCommande = "BEGIN Gestion_REVIVE.NouvelleCommande(:PRIXCOMMANDE, :IDCLIENT); END;";
+            $sqlNouvelleCommande = "BEGIN Gestion_REVIVE.AjouterCommande(:PRIXCOMMANDE, :IDCLIENT); END;";
             $nouvelleCommande = oci_parse($connect, $sqlNouvelleCommande);
             oci_bind_by_name($nouvelleCommande, ":PRIXCOMMANDE", $this->prixTotalProduits());
             oci_bind_by_name($nouvelleCommande, ":IDCLIENT", $this->idClient);
@@ -243,14 +254,15 @@
             $idCommandeClient = intval($rowIdCommande['IDCOMMANDE'][0]);
 
             // insère les produits du panier dans la table Renseigner
-            for($i = 0; $i < sizeof($this->produits); $i++) {
+            foreach ($this->produits as $prd) {
                 $sqlInsertRenseigner = "INSERT INTO Renseigner VALUES (:idCommande, :idProduit, :quantiteProduit, :descriptifProduit)";
                 $insertRenseigner = oci_parse($connect, $sqlInsertRenseigner);
                 oci_bind_by_name($insertRenseigner, ":idCommande", $idCommandeClient);
-                oci_bind_by_name($insertRenseigner, ":idProduit", $this->produits[$i]->getIdProduit());
-                oci_bind_by_name($insertRenseigner, ":quantiteProduit", $this->produits[$i]->getQuantiteProduit());
-                oci_bind_by_name($insertRenseigner, ":descriptifProduit", $this->produits[$i]->getDescriptionProduit());
+                oci_bind_by_name($insertRenseigner, ":idProduit", $prd->getIdProduit());
+                oci_bind_by_name($insertRenseigner, ":quantiteProduit", $prd->getQuantiteProduit());
+                oci_bind_by_name($insertRenseigner, ":descriptifProduit", $prd->getDescriptionProduit());
                 oci_execute($insertRenseigner);
+                $this->enleverProduitBaseDeDonnees($prd->getIdProduit());
             }
         }
     }

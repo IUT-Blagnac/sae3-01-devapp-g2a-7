@@ -38,7 +38,7 @@
                 <form id="form-ajouterCategorie" method="post">
                     <p>Choisissez le produit à supprimer :</p>
                     <select name="idProduit" required>
-                        <option disabled selected>ID - Produit (catégorie)</option>
+                        <option value="" disabled selected>ID - Produit (catégorie)</option>
                         <?php
                             $sql = "SELECT P.nomProduit, P.idProduit, C.nomCategorie FROM Produit P, Categorie C
                                     WHERE C.idCategorie = P.idCategorie";

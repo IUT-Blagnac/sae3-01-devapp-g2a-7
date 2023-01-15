@@ -66,7 +66,7 @@
         $result = oci_execute($recupIdProduit);
         $idProduit = oci_fetch_assoc($recupIdProduit);
         if ($extensionValide) {
-            //move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
+            // move_uploaded_file($_FILES['imageProduit']['tmp_name'], '../public/images/' . $idProduit . '.' . $extensionImg);
         }
     }
 

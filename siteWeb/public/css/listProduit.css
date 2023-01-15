@@ -32,6 +32,7 @@ section div  {
     border-radius: 5px;
     gap: 10px;
     transition-duration: 0.3s;
+    width: 300px;
 }
 
 section div:hover {
@@ -41,13 +42,15 @@ section div:hover {
 section div img {
     position: relative;
     display: block;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     object-fit: contain;
     border-radius: 15px;
 }
 
-
+section div p {
+    text-align: center;
+}
 
 section div a {
     position: relative;

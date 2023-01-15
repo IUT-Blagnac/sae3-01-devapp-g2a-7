@@ -1,6 +1,6 @@
 <?php
     require_once("checkConnexion.php");
-    error_reporting(0);
+    //error_reporting(0);
 
     // Récupère l'instance du panier
     require_once("../include/panier.php");
@@ -94,8 +94,6 @@
         if (isset($_SESSION['ADMIN'])) { ?>
             <div id="div-submenu2">
                 <a class="lien" id="titleSubmenu2">GESTION</a>
-            <div id="div-submenu">
-                <a class="lien" id="titleSubmenu">GESTION</a>
                 <ul>
                     <li><a>PRODUITS</a>
                         <ul>

@@ -7,6 +7,8 @@
         $panier->validerCommande();
     }
 
-    header("Location: ../pages/commandes.php");
+    $_SESSION['validerCommande'] = true;
+
+    header("Location: ../pages/panier.php");
     exit();
 ?>

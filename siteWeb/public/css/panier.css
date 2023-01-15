@@ -196,20 +196,7 @@ section div.commande div.total div.sticky div.valider form {
     width: 100%;
 }
 
-section div.commande div.total div.sticky div.valider button {
-    position: relative;
-    display: block;
-    background-color: var(--green-blue);
-    outline: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid var(--dark-grey);
-    color: var(--black);
-}
-
-section div.commande div.total div.sticky div.valider a {
+section div.commande div.total div.sticky div.valider button, section div.commande div.total div.sticky div.valider a {
     position: relative;
     display: block;
     background-color: var(--green-blue);

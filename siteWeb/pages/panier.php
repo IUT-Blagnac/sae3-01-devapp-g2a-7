@@ -1,3 +1,5 @@
+<?php include("../include/checkConnexion.php"); ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,6 +15,11 @@
 
 <?php
     include("../include/header.php");
+    include("../include/infoPopup.php");
+    if (isset($_SESSION['validerCommande']) && $_SESSION['validerCommande'] == true) {
+        echo '<script type="text/javascript">show_info_popup("La commande a bien été validée.", "var(--green-blue)")</script>';
+        unset($_SESSION['validerCommande']);
+    }
 ?>
 
 <body>
@@ -86,7 +93,7 @@
                             <?php if (isset($_SESSION['CLIENT'])) { ?>
                                 <button name="submit">Valider ma commande</button>
                             <?php } else { ?>
-                                <a href="./connexion.php">Valider ma commande</a>
+                                <a href="./connexion.php">Se connecter pour valider ma commande</a>
                             <?php } ?>
                         </form>
                     </div>

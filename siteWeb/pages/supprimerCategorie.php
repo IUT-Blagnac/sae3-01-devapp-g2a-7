@@ -38,7 +38,7 @@
                 <form id="form-ajouterCategorie" method="post">
                     <p>Choisissez la catégorie à supprimer :</p>
                     <select name="idCategorie" required>
-                        <option disabled selected>Catégorie</option>
+                        <option value="" disabled selected>Catégorie</option>
                         <?php
                             $sql = "SELECT * FROM Categorie C
                                     WHERE NOT EXISTS (

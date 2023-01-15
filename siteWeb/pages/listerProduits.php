@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,14 +35,18 @@ if (isset($_GET['idCategorie'])) {
                     FROM Categorie C
                     INNER JOIN ArboCategories AC ON AC.idCategorieMere = C.idCategorieMere)
             SELECT * FROM Produit, ArboCategories
-            WHERE Produit.idCategorie = ArboCategories.idCategorieMere";
+            WHERE Produit.idCategorie = ArboCategories.idCategorieMere
+            AND Produit.vendreProduit = 1";
 
 } else if (isset($_GET['query'])) {
     $recherche = htmlentities($_GET['query']);
-    $req = "SELECT * FROM produit WHERE UPPER(nomproduit) LIKE :pquery OR UPPER(detailsproduit) LIKE :pquery";
+    $req = "SELECT * FROM produit
+            WHERE UPPER(nomproduit) LIKE :pquery
+            OR UPPER(detailsproduit) LIKE :pquery
+            AND Produit.vendreProduit = 1";
 } else {
     // Affichage de tous les produits de la table si aucune recherche n'est effectuée
-    $req = "SELECT * FROM produit";
+    $req = "SELECT * FROM produit WHERE Produit.vendreProduit = 1";
 }
 
 $lesProduits = oci_parse($connect, $req);
@@ -84,7 +89,7 @@ while (($leProduit = oci_fetch_assoc($lesProduits)) != false) {
     <div>
         <img src="../public/images/produits/<?= $leProduit['IDPRODUIT'] ?>.<?= $leProduit['EXTENSIONIMGPRODUIT'] ?>" alt="<?= $leProduit['NOMPRODUIT'] ?>">
         <p> <b> <?= $leProduit['NOMPRODUIT'] ?> </b> </p>
-        <p> A partir de <?= $leProduit['PRIXPRODUIT'] ?>€ </p>
+        <p > A partir de <?= $leProduit['PRIXPRODUIT'] ?>€ </p>
         <a href="<?= $url_produit ?>"> Voir le produit </a>
     </div>
 <?php } ?>

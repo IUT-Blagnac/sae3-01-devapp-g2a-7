@@ -1,4 +1,4 @@
-<?php 
+<?php
     require_once("../include/checkConnexion.php");
 
     if(!isset($_GET['idProduit']) ) {
@@ -11,7 +11,7 @@
     $req = "SELECT prixProduit, TYPECHOIX, libelleChoix, tauxChoix, A.idChoix, nomProduit, extensionImgProduit, quantiteStockProduit
             FROM Produit P, Choix C, Affecter A
             WHERE P.idProduit = A.idProduit AND C.idChoix = A.idChoix
-                AND P.idProduit = :idProduit 
+                AND P.idProduit = :idProduit
             ORDER BY TYPECHOIX";
 
     $listeChoix = oci_parse($connect, $req) ;
@@ -19,17 +19,19 @@
     oci_bind_by_name($listeChoix, ":idProduit", $idProduit);
 
     $result = oci_execute($listeChoix);
-    
-    $produitExiste = oci_parse($connect, "SELECT idProduit FROM Produit WHERE idProduit=".$_GET['idProduit']);
+
+    $produitExiste = oci_parse($connect, "SELECT idProduit, vendreProduit FROM Produit WHERE idProduit=".$_GET['idProduit']);
     $result = oci_execute($produitExiste);
 
-    if (($existe = oci_fetch_assoc($produitExiste)) == false) {
+    $produit = array();
+    oci_fetch_all($produitExiste, $produit);
+    if (empty($produit["IDPRODUIT"]) || $produit["VENDREPRODUIT"][0] == "0") {
         header("Location: index.php");
     }
 
     $dict = array();
     while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
-        $prixProduit = $leChoix['PRIXPRODUIT']; 
+        $prixProduit = $leChoix['PRIXPRODUIT'];
         $nomProduit = $leChoix['NOMPRODUIT'];
         $extProduit = $leChoix['EXTENSIONIMGPRODUIT'];
         $stockProduit = $leChoix['QUANTITESTOCKPRODUIT'];
@@ -49,10 +51,18 @@
         <link rel="stylesheet" href="../public/css/consultStyle.css">
         <script src="../public/js/avisClientTri.js" defer></script>
         <script src="../public/js/prixProduit.js" defer></script>
+        <title>Consulter produit</title>
     </head>
 
     <body>
-        <?php include("../include/header.php"); ?>
+        <?php
+            include("../include/header.php");
+            include("../include/infoPopup.php");
+            if (isset($_SESSION['ajoutPanier']) && $_SESSION['ajoutPanier'] == true) {
+                echo '<script type="text/javascript">show_info_popup("Le produit a bien été ajouté à votre panier.", "var(--green-blue)")</script>';
+                unset($_SESSION['ajoutPanier']);
+            }
+        ?>
         <div id="consulte">
             <div id="img">
                 <img src="../public/images/produits/<?= $_GET['idProduit'] ?>.<?= $extProduit ?>" alt="image du produit">
@@ -64,7 +74,7 @@
                         <div id="affichage-ajout-panier">
                             <div id="ajout-panier">
                                 <select name="quantiteProduit" id="quantiteProduit">
-                                    <?php 
+                                    <?php
                                     for($i = 1; $i <= $stockProduit; $i++) {
                                         if ($i == 1) { ?>
                                             <option value='<?= $i; ?>' selected><?= $i; ?></option>
@@ -77,7 +87,7 @@
                                 <input type="hidden" name="extensionImgProduit" value="<?= $extProduit ?>">
                                 <input type="hidden" name="quantiteStockProduit" value="<?= $stockProduit ?>">
                                 <input type="hidden" name="nomProduit" value="<?= $nomProduit ?>">
-                                <input type="submit" name="ajoutPanier" value="Ajouter au panier"> 
+                                <input type="submit" name="ajoutPanier" value="Ajouter au panier">
                             </div>
                             <input id="prixProduitInput" name="prixProduit" type="hidden" value="">
                             <p>Prix: <span id="prixProduit" data-prix="<?= $prixProduit ?>"><?= $prixProduit ?></span>€</p>
@@ -90,7 +100,7 @@
                             <div class="choix">
                                     <h3><?= $key ?></h3>
                             <?php
-                            foreach($value as $infos) { 
+                            foreach($value as $infos) {
                                 if ($first) { ?>
                                     <div>
                                         <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos["libelleChoix"] ?>" data-taux="<?= $infos['tauxChoix'] ?>" checked><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
@@ -102,15 +112,15 @@
                                 <div>
                                     <input type="radio" id="choix-<?= $infos["idChoix"] ?>" class="selectionChoix" name="choix-<?= $key ?>" value="<?= $infos["libelleChoix"] ?>" data-taux="<?= $infos['tauxChoix'] ?>"><label for="choix-<?= $infos["idChoix"] ?>"><?= $infos["libelleChoix"] ?></label>
                                 </div>
-                                <?php 
+                                <?php
                                 }
-                            } 
+                            }
                     ?>
                             </div>
                         <?php } ?>
                         </div>
                     </form>
-                </div> 
+                </div>
                         <?php
                         oci_free_statement($listeChoix);
 
@@ -164,7 +174,7 @@
                         </div>
                         <?php
                         oci_free_statement($caracProduit);
-                        
+
                         $req = "SELECT noteAvis, COUNT(*) as nombreAvis
                                 FROM DonnerAvis
                                 WHERE idProduit = :idProduit
@@ -173,7 +183,7 @@
                         $req2 = "SELECT COUNT(*) as nombreTotAvis, AVG(noteAvis) as moyAvis
                                 FROM DonnerAvis
                                 WHERE idProduit = :idProduit";
-                        
+
                         $avisProduitPNote = oci_parse($connect, $req);
                         oci_bind_by_name($avisProduitPNote, ":idProduit", $idProduit);
 
@@ -296,7 +306,7 @@
                             </div>
                         </div>
                         <?php
-                            
+
                             $req = "SELECT prenomClient, nomClient, descriptionAvis, noteAvis, TO_CHAR(dateAvis, 'dd/mm/YYYY') as dateAvis
                                     FROM Client C, donnerAvis D
                                     WHERE C.idClient = D.idClient
@@ -308,7 +318,7 @@
                             $result = oci_execute($listeAvisProduit);
                         ?>
                         <div id= "liste-avis">
-                            <?php 
+                            <?php
                                 while (($lavis = oci_fetch_assoc($listeAvisProduit)) != false) { ?>
                                     <div class="avis-produit" data-note="<?= $lavis['NOTEAVIS'] ?>">
                                         <div class="haut-avis">

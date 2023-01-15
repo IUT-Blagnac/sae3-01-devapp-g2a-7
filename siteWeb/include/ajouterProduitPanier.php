@@ -36,9 +36,9 @@
 
     $produit = new Produit($idProduit, $nomProduit, $prixProduit, $detailProduit, $quantiteProduit, $extensionImgProduit, $quantiteStockProduit);
 
+    echo '<script>alert("page appelee");</script>';
     $panier->ajouterProduit($produit);
 
     $_SESSION['ajoutPanier'] = true;
     header("Location: ../pages/consultProduit.php?idProduit=$idProduit");
-    exit();
 ?>

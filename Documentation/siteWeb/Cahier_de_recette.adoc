@@ -231,14 +231,17 @@ Un navigateur web quelconque.
 |====
 
 >|Cas de test 3+|Test-02-02-01
->|Titre 3+|TO DO
->|Objectif 3+|TO DO
+>|Titre 3+|Affichage des produits
+>|Objectif 3+|Lorsqu'un utilisateur fait une recherche d'un produit via le menu déroulant ou la barre de recherche, les produits correspondants sont affichés
 
 4+|
 
 ^|ID ^|Action ^|Comportement attendu ^|Résultat
-^|1 ^|TO DO ^|TO DO ^|OK
-^|2 ^|TO DO ^|TO DO ^|OK
+^|1 ^|L'utilisateur clique sur la catégorie "Smartphone" ^|Tous les produits correspondants à la catégorie "Smartphone" sont affichés ^|OK
+^|2 ^|L'utilisateur clique sur la sous-catégorie "Samsung" de la catégorie "Smartphone" ^|Tous les Smartphones Samsung sont affichés  ^|OK
+^|3 ^|L'utilisateur écrit "Ordinateur" dans la barre de recherche ^|Tous les produits "Ordinateur" sont affichés  ^|OK
+^|4 ^|L'utilisateur clique sur un produit affiché ^|Il est redirigé vers la page de consultation de ce produit  ^|OK
+
 
 |====
 

@@ -95,7 +95,8 @@ CREATE OR REPLACE PACKAGE BODY Gestion_REVIVE IS
         WHERE DonnerAvis.idProduit = idPrd;
         DELETE FROM Contenir
         WHERE Contenir.idProduit = idPrd;
-        DELETE FROM Produit
+        UPDATE Produit
+        SET Produit.vendreProduit = 0
         WHERE Produit.idProduit = idPrd;
         COMMIT;
     END;

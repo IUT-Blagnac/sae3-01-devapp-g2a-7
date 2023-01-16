@@ -29,7 +29,7 @@
         echo "<ul id='ul".$idUl."'>";
         for ($i=0; $i<count($categories["IDCATEGORIE"]); $i++) {
             echo "<li id='li".$categories["IDCATEGORIE"][$i]."'>".
-                "<a href='../pages/listerProduits?idCategorie=".
+                "<a href='../pages/listerProduits.php?idCategorie=".
                 $categories["IDCATEGORIE"][$i]."'\">".
                 $categories["NOMCATEGORIE"][$i]."</a>";
             afficher_categories($categories["IDCATEGORIE"][$i], $niveau+1);

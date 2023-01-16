@@ -6,7 +6,10 @@
 
     if (isset($_POST["supprimerCategorieForm"])) {
         $idCategorie = $_POST["idCategorie"];
-        $sql = "DELETE FROM Categorie WHERE idCategorie = :idCategorie";
+        $sql = "BEGIN
+                    UPDATE Produit P SET P.idCategorie = null WHERE P.idCategorie = :idCategorie;
+                    DELETE FROM Categorie WHERE idCategorie = :idCategorie;
+                END;";
         $requete = oci_parse($connect, $sql);
         oci_bind_by_name($requete, ":idCategorie", $idCategorie);
         $result = oci_execute($requete);
@@ -42,8 +45,12 @@
                         <?php
                             $sql = "SELECT * FROM Categorie C
                                     WHERE NOT EXISTS (
-                                        SELECT * FROM Categorie C2
-                                        WHERE C2.idCategorieMere = C.idCategorie)";
+                                        SELECT C2.idCategorie FROM Categorie C2
+                                        WHERE C2.idCategorieMere = C.idCategorie
+                                        UNION
+                                        SELECT P.idCategorie FROM Produit P
+                                        WHERE P.idCategorie = C.idCategorie
+                                        AND P.vendreProduit = 1)";
                             $requete = oci_parse($connect, $sql);
                             $result = oci_execute($requete);
                             if ($result) {
@@ -55,7 +62,7 @@
                             }
                         ?>
                     </select>
-                    <p class="info">Seules les catégories ne possédant pas/plus de catégorie fille peuvent être supprimées.</p>
+                    <p class="info">Seules les catégories ne possédant pas/plus de catégorie fille ni de produit peuvent être supprimées.</p>
                     <input type="submit" name="supprimerCategorieForm" value="Valider">
                 </form>
             </div>

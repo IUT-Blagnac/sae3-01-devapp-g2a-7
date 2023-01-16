@@ -225,8 +225,6 @@
         }
 
         function transformerPanierCookieEnPanierBaseDeDonnees() {
-            var_dump($this->produits);
-            echo sizeof($this->produits);
             foreach ($this->produits as $prd) {
                 $this->ajouterProduitBaseDeDonnees($prd);
             }

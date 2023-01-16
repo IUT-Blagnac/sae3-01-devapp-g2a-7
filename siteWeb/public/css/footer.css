@@ -23,6 +23,10 @@ footer {
     margin-top: 100px;
 }
 
+footer a:hover {
+    text-decoration:underline;
+}
+
 #vide {
     width:100%;
     margin-top: 40px;

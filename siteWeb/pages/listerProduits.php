@@ -40,13 +40,13 @@ if (isset($_GET['idCategorie'])) {
 
 } else if (isset($_GET['query'])) {
     $recherche = htmlentities($_GET['query']);
-    $req = "SELECT * FROM produit
-            WHERE UPPER(nomproduit) LIKE :pquery
-            OR UPPER(detailsproduit) LIKE :pquery
+    $req = "SELECT * FROM Produit
+            WHERE (UPPER(nomproduit) LIKE :pquery
+            OR UPPER(detailsproduit) LIKE :pquery)
             AND Produit.vendreProduit = 1";
 } else {
     // Affichage de tous les produits de la table si aucune recherche n'est effectuée
-    $req = "SELECT * FROM produit WHERE Produit.vendreProduit = 1";
+    $req = "SELECT * FROM Produit WHERE Produit.vendreProduit = 1";
 }
 
 $lesProduits = oci_parse($connect, $req);
@@ -75,7 +75,7 @@ if(isset($_GET['idCategorie'])) {
     ?>
     <h1> Les produits de la catégorie <?= $nomCategorie ?> </h1>
 <?php }
-elseif(isset($_GET['query'])) { ?>
+elseif(!empty($_GET['query'])) { ?>
     <h1> Les produits contenant le mot <?= $recherche ?></h1>
 <?php } else { ?>
     <h1> Tous les produits </h1>

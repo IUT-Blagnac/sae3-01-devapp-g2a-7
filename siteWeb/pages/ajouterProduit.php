@@ -58,7 +58,6 @@
             echo '<script type="text/javascript">show_info_popup("Le produit a bien été ajouté.", "var(--green-blue)")</script>';
         } else {
             echo '<script type="text/javascript">show_info_popup("Erreur avec la base de données.", "red")</script>';
-            var_dump(oci_error($requete));
         }
 
         $sqlIdProduit = "SELECT MAX(idProduit) as idProduit FROM Produit";

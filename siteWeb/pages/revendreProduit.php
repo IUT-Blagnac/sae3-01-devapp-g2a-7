@@ -29,17 +29,16 @@
                 <form id="form-creationCompte" method="post">
                     <p>Participez à la préservation de la planète en nous revandant vos équipements au lieu de les jeter.</p>
                     <input type="text" name="type" placeholder="Quel est votre équipement ?"  maxlength="100" required>
-                    <select name="etat" size="1" > 
+                    <select name="etat" size="1" >
                     <option disabled selected value="1"> Quel est son état ? </option>
                     <option value="2"> Neuf </option>
                     <option value="3"> Très bon état </option>
                     <option value="4"> Bon état </option>
                     <option value="5"> Mauvais état </option>
-                    <option value="6"> Défectueux </option>      
+                    <option value="6"> Défectueux </option>
                     </select>
                     <input type="text" name="prix" placeholder="Estimez son prix ?"  maxlength="100" required>
                     <input type="text" name="infos" placeholder="Informations supplémentaires" maxlength="140" >
-                    <p class="info">En validant, vous certifiez que les données entrées sont exactes et complètes.</p>
                     <input type="submit" name="revendreProduitForm" value="Valider">
                 </form>
             </div>

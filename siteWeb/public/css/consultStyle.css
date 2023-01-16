@@ -261,7 +261,7 @@ div#filtres-avis {
     display: flex;
     flex-flow: column nowrap;
     gap: 5px;
-    
+
 }
 
 div#liste-avis {
@@ -307,4 +307,8 @@ a#ajout-avis {
     height: fit-content;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.description-avis {
+    overflow:auto;
 }

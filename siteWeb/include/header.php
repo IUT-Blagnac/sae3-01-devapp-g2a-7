@@ -1,6 +1,6 @@
 <?php
     require_once("checkConnexion.php");
-    //error_reporting(0);
+    error_reporting(0);
 
     // Récupère l'instance du panier
     require_once("../include/panier.php");
@@ -53,7 +53,7 @@
         </a>
     </div>
     <nav>
-        <a class="lien" href="">
+        <a class="lien" href="../pages/aPropos.html">
             <img src="../public/images/information.png" alt="Information">
             <span>INFORMATION</span>
         </a>

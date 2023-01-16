@@ -31,14 +31,14 @@
 
     $dict = array();
     while (($leChoix = oci_fetch_assoc($listeChoix)) != false) {
-        $prixProduit = $leChoix['PRIXPRODUIT'];
-        $nomProduit = $leChoix['NOMPRODUIT'];
-        $extProduit = $leChoix['EXTENSIONIMGPRODUIT'];
-        $stockProduit = $leChoix['QUANTITESTOCKPRODUIT'];
+        $prixProduit = html_entity_decode($leChoix['PRIXPRODUIT']);
+        $nomProduit = html_entity_decode($leChoix['NOMPRODUIT']);
+        $extProduit = html_entity_decode($leChoix['EXTENSIONIMGPRODUIT']);
+        $stockProduit = html_entity_decode($leChoix['QUANTITESTOCKPRODUIT']);
         if (!key_exists($leChoix['TYPECHOIX'], $dict)) {
             $dict[$leChoix['TYPECHOIX']] = array();
         }
-        array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => $leChoix['LIBELLECHOIX'], "tauxChoix" => $leChoix['TAUXCHOIX'], "idChoix" => $leChoix['IDCHOIX']));
+        array_push($dict[$leChoix['TYPECHOIX']], array("libelleChoix" => html_entity_decode($leChoix['LIBELLECHOIX']), "tauxChoix" => html_entity_decode($leChoix['TAUXCHOIX']), "idChoix" => html_entity_decode($leChoix['IDCHOIX'])));
     }
 ?>
 <!DOCTYPE html>
@@ -138,7 +138,7 @@
                         <?php
                             $tauxReduc = (1 - ($lesInfos['PRIXPRODUIT'] / $lesInfos['PRIXBASEPRODUIT'])) * 100;
                         ?>
-                            <div><p><?= $lesInfos['DETAILSPRODUIT'] ?></p></div>
+                            <div><p><?= html_entity_decode($lesInfos['DETAILSPRODUIT']) ?></p></div>
                             <div><p>-<?= round($tauxReduc) ?>% vs prix neuf (<span data-prix="<?= $lesInfos['PRIXBASEPRODUIT'] ?>" id="prixBaseProduit"><?= $lesInfos['PRIXBASEPRODUIT'] ?></span>€)</p></div>
                             <div><p>Livraison en <?= $lesInfos['DELAILIVRAISONPRODUIT'] ?> jours offerte</p></div>
                             <div><p>Changez d'avis jusqu'au <?= $lesInfos['DATERETRACTATIONPRODUIT'] ?></p></div>
@@ -167,8 +167,8 @@
                         <?php
                         while (($laCarac = oci_fetch_assoc($caracProduit)) != false) { ?>
                             <div class="caracs">
-                                    <div class="carac"><?= $laCarac['LIBELLECARACTERISTIQUE'] ?></div>
-                                    <div class="carac"><?= $laCarac['DONNEECARACTERISTIQUE'] ?> </div>
+                                    <div class="carac"><?= html_entity_decode($laCarac['LIBELLECARACTERISTIQUE']) ?></div>
+                                    <div class="carac"><?= html_entity_decode($laCarac['DONNEECARACTERISTIQUE']) ?> </div>
                                 </div>
                         <?php } ?>
                         </div>
@@ -323,15 +323,15 @@
                                     <div class="avis-produit" data-note="<?= $lavis['NOTEAVIS'] ?>">
                                         <div class="haut-avis">
                                             <div class="nom-prenom">
-                                                <p><b><?= $lavis['PRENOMCLIENT'] ?> <?= $lavis['NOMCLIENT'] ?></b></p>
-                                                <p><?= $lavis['DATEAVIS'] ?></p>
+                                                <p><b><?= html_entity_decode($lavis['PRENOMCLIENT']) ?> <?= html_entity_decode($lavis['NOMCLIENT']) ?></b></p>
+                                                <p><?= html_entity_decode($lavis['DATEAVIS']) ?></p>
                                             </div>
                                             <div class="note-avis">
-                                                <p><?= $lavis['NOTEAVIS'] ?>/5</p>
+                                                <p><?= html_entity_decode($lavis['NOTEAVIS']) ?>/5</p>
                                             </div>
                                         </div>
                                         <div class="description-avis">
-                                            <p><?= $lavis['DESCRIPTIONAVIS'] ?></p>
+                                            <p><?= html_entity_decode($lavis['DESCRIPTIONAVIS']) ?></p>
                                         </div>
                                     </div>
                                 <?php }

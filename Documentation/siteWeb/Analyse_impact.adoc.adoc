@@ -50,7 +50,6 @@ toc::[]
 
 * Mise en place d'un système de protection contre les attaques par injection SQL pour éviter les tentatives de piratage.
 
-=== Conclusion
 Ce document d'analyse d'impact de protection des données permet de prendre en compte les enjeux liés à la protection des données pour garantir la conformité avec les réglementations en vigueur, et de mettre en place les mesures nécessaires pour assurer la sécurité des données.
 
 == Description des processus, des données et supports
@@ -93,7 +92,6 @@ image::images/AnalyseImpact/BPMN.png[le processus de commande]
 
 * Serveur web : le site est hébergé sur un serveur web sécurisé pour protéger les informations stockées sur le site.
 
-=== Conclusion
 Ce document décrit les processus de traitement des données pour le site de e-commerce, les types de données qui sont collectées et traitées et les supports utilisés pour stocker et traiter les données. Ces informations permettent de comprendre comment les données sont traitées et gérées pour garantir la sécurité et la conformité avec les réglementations en vigueur.
 
 == Récapitulatif des risques et conséquences en matière de cyber sécurité de ces données
@@ -110,15 +108,6 @@ Ce document décrit les processus de traitement des données pour le site de e-c
 Ce tableau permet de récapituler les risques les plus importants en matière de cybersécurité le site REVIVE, les menaces qui y sont associées, les impacts potentiels sur le site et les utilisateurs ainsi que les mesures qui peuvent être mises en place pour réduire ces risques. Il permet également de classer les risques selon leur niveau de gravité, ce qui permet de prioriser les mesures de sécurité à mettre en place.
 
 == Mesures applicables et leurs modalités de mise en œuvre concernant la protection des données
-
-|=========================================================================================================
-| *Mesure* | *Modalités de mise en œuvre* | *Priorité*
-| Cryptage des données sensibles | Utilisation d'algorithmes de cryptage standard tels que "bcrypt" pour crypter les données, stockage des clés de cryptage dans un lieu sécurisé, vérification de la validité des certificats de sécurité lors de la transmission des données cryptées. | Élevé
-| Authentification forte | M    ise en place d'une politique de mot de passe fort (longueur minimale, caractères spéciaux, etc.). | Élevé
-| Contrôle d'accés | Mise en place de rôles et de droits d'accès pour les utilisateurs et les administrateur, utilisation de mécanismes d'authentification pour vérifier l'identité des utilisateurs/administrateurs. | Élevé
-| Règlement général sur la protection des données (RGPD) | Mise en place d'un registre des activités de traitement, mise en place de procédures de notification des fuites de données, mise en place de procédures de gestion des demandes d'accès (dans le cadre des utilisateurs administrateurs) et de rectification. | Élevé
-|=========================================================================================================
-
 
 === Cryptage des données sensibles
 
@@ -138,16 +127,40 @@ L'accès aux actions/données est limité aux administrateurs qui ont besoin de 
 
 Respect des obligations du RGPD en matière de protection des données.
 
-=== Conclusion
+|=========================================================================================================
+| *Mesure* | *Modalités de mise en œuvre* | *Priorité*
+| Cryptage des données sensibles | Utilisation d'algorithmes de cryptage standard tels que "bcrypt" pour crypter les données, stockage des clés de cryptage dans un lieu sécurisé, vérification de la validité des certificats de sécurité lors de la transmission des données cryptées. | Élevé
+| Authentification forte | M    ise en place d'une politique de mot de passe fort (longueur minimale, caractères spéciaux, etc.). | Élevé
+| Contrôle d'accés | Mise en place de rôles et de droits d'accès pour les utilisateurs et les administrateur, utilisation de mécanismes d'authentification pour vérifier l'identité des utilisateurs/administrateurs. | Élevé
+| Règlement général sur la protection des données (RGPD) | Mise en place d'un registre des activités de traitement, mise en place de procédures de notification des fuites de données, mise en place de procédures de gestion des demandes d'accès (dans le cadre des utilisateurs administrateurs) et de rectification. | Élevé
+|=========================================================================================================
+
 Cette liste de mesures permet de protéger les données sensibles et les informations personnelles des utilisateurs contre les risques de sécurité. Il est important de noter que ces mesures ne sont pas exhaustives et qu'il est nécessaire de les adapter et de les mettre à jour régulièrement en fonction des évolutions des risques et des technologies disponibles. Il est également important de noter que ces mesures ne suffisent pas à garantir la sécurité des données à elles seules, il est nécessaire de les combiner avec une culture de sécurité et de sensibilisation des utilisateurs pour garantir un niveau de sécurité optimal.
 
-== mesures applicables et leurs modalités de mise en œuvre concernant la sécurité des données
+== Mesures applicables et leurs modalités de mise en œuvre concernant la sécurité des données
+
+=== Mise à jour de sécurité 
+Les logiciels et les systèmes utilisés sur le site sont mis à jour régulièrement pour corriger les vulnérabilités de sécurité.
+
+=== Pare-feu
+Un pare-feu est utilisé pour protéger le site contre les attaques extérieures.
+
+=== Détection d'intrusion
+Un système de détection d'intrusion est utilisé pour détecter les tentatives d'accès non autorisé ou les comportements anormaux sur le site.
+
+=== Contrôle d'accès physique
+Les locaux où les données sont stockées et traitées sont protégés contre les accès non autorisés.
+
+=== Sauvegarde des données
+Les données sont sauvegardées régulièrement pour assurer la disponibilité des informations en cas de sinistre.
 
 |=========================================================================================================
 | *Mesure* | *Modalités de mise en œuvre* | *Priorité*
-| Mise à jour de sécurité | utilisation d'un système automatisé de mise à jour pour les logiciels et les systèmes, vérification régulière des mises à jour de sécurité pour les logiciels et les systèmes qui ne peuvent pas être mis à jour automatiquement, application des mises à jour de sécurité dès qu'elles sont disponibles. | Élevé
-| Pare-feu | configuration du pare-feu pour bloquer les ports non utilisés, utilisation de règles de filtrage pour limiter l'accès au site aux adresses IP autorisées, journalisation des tentatives de connexion pour détecter les tentatives d'attaque. | Moyen
-| Détection d'intrusion | installation d'un système de détection d'intrusion sur les serveurs et les réseaux, configuration des règles de détection pour identifier les comportements anormaux, analyse régulière des journaux de sécurité pour détecter les intrusions ou les tentatives d'intrusion. | Élevé
-| Contrôle d'accès physique | installation de serrures et de systèmes d'alarme sur les locaux, utilisation de badges d'accès pour les employés, surveillance vidéo des locaux, mise en place de procédures pour gérer les accès temporaires (p. ex. visiteurs, prestataires). | Élevé
-| Sauvegarde des données | sauvegarde des données sur des supports externes (disques durs, bandes, nuages), planification des sauvegardes en fonction de la fréquence d'utilisation des données, vérification régulière de la validité des sauvegardes. | Faible
+| Mise à jour de sécurité | Utilisation d'un système automatisé de mise à jour pour les logiciels et les systèmes, vérification régulière des mises à jour de sécurité pour les logiciels et les systèmes qui ne peuvent pas être mis à jour automatiquement, application des mises à jour de sécurité dès qu'elles sont disponibles. | Élevé
+| Pare-feu | Configuration du pare-feu pour bloquer les ports non utilisés, utilisation de règles de filtrage pour limiter l'accès au site aux adresses IP autorisées, journalisation des tentatives de connexion pour détecter les tentatives d'attaque. | Moyen
+| Détection d'intrusion | Installation d'un système de détection d'intrusion sur les serveurs et les réseaux, configuration des règles de détection pour identifier les comportements anormaux, analyse régulière des journaux de sécurité pour détecter les intrusions ou les tentatives d'intrusion. | Élevé
+| Contrôle d'accès physique | Installation de serrures et de systèmes d'alarme sur les locaux, utilisation de badges d'accès pour les employés, surveillance vidéo des locaux, mise en place de procédures pour gérer les accès temporaires (p. ex. visiteurs, prestataires). | Élevé
+| Sauvegarde des données | Sauvegarde des données sur des supports externes (disques durs, bandes, nuages), planification des sauvegardes en fonction de la fréquence d'utilisation des données, vérification régulière de la validité des sauvegardes. | Faible
 |=========================================================================================================
+
+== Issues à ajouter au dernier sprint pour tenir compte des points 4 et 5 les plus importants

@@ -1,3 +1,0 @@
-= Analyse d'impacte du site web d'E-commerce REVIVE
-:toc:
-:toc-title: Sommaire

@@ -18,10 +18,9 @@ Fonctions :
 Fichiers :
 
     -heckConnexion.php
-    -header.php
     -infoPopup.php
     -style.css
-    -header.css
+    -header.php
     -panier.css
     -consultProduit.php
     -changerQuantiteProduitPanier.php
@@ -59,19 +58,18 @@ Fichiers :
     -checkConnexion.php
     -pages/panier.php
     
-=== 2. Pages de consultation de produit
+=== 2. Pages de consultation / affichage de produits
 ==== 2.1 Page consultproduit.php
 Fichiers :
 
     -checkConnexion.php
     -index.php
     -style.css
-    -header.css
-    -footer.css
+    -header.php
+    -footer.php
     -consultStyle.css
     -avisClientTri.js
     -prixProduit.js
-    -header.php
     -infoPopup.php
     -formulaireAjoutAvis.php
     
@@ -91,6 +89,15 @@ Fichiers :
     -checkConnexion.php
     -consultProduit.php
     
+=== 2.4 Page listerProduits.php
+Fichiers :
+
+    -style.css
+    -header.php
+    -footer.php
+    -listProduit.css
+    -checkConnexion.php
+    
 === 3. Pages de connexion, gestion de compte
 ==== 3.1 connexion.php
 Fonctions :
@@ -103,8 +110,8 @@ Fichiers :
     -checkConnexion.php
     -infoPopup.php
     -style.css
-    -header.css
-    -footer.css
+    -header.php
+    -footer.php
     -connexionStyle.css
     
 ==== 3.2 page creationCompte.php

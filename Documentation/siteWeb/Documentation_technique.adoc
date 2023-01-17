@@ -1,3 +1,234 @@
 = Documentation technique du site web REVIVE
 :toc:
 :toc-title: Sommaire
+
+== I. Fonctions et Fichiers inclus dans les pages du site
+
+=== 1. Pages du panier
+==== 1.1 include/panier.php
+Fonctions :
+
+    -getProduits()
+    -setIdClient()
+    -enleverProduit()
+    -changeQuantiteProduit()
+    -prixTotalProduits()
+   
+==== 1.2 pages/panier.php
+Fichiers :
+
+    -heckConnexion.php
+    -header.php
+    -infoPopup.php
+    -style.css
+    -header.css
+    -panier.css
+    -consultProduit.php
+    -changerQuantiteProduitPanier.php
+    
+==== 1.3 include/changerQuantiteProduit.php
+Fonctions :
+
+    -changeQuantiteProduit()
+    
+Fichiers :
+
+    -include/panier.php
+    -checkConnexion.php
+    -pages/panier.php
+    
+==== 1.4 include/supprimerProduitPanier.php
+Fonctions :
+
+    -enleverProduit()
+    
+Fichiers :
+
+    -include/panier.php
+    -checkConnexion.php
+    -pages/panier.php
+
+==== 1.5 include/validerCommande.php
+Fonctions :
+
+    -validerCommande()
+    
+Fichiers :
+
+    -include/panier.php
+    -checkConnexion.php
+    -pages/panier.php
+    
+=== 2. Pages de consultation de produit
+==== 2.1 Page consultproduit.php
+Fichiers :
+
+    -checkConnexion.php
+    -index.php
+    -style.css
+    -header.css
+    -footer.css
+    -consultStyle.css
+    -avisClientTri.js
+    -prixProduit.js
+    -header.php
+    -infoPopup.php
+    -formulaireAjoutAvis.php
+    
+==== 2.2 Page formulaireAjoutAvis.php 
+Fichiers :
+
+    -connexionStyle.css
+    
+==== 2.3 Page ajouterProduitPanier.php
+Fonctions :
+
+    -ajouterProduit()
+    
+Fichiers :
+
+    -panier.php"
+    -checkConnexion.php
+    -consultProduit.php
+    
+=== 3. Pages de connexion, gestion de compte
+==== 3.1 connexion.php
+Fonctions :
+
+    -get_utilisateur_from_mail()
+    -connecter_client()
+    
+Fichiers :
+
+    -checkConnexion.php
+    -infoPopup.php
+    -style.css
+    -header.css
+    -footer.css
+    -connexionStyle.css
+    
+==== 3.2 page creationCompte.php
+Fichiers :
+
+    -infoPopup.php
+    -checkConnexion.php
+    -connexionStyle.css
+    
+==== 3.3 page consultCompte.php
+Fonctions :
+
+    -verifier_page()
+    
+Fichiers :
+
+    -infoPopup.php
+    -checkConnexion.php
+    -connexionStyle.css
+
+==== 3.4 Page modifierCompte.php
+Fonctions :
+
+    -verifier_page()
+    
+Fichiers :
+
+    -infoPopup.php
+    -checkConnexion.php
+    -connexionStyle.css
+    
+=== 4. Pages de admin
+==== 4.1 Page ajouterProduit.php
+Fonctions :
+
+    -verifier_page()
+    
+Fichiers :
+    
+    -checkConnexion.php
+    -infoPopup.php
+    -connexionStyle.css
+    
+==== 4.2 Page supprimerProduit.php
+Fonctions :
+
+    -verifier_page()
+    
+Fichiers :
+    
+    -checkConnexion.php
+    -infoPopup.php
+    -connexionStyle.css
+    
+==== 4.3 Page ajouterCategorie.php
+Fonctions :
+
+    -verifier_page()
+    
+Fichiers :
+    
+    -checkConnexion.php
+    -infoPopup.php
+    -connexionStyle.css
+    
+==== 4.4 Page supprimerCategorie.php
+Fonctions :
+
+    -verifier_page()
+    
+Fichiers :
+    
+    -checkConnexion.php
+    -infoPopup.php
+    -connexionStyle.css
+    
+=== 5. Pages supplémentaires avec affichage
+==== 5.1 Page index.php
+Fichiers :
+
+    -index.css
+    
+==== 5.2 Page header.php
+Fonctions :
+
+    -afficher_categories()
+    
+Fichiers :
+
+    -checkConnexion.php
+    -listerProduits.php
+    -panier.php
+    -consultCompte.php
+    -connexion.php
+    -aPropos.html
+    -index.php
+    
+==== 5.3 Page footer.php
+Fichiers : 
+
+  -aPropos.php
+  
+==== 5.4 Page aPropos.php
+Aucun appel de fonction ou de lien à un fichier
+
+=== 6. Pages supplémentaires fonctionnelles
+
+==== 6.1 Page checkConnexion.php
+Fonctions :
+
+    -get_utilisateur_from_mail()
+    -connecter_client()
+    -connecter_admin()
+    -verifier_page()
+
+Fichiers :
+
+    -connect.inc.php
+
+==== 6.2 Page connect.inc.php
+Aucun appel de fonction ou de lien à un fichier
+
+==== 6.3 Page infoPopup.php
+Fonctions :
+
+    -close_info_popup()
+    -show_info_popup()

@@ -50,3 +50,46 @@ toc::[]
 
 . Mise en place d'un système de protection contre les attaques par injection SQL pour éviter les tentatives de piratage.
 
+=== Conclusion
+Ce document d'analyse d'impact de protection des données permet de prendre en compte les enjeux liés à la protection des données pour garantir la conformité avec les réglementations en vigueur, et de mettre en place les mesures nécessaires pour assurer la sécurité des données.
+
+== Description des processus, des données et supports
+
+=== Processus
+
+. Enregistrement des informations de compte utilisateur : lorsque les utilisateurs créent un compte sur le site, ils doivent fournir des informations telles que leur nom, prenom, e-mail, mot de passe. Ces informations sont stockées dans une base de données sécurisée. Et le mot depasse est crypté.
+
+. Gestion des commandes : lorsqu'une commande est passée, les informations de commande (prix, date, produits commandés, quantité, descriptif) sont stockées dans une base de données sécurisée et utilisées pour gérer les commandes et assurer la livraison des produits achetés.
+
+. Personnalisation des offres : les informations de compte utilisateur sont utilisées pour personnaliser les offres et les recommandations de produits pour chaque utilisateur.
+
+=== Données
+
+. Informations de compte utilisateur : 
+.. nom
+.. prénom
+.. adresse e-mail
+.. mot de passe
+.. adresse postale
+.. date de création du compte
+.. acceptation des annonces
+
+. Informations de commande : 
+.. prix de la commande
+.. date de la commande
+.. produits commandés
+.. quantité de chaque produit commandé
+.. descriptif de chaque produit commandé
+
+. Informations de profil utilisateur :
+.. historique d'achat
+.. préférences d'achat
+
+=== Supports
+
+. Base de données : les informations de compte utilisateur et les informations de commande sont stockées dans une base de données sécurisée pour assurer la sécurité des données.
+
+. Serveur web : le site est hébergé sur un serveur web sécurisé pour protéger les informations stockées sur le site.
+
+=== Conclusion
+Ce document décrit les processus de traitement des données pour le site de e-commerce, les types de données qui sont collectées et traitées et les supports utilisés pour stocker et traiter les données. Ces informations permettent de comprendre comment les données sont traitées et gérées pour garantir la sécurité et la conformité avec les réglementations en vigueur.

@@ -7,12 +7,46 @@
 
 toc::[]
 
-== Introduction
+== Vue d’ensemble des traitements réalisés
 
-<<<
+=== Description des traitements de données
+. Enregistrement des informations de compte utilisateur lors de la création d'un compte sur le site :
+.. Nom
+.. Prénom
+.. Adresse e-mail
+.. Mot de passe
+.. Adresse postale
 
-== Réponses aux questions
+. Stockage des informations de commande pour la gestion des commandes :
+.. Prix de la commande
+.. Date de la commande
+.. Les produits commandés
+.. La quantité de chaque produit commandé
+.. Le descriptif de chaque produit commandé ( exemple: taille, couleur, etc. )
 
-<<<
+. Utilisation des informations de compte utilisateur pour personnaliser les offres et les recommandations de produits pour chaque utilisateur par rapport à l'acceptation des annonces lors de la création du compte.
 
-== Conclusion
+=== Finalités des traitements de données
+
+. Permettre aux utilisateurs de créer un compte sur le site pour acheter des produits.
+
+. Gérer les commandes et assurer la livraison des produits achetés.
+
+. Améliorer l'expérience utilisateur en personnalisant les offres et les recommandations de produits.
+
+=== Enjeux liés à la protection des données
+
+. Respect des réglementations en matière de protection des données, en particulier le Règlement général sur la protection des données (RGPD).
+
+. Sécurité des informations de compte utilisateur et pour éviter les fraudes.
+
+. Garantir la confidentialité des informations de commande pour protéger la vie privée des utilisateurs.
+
+=== Mesures de sécurité mises en place
+
+. Mise en place d'une politique de mot de passe fort pour protéger les comptes utilisateurs.
+
+. Cryptage des données sensibles (mot de passe) pour assurer la confidentialité des données.
+
+. Mise en place d'un système de protection contre les attaques par injection SQL pour éviter les tentatives de piratage.
+

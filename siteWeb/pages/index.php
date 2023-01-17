@@ -22,13 +22,13 @@
             <h1>NOS EQUIPEMENTS NE MEURENT JAMAIS !</h1>
             <p>Donnez une nouvelle vie aux équipements que vous n'utilisez plus.</p>
             <p>Revendez-les nous et participez à la préservation de la planète.</p>
-            <a href="">En savoir plus</a>
+            <a href="aPropos.html">En savoir plus</a>
         </div>
 
         <div class="blackRectangle2">
             <div>
                 <p>Bienvenue chez REVIVE. Le marché du recontionné écologique.</p>
-                <a href="">En savoir plus</a>
+                <a href="aPropos.html">En savoir plus</a>
             </div>
 
             <div>

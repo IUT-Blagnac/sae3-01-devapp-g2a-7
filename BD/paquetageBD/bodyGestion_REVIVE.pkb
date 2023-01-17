@@ -87,12 +87,6 @@ CREATE OR REPLACE PACKAGE BODY Gestion_REVIVE IS
 
     PROCEDURE SupprimerProduit(idPrd Produit.idProduit%TYPE) IS
     BEGIN
-        DELETE FROM Affecter
-        WHERE Affecter.idProduit = idPrd;
-        DELETE FROM Assigner
-        WHERE Assigner.idProduit = idPrd;
-        DELETE FROM DonnerAvis
-        WHERE DonnerAvis.idProduit = idPrd;
         DELETE FROM Contenir
         WHERE Contenir.idProduit = idPrd;
         UPDATE Produit

@@ -7,7 +7,7 @@
 
 toc::[]
 
-== Vue d’ensemble des traitements réalisés
+== Vue d'ensemble des traitements réalisés
 
 === Description des traitements de données
 * Enregistrement des informations de compte utilisateur lors de la création d'un compte sur le site :
@@ -112,7 +112,7 @@ Ce tableau permet de récapituler les risques les plus importants en matière de
 == Mesures applicables et leurs modalités de mise en œuvre concernant la protection des données
 
 |=========================================================================================================
-| *Mesure* | *Modalités de mise en œuvre* | *Niveau de gravité*
+| *Mesure* | *Modalités de mise en œuvre* | *Priorité*
 | Cryptage des données sensibles | Utilisation d'algorithmes de cryptage standard tels que "bcrypt" pour crypter les données, stockage des clés de cryptage dans un lieu sécurisé, vérification de la validité des certificats de sécurité lors de la transmission des données cryptées. | Élevé
 | Authentification forte | M    ise en place d'une politique de mot de passe fort (longueur minimale, caractères spéciaux, etc.). | Élevé
 | Contrôle d'accés | Mise en place de rôles et de droits d'accès pour les utilisateurs et les administrateur, utilisation de mécanismes d'authentification pour vérifier l'identité des utilisateurs/administrateurs. | Élevé
@@ -125,15 +125,29 @@ Ce tableau permet de récapituler les risques les plus importants en matière de
 Les information de mot de passe sont cryptées avant d'être stockées dans la base de données pour éviter les tentatives de piratage.
 
 
-== Authentification forte
+=== Authentification forte
 
 Les utilisateurs doivent fournir des informations d'authentification fortes (nom d'utilisateur et mot de passe) pour accéder à leur compte utilisateur.
 
-== Contrôle d'accès
+=== Contrôle d'accès
 
 L'accès aux données est limité aux utilisateurs qui ont besoin de ces données pour effectuer leur travail.
 L'accès aux actions/données est limité aux administrateurs qui ont besoin de ces actions/données pour effectuer leur travail.
 
-== Règlement général sur la protection des données (RGPD)
+=== Règlement général sur la protection des données (RGPD)
 
 Respect des obligations du RGPD en matière de protection des données.
+
+=== Conclusion
+Cette liste de mesures permet de protéger les données sensibles et les informations personnelles des utilisateurs contre les risques de sécurité. Il est important de noter que ces mesures ne sont pas exhaustives et qu'il est nécessaire de les adapter et de les mettre à jour régulièrement en fonction des évolutions des risques et des technologies disponibles. Il est également important de noter que ces mesures ne suffisent pas à garantir la sécurité des données à elles seules, il est nécessaire de les combiner avec une culture de sécurité et de sensibilisation des utilisateurs pour garantir un niveau de sécurité optimal.
+
+== mesures applicables et leurs modalités de mise en œuvre concernant la sécurité des données
+
+|=========================================================================================================
+| *Mesure* | *Modalités de mise en œuvre* | *Priorité*
+| Mise à jour de sécurité | utilisation d'un système automatisé de mise à jour pour les logiciels et les systèmes, vérification régulière des mises à jour de sécurité pour les logiciels et les systèmes qui ne peuvent pas être mis à jour automatiquement, application des mises à jour de sécurité dès qu'elles sont disponibles. | Élevé
+| Pare-feu | configuration du pare-feu pour bloquer les ports non utilisés, utilisation de règles de filtrage pour limiter l'accès au site aux adresses IP autorisées, journalisation des tentatives de connexion pour détecter les tentatives d'attaque. | Moyen
+| Détection d'intrusion | installation d'un système de détection d'intrusion sur les serveurs et les réseaux, configuration des règles de détection pour identifier les comportements anormaux, analyse régulière des journaux de sécurité pour détecter les intrusions ou les tentatives d'intrusion. | Élevé
+| Contrôle d'accès physique | installation de serrures et de systèmes d'alarme sur les locaux, utilisation de badges d'accès pour les employés, surveillance vidéo des locaux, mise en place de procédures pour gérer les accès temporaires (p. ex. visiteurs, prestataires). | Élevé
+| Sauvegarde des données | sauvegarde des données sur des supports externes (disques durs, bandes, nuages), planification des sauvegardes en fonction de la fréquence d'utilisation des données, vérification régulière de la validité des sauvegardes. | Faible
+|=========================================================================================================

@@ -89,7 +89,7 @@ Fichiers :
     -checkConnexion.php
     -consultProduit.php
     
-=== 2.4 Page listerProduits.php
+==== 2.4 Page listerProduits.php
 Fichiers :
 
     -style.css

@@ -285,7 +285,7 @@ Un navigateur web quelconque.
 
 >|Cas de test 3+|Test-03-01-01
 >|Titre 3+|Ajouter un produit
->|Objectif 3+|Kes administrateurs du serveur peuvent ajouter un produit à la liste
+>|Objectif 3+|Les administrateurs du serveur peuvent ajouter un produit à la liste
 
 4+|
 
@@ -293,6 +293,55 @@ Un navigateur web quelconque.
 ^|1 ^|Essayer d'accéder à la page sans être connecté en tant qu'administrateur ^|Redirection vers la page de connexion ^|OK
 ^|2 ^|Essayer d'accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page ^|OK
 ^|3 ^|Remplir des champs ne correspondant pas aux données à mettre dans la BD ^|Affichage d'une erreur ^|OK
+^|3 ^|Remplir tous les champs correctement ^|Affichage d'un message indiquant la réussite de l'ajout et insertion du produit dans la base de données ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-03-01-02
+>|Titre 3+|Supprimer un produit
+>|Objectif 3+|Les administrateurs du serveur peuvent supprimer un produit de la base de données, il n'est jamais vraiment supprimé mais plutôt désactivé.
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Essayer d'accéder à la page sans être connecté en tant qu'administrateur ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Essayer d'accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page ^|OK
+^|3 ^|Sélectionner le produit voulu et cliquer sur "supprimer" ^|Affichage d'un message indiquant la réussite de la suppression et désactivation du produit dans la base de données ^|OK
+
+|====
+
+==== 3.2 CRUD des catégories :
+
+|====
+
+>|Cas de test 3+|Test-03-02-01
+>|Titre 3+|Ajouter une catégorie
+>|Objectif 3+|Les administrateurs du serveur peuvent ajouter des catégories pour y affecter des produits
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Essayer d'accéder à la page sans être connecté en tant qu'administrateur ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Essayer d'accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page ^|OK
+^|3 ^|Remplir des champs ne correspondant pas aux données à mettre dans la BD ^|Affichage d'une erreur ^|OK
+^|3 ^|Remplir tous les champs correctement ^|Affichage d'un message indiquant la réussite de l'ajout et insertion de la catégorie dans la base de données ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-03-02-02
+>|Titre 3+|Supprimer une catégorie
+>|Objectif 3+|Les administrateurs du serveur peuvent supprimer une catégorie de la base de données, les produits qui y sont affectés seront désactivés
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Essayer d'accéder à la page sans être connecté en tant qu'administrateur ^|Redirection vers la page de connexion ^|OK
+^|2 ^|Essayer d'accéder à la page en étant connecté en tant qu'administrateur ^|Accès à la page ^|OK
+^|3 ^|Sélectionner la catégorie voulue et cliquer sur "supprimer" ^|Affichage d'un message indiquant la réussite de la suppression et suppression ed la catégorie et des produits concernés dans la base de données ^|OK
 
 |====
 

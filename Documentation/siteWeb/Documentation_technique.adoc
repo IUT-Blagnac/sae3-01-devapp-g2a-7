@@ -93,7 +93,7 @@ Pour toutes les fonctionnalités y compris la connexion concernant la base de do
 === 4. Éléments essentiels :
 ==== 4.1 Prérequis pour les développeurs :
 [.text-justify]
-Si le code du site devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable un outil lui permettant de développer avec *HTML*5, *CSS*, *JavaScript* et *PHP8*.
+Si le code du site devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable un outil lui permettant de développer avec *HTML5*, *CSS*, *JavaScript* et *PHP8*.
 
 [.text-justify]
 Le site utilise une *base de données Oracle-SQL* dont le script SQL-LDD de création est fourni avec le code source du site. Cette base de données fonctionne avec des procédures déclarées dans un paquetage `Gestion_REVIVE` et des déclencheurs dont les PL/SQL scripts sont également fournis. Un script SQL-LMD est également fourni dans le but de remplir la base de données avec un jeu de données réel.

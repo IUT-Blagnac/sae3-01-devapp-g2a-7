@@ -2,240 +2,99 @@
 :toc:
 :toc-title: Sommaire
 
-== I. Fonctions et Fichiers inclus dans les pages du site
 
-=== 1. Pages du panier
-==== 1.1 include/panier.php
-Fonctions :
+== I. Présentation du site web
+[.text-justify]
+Le site web REVIVE est un site d'e-commerce ayant été demandé par l'entreprise du même nom dont le but de vendre en ligne ses produits reconditionnés.
 
-    -getProduits()
-    -setIdClient()
-    -enleverProduit()
-    -changeQuantiteProduit()
-    -prixTotalProduits()
-   
-==== 1.2 pages/panier.php
-Fichiers :
+=== 1. Les utilisateurs :
+[.text-justify]
+Le site web peut être utilisé par n'importe qu'elle type d'utilisateur non-connecté. Cependant il existe deux types d'utilisateurs pouvant être connecté pour accéder à certaines fonctionnalités : les clients et les administrateurs.
 
-    -heckConnexion.php
-    -infoPopup.php
-    -style.css
-    -header.php
-    -panier.css
-    -consultProduit.php
-    -changerQuantiteProduitPanier.php
-    
-==== 1.3 include/changerQuantiteProduit.php
-Fonctions :
+==== 1.1) Use-Cases :
+image::images/ucClient.png[Use Case Client]
 
-    -changeQuantiteProduit()
-    
-Fichiers :
+image::images/ucAdmin.png[Use Case Administrateur]
 
-    -include/panier.php
-    -checkConnexion.php
-    -pages/panier.php
-    
-==== 1.4 include/supprimerProduitPanier.php
-Fonctions :
+[.text-justify]
+Les *clients* sont les principaux types d'utilisateurs, ils peuvent :
 
-    -enleverProduit()
-    
-Fichiers :
+* Créer un compte client
+* Consulter et modifier les informations de leur compte
+* Se connecter en tant que client
+* Rechercher et consulter des produits
+* Ajouter des produits au panier
+* Consulter leur panier
+* Régler leur panier
+* Faire une demande d'ajout d'un produit
 
-    -include/panier.php
-    -checkConnexion.php
-    -pages/panier.php
+[.text-justify]
+Les *administrateurs* ont accès à des fonctionnalités similaires aux client et à des fonctionnalités supplémentaires concernant la gestion du site, ils peuvent :
 
-==== 1.5 include/validerCommande.php
-Fonctions :
+* Consulter et modifier les informations de leur compte
+* Se connecter en tant qu'administrateur
+* Ajouter/Supprimer des produits
+* Ajouter/Supprimer des catégories de produits
 
-    -validerCommande()
-    
-Fichiers :
+{empty} +
 
-    -include/panier.php
-    -checkConnexion.php
-    -pages/panier.php
-    
-=== 2. Pages de consultation / affichage de produits
-==== 2.1 Page consultproduit.php
-Fichiers :
+== II. Architecture
 
-    -checkConnexion.php
-    -index.php
-    -style.css
-    -header.php
-    -footer.php
-    -consultStyle.css
-    -avisClientTri.js
-    -prixProduit.js
-    -infoPopup.php
-    -formulaireAjoutAvis.php
-    
-==== 2.2 Page formulaireAjoutAvis.php 
-Fichiers :
+=== 1. Structure du site :
+[.text-justify]
+Le site web est structurés en plusieurs répertoires :
 
-    -connexionStyle.css
-    
-==== 2.3 Page ajouterProduitPanier.php
-Fonctions :
+* `include` contenant les fichiers PHP nécessaires au fonctionnement des pages du site (header, footer, etc)
+* `pages` contentant toutes les pages PHP principales du site
+* `public` contentant les fichiers externes utilisés sur le site (fichiers CSS, images, fichiers JavaScript, etc)
 
-    -ajouterProduit()
-    
-Fichiers :
+Aperçu :
 
-    -panier.php"
-    -checkConnexion.php
-    -consultProduit.php
-    
-==== 2.4 Page listerProduits.php
-Fichiers :
+[source]
+----
+├───include
+├───pages
+└───public
+    ├───css
+    ├───images
+    │   └───produits
+    └───js
+----
 
-    -style.css
-    -header.php
-    -footer.php
-    -listProduit.css
-    -checkConnexion.php
-    
-=== 3. Pages de connexion, gestion de compte
-==== 3.1 connexion.php
-Fonctions :
+image::images/SEP.png[Diagramme SEP du site]
 
-    -get_utilisateur_from_mail()
-    -connecter_client()
-    
-Fichiers :
+=== 2. Base de données du site :
+image::images/DC.png[Diagramme de classes de la base de données du site]
 
-    -checkConnexion.php
-    -infoPopup.php
-    -style.css
-    -header.php
-    -footer.php
-    -connexionStyle.css
-    
-==== 3.2 page creationCompte.php
-Fichiers :
+[.text-justify]
+Toutes les données manipulées par le site sont stockées dans une base de données Oracle SQL externes. +
+Elles sont structurées de la manière suivante :
 
-    -infoPopup.php
-    -checkConnexion.php
-    -connexionStyle.css
-    
-==== 3.3 page consultCompte.php
-Fonctions :
+* Un *Client* confectionne un seul _panier_ et peut consulter 0 ou plusieurs _commandes_ enregistrées
+* Les _administrateurs_ sont stockés dans la base de données mais ils sont représentés par une table indépendante
+* Un *Produit* est attribué à une catégorie, est affecté à 1 ou plusieurs _choix_ (couleur du produit, capacité, etc) et est assigné à une ou plusieures _caractéristiques_ (taille, poid, etc)
+* Une *Categorie* peut avoir ou non une _catégorie mère_
+* Un *Panier* peut contenir 0 ou plusieurs _produits_
+* Une *Commande* peut renseigner 1 ou plusieurs produits
 
-    -verifier_page()
-    
-Fichiers :
+=== 3. Ressources externes :
+==== 3.1. Librairie(s) utilisée(s) :
+[.text-justify]
+Pour toutes les fonctionnalités y compris la connexion concernant la base de données, le site web utilise la librairie https://www.php.net/manual/fr/book.oci8.php[Oci8].
 
-    -infoPopup.php
-    -checkConnexion.php
-    -connexionStyle.css
+=== 4. Éléments essentiels :
+==== 4.1 Prérequis pour les développeurs :
+[.text-justify]
+Si le code du site devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable un outil lui permettant de développer avec *HTML*5, *CSS*, *JavaScript* et *PHP8*.
 
-==== 3.4 Page modifierCompte.php
-Fonctions :
+[.text-justify]
+Le site utilise une *base de données Oracle-SQL* dont le script SQL-LDD de création est fourni avec le code source du site. Cette base de données fonctionne avec des procédures déclarées dans un paquetage `Gestion_REVIVE` et des déclencheurs dont les PL/SQL scripts sont également fournis. Un script SQL-LMD est également fourni dans le but de remplir la base de données avec un jeu de données réel.
 
-    -verifier_page()
-    
-Fichiers :
+[.text-justify]
+Le fichier `connect.inc.php` du répertoire `include` peut être modifié afin de contenir les données de connexion à une nouvelle base de données.
 
-    -infoPopup.php
-    -checkConnexion.php
-    -connexionStyle.css
-    
-=== 4. Pages de admin
-==== 4.1 Page ajouterProduit.php
-Fonctions :
+{empty} +
 
-    -verifier_page()
-    
-Fichiers :
-    
-    -checkConnexion.php
-    -infoPopup.php
-    -connexionStyle.css
-    
-==== 4.2 Page supprimerProduit.php
-Fonctions :
+== III. Fonctions et Fichiers inclus dans les pages du site
 
-    -verifier_page()
-    
-Fichiers :
-    
-    -checkConnexion.php
-    -infoPopup.php
-    -connexionStyle.css
-    
-==== 4.3 Page ajouterCategorie.php
-Fonctions :
-
-    -verifier_page()
-    
-Fichiers :
-    
-    -checkConnexion.php
-    -infoPopup.php
-    -connexionStyle.css
-    
-==== 4.4 Page supprimerCategorie.php
-Fonctions :
-
-    -verifier_page()
-    
-Fichiers :
-    
-    -checkConnexion.php
-    -infoPopup.php
-    -connexionStyle.css
-    
-=== 5. Pages supplémentaires avec affichage
-==== 5.1 Page index.php
-Fichiers :
-
-    -index.css
-    
-==== 5.2 Page header.php
-Fonctions :
-
-    -afficher_categories()
-    
-Fichiers :
-
-    -checkConnexion.php
-    -listerProduits.php
-    -panier.php
-    -consultCompte.php
-    -connexion.php
-    -aPropos.html
-    -index.php
-    
-==== 5.3 Page footer.php
-Fichiers : 
-
-  -aPropos.php
-  
-==== 5.4 Page aPropos.php
-Aucun appel de fonction ou de lien à un fichier
-
-=== 6. Pages supplémentaires fonctionnelles
-
-==== 6.1 Page checkConnexion.php
-Fonctions :
-
-    -get_utilisateur_from_mail()
-    -connecter_client()
-    -connecter_admin()
-    -verifier_page()
-
-Fichiers :
-
-    -connect.inc.php
-
-==== 6.2 Page connect.inc.php
-Aucun appel de fonction ou de lien à un fichier
-
-==== 6.3 Page infoPopup.php
-Fonctions :
-
-    -close_info_popup()
-    -show_info_popup()
+*PASTAGA HERE*

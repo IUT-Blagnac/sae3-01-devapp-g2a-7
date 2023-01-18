@@ -1,3 +1,0 @@
-= Cahier De Recette du site web REVIVE
-:toc:
-:toc-title: Sommaire

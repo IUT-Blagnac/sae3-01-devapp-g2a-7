@@ -175,7 +175,7 @@ Un navigateur web quelconque.
 
 |====
 
-=== 2. Pages produits
+=== 2. Pages produit
 ==== 2.1 Consultation de produit :
 
 |====
@@ -267,7 +267,7 @@ Un navigateur web quelconque.
 
 >|Cas de test 3+|Test-02-03-02
 >|Titre 3+|Affichage du panier (non connecté)
->|Objectif 3+|Lorsqu'un utilisateur n'est, il lui est affecté un panier à l'aide de cookies
+>|Objectif 3+|Lorsqu'un utilisateur n'est pas connecté en tant que client, il lui est affecté un panier à l'aide de cookies
 
 4+|
 
@@ -334,7 +334,7 @@ Un navigateur web quelconque.
 
 >|Cas de test 3+|Test-03-02-02
 >|Titre 3+|Supprimer une catégorie
->|Objectif 3+|Les administrateurs du serveur peuvent supprimer une catégorie de la base de données, les produits qui y sont affectés seront désactivés
+>|Objectif 3+|Les administrateurs du serveur peuvent supprimer une catégorie de la base de données. Une catégorie ne peut être supprimée que si elle ne possède plus de catégories filles ni de produits assignés.
 
 4+|
 

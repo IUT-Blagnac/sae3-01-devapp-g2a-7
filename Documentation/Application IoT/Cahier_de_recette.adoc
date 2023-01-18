@@ -1,3 +1,3 @@
-= Cahier De Recette du site web REVIVE
+= Cahier De Recette de l'application IoT
 :toc:
 :toc-title: Sommaire

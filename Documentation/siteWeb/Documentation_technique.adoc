@@ -12,9 +12,13 @@ Le site web REVIVE est un site d'e-commerce ayant été demandé par l'entrepris
 Le site web peut être utilisé par n'importe qu'elle type d'utilisateur non-connecté. Cependant il existe deux types d'utilisateurs pouvant être connecté pour accéder à certaines fonctionnalités : les clients et les administrateurs.
 
 ==== 1.1) Use-Cases :
-image::images/ucClient.png[Use Case Client]
+image::images/ucClient.png[Use Case Client, 400]
 
-image::images/ucAdmin.png[Use Case Administrateur]
+{empty} +
+
+image::images/ucAdmin.png[Use Case Administrateur, 400]
+
+{empty} +
 
 [.text-justify]
 Les *clients* sont les principaux types d'utilisateurs, ils peuvent :
@@ -61,10 +65,14 @@ Aperçu :
     └───js
 ----
 
-image::images/SEP.png[Diagramme SEP du site]
+image::images/SEP.png[Diagramme SEP du site, 650]
+
+{empty} +
 
 === 2. Base de données du site :
-image::images/DC.png[Diagramme de classes de la base de données du site]
+image::images/DC.png[Diagramme de classes de la base de données du site, 650]
+
+{empty} +
 
 [.text-justify]
 Toutes les données manipulées par le site sont stockées dans une base de données Oracle SQL externes. +

@@ -2,11 +2,12 @@
 :toc:
 :toc-title: Sommaire
 
-== I. Fonctions et Fichiers inclus dans les pages du site
+== III. Description des pages et des fonctionnalités du site
 
 === 1. Pages du panier
 ==== 1.1 include/panier.php
-Fonctions :
+Ce fichier sert à gérer toute la partie technique du panier, tel que les échanges avec la base de données, les calculs, la gestion de la connexion et des cookies en cas de non connexion +
+Fonctions utilisées :
 
     -getProduits()
     -setIdClient()

@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 public class JSONWriter {
 
     private JSONObject dataToCollect;
-    private String[] keys;
     private final static JSONWriter instance = new JSONWriter();
 
     /**
@@ -17,16 +16,6 @@ public class JSONWriter {
      */
     private JSONWriter() {
         this.dataToCollect = new JSONObject();
-        this.keys = new String[] {
-            "activity",
-            "co2",
-            "humidity",
-            "illumination",
-            "infrared",
-            "pressure",
-            "temperature",
-            "tvoc"
-        };
     }
 
     /**
@@ -44,15 +33,12 @@ public class JSONWriter {
     public void init() {
         this.dataToCollect.put("seuils", new JSONObject());
         this.dataToCollect.put("donnees", new JSONObject());
-        this.setSeuilByDefault();
-        this.setDonneesByDefault();
-        this.writeData();
     }
 
     /**
      * Write the configuration data in a config.json file
      */
-    private void writeData() {
+    public void writeData() {
         try {
             File file = new File(System.getProperty("user.dir") + "/Application_IoT/codePython/config.json");
             if (!file.exists()) {
@@ -72,9 +58,9 @@ public class JSONWriter {
      * Set the seuils to 0
      */
     @SuppressWarnings("unchecked")
-    private void setSeuilByDefault() {
+    public void setSeuilsByDefault(String keys[]) {
         for (String key : keys) {
-            ((JSONObject) this.dataToCollect.get("seuils")).put(key, 0);
+            ((JSONObject) this.dataToCollect.get("seuils")).put(key, 0.0);
         }
     }
 
@@ -82,7 +68,7 @@ public class JSONWriter {
      * Set the donnees to true
      */
     @SuppressWarnings("unchecked")
-    private void setDonneesByDefault() {
+    public void setDonneesByDefault(String keys[]) {
         for (String key : keys) {
             ((JSONObject) this.dataToCollect.get("donnees")).put(key, true);
         }
@@ -92,8 +78,12 @@ public class JSONWriter {
      * Get the data collected
      * @return JSONObject
      */
-    public String getDataToCollect() {
-        return this.dataToCollect.toJSONString();
+    public JSONObject getDataToCollect() {
+        return this.dataToCollect;
+    }
+
+    public void setDataToCollect(JSONObject pfData) {
+        this.dataToCollect = pfData;
     }
 
     /**
@@ -117,7 +107,8 @@ public class JSONWriter {
         if (value.equals("")) {
             ((JSONObject) this.dataToCollect.get("seuils")).put(key, null);
         } else {
-            ((JSONObject) this.dataToCollect.get("seuils")).put(key, Double.parseDouble((String) value));
+            String replacedValue = ((String) value).replace(",", ".");
+            ((JSONObject) this.dataToCollect.get("seuils")).put(key, Double.parseDouble(replacedValue));
         }
         this.writeData();
     }

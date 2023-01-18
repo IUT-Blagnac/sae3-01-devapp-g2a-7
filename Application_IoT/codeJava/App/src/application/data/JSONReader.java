@@ -3,6 +3,7 @@ package application.data;
 import java.io.File;
 import java.util.Scanner;
 
+import application.displayThread.ShowData;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -12,7 +13,6 @@ public class JSONReader implements Runnable {
 
     public static final JSONReader instance = new JSONReader();
     private boolean running;
-    DialogueController dialogueController;
 
     /**
      * Constructor
@@ -23,10 +23,9 @@ public class JSONReader implements Runnable {
 
     /**
      * Initialize the JSONReader
-     * @param pfDialogueController
      */
-    public void init(DialogueController pfDialogueController) {
-        this.dialogueController = pfDialogueController;
+    public void init() {
+
     }
 
     /**
@@ -92,11 +91,11 @@ public class JSONReader implements Runnable {
     }
 
     /**
-     * Send the data to the DialogueController
+     * Send the data to the thread
      * @param pfData
      */
     private void sendData(JSONObject pfData) {
-        this.dialogueController.sendData(pfData);
+        ShowData.getInstance().setData(pfData);
     }
 
 }

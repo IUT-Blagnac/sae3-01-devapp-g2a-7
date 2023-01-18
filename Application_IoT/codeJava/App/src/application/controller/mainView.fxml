@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.55" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+<SplitPane dividerPositions="0.55" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <items>
       <AnchorPane maxWidth="-Infinity" prefWidth="300.0">
          <children>
@@ -250,7 +250,7 @@
                            <children>
                               <HBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <StackedBarChart fx:id="bcActivite" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcActivite" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                       <xAxis>
                                         <CategoryAxis label="Activité" side="BOTTOM">
                                              <tickLabelFont>
@@ -262,7 +262,7 @@
                                         <NumberAxis side="LEFT" />
                                       </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcCO2" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcCO2" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="CO2" side="BOTTOM">
                                              <tickLabelFont>
@@ -271,10 +271,10 @@
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis side="LEFT" />
+                                          <NumberAxis side="LEFT" upperBound="2000.0" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcHumidite" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcHumidite" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Humidité" side="BOTTOM">
                                              <tickLabelFont>
@@ -286,7 +286,7 @@
                                           <NumberAxis side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcIllumination" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcIllumination" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Illumination" side="BOTTOM">
                                              <tickLabelFont>
@@ -298,7 +298,7 @@
                                           <NumberAxis side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcInfrarouges" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcInfrarouges" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Infrarouges" side="BOTTOM">
                                              <tickLabelFont>
@@ -310,7 +310,7 @@
                                           <NumberAxis side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcPression" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcPression" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Pression" side="BOTTOM">
                                              <tickLabelFont>
@@ -322,7 +322,7 @@
                                           <NumberAxis side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcTemperature" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcTemperature" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Température" side="BOTTOM">
                                              <tickLabelFont>
@@ -331,10 +331,10 @@
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis side="LEFT" />
+                                          <NumberAxis autoRanging="false" lowerBound="-20.0" side="LEFT" upperBound="60.0" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart fx:id="bcQualiteAir" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcQualiteAir" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Qualité de l'air" side="BOTTOM">
                                              <tickLabelFont>

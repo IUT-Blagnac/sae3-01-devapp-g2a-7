@@ -11,6 +11,7 @@ import application.DialogueController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -19,7 +20,7 @@ import javafx.scene.control.SpinnerValueFactory;
 public class MainController implements Initializable  {
 
     private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>();
-    private HashMap<String, StackedBarChart<String, Float>> barCharts = new HashMap<String, StackedBarChart<String, Float>>();
+    private HashMap<String, StackedBarChart<String, Double>> barCharts = new HashMap<String, StackedBarChart<String, Double>>();
     private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>();
     private DialogueController dialogueController;
 
@@ -28,49 +29,49 @@ public class MainController implements Initializable  {
     @FXML
     Spinner<Double> spinnerActivite;
     @FXML
-    StackedBarChart<String, Float> bcActivite;
+    StackedBarChart<String, Double> bcActivite;
     @FXML
     CheckBox cbCO2;
     @FXML
     Spinner<Double> spinnerCO2;
     @FXML
-    StackedBarChart<String, Float> bcCO2;
+    StackedBarChart<String, Double> bcCO2;
     @FXML
     CheckBox cbHumidite;
     @FXML
     Spinner<Double> spinnerHumidite;
     @FXML
-    StackedBarChart<String, Float> bcHumidite;
+    StackedBarChart<String, Double> bcHumidite;
     @FXML
     CheckBox cbIllumination;
     @FXML
     Spinner<Double> spinnerIllumination;
     @FXML
-    StackedBarChart<String, Float> bcIllumination;
+    StackedBarChart<String, Double> bcIllumination;
     @FXML
     CheckBox cbInfrarouges;
     @FXML
     Spinner<Double> spinnerInfrarouges;
     @FXML
-    StackedBarChart<String, Float> bcInfrarouges;
+    StackedBarChart<String, Double> bcInfrarouges;
     @FXML
     CheckBox cbPression;
     @FXML
     Spinner<Double> spinnerPression;
     @FXML
-    StackedBarChart<String, Float> bcPression;
+    StackedBarChart<String, Double> bcPression;
     @FXML
     CheckBox cbTemperature;
     @FXML
     Spinner<Double> spinnerTemperature;
     @FXML
-    StackedBarChart<String, Float> bcTemperature;
+    StackedBarChart<String, Double> bcTemperature;
     @FXML
     CheckBox cbQualiteAir;
     @FXML
     Spinner<Double> spinnerQualiteAir;
     @FXML
-    StackedBarChart<String, Float> bcQualiteAir;
+    StackedBarChart<String, Double> bcQualiteAir;
 
     /**
      * Initialize the controller
@@ -137,6 +138,10 @@ public class MainController implements Initializable  {
         spinners.get(pfKkey).getEditor().setText((value));
     }
 
+    public HashMap<String, StackedBarChart<String, Double>> getBarCharts() {
+        return barCharts;
+    }
+
     /**
      * Setter dialogueController
      * @param pfDialogueController
@@ -170,14 +175,16 @@ public class MainController implements Initializable  {
                 dialogueController.spinnerListener(key, newValue);
             });
         }
+
+        XYChart.Series<String, Double> series1 = new XYChart.Series<>();
+        series1.getData().add(new XYChart.Data<>("", 25.0));
+        XYChart.Series<String, Double> series2 = new XYChart.Series<>();
+        series2.getData().add(new XYChart.Data<>("", 10.0));
+
+
+        bcTemperature.getData().addAll(series1, series2);
     }
 
-    /**
-     * Show datas // TODO
-     * @param pfData
-     */
-    public void showData(JSONObject pfData) {
-        System.out.println(pfData.toJSONString());
-    }
+
     
 }

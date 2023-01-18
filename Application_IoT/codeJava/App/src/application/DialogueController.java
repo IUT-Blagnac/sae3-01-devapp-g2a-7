@@ -1,5 +1,6 @@
 package application;
 
+import application.displayThread.ShowData;
 import org.json.simple.JSONObject;
 
 import application.controller.MainController;
@@ -40,9 +41,12 @@ public class DialogueController extends Application {
             this.mainController = loader.getController();
             this.mainController.setDialogueController(this);
             this.mainController.init();
+            ShowData.getInstance().setBarCharts(this.mainController.getBarCharts());
 
             // Launch the JSONReader Thread
             JSONReader.getInstance().start();
+            ShowData.getInstance().start();
+
             
             // show the view
             primaryStage.show();
@@ -57,13 +61,15 @@ public class DialogueController extends Application {
         super.init();
         // initialize the JSONController
         JSONWriter.getInstance().init();
-        JSONReader.getInstance().init(this);
+        JSONReader.getInstance().init();
+        ShowData.getInstance().init();
     }
 
     @Override
     public void stop() throws Exception {
         super.stop();
         JSONReader.getInstance().stop();
+        ShowData.getInstance().stop();
     }
 
     /**
@@ -89,13 +95,5 @@ public class DialogueController extends Application {
      */
     public void spinnerListener(String key, String value) {
         JSONWriter.getInstance().updateSeuil(key, value);
-    }
-
-    /**
-     * Send the data to the mainController
-     * @param pfData the data to send
-     */
-    public void sendData(JSONObject pfData) {
-        this.mainController.showData(pfData);
     }
 }

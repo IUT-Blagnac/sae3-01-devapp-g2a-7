@@ -11,7 +11,8 @@ Le site web REVIVE est un site d'e-commerce ayant été demandé par l'entrepris
 [.text-justify]
 Le site web peut être utilisé par n'importe qu'elle type d'utilisateur non-connecté. Cependant il existe deux types d'utilisateurs pouvant être connecté pour accéder à certaines fonctionnalités : les clients et les administrateurs.
 
-==== 1.1) Use-Cases :
+Use-Cases :
+
 image::images/ucClient.png[Use Case Client, 400]
 
 {empty} +
@@ -45,6 +46,13 @@ Les *administrateurs* ont accès à des fonctionnalités similaires aux client e
 == II. Architecture
 
 === 1. Structure du site :
+
+Diagramme SEP :
+
+image::images/SEP.png[Diagramme SEP du site, 700]
+
+{empty} +
+
 [.text-justify]
 Le site web est structurés en plusieurs répertoires :
 
@@ -65,12 +73,11 @@ Aperçu :
     └───js
 ----
 
-image::images/SEP.png[Diagramme SEP du site, 650]
-
-{empty} +
-
 === 2. Base de données du site :
-image::images/DC.png[Diagramme de classes de la base de données du site, 650]
+
+Diagramme de classes de la base de données :
+
+image::images/DC.png[Diagramme de classes de la base de données du site, 700]
 
 {empty} +
 
@@ -173,9 +180,9 @@ Fichiers inclus :
     -include/panier.php
     -checkConnexion.php
     -pages/panier.php
-    
-=== 2. Pages de consultation / affichage de produits
-==== 2.1 Page consultproduit.php
+
+=== 2. Pages de consultation et affichage de produits
+==== 2.1 Page consultProduit.php
 [.text-justify]
 Cette page permet de consulter les informations d'un produit et de l'ajouter dans son panier en choisissant différentes options et la quantité de ce produit qu'on veut acheter, on peut en suite cliquer sur le bouton "ajouter au panier" qui redirige vers la page "ajouterProduitPanier.php". On peut également voir la liste des avis donnés sur le produit. Lorsque l'utilisateur est connecté, un bouton permettant d'accéder à la page formulaireAjoutAvis.php est présent. +
 

@@ -1,0 +1,183 @@
+section {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    padding:50px;
+    box-sizing:border-box;
+    min-height:650px;
+    height:calc(100vh - 175px);
+    margin-bottom:-100px;
+}
+
+section > div {
+    box-shadow:1px 1px 5px var(--dark-grey);
+    padding:30px;
+    max-width:500px;
+    border-radius:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+h1 {
+    font-size:35px;
+    color:var(--green-blue);
+}
+
+form {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+section > div > div {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+#form-connexion {
+    height:280px;
+}
+
+#form-creationCompte {
+    height:450px;
+}
+
+#form-modifierCompte {
+    height:450px;
+    width:490px;
+}
+
+#form-ajouterCategorie {
+    height:200px;
+}
+
+section > div > div {
+    height:135px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    color:var(--dark-grey);
+    border:1px solid var(--dark-grey);
+    border-radius:10px;
+    display:block;
+    padding-left:15px;
+    width:calc(100% - 21px);
+    max-width:750px;
+    height:50px;
+    outline-color:var(--green-blue);
+}
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+select::placeholder {
+    color:var(--grey);
+}
+
+#form-creationCompte > div, #form-modifierCompte > div {
+    width:82%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+}
+
+input[type="checkbox"] {
+    width:30px;
+    height:30px;
+    border:2px solid var(--dark-grey);
+    border-radius:10px;
+    accent-color:var(--green-blue);
+}
+
+.info {
+    font-size:15px;
+    width:100%;
+    text-align:justify;
+}
+
+input[type="submit"] {
+    display:block;
+    background-color:var(--green-blue);
+    border-radius:10px;
+    border:1px solid white;
+    color:white;
+    padding:15px;
+    width:40%;
+    max-width:280px;
+    transition-duration:0.2s;
+}
+input[type="submit"]:hover {
+    border:1px solid var(--green-blue);
+    color:var(--green-blue);
+    background-color:white;
+    cursor:pointer;
+    transition-duration:0.2s;
+}
+
+section a {
+    font-size:16px;
+    color:var(--dark-grey);
+    font-weight:bold;
+}
+section a:hover {
+    text-decoration:underline;
+}
+
+#form-deconnexion {
+    margin-top:15px;
+    margin-bottom:0;
+}
+
+#deconnexion-input {
+    background-color:var(--grey);
+}
+#deconnexion-input:hover {
+    border:1px solid var(--grey);
+    background-color:white;
+    color:var(--grey);
+}
+
+#info-label {
+    text-align:center;
+}
+
+#description-avis {
+    overflow-wrap: break-word;
+    color:var(--dark-grey);
+    border:1px solid var(--dark-grey);
+    border-radius:10px;
+    display:block;
+    padding-left:15px;
+    width:calc(100% - 21px);
+    height:120px;
+    outline-color:var(--green-blue);
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+/*Formulaire avis*/
+textarea {
+    max-width:450px;
+    min-width:200px;
+    max-height: 300px;
+    min-height: 100px;
+}
+
+#form-AjouterCategorie p.info {    
+    max-width:400px;
+}

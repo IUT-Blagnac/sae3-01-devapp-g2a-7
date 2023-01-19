@@ -1,16 +1,17 @@
-package application;
+package application.control;
+
 
 import org.json.simple.JSONObject;
-
-import application.controller.MainController;
-import application.data.Config;
-import application.data.JSONReader;
-import application.data.JSONWriter;
+import application.view.MainController;
+import application.model.Config;
+import application.model.JSONReader;
+import application.model.JSONWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
+
 
 public class DialogueController extends Application {
 
@@ -111,4 +112,5 @@ public class DialogueController extends Application {
     public void loadView(JSONObject pfConfigView) {
         this.mainController.loadView(pfConfigView);
     }
+
 }

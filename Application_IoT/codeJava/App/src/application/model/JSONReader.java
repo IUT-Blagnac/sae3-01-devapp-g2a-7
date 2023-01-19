@@ -1,12 +1,12 @@
-package application.data;
+package application.model;
+
 
 import java.io.File;
 import java.util.Scanner;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import application.control.DialogueController;
 
-import application.DialogueController;
 
 public class JSONReader implements Runnable {
 

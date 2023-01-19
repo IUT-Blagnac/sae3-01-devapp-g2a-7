@@ -1,13 +1,11 @@
-package application.controller;
+package application.view;
 
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-
 import org.json.simple.JSONObject;
-
-import application.DialogueController;
+import application.control.DialogueController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.StackedBarChart;
@@ -106,7 +104,6 @@ public class MainController implements Initializable  {
         checkBoxs.put("pressure", cbPression);
         checkBoxs.put("temperature", cbTemperature);
         checkBoxs.put("tvoc", cbQualiteAir);
-        
     }
 
     /**
@@ -176,9 +173,7 @@ public class MainController implements Initializable  {
      * Show datas // TODO
      * @param pfData
      */
-    public void showData(JSONObject pfData) {
-
-    }
+    public void showData(JSONObject pfData) {}
 
     /**
         Load the view configuration from the JSON file.

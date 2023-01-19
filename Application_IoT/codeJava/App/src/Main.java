@@ -1,4 +1,4 @@
-import application.DialogueController;
+import application.control.DialogueController;
 
 public class Main {
     public static void main(String[] args) {

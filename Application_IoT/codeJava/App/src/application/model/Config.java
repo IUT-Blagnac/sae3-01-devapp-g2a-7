@@ -1,14 +1,14 @@
-package application.data;
+package application.model;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import application.control.DialogueController;
 
-import application.DialogueController;
 
 public class Config {
 
@@ -32,7 +32,6 @@ public class Config {
                 "temperature",
                 "tvoc"
         };
-
     }
 
     public static Config getInstance() {
@@ -64,6 +63,6 @@ public class Config {
             JSONWriter.getInstance().writeData();
             this.dialogueController.loadView(JSONWriter.getInstance().getDataToCollect());
         }
-
     }
+
 }

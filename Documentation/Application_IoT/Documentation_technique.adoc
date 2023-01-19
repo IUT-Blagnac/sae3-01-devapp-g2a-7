@@ -138,9 +138,10 @@ Le code de l'application est structuré en plusieurs packages en suivant (plus o
 
 L'application est structurée en fonction des packages suivant :
 
+* `application` contentant les sous-packages suivant le MVC pattern et la classe ``Main.java`` lançant l'application
 * `control` contenant les classes de "dialogue" contrôlant les liaisons entre les classes de traitement de données et les classes gérant l'interface graphique
 * `model` contenant les classes de traitement des données (dont des threads)
-* ``view` contenant les classes "controller" et les vues FXML correspondantes pour l'affichage de l'interface graphique
+* `view` contenant les classes "controller" et les vues FXML correspondantes pour l'affichage de l'interface graphique
 
 Aperçu de l'arborescence :
 

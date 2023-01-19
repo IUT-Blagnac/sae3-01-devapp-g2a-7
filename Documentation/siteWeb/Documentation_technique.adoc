@@ -4,6 +4,7 @@
 
 Groupe *G2A-7* : Tilian HURÉ, Vincent MIQEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
 
+{empty} +
 
 == I. Présentation du site web
 [.text-justify]

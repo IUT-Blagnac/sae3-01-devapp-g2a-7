@@ -14,12 +14,15 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
 
+/**
+ * TODO
+ */
 public class MainController implements Initializable  {
 
-    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>();
-    private HashMap<String, StackedBarChart<String, Float>> barCharts = new HashMap<String, StackedBarChart<String, Float>>();
-    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>();
-    private DialogueController dialogueController;
+    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>(); // TODO
+    private HashMap<String, StackedBarChart<String, Float>> barCharts = new HashMap<String, StackedBarChart<String, Float>>(); // TODO
+    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>(); // TODO
+    private DialogueController dialogueController; // TODO
 
     @FXML
     CheckBox cbActivite;
@@ -170,10 +173,11 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * Show datas // TODO
-     * @param pfData
+     * TODO
      */
-    public void showData(JSONObject pfData) {}
+    public void showData(JSONObject pfData) {
+        // TODO
+    }
 
     /**
         Load the view configuration from the JSON file.

@@ -30,7 +30,7 @@
                            <children>
                               <VBox alignment="CENTER" style="-fx-background-color: gainsboro;">
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Sélection des données">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="Configuration des données">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -233,7 +233,7 @@
                <children>
                   <VBox alignment="CENTER" style="-fx-background-color: gainsboro;">
                      <children>
-                        <Label text="Récupération des données...">
+                        <Label text="Affichage des données">
                            <font>
                               <Font size="14.0" />
                            </font>

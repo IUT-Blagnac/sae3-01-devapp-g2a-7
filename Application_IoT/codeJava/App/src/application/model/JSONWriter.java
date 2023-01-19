@@ -7,10 +7,13 @@ import java.io.IOException;
 import org.json.simple.JSONObject;
 
 
+/**
+ * TODO
+ */
 public class JSONWriter {
 
-    private JSONObject dataToCollect;
-    private final static JSONWriter instance = new JSONWriter();
+    private JSONObject dataToCollect; // TODO
+    private final static JSONWriter instance = new JSONWriter(); // TODO
 
     /**
      * Constructor
@@ -41,7 +44,8 @@ public class JSONWriter {
      */
     public void writeData() {
         try {
-            File file = new File(System.getProperty("user.dir") + "/Application_IoT/codePython/config.json");
+            File file = new File(System.getProperty("user.dir") + "Application_IoT/codePython/config.json");
+            System.out.println(file.getAbsolutePath());
             if (!file.exists()) {
                 file.createNewFile();
             }

@@ -13,9 +13,12 @@ import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 
 
+/**
+ * TODO
+ */
 public class DialogueController extends Application {
 
-    private MainController mainController;
+    private MainController mainController; // TODO
     
     /**
      * Start the application, this fonction need to be call with Application.launch() function
@@ -26,7 +29,7 @@ public class DialogueController extends Application {
         try {
             // load FXML file
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("controller/mainView.fxml"));
+            loader.setLocation(getClass().getResource("../view/mainView.fxml"));
 
             // load the view
             SplitPane root = loader.load();
@@ -107,7 +110,7 @@ public class DialogueController extends Application {
 
     /**
      * Send the config to the mainController
-     * @param pfConfig the config to send
+     * @param pfConfigView the config to send
      */
     public void loadView(JSONObject pfConfigView) {
         this.mainController.loadView(pfConfigView);

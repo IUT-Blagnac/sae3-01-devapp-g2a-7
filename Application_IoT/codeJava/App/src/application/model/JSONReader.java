@@ -8,11 +8,14 @@ import org.json.simple.parser.JSONParser;
 import application.control.DialogueController;
 
 
+/**
+ * TODO
+ */
 public class JSONReader implements Runnable {
 
-    public static final JSONReader instance = new JSONReader();
-    private boolean running;
-    DialogueController dialogueController;
+    public static final JSONReader instance = new JSONReader(); // TODO
+    private boolean running; // TODO
+    DialogueController dialogueController; // TODO
 
     /**
      * Constructor

@@ -10,17 +10,25 @@ import org.json.simple.parser.ParseException;
 import application.control.DialogueController;
 
 
+/**
+ * TODO
+ */
 public class Config {
 
-    private final static Config instance = new Config();
-    private String[] keys;
+    private final static Config instance = new Config(); // TODO
+    private String[] keys; // TODO
+    private DialogueController dialogueController; // TODO
 
-    private DialogueController dialogueController;
-
+    /**
+     * TODO
+     */
     public void setDialogueController(DialogueController dialogueController) {
         this.dialogueController = dialogueController;
     }
 
+    /**
+     * TODO
+     */
     private Config() {
         this.keys = new String[] {
                 "activity",
@@ -34,10 +42,16 @@ public class Config {
         };
     }
 
+    /**
+     * TODO
+     */
     public static Config getInstance() {
         return instance;
     }
 
+    /**
+     * TODO
+     */
     public void loadConfig() {
         File file = new File(System.getProperty("user.dir") + "/Application_IoT/codePython/config.json");
         if (file.exists()) {
@@ -50,13 +64,11 @@ public class Config {
                 scanner.close();
                 this.dialogueController.loadView((JSONObject) new JSONParser().parse(content));
                 JSONWriter.getInstance().setDataToCollect((JSONObject) new JSONParser().parse(content));
-
             } catch (FileNotFoundException | ParseException e) {
-                System.out.println("Erreur impossible, un vrai problème est survenu ailleurs");
+                System.out.println("Erreur impossible, un vrai problème est survenu ailleurs"); // TODO (Popup et plus explicatif)
                 System.out.println(e.getMessage());
                 System.exit(1);
             }
-
         } else {
             JSONWriter.getInstance().setDonneesByDefault(keys);
             JSONWriter.getInstance().setSeuilsByDefault(keys);

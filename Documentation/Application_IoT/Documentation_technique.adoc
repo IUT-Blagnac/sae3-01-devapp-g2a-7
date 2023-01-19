@@ -1,4 +1,4 @@
-= Cahier De Recette de l'application IoT
+= Documentation technique de l'application IoT
 :toc:
 :toc-title: Sommaire
 
@@ -162,18 +162,66 @@ Si le code de l'application devait être repris pour être amélioré ou modifi�
 
 ==== 4.2 Lancement de l'application :
 [.text-justify]
-Le poste sur lequel souhaite être lancée l'application avec le fichier exécutable `ApplicationIoT.jar` ou via un IDE, devra préalablement disposer d'une JRE versionné en 1.8. Le script Python doit être lancé avant de lancer l'application Java, pour cela, les commande suivantes peuvent être utilisées :
+Le poste sur lequel souhaite être lancée l'application avec le fichier exécutable `ApplicationIoT.jar` ou via un IDE, devra préalablement disposer d'une JRE versionné en 1.8. Le script Python doit être lancé avant de lancer l'application Java, pour cela, les commande suivantes peuvent être utilisées dans un terminal :
 
-`python codePython/script.py` ou `python codePython/script.py` (essayer l'autre si l'un ne marche pas), pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
+`python codePython/script.py` ou `python codePython/script.py` (essayer l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire `Application_IoT`.
 
 [NOTE]
 ====
 [.text-justify]
-Pour toute information concernant l'installation d'une JRE 1.8, merci de bien vouloir vous référer à la *documentation utilisateur*.
+Pour toute information concernant l'installation d'une JRE 1.8, merci de bien vouloir vous référer à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
 ====
 
 {empty} +
 
 == III. Descriptions des fonctionnalités techniques
+[.text-justify]
+L'interface graphique de l'application est divisé en deux partie :
 
-*TODO*
+* La partie gauche concernant la configuration des données (données à afficher et seuils)
+* La partie droite concernant l'affichage des données récupérées selon la configuration renseignée.
+
+=== 1. Configuration
+==== 1.1 Chargement/génération d'une configuration
+[.text-justify]
+Si un fichier de configuration `config.json` existe déjà, l'application met à jour son interface graphique en conséquence, sinon un fichier de configuration par défaut est recréé.
+
+===== A) Packages et classes impliqués
+
+* `model/`
+** `Config.java`
+* `view/`
+** `MainController.java`
+** `mainView.fxml`
+* `control/`
+** `DialogueController.java`
+
+===== B) Éléments essentiels
+====== B.1 Fonctions impliquées
+
+* `Config.java`
+** `getInstance`
+** `loadConfig`
+* `MainController.java`
+** `loadView`
+* `DialogueController.java`
+** `start`
+** `loadView`
+
+==== 1.2 Sélection des données à afficher
+[.text-justify]
+L'utilisateur peut choisir via des cases à côcher quels types de données (température, humidité, etc) il souhaite afficher sur l'interface de l'application.
+
+===== A) Packages et classes impliqués
+
+* `model/`
+** ``
+* `view/`
+** ``
+* `control/`
+** ``
+
+===== B) Éléments essentiels
+====== B.1 Fonctions impliquées
+
+*TO COMPLETE*

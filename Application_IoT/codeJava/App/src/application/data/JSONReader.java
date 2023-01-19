@@ -3,11 +3,9 @@ package application.data;
 import java.io.File;
 import java.util.Scanner;
 
-import application.displayThread.ShowData;
+import application.ShowData;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import application.DialogueController;
 
 public class JSONReader implements Runnable {
 

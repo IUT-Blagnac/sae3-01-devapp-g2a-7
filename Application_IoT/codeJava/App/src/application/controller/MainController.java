@@ -136,10 +136,14 @@ public class MainController implements Initializable  {
         String value = pfNewValue.matches("-{0,1}\\d*(\\.|,){0,1}\\d*") ?
         pfNewValue.replace(".", ",") : pfOldValue;
         spinners.get(pfKkey).getEditor().setText((value));
+
     }
 
     public HashMap<String, StackedBarChart<String, Double>> getBarCharts() {
-        return barCharts;
+        return this.barCharts;
+    }
+    public HashMap<String, Spinner<Double>> getSpinners() {
+        return this.spinners;
     }
 
     /**
@@ -175,14 +179,6 @@ public class MainController implements Initializable  {
                 dialogueController.spinnerListener(key, newValue);
             });
         }
-
-        XYChart.Series<String, Double> series1 = new XYChart.Series<>();
-        series1.getData().add(new XYChart.Data<>("", 25.0));
-        XYChart.Series<String, Double> series2 = new XYChart.Series<>();
-        series2.getData().add(new XYChart.Data<>("", 10.0));
-
-
-        bcTemperature.getData().addAll(series1, series2);
     }
 
 

@@ -1,8 +1,5 @@
 package application;
 
-import application.displayThread.ShowData;
-import org.json.simple.JSONObject;
-
 import application.controller.MainController;
 import application.data.JSONReader;
 import application.data.JSONWriter;
@@ -42,10 +39,10 @@ public class DialogueController extends Application {
             this.mainController.setDialogueController(this);
             this.mainController.init();
             ShowData.getInstance().setBarCharts(this.mainController.getBarCharts());
+            ShowData.getInstance().setSeuils(this.mainController.getSpinners());
 
             // Launch the JSONReader Thread
             JSONReader.getInstance().start();
-            ShowData.getInstance().start();
 
             
             // show the view
@@ -69,7 +66,6 @@ public class DialogueController extends Application {
     public void stop() throws Exception {
         super.stop();
         JSONReader.getInstance().stop();
-        ShowData.getInstance().stop();
     }
 
     /**
@@ -95,5 +91,6 @@ public class DialogueController extends Application {
      */
     public void spinnerListener(String key, String value) {
         JSONWriter.getInstance().updateSeuil(key, value);
+        ShowData.getInstance().updateSeuil(key, value);
     }
 }

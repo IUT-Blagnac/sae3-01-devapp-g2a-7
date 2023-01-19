@@ -4,6 +4,7 @@
 
 Groupe *G2A-7* : Tilian HURÉ, Vincent MIQEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
 
+{empty} +
 
 == I. Présentation de l'application
 [.text-justify]
@@ -32,7 +33,7 @@ Tous les fichiers fonctionnels de l'application se trouvent dans le répertoire 
 
 Répertoire : `codePython/script.py`
 
-NOTE:
+[NOTE]
 ====
 Peu importe le fichier `config.json` donné pour ce script (fichier mal-formé voire absent, etc), ce dernier génerera toujours un fichier de données `data.json` bien formé.
 ====
@@ -41,10 +42,7 @@ Peu importe le fichier `config.json` donné pour ce script (fichier mal-formé v
 
 Répertoire : `codeJava/App/`
 
-NOTE:
-====
-Peu importe le fichier `config.json` donné pour l'application JavaFX (fichier mal-formé voire absent, etc), cette dernière regénerera toujours un fichier de configuration bien formé.
-====
+NOTE: Peu importe le fichier `config.json` donné pour l'application JavaFX (fichier mal-formé voire absent, etc), cette dernière regénerera toujours un fichier de configuration bien formé.
 
 ==== 1.2 Fichier de données et de configuration :
 [.text-justify]

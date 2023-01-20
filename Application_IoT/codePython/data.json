@@ -1,14 +1,1 @@
-{
-  "donnees": {
-    "infrared": 10,
-    "co2": 495,
-    "temperature": 20.1,
-    "humidity": 40
-  },
-  "seuils": {
-    "infrared": true,
-    "co2": false,
-    "temperature": false,
-    "humidity": true
-  }
-}
+{"donnees": {"co2": 1400, "temperature": 21.5, "humidity": 37, "infrared": 11}, "seuils": {"co2": true, "temperature": true, "humidity": true, "infrared": true}}

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import org.json.simple.JSONObject;
-import sun.misc.FileURLMapper;
 
 
 /**
@@ -34,6 +33,7 @@ public class JSONWriter {
     /**
      * Initialize the JSONController
      */
+    @SuppressWarnings("unchecked")
     public void init() {
         this.dataToCollect.put("seuils", new JSONObject());
         this.dataToCollect.put("donnees", new JSONObject());

@@ -1,7 +1,5 @@
 package application.control;
 
-
-import application.control.ShowData;
 import application.view.MainController;
 import application.model.Config;
 import application.model.JSONReader;

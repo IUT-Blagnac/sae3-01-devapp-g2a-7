@@ -1,3 +1,0 @@
-= Cahier De Recette de l'application IoT
-:toc:
-:toc-title: Sommaire

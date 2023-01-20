@@ -9,7 +9,10 @@ import signal
 pwd = sys.path[0]
 
 # Data to write in data.json
-data = {}
+data = {
+    "donnees" : {},
+    "seuils" : {}
+}
 
 # Alarm timer
 alarmTimer = 60
@@ -74,18 +77,22 @@ def on_alarm(signum, frame):
     # Reload the config
     config = get_config()
     # Read the payload with the keys in the config
-    for key, value in config["donne"].items():
+    for key, value in config["donnees"].items():
         # check if we neeed to collect the data of the key
         if value:
             # If we need to collect the data of the key, we add it to the data and we check if the value is above the threshold
-            if key in config["seuil"]:
-                data[key] = [payload["object"][key], True if payload["object"][key] > config["seuil"][key] else False]
+            if key in config["seuils"]:
+                data["donnees"][key] = payload["object"][key]
+                data["seuils"][key] = True if payload["object"][key] > config["seuils"][key] else False
             else:
-                data[key] = [payload["object"][key], None]
+                data["donnees"][key] = payload["object"][key]
+                data["seuils"][key] = None
         else:
             # If we don't need to collect the data of the key, we delete it
-            if key in data:
-                data.pop(key)
+            if key in data["donnees"]:
+                data["donnees"].pop(key)
+            if key in data["seuils"]:
+                data["seuils"].pop(key)
     # Write the data in data.json file
     write_data(data)
     # Reset the timer of 60 seconds

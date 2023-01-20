@@ -23,6 +23,7 @@ DROP SEQUENCE seq_panier;
 DROP SEQUENCE seq_produit;
 DROP SEQUENCE seq_choix;
 DROP SEQUENCE seq_categorie;
+DROP SEQUENCE seq_caracteristique;
 
 
 /*CRÉATION des tables*/
@@ -33,7 +34,7 @@ CREATE TABLE Administrateur (
     nomAdmin VARCHAR(150),
     prenomAdmin VARCHAR(150),
     mailAdmin VARCHAR(150),
-    mdpAdmin VARCHAR(150),
+    mdpAdmin VARCHAR(256),
     dateCompteAdmin DATE,
     CONSTRAINT pk_administrateur PRIMARY KEY (idAdmin),
     CONSTRAINT uk_administrateur_mailadmin UNIQUE (mailAdmin)
@@ -71,8 +72,8 @@ CREATE TABLE Produit (
     idProduit NUMBER,
     nomProduit VARCHAR(150),
     extensionImgProduit VARCHAR(5),
-    prixProduit DECIMAL,
-    prixBaseProduit DECIMAL,
+    prixProduit DECIMAL(20, 2),
+    prixBaseProduit DECIMAL(20, 2),
     detailsProduit VARCHAR(256),
     quantiteStockProduit NUMBER,
     vendreProduit NUMBER(1),
@@ -97,7 +98,7 @@ CREATE TABLE Produit (
 CREATE TABLE Choix (
     idChoix NUMBER,
     libelleChoix VARCHAR(150),
-    tauxChoix DECIMAL,
+    tauxChoix DECIMAL(20, 2),
     CONSTRAINT pk_choix PRIMARY KEY (idChoix),
     CONSTRAINT ck_choix_tauxchoix CHECK (tauxChoix >= 1)
 );
@@ -117,7 +118,7 @@ CREATE TABLE Panier (
 
 CREATE TABLE Commande (
     idCommande NUMBER,
-    prixCommande DECIMAL,
+    prixCommande DECIMAL(20, 2),
     dateCommande DATE,
     idClient NUMBER,
     CONSTRAINT pk_commande PRIMARY KEY (idCommande),
@@ -133,7 +134,7 @@ CREATE TABLE Contenir (
     idPanier NUMBER,
     idProduit NUMBER,
     quantiteProduit NUMBER,
-    prixProduit DECIMAL,
+    prixProduit DECIMAL(20, 2),
     descriptifProduit VARCHAR(150),
     CONSTRAINT pk_contenir PRIMARY KEY (idPanier, idProduit),
     CONSTRAINT ck_contenir_quantiteproduit CHECK (quantiteProduit >= 1),
@@ -147,6 +148,7 @@ CREATE TABLE Renseigner (
     idCommande NUMBER,
     idProduit NUMBER,
     quantiteProduit NUMBER,
+    descriptifProduit VARCHAR(150),
     CONSTRAINT pk_renseigner PRIMARY KEY (idCommande, idProduit),
     CONSTRAINT ck_renseigner_quantiteproduit CHECK (quantiteProduit >= 1),
     CONSTRAINT fk_renseigner_idcommande FOREIGN KEY (idCommande) REFERENCES Commande(idCommande),
@@ -158,7 +160,8 @@ CREATE TABLE DonnerAvis (
     idClient NUMBER,
     idProduit NUMBER,
     descriptionAvis VARCHAR(256),
-    noteAvis DECIMAL,
+    noteAvis NUMBER,
+    dateAvis DATE,
     CONSTRAINT pk_donneravis PRIMARY KEY (idClient, idProduit),
     CONSTRAINT fk_donneravis_idclient FOREIGN KEY (idClient) REFERENCES Client(idClient),
     CONSTRAINT fk_donneravis_idproduit FOREIGN KEY (idProduit) REFERENCES Produit(idProduit),
@@ -194,3 +197,4 @@ CREATE SEQUENCE seq_panier START WITH 0 MINVALUE 0;
 CREATE SEQUENCE seq_produit START WITH 0 MINVALUE 0;
 CREATE SEQUENCE seq_choix START WITH 0 MINVALUE 0;
 CREATE SEQUENCE seq_categorie START WITH 0 MINVALUE 0;
+CREATE SEQUENCE seq_caracteristique START WITH 0 MINVALUE 0;

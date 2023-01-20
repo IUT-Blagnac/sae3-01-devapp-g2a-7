@@ -9,12 +9,12 @@ import org.json.simple.parser.JSONParser;
 
 
 /**
- * TODO
+ * Read the data.json file and send the data to the ShowData class
  */
 public class JSONReader implements Runnable {
 
-    public static final JSONReader instance = new JSONReader(); // TODO
-    private boolean running; // TODO
+    public static final JSONReader instance = new JSONReader(); // Singleton
+    private boolean running; // Store the state of the thread
 
     /**
      * Constructor
@@ -56,7 +56,7 @@ public class JSONReader implements Runnable {
 
     /**
      * Get the instance of JSONReader
-     * @return JSONReader
+     * @return JSONReader instance
      */
     public static JSONReader getInstance() {
         return instance;
@@ -79,7 +79,7 @@ public class JSONReader implements Runnable {
     
     /**
      * Get the running state of the JSONReader
-     * @return boolean
+     * @return boolean running
      */
     public boolean getRunning() {
         return this.running;
@@ -87,7 +87,7 @@ public class JSONReader implements Runnable {
 
     /**
      * Send the data to the thread
-     * @param pfData
+     * @param pfData JSONObject data
      */
     private void sendData(JSONObject pfData) {
         ShowData.getInstance().setData(pfData);

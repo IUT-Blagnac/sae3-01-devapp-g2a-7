@@ -14,11 +14,13 @@ import org.json.simple.JSONObject;
 
 
 /**
- * TODO
+ * The main controller of the application
+ * This class is the main class of the application
+ * He is the link between the view and the model
  */
 public class DialogueController extends Application {
 
-    private MainController mainController; // TODO
+    private MainController mainController; // Store the mainController
     
     /**
      * Start the application, this fonction need to be call with Application.launch() function

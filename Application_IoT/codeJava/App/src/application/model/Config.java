@@ -8,21 +8,20 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
-/**
- * TODO
- */
 import application.control.DialogueController;
 
+/**
+ * Reload the config file.
+ */
 public class Config {
 
-    private final static Config instance = new Config(); // TODO
-    private String[] keys; // TODO
-    private DialogueController dialogueController; // TODO
-    private String content;
+    private final static Config instance = new Config(); // Singleton
+    private String[] keys; // Store all keys
+    private DialogueController dialogueController; // Store the dialogueController
+    private String content; // Store the content of the config file
 
     /**
-     * TODO
+     * setter for dialogueController
      * @param dialogueController
      */
     public void setDialogueController(DialogueController dialogueController) {
@@ -30,7 +29,7 @@ public class Config {
     }
 
     /**
-     * TODO
+     * Constructor
      */
     private Config() {
         this.keys = new String[] {
@@ -47,13 +46,16 @@ public class Config {
     }
 
     /**
-     * // TODO
+     * getter for instance
      * @return
      */
     public static Config getInstance() {
         return instance;
     }
 
+    /**
+     * Initialize the content of the config file
+     */
     public void init() {
         File file = new File("./Application_IoT/codePython/config.json");
         if (file.exists()) {
@@ -74,7 +76,7 @@ public class Config {
     }
 
     /**
-     * TODO
+     * Load the config and set the view
      */
     public void loadConfig() {
         if (this.content.equals("")) {

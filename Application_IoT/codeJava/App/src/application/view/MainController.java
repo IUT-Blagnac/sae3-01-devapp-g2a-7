@@ -19,10 +19,10 @@ import javafx.scene.control.SpinnerValueFactory;
  */
 public class MainController implements Initializable  {
 
-    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>(); // TODO
-    private HashMap<String, StackedBarChart<String, Double>> barCharts = new HashMap<String, StackedBarChart<String, Double>>(); // TODO
-    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>(); // TODO
-    private DialogueController dialogueController; // TODO
+    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>(); // Store all the spinners
+    private HashMap<String, StackedBarChart<String, Double>> barCharts = new HashMap<String, StackedBarChart<String, Double>>(); // Store all the barCharts
+    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>(); // Store all the checkBoxs
+    private DialogueController dialogueController; // Store the dialogueController
 
     @FXML
     CheckBox cbActivite;
@@ -139,7 +139,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * TODO
+     * getter barCharts
      * @return
      */
     public HashMap<String, StackedBarChart<String, Double>> getBarCharts() {
@@ -147,7 +147,7 @@ public class MainController implements Initializable  {
     }
 
     /**
-     * TODO
+     * getter checkBoxs
      * @return
      */
     public HashMap<String, Spinner<Double>> getSpinners() {

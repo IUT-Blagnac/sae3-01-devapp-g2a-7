@@ -8,12 +8,12 @@ import org.json.simple.JSONObject;
 
 
 /**
- * TODO
+ * Write the data in a config.json file
  */
 public class JSONWriter {
 
-    private JSONObject dataToCollect; // TODO
-    private final static JSONWriter instance = new JSONWriter(); // TODO
+    private JSONObject dataToCollect; // Store the data to collect
+    private final static JSONWriter instance = new JSONWriter(); // Singleton
 
     /**
      * Constructor
@@ -24,7 +24,7 @@ public class JSONWriter {
 
     /**
      * Get the instance of JSONController
-     * @return JSONController
+     * @return JSONController instance
      */
     public static JSONWriter getInstance() {
         return instance;
@@ -80,7 +80,7 @@ public class JSONWriter {
 
     /**
      * Get the data collected
-     * @return JSONObject
+     * @return JSONObject dataToCollect the data collected
      */
     public JSONObject getDataToCollect() {
         return this.dataToCollect;

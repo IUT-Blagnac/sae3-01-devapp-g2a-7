@@ -24,11 +24,6 @@ public class JSONReader implements Runnable {
     }
 
     /**
-     * Initialize the JSONController
-     */
-    public void init() {}
-
-    /**
      * Start the thread of the JSONReader
      */
     @Override

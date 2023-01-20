@@ -1,6 +1,5 @@
 package application.control;
 
-
 import javafx.application.Platform;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Spinner;
@@ -8,24 +7,25 @@ import org.json.simple.JSONObject;
 import java.util.*;
 import javafx.scene.chart.XYChart;
 
-
 /**
- * TODO
+ * 
+ * ShowData class is used to display data in a StackedBarChart format.
+ * 
+ * It is a singleton class, with a static final instance field, and a
+ * getInstance() method to access it.
+ * 
+ * The class has methods to initialize, set and update data, set StackedBarChart
+ * and threshold values, and update threshold values.
  */
 public class ShowData {
 
     public static final ShowData instance = new ShowData(); // TODO
     private HashMap<String, StackedBarChart<String, Double>> barCharts; // TODO
-    private HashMap<String, Double> seuils ; // TODO
-
-    /**
-     * Initialize ShowData
-     */
-    public void init() {
-    }
+    private HashMap<String, Double> seuils; // TODO
 
     /**
      * Get the instance of ShowData
+     * 
      * @return ShowData
      */
     public static ShowData getInstance() {
@@ -33,18 +33,21 @@ public class ShowData {
     }
 
     /**
-     * TODO
-     * @param pfData
+     * Calls the function that updates the bar charts, putting it in the javaFX
+     * thread
+     * 
+     * @param pfData JSONObject containing data for the chart
      */
     public void setData(JSONObject pfData) {
         Platform.runLater(() -> updateBarCharts(pfData));
     }
 
     /**
-     * TODO
-     * @param pfData
+     * Updates the StackedBarChart with data from the JSONObject
+     * 
+     * @param pfData JSONObject containing data for the chart
      */
-    public void updateBarCharts (JSONObject pfData) {
+    public void updateBarCharts(JSONObject pfData) {
         for (Object key : ((JSONObject) pfData.get("donnees")).keySet()) {
             System.out.println(key);
             Double data = Double.parseDouble(((JSONObject) pfData.get("donnees")).get(key).toString());
@@ -69,28 +72,31 @@ public class ShowData {
     }
 
     /**
-     * TODO
-     * @param barCharts
+     * Sets the StackedBarChart objects to be used in the class
+     * 
+     * @param barCharts HashMap of StackedBarChart objects, keyed by a String
      */
     public void setBarCharts(HashMap<String, StackedBarChart<String, Double>> barCharts) {
         this.barCharts = barCharts;
     }
 
     /**
-     * TODO
-     * @param spinners
+     * Sets the threshold values for the chart
+     * 
+     * @param spinners HashMap of Spinner objects, containing the thresholds
      */
     public void setSeuils(HashMap<String, Spinner<Double>> spinners) {
         this.seuils = new HashMap<String, Double>();
         for (String key : spinners.keySet()) {
-            seuils.put(key, spinners.get(key).getValue()) ;
+            seuils.put(key, spinners.get(key).getValue());
         }
     }
 
     /**
-     * TODO
-     * @param key
-     * @param value
+     * Updates the threshold value for a specified key
+     * 
+     * @param key   String key for the threshold value
+     * @param value String value of the threshold
      */
     public void updateSeuil(String key, String value) {
         if (value.matches("-{0,1}\\d*(\\.|,){0,1}\\d*")) {

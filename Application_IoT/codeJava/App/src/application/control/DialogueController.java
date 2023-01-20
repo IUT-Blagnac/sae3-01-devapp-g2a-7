@@ -70,8 +70,6 @@ public class DialogueController extends Application {
         // initialize the JSONController
         Config.getInstance().init();
         JSONWriter.getInstance().init();
-        JSONReader.getInstance().init();
-        ShowData.getInstance().init();
     }
 
     @Override

@@ -1,1 +1,1 @@
-{"donnees": {"co2": 1400, "temperature": 21.5, "humidity": 37, "infrared": 11}, "seuils": {"co2": true, "temperature": true, "humidity": true, "infrared": true}}
+{"donnees": {"tvoc": 125, "co2": 1159, "temperature": 21.6, "infrared": 1, "pressure": 998.7}, "seuils": {"tvoc": true, "co2": true, "temperature": true, "infrared": false, "pressure": true}}

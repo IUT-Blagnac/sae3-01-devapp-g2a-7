@@ -94,7 +94,7 @@ public class ShowData {
      */
     public void updateSeuil(String key, String value) {
         if (value.matches("-{0,1}\\d*(\\.|,){0,1}\\d*")) {
-            this.seuils.put(key, Double.parseDouble(value));
+            this.seuils.put(key, (Double.parseDouble(value.replace(",", "."))));
         }
     }
 

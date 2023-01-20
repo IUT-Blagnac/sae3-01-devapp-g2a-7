@@ -1,5 +1,6 @@
 package application.control;
 
+
 import application.view.MainController;
 import application.model.Config;
 import application.model.JSONReader;
@@ -53,6 +54,7 @@ public class DialogueController extends Application {
             // Load Config to the view
             Config.getInstance().setDialogueController(this);
             Config.getInstance().loadConfig();
+            JSONWriter.getInstance().writeData();
             
             // show the view
             primaryStage.show();
@@ -66,6 +68,7 @@ public class DialogueController extends Application {
     public void init() throws Exception {
         super.init();
         // initialize the JSONController
+        Config.getInstance().init();
         JSONWriter.getInstance().init();
         JSONReader.getInstance().init();
         ShowData.getInstance().init();

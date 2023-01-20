@@ -44,8 +44,7 @@ public class JSONWriter {
      */
     public void writeData() {
         try {
-            File file = new File(System.getProperty("user.dir") + "/../../codePython/config.json");
-            System.out.println(file.getPath());
+            File file = new File("./Application_IoT/codePython/config.json");
             if (!file.exists()) {
                 file.createNewFile();
             }

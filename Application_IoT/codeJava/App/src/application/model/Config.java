@@ -19,6 +19,7 @@ public class Config {
     private final static Config instance = new Config(); // TODO
     private String[] keys; // TODO
     private DialogueController dialogueController; // TODO
+    private String content;
 
     /**
      * TODO
@@ -42,6 +43,7 @@ public class Config {
                 "temperature",
                 "tvoc"
         };
+        this.content = "";
     }
 
     /**
@@ -52,32 +54,43 @@ public class Config {
         return instance;
     }
 
-    /**
-     * TODO
-     */
-    public void loadConfig() {
-        File file = new File(System.getProperty("user.dir") + "/../../codePython/config.json");
+    public void init() {
+        File file = new File("./Application_IoT/codePython/config.json");
         if (file.exists()) {
             try {
                 Scanner scanner = new Scanner(file);
-                String content = "";
                 while (scanner.hasNextLine()) {
                     content += scanner.nextLine();
                 }
                 scanner.close();
-                this.dialogueController.loadView((JSONObject) new JSONParser().parse(content));
-                JSONWriter.getInstance().setDataToCollect((JSONObject) new JSONParser().parse(content));
-
-            } catch (FileNotFoundException | ParseException e) {
+            } catch (FileNotFoundException e) {
                 System.out.println("Erreur impossible, un vrai problème est survenu ailleurs");
                 System.out.println(e.getMessage());
                 System.exit(1);
             }
         } else {
+            this.content = "";
+        }
+    }
+
+    /**
+     * TODO
+     */
+    public void loadConfig() {
+        if (this.content.equals("")) {
             JSONWriter.getInstance().setDonneesByDefault(keys);
             JSONWriter.getInstance().setSeuilsByDefault(keys);
             JSONWriter.getInstance().writeData();
             this.dialogueController.loadView(JSONWriter.getInstance().getDataToCollect());
+        } else {
+            try {
+                this.dialogueController.loadView((JSONObject) new JSONParser().parse(this.content));
+                JSONWriter.getInstance().setDataToCollect((JSONObject) new JSONParser().parse(this.content));
+            } catch (ParseException e) {
+                System.out.println("Erreur impossible, un vrai problème est survenu");
+                System.out.println(e.getMessage());
+                System.exit(1);
+            }
         }
     }
 

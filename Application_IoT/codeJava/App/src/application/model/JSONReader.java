@@ -35,7 +35,7 @@ public class JSONReader implements Runnable {
     public void run() {
         try {
             // Open data.json file
-            File file = new File(System.getProperty("user.dir") + "/../../codePython/data.json");
+            File file = new File("./Application_IoT/codePython/data.json");
             long lastModified = (file.exists()) ? file.lastModified() : 0;
             while (this.running) {
                 // Check if the file exist

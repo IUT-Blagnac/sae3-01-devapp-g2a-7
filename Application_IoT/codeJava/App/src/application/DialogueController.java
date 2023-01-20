@@ -1,6 +1,7 @@
 package application;
 
 import application.controller.MainController;
+import application.data.Config;
 import application.data.JSONReader;
 import application.data.JSONWriter;
 import javafx.application.Application;
@@ -44,6 +45,9 @@ public class DialogueController extends Application {
             // Launch the JSONReader Thread
             JSONReader.getInstance().start();
 
+            // Load Config to the view
+            Config.getInstance().setDialogueController(this);
+            Config.getInstance().loadConfig();
             
             // show the view
             primaryStage.show();
@@ -92,5 +96,13 @@ public class DialogueController extends Application {
     public void spinnerListener(String key, String value) {
         JSONWriter.getInstance().updateSeuil(key, value);
         ShowData.getInstance().updateSeuil(key, value);
+    }
+
+    /**
+     * Send the config to the mainController
+     * @param pfConfig the config to send
+     */
+    public void loadView(JSONObject pfConfigView) {
+        this.mainController.loadView(pfConfigView);
     }
 }

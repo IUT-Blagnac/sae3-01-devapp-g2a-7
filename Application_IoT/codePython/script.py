@@ -4,21 +4,27 @@ import sys
 import os
 import signal
 
+
 # get the path of the directory where the script is
 pwd = sys.path[0]
+
 # Data to write in data.json
 data = {
     "donnees" : {},
     "seuils" : {}
 }
+
 # Alarm timer
 alarmTimer = 60
 
 # Payload received from devices
 payload = {}
 
-# Read the config file
+
 def get_config():
+    """
+    Reads the config file.
+    """
     global pwd
     try:
         res = ""
@@ -32,28 +38,40 @@ def get_config():
     except FileNotFoundError:
         # If the config.json file does not exist
         return {}
-    
 
-# Write the data received in a data.json file
+
 def write_data(data):
+    """
+    Writes the data received in a data.json file.
+    :param data: data dict
+    """
     global pwd
     file = os.open(f"{pwd}/data.json", os.O_WRONLY | os.O_TRUNC | os.O_CREAT, 0o666)
     os.write(file, json.dumps(data).encode("utf-8"))
     os.close(file)
-    
-# Fonction on connection
+
+
 def on_connect(client, userdata, flags, rc):
+    """
+    Fonction on connection (overridden).
+    """
     print(f"Connected with result code {rc}")
     # Subscribe to the device
     client.subscribe("application/1/device/+/event/up")
 
-# When data is received
+
 def on_message(client, userdata, msg):
+    """
+    When data is received (overridden).
+    """
     global payload
     payload = json.loads(msg.payload)
 
-# When a signal of type SIGALRM is received
+
 def on_alarm(signum, frame):
+    """
+    When a signal of type SIGALRM is received (overridden).
+    """
     print(f"Alarm received, {alarmTimer} second, I'm writing data ...")
     global data, payload, config
     # Reload the config
@@ -79,6 +97,7 @@ def on_alarm(signum, frame):
     write_data(data)
     # Reset the timer of 60 seconds
     signal.alarm(alarmTimer)
+
 
 # Launch the client
 client = mqtt.Client()

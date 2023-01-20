@@ -181,6 +181,30 @@ public class MainController implements Initializable  {
         }
     }
 
-
+    /**
+        Load the view configuration from the JSON file.
+        @param pfConfigView JSONObject contain the oldConfiguration of the view
+     */
+    public void loadView(JSONObject pfConfigView) {
+        for ( Object key : pfConfigView.keySet()) {
+            // cast key to String
+            String keyStr = (String) key;
+            for( Object key2 : ((JSONObject) pfConfigView.get(keyStr)).keySet()) {
+                // cast key to String
+                String keyStr2 = (String) key2;
+                if (keyStr.equals("donnees")) {
+                    Boolean selected = (Boolean) ((JSONObject) pfConfigView.get(keyStr)).get(keyStr2);
+                    if (!selected) {
+                        this.checkBoxs.get(keyStr2).setSelected(false);
+                        checkBoxListener(keyStr2);
+                    }
+                }
+                if (keyStr.equals("seuils")) {
+                    Double oldValue = (Double) ((JSONObject) pfConfigView.get(keyStr)).get(keyStr2);
+                    spinners.get(keyStr2).getValueFactory().setValue(oldValue);
+                }
+            }
+        }
+    }
     
 }

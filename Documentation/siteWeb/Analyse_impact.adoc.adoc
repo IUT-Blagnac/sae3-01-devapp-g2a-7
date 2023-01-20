@@ -164,3 +164,12 @@ Les données sont sauvegardées régulièrement pour assurer la disponibilité d
 |=========================================================================================================
 
 == Issues à ajouter au dernier sprint pour tenir compte des points 4 et 5 les plus importants
+
+=== Mise en place d'un système de sauvegarde des données 
+Cette issue pourrait inclure la mise en place d'un système de sauvegarde des données pour assurer la disponibilité des informations en cas de sinistre.
+
+=== Mise en place des règles de conformité RGPD
+Cette issue pourrait inclure la mise en place d'un registre des activités de traitement, la mise en place de procédures de notification des fuites de données, la mise en place de procédures de gestion des demandes d'accès, de rectification et d'effacement des données.
+
+=== Mise en place d'un système d'authentification forte
+Cette issue pourrait inclure la mise en place d'une politique de mot de passe fort (longueur minimale, caractères spéciaux, etc.), ainsi qu'une vérification de l'email de l'utilisateur lors de la création de son compte.

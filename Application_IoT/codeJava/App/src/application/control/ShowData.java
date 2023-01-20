@@ -1,29 +1,23 @@
-package application;
+package application.control;
+
 
 import javafx.application.Platform;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Spinner;
 import org.json.simple.JSONObject;
-
 import java.util.*;
-
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.stage.Stage;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 
+
+/**
+ * TODO
+ */
 public class ShowData {
 
-    public static final ShowData instance = new ShowData();
-    private HashMap<String, StackedBarChart<String, Double>> barCharts;
-    private HashMap<String, Double> seuils ;
-    private boolean running;
-
+    public static final ShowData instance = new ShowData(); // TODO
+    private HashMap<String, StackedBarChart<String, Double>> barCharts; // TODO
+    private HashMap<String, Double> seuils ; // TODO
+    private boolean running; // TODO
 
     /**
      * Initialize ShowData
@@ -39,20 +33,24 @@ public class ShowData {
         return instance;
     }
 
-
+    /**
+     * TODO
+     * @param pfData
+     */
     public void setData(JSONObject pfData) {
-        Platform.runLater(() -> updateBarCharts (pfData));
+        Platform.runLater(() -> updateBarCharts(pfData));
     }
 
+    /**
+     * TODO
+     * @param pfData
+     */
     public void updateBarCharts (JSONObject pfData) {
         for (Object key : ((JSONObject) pfData.get("donnees")).keySet()) {
             System.out.println(key);
-
             Double data = Double.parseDouble(((JSONObject) pfData.get("donnees")).get(key).toString());
             StackedBarChart<String, Double> barChart = this.barCharts.get(key);
-
             if (!((JSONObject) pfData.get("seuils")).get(key).equals(true)) {
-
                 XYChart.Series<String, Double> series = new XYChart.Series<>();
                 series.getData().add(new XYChart.Data<>("", data));
                 barChart.getData().clear();
@@ -71,10 +69,18 @@ public class ShowData {
         }
     }
 
+    /**
+     * TODO
+     * @param barCharts
+     */
     public void setBarCharts(HashMap<String, StackedBarChart<String, Double>> barCharts) {
         this.barCharts = barCharts;
     }
 
+    /**
+     * TODO
+     * @param spinners
+     */
     public void setSeuils(HashMap<String, Spinner<Double>> spinners) {
         this.seuils = new HashMap<String, Double>();
         for (String key : spinners.keySet()) {
@@ -82,7 +88,15 @@ public class ShowData {
         }
     }
 
+    /**
+     * TODO
+     * @param key
+     * @param value
+     */
     public void updateSeuil(String key, String value) {
-        this.seuils.put(key, Double.parseDouble(value));
+        if (value.matches("-{0,1}\\d*(\\.|,){0,1}\\d*")) {
+            this.seuils.put(key, Double.parseDouble(value));
+        }
     }
+
 }

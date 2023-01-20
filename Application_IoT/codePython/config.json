@@ -1,1 +1,1 @@
-{"donnees":{"tvoc":false,"activity":false,"illumination":false,"co2":true,"temperature":true,"humidity":true,"infrared":true,"pressure":false},"seuils":{"tvoc":0,"activity":0,"illumination":0,"co2":0,"temperature":0,"humidity":15.0,"infrared":20.0,"pressure":0}}
+{"donnees":{"tvoc":false,"activity":false,"illumination":false,"co2":true,"temperature":true,"humidity":true,"infrared":true,"pressure":false},"seuils":{"tvoc":0.0,"activity":0.1,"illumination":0.0,"co2":0.0,"temperature":0.0,"humidity":25.0,"infrared":0.0,"pressure":0.0}}

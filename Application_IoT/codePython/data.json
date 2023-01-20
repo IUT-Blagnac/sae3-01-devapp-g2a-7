@@ -1,9 +1,9 @@
 {
   "donnees": {
-    "infrared": 35,
+    "infrared": 10,
     "co2": 495,
     "temperature": 20.1,
-    "humidity": 35.5
+    "humidity": 40
   },
   "seuils": {
     "infrared": true,

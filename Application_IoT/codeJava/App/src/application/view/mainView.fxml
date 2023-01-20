@@ -18,9 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.mainController">
+<SplitPane dividerPositions="0.55" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainController">
    <items>
-      <AnchorPane maxWidth="300.0">
+      <AnchorPane maxWidth="-Infinity" prefWidth="300.0">
          <children>
             <ScrollPane fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
@@ -57,7 +57,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <CheckBox fx:id="CBActivite" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Activité">
+                                    <CheckBox fx:id="cbActivite" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Activité">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -79,7 +79,7 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CO2" GridPane.rowIndex="1">
+                                    <CheckBox fx:id="cbCO2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="CO2" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -101,14 +101,14 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO21" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Humidité" GridPane.rowIndex="2">
+                                    <CheckBox fx:id="cbHumidite" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Humidité" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Spinner fx:id="spinnerCO21" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerHumidite" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -120,14 +120,14 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO211" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Illumination" GridPane.rowIndex="3">
+                                    <CheckBox fx:id="cbIllumination" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Illumination" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <children>
-                                          <Spinner fx:id="spinnerCO211" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerIllumination" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -139,14 +139,14 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO2111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Infrarouges" GridPane.rowIndex="4">
+                                    <CheckBox fx:id="cbInfrarouges" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Infrarouges" GridPane.rowIndex="4">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <children>
-                                          <Spinner fx:id="spinnerCO2111" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerInfrarouges" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -158,14 +158,14 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO21111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pression" GridPane.rowIndex="5">
+                                    <CheckBox fx:id="cbPression" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pression" GridPane.rowIndex="5">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <children>
-                                          <Spinner fx:id="spinnerCO21111" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerPression" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -177,14 +177,14 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO211111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Température" GridPane.rowIndex="6">
+                                    <CheckBox fx:id="cbTemperature" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Température" GridPane.rowIndex="6">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <children>
-                                          <Spinner fx:id="spinnerCO211111" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerTemperature" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -196,14 +196,14 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <CheckBox fx:id="CBCO2111111" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Qualité de l'air" GridPane.rowIndex="7">
+                                    <CheckBox fx:id="cbQualiteAir" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Qualité de l'air" GridPane.rowIndex="7">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </CheckBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <children>
-                                          <Spinner fx:id="spinnerCO2111111" editable="true" prefWidth="100.0">
+                                          <Spinner fx:id="spinnerQualiteAir" editable="true" prefWidth="100.0">
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
@@ -227,7 +227,7 @@
               </content>
             </ScrollPane>
          </children></AnchorPane>
-      <AnchorPane>
+      <AnchorPane maxWidth="1210.0">
          <children>
             <VBox alignment="TOP_CENTER" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -250,7 +250,7 @@
                            <children>
                               <HBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <StackedBarChart minWidth="-Infinity" prefWidth="120.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcActivite" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                       <xAxis>
                                         <CategoryAxis label="Activité" side="BOTTOM">
                                              <tickLabelFont>
@@ -259,10 +259,10 @@
                                           </CategoryAxis>
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis side="LEFT" />
+                                        <NumberAxis autoRanging="false" side="LEFT" />
                                       </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart minWidth="-Infinity" prefWidth="120.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcCO2" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="CO2" side="BOTTOM">
                                              <tickLabelFont>
@@ -271,10 +271,10 @@
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis side="LEFT" />
+                                          <NumberAxis autoRanging="false" side="LEFT" upperBound="2000.0" />
                                        </yAxis>
                                     </StackedBarChart>
-                                    <StackedBarChart minWidth="-Infinity" prefWidth="120.0" style="-fx-background-color: white;" titleSide="BOTTOM">
+                                    <StackedBarChart fx:id="bcHumidite" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
                                        <xAxis>
                                           <CategoryAxis label="Humidité" side="BOTTOM">
                                              <tickLabelFont>
@@ -283,7 +283,67 @@
                                           </CategoryAxis>
                                        </xAxis>
                                        <yAxis>
-                                          <NumberAxis side="LEFT" />
+                                          <NumberAxis autoRanging="false" side="LEFT" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart fx:id="bcIllumination" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="Illumination" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis autoRanging="false" side="LEFT" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart fx:id="bcInfrarouges" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="Infrarouges" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis autoRanging="false" side="LEFT" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart fx:id="bcPression" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="Pression" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis autoRanging="false" side="LEFT" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart fx:id="bcTemperature" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="Température" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis autoRanging="false" lowerBound="-20.0" side="LEFT" upperBound="60.0" />
+                                       </yAxis>
+                                    </StackedBarChart>
+                                    <StackedBarChart fx:id="bcQualiteAir" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="@style.css" titleSide="BOTTOM">
+                                       <xAxis>
+                                          <CategoryAxis label="Qualité de l'air" side="BOTTOM">
+                                             <tickLabelFont>
+                                                <Font size="14.0" />
+                                             </tickLabelFont>
+                                          </CategoryAxis>
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis autoRanging="false" side="LEFT" />
                                        </yAxis>
                                     </StackedBarChart>
                                  </children>

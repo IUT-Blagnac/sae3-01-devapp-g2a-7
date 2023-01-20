@@ -1,15 +1,20 @@
-package application.data;
+package application.model;
+
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.json.simple.JSONObject;
+import sun.misc.FileURLMapper;
 
+
+/**
+ * TODO
+ */
 public class JSONWriter {
 
-    private JSONObject dataToCollect;
-    private final static JSONWriter instance = new JSONWriter();
+    private JSONObject dataToCollect; // TODO
+    private final static JSONWriter instance = new JSONWriter(); // TODO
 
     /**
      * Constructor
@@ -29,7 +34,6 @@ public class JSONWriter {
     /**
      * Initialize the JSONController
      */
-    @SuppressWarnings("unchecked")
     public void init() {
         this.dataToCollect.put("seuils", new JSONObject());
         this.dataToCollect.put("donnees", new JSONObject());
@@ -40,7 +44,8 @@ public class JSONWriter {
      */
     public void writeData() {
         try {
-            File file = new File(System.getProperty("user.dir") + "/Application_IoT/codePython/config.json");
+            File file = new File(System.getProperty("user.dir") + "/../../codePython/config.json");
+            System.out.println(file.getPath());
             if (!file.exists()) {
                 file.createNewFile();
             }

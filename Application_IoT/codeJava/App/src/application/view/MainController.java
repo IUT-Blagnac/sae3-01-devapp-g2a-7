@@ -1,28 +1,28 @@
-package application.controller;
+package application.view;
 
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-
 import org.json.simple.JSONObject;
-
-import application.DialogueController;
+import application.control.DialogueController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.StackedBarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
 
+/**
+ * TODO
+ */
 public class MainController implements Initializable  {
 
-    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>();
-    private HashMap<String, StackedBarChart<String, Double>> barCharts = new HashMap<String, StackedBarChart<String, Double>>();
-    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>();
-    private DialogueController dialogueController;
+    private HashMap<String, Spinner<Double>> spinners = new HashMap<String, Spinner<Double>>(); // TODO
+    private HashMap<String, StackedBarChart<String, Double>> barCharts = new HashMap<String, StackedBarChart<String, Double>>(); // TODO
+    private HashMap<String, CheckBox> checkBoxs = new HashMap<String, CheckBox>(); // TODO
+    private DialogueController dialogueController; // TODO
 
     @FXML
     CheckBox cbActivite;
@@ -136,12 +136,20 @@ public class MainController implements Initializable  {
         String value = pfNewValue.matches("-{0,1}\\d*(\\.|,){0,1}\\d*") ?
         pfNewValue.replace(".", ",") : pfOldValue;
         spinners.get(pfKkey).getEditor().setText((value));
-
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public HashMap<String, StackedBarChart<String, Double>> getBarCharts() {
         return this.barCharts;
     }
+
+    /**
+     * TODO
+     * @return
+     */
     public HashMap<String, Spinner<Double>> getSpinners() {
         return this.spinners;
     }

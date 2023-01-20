@@ -1,18 +1,25 @@
-package application;
+package application.control;
 
-import application.controller.MainController;
-import application.data.Config;
-import application.data.JSONReader;
-import application.data.JSONWriter;
+
+import application.control.ShowData;
+import application.view.MainController;
+import application.model.Config;
+import application.model.JSONReader;
+import application.model.JSONWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
 
+
+/**
+ * TODO
+ */
 public class DialogueController extends Application {
 
-    private MainController mainController;
+    private MainController mainController; // TODO
     
     /**
      * Start the application, this fonction need to be call with Application.launch() function
@@ -23,7 +30,7 @@ public class DialogueController extends Application {
         try {
             // load FXML file
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("controller/mainView.fxml"));
+            loader.setLocation(getClass().getResource("../view/mainView.fxml"));
 
             // load the view
             SplitPane root = loader.load();
@@ -100,9 +107,10 @@ public class DialogueController extends Application {
 
     /**
      * Send the config to the mainController
-     * @param pfConfig the config to send
+     * @param pfConfigView the config to send
      */
     public void loadView(JSONObject pfConfigView) {
         this.mainController.loadView(pfConfigView);
     }
+
 }

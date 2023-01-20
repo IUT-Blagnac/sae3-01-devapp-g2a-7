@@ -17,7 +17,6 @@ public class ShowData {
     public static final ShowData instance = new ShowData(); // TODO
     private HashMap<String, StackedBarChart<String, Double>> barCharts; // TODO
     private HashMap<String, Double> seuils ; // TODO
-    private boolean running; // TODO
 
     /**
      * Initialize ShowData

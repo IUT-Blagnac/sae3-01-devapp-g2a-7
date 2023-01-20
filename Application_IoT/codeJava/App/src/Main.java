@@ -1,5 +1,3 @@
-import java.io.File;
-
 import application.control.DialogueController;
 
 /**

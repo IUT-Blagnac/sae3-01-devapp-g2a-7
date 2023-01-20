@@ -19,9 +19,9 @@ import javafx.scene.chart.XYChart;
  */
 public class ShowData {
 
-    public static final ShowData instance = new ShowData(); // TODO
-    private HashMap<String, StackedBarChart<String, Double>> barCharts; // TODO
-    private HashMap<String, Double> seuils; // TODO
+    public static final ShowData instance = new ShowData(); // Singleton instance
+    private HashMap<String, StackedBarChart<String, Double>> barCharts; // Bar charts to be updated
+    private HashMap<String, Double> seuils; // Threshold values
 
     /**
      * Get the instance of ShowData

@@ -15,7 +15,7 @@ import javafx.scene.control.SpinnerValueFactory;
 
 
 /**
- * TODO
+ * Controller of the main view
  */
 public class MainController implements Initializable  {
 

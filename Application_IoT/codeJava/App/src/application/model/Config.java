@@ -62,7 +62,7 @@ public class Config {
             try {
                 Scanner scanner = new Scanner(file);
                 while (scanner.hasNextLine()) {
-                    content += scanner.nextLine();
+                    this.content += scanner.nextLine();
                 }
                 scanner.close();
             } catch (FileNotFoundException e) {

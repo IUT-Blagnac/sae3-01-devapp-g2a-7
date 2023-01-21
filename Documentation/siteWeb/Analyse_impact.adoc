@@ -60,6 +60,11 @@ Ce document d'analyse d'impact de protection des données permet de prendre en c
 
 * Gestion des commandes : lorsqu'une commande est passée, les informations de commande (prix, date, produits commandés, quantité, descriptif) sont stockées dans une base de données sécurisée et utilisées pour gérer les commandes et assurer la livraison des produits achetés.
 
+[NOTE]
+====
+Cf. diagramme BPMN du processus de commande du site REVIVE
+====
+
 * Personnalisation des offres : les informations de compte utilisateur sont utilisées pour personnaliser les offres et les recommandations de produits pour chaque utilisateur.
 
 === Données
@@ -172,4 +177,4 @@ Cette issue pourrait inclure la mise en place d'un système de sauvegarde des do
 Cette issue pourrait inclure la mise en place d'un registre des activités de traitement, la mise en place de procédures de notification des fuites de données, la mise en place de procédures de gestion des demandes d'accès, de rectification et d'effacement des données.
 
 === Mise en place d'un système d'authentification forte
-Cette issue pourrait inclure la mise en place d'une politique de mot de passe fort (longueur minimale, caractères spéciaux, etc.), ainsi qu'une vérification de l'email de l'utilisateur lors de la création de son compte.
+Cette issue pourrait inclure la mise en place d'une politique de mot de passe fort (longueur minimale, caractères spéciaux, etc.), ainsi qu'une vérification de l'email de l'utilisateur lors de la création de son compte. *(déjà mis en place ✔️)*

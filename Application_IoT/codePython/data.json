@@ -1,1 +1,22 @@
-{"donnees": {"tvoc": 125, "co2": 1159, "temperature": 21.6, "infrared": 1, "pressure": 998.7}, "seuils": {"tvoc": true, "co2": true, "temperature": true, "infrared": false, "pressure": true}}
+{
+    "donnees": {
+        "tvoc": 91,
+        "activity": 0,
+        "illumination": 11,
+        "co2": 495,
+        "temperature": 21,
+        "humidity": 33.5,
+        "infrared": 4,
+        "pressure": 981.8
+    },
+    "seuils": {
+        "tvoc": false,
+        "activity": false,
+        "illumination": false,
+        "co2": false,
+        "temperature": false,
+        "humidity": false,
+        "infrared": false,
+        "pressure": true
+    }
+}

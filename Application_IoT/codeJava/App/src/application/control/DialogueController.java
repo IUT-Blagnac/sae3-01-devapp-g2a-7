@@ -41,7 +41,7 @@ public class DialogueController extends Application {
             // default properties
             primaryStage.setMinWidth(root.getPrefWidth());
             primaryStage.setMinHeight(root.getPrefHeight());
-            primaryStage.setTitle("Visualisation des données");
+            primaryStage.setTitle("Application IoT de contrôle");
 
             // set the controller
             this.mainController = loader.getController();
@@ -52,6 +52,7 @@ public class DialogueController extends Application {
 
             // Launch the JSONReader Thread
             JSONReader.getInstance().start();
+
 
             // Load Config to the view
             Config.getInstance().setDialogueController(this);
@@ -112,6 +113,13 @@ public class DialogueController extends Application {
      */
     public void loadView(JSONObject pfConfigView) {
         this.mainController.loadView(pfConfigView);
+    }
+
+    /**
+     * Reset the config file
+     */
+    public void resetConfig() {
+        Config.getInstance().resetConfig();
     }
 
 }

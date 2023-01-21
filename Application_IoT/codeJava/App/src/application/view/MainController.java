@@ -4,6 +4,10 @@ package application.view;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+
+import application.control.ShowData;
+import application.model.JSONReader;
+import javafx.scene.control.Label;
 import org.json.simple.JSONObject;
 import application.control.DialogueController;
 import javafx.fxml.FXML;
@@ -72,6 +76,8 @@ public class MainController implements Initializable  {
     Spinner<Double> spinnerQualiteAir;
     @FXML
     StackedBarChart<String, Double> bcQualiteAir;
+    @FXML
+    Label infoLabel;
 
     /**
      * Initialize the controller
@@ -124,6 +130,7 @@ public class MainController implements Initializable  {
             barCharts.get(pfKey).setPrefWidth(0);
             barCharts.get(pfKey).setVisible(false);
         }
+        System.out.println("Charts updated");
     }
 
     /**
@@ -166,19 +173,27 @@ public class MainController implements Initializable  {
      * Initialisation of elements and listeners
      */
     public void init() {
-        // Init checkbox and checkbox listener
+        HashMap<String, Integer> maxValues = new HashMap<String, Integer>();
+        maxValues.put("activity", 10);
+        maxValues.put("co2", 10000);
+        maxValues.put("humidity", 1000);
+        maxValues.put("illumination", 1000000);
+        maxValues.put("infrared", 100);
+        maxValues.put("pressure", 10000);
+        maxValues.put("temperature", 100);
+        maxValues.put("tvoc", 1000);
         for (String key : checkBoxs.keySet()) {
+
+            // Init checkbox and checkbox listener
             checkBoxs.get(key).setSelected(true);
             checkBoxs.get(key).setOnAction(e -> {
                 this.checkBoxListener(key);
                 dialogueController.checkBoxListener(key, checkBoxs.get(key).isSelected());
             });
-        }
 
-        // Init spinners and spinner listener
-        for (String key : spinners.keySet()) {
+            // Init spinners and spinner listener
             spinners.get(key).setValueFactory(
-                new SpinnerValueFactory.DoubleSpinnerValueFactory(-9999, 9999, 0, 0.1)
+                    new SpinnerValueFactory.DoubleSpinnerValueFactory(-100, maxValues.get(key), 0, 0.1)
             );
 
             // Empêche la saisie de valeurs non-numériques
@@ -194,6 +209,7 @@ public class MainController implements Initializable  {
         @param pfConfigView JSONObject contain the oldConfiguration of the view
      */
     public void loadView(JSONObject pfConfigView) {
+        System.out.println("On est là");
         for ( Object key : pfConfigView.keySet()) {
             // cast key to String
             String keyStr = (String) key;
@@ -202,10 +218,8 @@ public class MainController implements Initializable  {
                 String keyStr2 = (String) key2;
                 if (keyStr.equals("donnees")) {
                     Boolean selected = (Boolean) ((JSONObject) pfConfigView.get(keyStr)).get(keyStr2);
-                    if (!selected) {
-                        this.checkBoxs.get(keyStr2).setSelected(false);
-                        checkBoxListener(keyStr2);
-                    }
+                    this.checkBoxs.get(keyStr2).setSelected((!selected ? false : true));
+                    this.checkBoxListener(keyStr2);
                 }
                 if (keyStr.equals("seuils")) {
                     Double oldValue = (Double) ((JSONObject) pfConfigView.get(keyStr)).get(keyStr2);
@@ -213,6 +227,16 @@ public class MainController implements Initializable  {
                 }
             }
         }
+        System.out.println("On a fini");
+    }
+
+    @FXML
+    private void resetConfig() {
+        this.dialogueController.resetConfig();
+    }
+
+    public void setInfoLabel(String msg) {
+        this.infoLabel.setText(msg);
     }
     
 }

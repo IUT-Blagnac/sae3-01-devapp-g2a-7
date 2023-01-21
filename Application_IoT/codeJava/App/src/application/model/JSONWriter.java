@@ -4,6 +4,8 @@ package application.model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+
 import org.json.simple.JSONObject;
 
 
@@ -44,7 +46,8 @@ public class JSONWriter {
      */
     public void writeData() {
         try {
-            File file = new File("./Application_IoT/codePython/config.json");
+            String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+            File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -56,15 +59,25 @@ public class JSONWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Données écrites");
     }
 
     /**
-     * Set the seuils to 0
+     * Set the default seuils to the max bounds of the corresponding bar chart
      */
     @SuppressWarnings("unchecked")
     public void setSeuilsByDefault(String keys[]) {
+        HashMap<String, Double> defaultSeuils = new HashMap<String, Double>();
+        defaultSeuils.put("activity", 10.0);
+        defaultSeuils.put("co2", 10000.0);
+        defaultSeuils.put("humidity", 1000.0);
+        defaultSeuils.put("illumination", 1000000.0);
+        defaultSeuils.put("infrared", 100.0);
+        defaultSeuils.put("pressure", 10000.0);
+        defaultSeuils.put("temperature", 100.0);
+        defaultSeuils.put("tvoc", 1000.0);
         for (String key : keys) {
-            ((JSONObject) this.dataToCollect.get("seuils")).put(key, 0.0);
+            ((JSONObject) this.dataToCollect.get("seuils")).put(key, defaultSeuils.get(key));
         }
     }
 
@@ -112,7 +125,10 @@ public class JSONWriter {
             ((JSONObject) this.dataToCollect.get("seuils")).put(key, null);
         } else {
             String replacedValue = ((String) value).replace(",", ".");
-            ((JSONObject) this.dataToCollect.get("seuils")).put(key, Double.parseDouble(replacedValue));
+            //System.out.println("Replaced value : " + replacedValue);
+            try {
+                ((JSONObject) this.dataToCollect.get("seuils")).put(key, Double.parseDouble(replacedValue));
+            } catch (Exception e) {}
         }
         this.writeData();
     }

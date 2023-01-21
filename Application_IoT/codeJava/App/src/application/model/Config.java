@@ -3,12 +3,13 @@ package application.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import application.control.DialogueController;
+
 
 /**
  * Reload the config file.
@@ -57,7 +58,8 @@ public class Config {
      * Initialize the content of the config file
      */
     public void init() {
-        File file = new File("./Application_IoT/codePython/config.json");
+        String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+        File file = new File(path);
         if (file.exists()) {
             try {
                 Scanner scanner = new Scanner(file);
@@ -66,13 +68,21 @@ public class Config {
                 }
                 scanner.close();
             } catch (FileNotFoundException e) {
-                System.out.println("Erreur impossible, un vrai problème est survenu ailleurs");
+                System.out.println("Erreur impossible, un vrai problème est survenu ailleurs"); // TODO (faire un popup) ?
                 System.out.println(e.getMessage());
                 System.exit(1);
             }
         } else {
             this.content = "";
         }
+    }
+
+    /**
+     * Reset the config file with the default configuration
+     */
+    public void resetConfig() {
+        this.content = "";
+        this.loadConfig();
     }
 
     /**
@@ -89,7 +99,7 @@ public class Config {
                 this.dialogueController.loadView((JSONObject) new JSONParser().parse(this.content));
                 JSONWriter.getInstance().setDataToCollect((JSONObject) new JSONParser().parse(this.content));
             } catch (ParseException e) {
-                System.out.println("Erreur impossible, un vrai problème est survenu");
+                System.out.println("Erreur impossible, un vrai problème est survenu"); // TODO (faire un popup) ?
                 System.out.println(e.getMessage());
                 System.exit(1);
             }

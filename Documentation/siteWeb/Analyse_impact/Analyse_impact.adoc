@@ -60,11 +60,6 @@ Ce document d'analyse d'impact de protection des données permet de prendre en c
 
 * Gestion des commandes : lorsqu'une commande est passée, les informations de commande (prix, date, produits commandés, quantité, descriptif) sont stockées dans une base de données sécurisée et utilisées pour gérer les commandes et assurer la livraison des produits achetés.
 
-[NOTE]
-====
-Cf. diagramme BPMN du processus de commande du site REVIVE
-====
-
 * Personnalisation des offres : les informations de compte utilisateur sont utilisées pour personnaliser les offres et les recommandations de produits pour chaque utilisateur.
 
 === Données
@@ -89,7 +84,7 @@ Cf. diagramme BPMN du processus de commande du site REVIVE
 ** historique d'achat
 ** préférences d'achat
 
-image::images/AnalyseImpact/BPMN.png[le processus de commande]
+image::BPMN_Commande_REVIVE.png[Processus BPMN commandes REVIVE]
 
 === Supports
 

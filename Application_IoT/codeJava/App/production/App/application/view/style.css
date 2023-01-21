@@ -1,0 +1,35 @@
+.default-color1.chart-bar {
+    -fx-bar-fill: red;
+}
+
+.activite .default-color0.chart-bar {
+    -fx-bar-fill: #6eb620;
+}
+
+.co2 .default-color0.chart-bar {
+    -fx-bar-fill: grey;
+}
+
+.humidite .default-color0.chart-bar {
+    -fx-bar-fill: #57a0e8;
+}
+
+.illumination .default-color0.chart-bar {
+    -fx-bar-fill: #fffba3;
+}
+
+.infrarouges .default-color0.chart-bar {
+    -fx-bar-fill: #8d2ae3;
+}
+
+.pression .default-color0.chart-bar {
+    -fx-bar-fill: lightgrey;
+}
+
+.temperature .default-color0.chart-bar {
+    -fx-bar-fill: #ffc800;
+}
+
+.tvoc .default-color0.chart-bar {
+    -fx-bar-fill: skyblue;
+}

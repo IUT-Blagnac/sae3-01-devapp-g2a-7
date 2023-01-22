@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="App.jnlp">
+  <information>
+    <title>Application IoT de controle</title>
+    <vendor>G2A-7 (CREAWEBETUD)</vendor>
+    <description>Demandee par l'entreprise REVIVE pour controler les conditions ambiantes de ses entrepots.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="App.jar" size="17622" download="eager" />
+    <jar href="json-simple-1.1.1.jar" size="23737" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="application.control.DialogueController"  name="App" />
+  <update check="background"/>
+</jnlp>

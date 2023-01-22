@@ -122,7 +122,7 @@ L'application repose sur plusieurs librairies externes nécessaires à son fonct
 [.text-justify]
 L'application est disponible à l'exécution sous forme de fichier JAR. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires. Les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
 
-* `Config.java` ligne 63 :
+* `Config.java` ligne 61 :
 [source, java]
 String path = "config.json";
 
@@ -173,7 +173,7 @@ L'application peut être lancée de deux manières, via un IDE Java et via le fi
 [.text-justify]
 Pour lancer l'application via un IDE Java, les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
 
-* `Config.java` ligne 63 :
+* `Config.java` ligne 61 :
 [source, java]
 String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
 

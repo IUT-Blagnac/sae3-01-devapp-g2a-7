@@ -12,8 +12,6 @@ import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
-import java.net.URL;
-
 
 /**
  * The main controller of the application

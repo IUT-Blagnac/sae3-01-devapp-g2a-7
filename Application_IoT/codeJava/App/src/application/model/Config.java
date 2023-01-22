@@ -3,9 +3,7 @@ package application.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.Scanner;
-
 import javafx.scene.control.Alert;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -60,7 +58,7 @@ public class Config {
      * Initialize the content of the config file
      */
     public void init() {
-        String path = "config.json"; //System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json"); // TO MODIFY
+        String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json"); // TO MODIFY
         File file = new File(path);
         if (file.exists()) {
             try {
@@ -101,6 +99,7 @@ public class Config {
                 this.dialogueController.loadView((JSONObject) new JSONParser().parse(this.content));
                 JSONWriter.getInstance().setDataToCollect((JSONObject) new JSONParser().parse(this.content));
             } catch (ParseException e) {
+                // Popup showing an error
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setHeaderText("ERREUR :");

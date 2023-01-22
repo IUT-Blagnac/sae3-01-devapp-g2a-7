@@ -4,7 +4,7 @@
         "activity": 0,
         "illumination": 12,
         "co2": 495,
-        "temperature": 21,
+        "temperature": 21.2,
         "humidity": 33.5,
         "infrared": 4,
         "pressure": 981.8
@@ -17,6 +17,6 @@
         "temperature": false,
         "humidity": false,
         "infrared": false,
-        "pressure": true
+        "pressure": false
     }
 }

@@ -46,7 +46,7 @@ public class JSONWriter {
      */
     public void writeData() {
         try {
-            String path = "config.json"; //System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json"); // TO MODIFY
+            String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json"); // TO MODIFY
             File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();

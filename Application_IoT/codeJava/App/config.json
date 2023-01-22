@@ -1,1 +1,0 @@
-{"donnees":{"tvoc":true,"activity":true,"illumination":true,"co2":true,"temperature":true,"humidity":true,"infrared":true,"pressure":true},"seuils":{"tvoc":1000.0,"activity":10.0,"illumination":1000000.0,"co2":10000.0,"temperature":100.0,"humidity":1000.0,"infrared":100.0,"pressure":10000.0}}

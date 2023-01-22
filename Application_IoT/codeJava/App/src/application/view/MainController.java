@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
+import javafx.util.StringConverter;
 import org.json.simple.JSONObject;
 import application.control.DialogueController;
 import javafx.fxml.FXML;
@@ -196,6 +197,7 @@ public class MainController implements Initializable  {
             spinners.get(key).getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
                 this.spinnerListener(newValue, oldValue, key);
                 dialogueController.spinnerListener(key, newValue);
+                this.commitEditorText(spinners.get(key));
             });
         }
     }
@@ -203,7 +205,7 @@ public class MainController implements Initializable  {
     /**
         Load the view configuration from the JSON file.
         @param pfConfigView JSONObject contain the oldConfiguration of the view
-        @apiNote MAY NOT WORK SOMETIMES WHEN RESETING THE DEFAULT CONFIGURATION
+        @apiNote MAY NOT WORK SOMETIMES WHEN RESETTING THE DEFAULT CONFIGURATION
             (mostly if the user changed a spinner data by using the keyboard input before)
      */
     public void loadView(JSONObject pfConfigView) {
@@ -222,6 +224,23 @@ public class MainController implements Initializable  {
                     Double oldValue = (Double) ((JSONObject) pfConfigView.get(keyStr)).get(keyStr2);
                     spinners.get(keyStr2).getValueFactory().setValue(oldValue);
                 }
+            }
+        }
+    }
+
+    /**
+     * Commit the given spinner value if it has been manually given (using the keyboard)
+     * <a href="https://stackoverflow.com/questions/32340476/manually-typing-in-text-in-javafx-spinner-is-not-updating-the-value-unless-user">Source</a>
+     */
+    private <T> void commitEditorText(Spinner<T> spinner) {
+        if (!spinner.isEditable()) return;
+        String text = spinner.getEditor().getText();
+        SpinnerValueFactory<T> valueFactory = spinner.getValueFactory();
+        if (valueFactory != null) {
+            StringConverter<T> converter = valueFactory.getConverter();
+            if (converter != null) {
+                T value = converter.fromString(text);
+                valueFactory.setValue(value);
             }
         }
     }

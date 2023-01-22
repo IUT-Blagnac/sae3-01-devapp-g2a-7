@@ -104,5 +104,3 @@ image::images/resetDonnees2.png[Interface de configuration des données (après 
 Il est recommandé de fermer l'application "normalement" en utilisant l'option correspondante de votre système d'exploitation (souvent une croix en haut à droite de la fenêtre, ou la commande `ALT+F4`, ou `Clique-droit` puis "Fermer" sur la fenêtre, etc), afin d'assurer une fermeture compléte. Si le fichier `config.json` généré par l'application (dans le répertoire `codePython`) est laissé intact, vous pourrez réouvrir l'application en récupérant votre dernière configuration.
 
 {empty} +
-
-Amusez-vous bien ;)

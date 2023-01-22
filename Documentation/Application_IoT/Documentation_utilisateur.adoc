@@ -21,25 +21,35 @@ Les utilisateurs peuvent à partir de l'interface graphique de l'application, ch
 Concernant l'installation de l'application et son utilisation, l'utilisateur aura besoin de certains prérequis.
 
 [.text-justify]
-Il sera d'abord indispensable de disposer d'un environnement d'exécution *Java en version 8* (JRE 1.8). Ce dernier devra être installé et configuré dans le terminal, par exemple avec *jenv* sur Mac et Linux, ou une alternative sur Windows. L'utilisateur devra aussi disposé de la dernière version de *Python3*.
+Il sera d'abord indispensable de disposer d'un environnement d'exécution *Java en version 8* (JRE 1.8). Ce dernier devra être installé et configuré dans le terminal, par exemple avec *JENV* sur Mac et Linux, ou une alternative sur Windows. L'utilisateur devra aussi disposer de la dernière version de *Python3*.
 
 Références :
 
-* www.java.com/fr/download/manual.jsp
-* www.jenv.be/
-* www.python.org/downloads/
+* https://www.java.com/fr/download/manual.jsp[Installer Java 8]
+* https://www.jenv.be/[Configurer l'environnement Java avec JENV]
+* https://www.python.org/downloads/[Installer Python 3]
 
 {empty} +
 
 === 2. Lancement de l'application
 [.text-justify]
-Le lancement de l'application se fait en deux étapes.
+Le lancement de l'application se fait en deux étapes en se plaçant au préalable dans le répertoire `Application` contenant tous les fichiers nécessaires.
 
 [.text-justify]
-Si cela n'est pas encore fait, lancer d'abord le script Python `script.py` depuis un terminal avec les commandes `python codePython/script.py` ou `python codePython/script.py` (essayer l'autre si l'une ne marche pas) en vous plaçant au préalable dans le répertoire `Application_IoT`. Si ce fichier n'est pas lancé avant l'exécution de l'application, cette dernière ne pourra pas récupérer les données des capteurs depuis le réseau MQTT des entrepôts.
+Si cela n'est pas encore fait, lancer d'abord le script Python `script.py` depuis un terminal avec les commandes suivantes :
+
+[source, bash]
+python script.py
+
+ou
+
+[source, bash]
+python3 script.py
+
+(essayez l'autre si l'une ne marche pas). Si ce fichier n'est pas lancé avant l'exécution de l'application, cette dernière ne pourra pas récupérer les données des capteurs depuis le réseau MQTT des entrepôts.
 
 [.text-justify]
-Lancer ensuite l'application qui sera un fichier .jar exécutable. Il sera préalablement nécessaire de changer l'environnement Java du poste concerné avec celle précédemment mentionnée (1.8).
+Configurez en suite le fichier `SETENV.bat` permettant de lancer l'application avec le bon encoding et le bon environnement Java (`clique-droit`, puis "Modifier" sur le fichier BAT), avant de l'exécuter.
 
 {empty} +
 
@@ -48,13 +58,14 @@ Lancer ensuite l'application qui sera un fichier .jar exécutable. Il sera préa
 [.text-justify]
 L'utilisateur peut choisir les données qu'il souhaite afficher dans l'application via des cases à côcher. Pour cela, côcher ou dé-côcher les cases à côcher correspondant aux données à afficher dans la partie "Configuration des données" (partie de gauche) de l'interface graphique.
 
-image::images/choixDonnees1.png[Interface de configuration des données (après sélection des données)]
+image::images/choixDonnees1.png[Interface de configuration des données (avant sélection des données), 850]
 
 {empty} +
 
-En se faisant, les données devraient apparaître ou non sous forme de diagrammes en bâton dans la partie "Affichage des données" (partie de droite) de l'interface graphique.
+[.text-justify]
+En ce faisant, les données devraient apparaître ou non sous forme de diagrammes en bâton dans la partie "Affichage des données" (partie de droite) de l'interface graphique.
 
-image::images/choixDonnees2.png[Interface d'affichage des données (après sélection des données)]
+image::images/choixDonnees2.png[Interface d'affichage des données (après sélection des données), 850]
 
 {empty} +
 
@@ -62,20 +73,34 @@ image::images/choixDonnees2.png[Interface d'affichage des données (après séle
 [.text-justify]
 L'utilisateur peut saisir les seuils de contrôles des données affichées. Pour cela, saisir des valeurs numériques dans les champs "Seuil" correspondant aux données à afficher dans la partie "Configuration des données" (partie de gauche) de l'interface graphique.
 
-image::images/saisieSeuils1.png[Interface de configuration des données (après saisie des seuils)]
+image::images/saisieSeuils1.png[Interface de configuration des données (après saisie des seuils), 850]
 
 {empty} +
 
-En se faisant, les diagrammes en bâton affichés dont la donnée dépasse le seuil fixé affichera en rouge l'excès correspondant, dans la partie "Affichage des données" (partie de droite) de l'interface graphique.
+[.text-justify]
+En ce faisant, les diagrammes en bâton affichés dont la donnée dépasse le seuil fixé affichera en rouge l'excès correspondant, dans la partie "Affichage des données" (partie de droite) de l'interface graphique.
 
-image::images/saisieSeuils2.png[Interface d'affichage des données (après saisie des seuils)]
+image::images/saisieSeuils2.png[Interface d'affichage des données (après saisie des seuils), 850]
 
 {empty} +
 
-=== 3. Fermeture de l'application
+=== 3. Réinitialisation des données de configuration
+[.text-justify]
+L'utilisateur peut réinitialiser les données de configuration de l'application en cliquer sur le bouton "Réinitialiser" dans la partie "Configuration des données" (partie de gauche) de l'interface graphique.
+
+image::images/resetDonnees1.png[Interface de configuration des données (avant reset des données), 850]
+
+{empty} +
+
+[.text-justify]
+En ce faisant, tous les diagrammes en bâton seront ré-affichés et les seuils de contrôles des données seront réglés avec les valeurs maximales des données correspondantes.
+
+image::images/resetDonnees2.png[Interface de configuration des données (après reset des données), 850]
+
+{empty} +
+
+=== 4. Fermeture de l'application
 [.text-justify]
 Il est recommandé de fermer l'application "normalement" en utilisant l'option correspondante de votre système d'exploitation (souvent une croix en haut à droite de la fenêtre, ou la commande `ALT+F4`, ou `Clique-droit` puis "Fermer" sur la fenêtre, etc), afin d'assurer une fermeture compléte. Si le fichier `config.json` généré par l'application (dans le répertoire `codePython`) est laissé intact, vous pourrez réouvrir l'application en récupérant votre dernière configuration.
 
 {empty} +
-
-Amusez-vous bien ;)

@@ -48,13 +48,12 @@ NOTE: Peu importe le fichier `config.json` donné pour l'application JavaFX (fic
 [.text-justify]
 Comme évoqué précédemment, l'application utilise deux fichiers générés au format JSON :
 
-* Un fichier de configuration `config.json` généré par l'application JavaFX et dans lequel sont reseignés les données à afficher par cette dernière ainsi que leur seuil de dépassement.
+* Un fichier de configuration `config.json` généré par l'application JavaFX et dans lequel sont reseignées les données à afficher par cette dernière ainsi que leur seuil de dépassement.
 
 Répertoire : `codePython/config.json`
 
 Le fichier JSON par défaut est structuré de la manière suivante :
-[SOURCE]
-----
+[source, json]
 {
   "donnees": {
     "tvoc": true,
@@ -77,15 +76,13 @@ Le fichier JSON par défaut est structuré de la manière suivante :
     "pressure": 0.0
   }
 }
-----
 
 * Un fichier de données *data.json* généré par le script Python et dans lequel sont renseignées les données récupérées des capteurs du réseau MQTT en fonction des spécifications du fichier de configuration.
 
 Répertoire : `codePython/data.json`
 
 Le fichier JSON est structuré de la manière suivante (exemple) :
-[SOURCE]
-----
+[source, json]
 {
     "donnees": {
         "tvoc": 91,
@@ -108,12 +105,11 @@ Le fichier JSON est structuré de la manière suivante (exemple) :
         "pressure": true
     }
 }
-----
 
 {empty} +
 
 === 2. Ressources externes :
-==== 2.1. Librairies utilisées :
+==== 2.1. Librairies utilisées : [[dependances]]
 [.text-justify]
 L'application repose sur plusieurs librairies externes nécessaires à son fonctionnement.
 
@@ -124,10 +120,19 @@ L'application repose sur plusieurs librairies externes nécessaires à son fonct
 
 ==== 2.2 Exportation de l'application :
 [.text-justify]
-L'application est disponible à l'exécution et sans prérequis autre qu'une JRE, sous forme de fichier .jar. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires.
+L'application est disponible à l'exécution sous forme de fichier JAR. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires. Les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
 
-[.text-justify]
-Pour exécuter l'application en .jar, il faut s'assurer que le poste utilisé possède une JRE en 1.8. Le répertoire `codePython/` fourni avec le code source est nécessaire pour le bon fonctionnement de l'application.
+* `Config.java` ligne 61 :
+[source, java]
+String path = "config.json";
+
+* `JSONReader.java` ligne 33 :
+[source, java]
+String path = "data.json";
+
+* `JSONWriter.java` ligne 49 :
+[source, java]
+String path = "config.json";
 
 {empty} +
 
@@ -136,9 +141,9 @@ Pour exécuter l'application en .jar, il faut s'assurer que le poste utilisé po
 [.text-justify]
 Le code de l'application est structuré en plusieurs packages en suivant (plus ou moins) le MVC (Modèle, Vue, Contrôleur) pattern. Ce dernier est un motif d'architecture logiciel destiné aux interfaces graphiques lancé en 1978 et très populaire pour les applications web. Le motif est composé de trois types de modules ayant trois responsabilités différentes : les modèles, les vues et les contrôleurs.
 
-L'application est structurée en fonction des packages suivant :
+L'application est structurée en fonction des packages suivants :
 
-* `application` contentant les sous-packages suivant le MVC pattern et la classe ``Main.java`` lançant l'application
+* `application` contenant les sous-packages suivant le MVC pattern et la classe ``Main.java`` lançant l'application
 * `control` contenant les classes de "dialogue" contrôlant les liaisons entre les classes de traitement de données et les classes gérant l'interface graphique
 * `model` contenant les classes de traitement des données (dont des threads)
 * `view` contenant les classes "controller" et les vues FXML correspondantes pour l'affichage de l'interface graphique
@@ -158,18 +163,68 @@ Aperçu de l'arborescence :
 === 4. Éléments essentiels :
 ==== 4.1 Prérequis pour le développeur :
 [.text-justify]
-Si le code de l'application devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable une *JRE version 1.8*. Il faudra ensuite qu'il ait un environnement de développement adapté pour cette version de Java et un Workspace configuré avec *JavaFX* et potentiellement le logiciel *SceneBuilder* pour modifier les fichiers FXML.
+Si le code de l'application devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable une *JRE version 1.8*. Il faudra ensuite qu'il ait un environnement de développement adapté pour cette version de Java et un Workspace configuré avec *JavaFX* et potentiellement le logiciel *SceneBuilder* pour modifier les fichiers FXML. Les dépendances précisées <<dependances, ici>> devront également être installées.
 
 ==== 4.2 Lancement de l'application :
 [.text-justify]
-Le poste sur lequel souhaite être lancée l'application avec le fichier exécutable `ApplicationIoT.jar` ou via un IDE, devra préalablement disposer d'une JRE versionné en 1.8. Le script Python doit être lancé avant de lancer l'application Java, pour cela, les commande suivantes peuvent être utilisées dans un terminal :
+L'application peut être lancée de deux manières, via un IDE Java et via le fichier le fichier exécutable `ApplicationIoT.jar`.
 
-`python codePython/script.py` ou `python codePython/script.py` (essayer l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire `Application_IoT`.
+===== A) Lancement avec un IDE
+[.text-justify]
+Pour lancer l'application via un IDE Java, les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
+
+* `Config.java` ligne 61 :
+[source, java]
+String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+
+* `JSONReader.java` ligne 33 :
+[source, java]
+String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\data.json");
+
+* `JSONWriter.java` ligne 49 :
+[source, java]
+String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+
+[.text-justify]
+La classe `Main.java` doit être la classe `application` à exécuter pour lancer toute l'application correctement.
+
+[.text-justify]
+Le script Python doit être lancé *avant* l'application Java, pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
+
+[source, bash]
+python codePython/script.py
+
+ou
+
+[source, bash]
+python3 codePython/script.py
+
+(essayez l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire `Application_IoT`.
+
+===== B) Lancement via l'exécutable
+[.text-justify]
+Le poste sur lequel souhaite être lancée l'application avec le fichier JAR exécutable devra préalablement posséder une JRE versionnée en 1.8. Le répertoire `Application_IoT/Application` contient tous les fichiers nécessaires au fonctionnement de l'exécutable.
+
+[.text-justify]
+Le script Python `script.py` doit être lancé *avant* l'application. Pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
+
+[source, bash]
+python script.py
+
+ou
+
+[source, bash]
+python3 script.py
+
+(essayez l'autre si l'une ne marche pas).
+
+[.text-justify]
+Le fichier `SETENV.bat` permet de lancer l'application avec le bon encoding et le bon environnement Java qu'il faudra préciser (`clique-droit`, puis "Modifier" sur le fichier BAT).
 
 [NOTE]
 ====
 [.text-justify]
-Pour toute information concernant l'installation d'une JRE 1.8, merci de bien vouloir vous référer à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
+Pour toute information concernant l'installation d'une JRE 1.8, se référer à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
 ====
 
 {empty} +
@@ -181,7 +236,7 @@ L'interface graphique de l'application est divisé en deux partie :
 * La partie gauche concernant la configuration des données (données à afficher et seuils)
 * La partie droite concernant l'affichage des données récupérées selon la configuration renseignée.
 
-=== 1. Configuration
+=== 1. Configuration des données
 ==== 1.1 Chargement/génération d'une configuration
 [.text-justify]
 Si un fichier de configuration `config.json` existe déjà, l'application met à jour son interface graphique en conséquence, sinon un fichier de configuration par défaut est recréé.
@@ -190,6 +245,7 @@ Si un fichier de configuration `config.json` existe déjà, l'application met à
 
 * `model/`
 ** `Config.java`
+** `JSONWriter.java`
 * `view/`
 ** `MainController.java`
 ** `mainView.fxml`
@@ -202,6 +258,9 @@ Si un fichier de configuration `config.json` existe déjà, l'application met à
 * `Config.java`
 ** `getInstance`
 ** `loadConfig`
+* `JSONWriter.java`
+** `getInstance`
+** `WriteData`
 * `MainController.java`
 ** `loadView`
 * `DialogueController.java`
@@ -210,18 +269,124 @@ Si un fichier de configuration `config.json` existe déjà, l'application met à
 
 ==== 1.2 Sélection des données à afficher
 [.text-justify]
-L'utilisateur peut choisir via des cases à côcher quels types de données (température, humidité, etc) il souhaite afficher sur l'interface de l'application.
+L'utilisateur peut choisir via des cases à côcher quels types de données (température, humidité, etc) il souhaite afficher sur l'interface de l'application. Le fichier `config.json` est mis à jour selon les paramètrages choisis.
 
 ===== A) Packages et classes impliqués
 
 * `model/`
-** ``
+** `JSONWriter.java`
 * `view/`
-** ``
+** `MainController.java`
 * `control/`
-** ``
+** `DialogueController.java`
 
 ===== B) Éléments essentiels
 ====== B.1 Fonctions impliquées
 
-*TO COMPLETE*
+* `JSONWriter.java`
+** `getInstance`
+** `updateDonnees`
+** `writeData`
+* `MainController.java`
+** `checkBoxListener`
+** `loadView`
+* `DialogueController.java`
+** `checkBoxListener`
+** `loadView`
+
+==== 1.3 Choix des seuils de contrôles des données
+[.text-justify]
+L'utilisateur peut choisir via des 'spinners' les seuils de contrôles des données récupérées. Le fichier `config.json` est mis à jour selon les paramètrages choisis.
+
+===== A) Packages et classes impliqués
+
+* `model/`
+** `JSONWriter.java`
+* `view/`
+** `MainController.java`
+* `control/`
+** `DialogueController.java`
+
+===== B) Éléments essentiels
+====== B.1 Fonctions impliquées
+
+* `JSONWriter.java`
+** `getInstance`
+** `updateSeuils`
+** `writeData`
+* `MainController.java`
+** `spinnerListener`
+** `loadView`
+** `getSpinner`
+* `DialogueController.java`
+** `spinnerListener`
+** `loadView`
+
+==== 1.4 Réinitialisation de la configuration
+[.text-justify]
+L'utilisateur peut réinitialisation les données de configuration par défaut. Le fichier `config.json` est mis à jour en conséquence.
+
+===== A) Packages et classes impliqués
+
+* `model/`
+** `JSONWriter.java`
+* `view/`
+** `MainController.java`
+* `control/`
+** `DialogueController.java`
+
+===== B) Éléments essentiels
+====== B.1 Fonctions impliquées
+
+* `JSONWriter.java`
+** `getInstance`
+** `writeData`
+** `setDonneesByDefault`
+** `setSeuilsByDefault`
+* `MainController.java`
+** `loadView`
+** `resetConfig`
+* `DialogueController.java`
+** `loadView`
+** `resetConfig`
+
+{empty} +
+
+=== 2. Affichage des données
+==== 2.1 Données et seuils
+[.text-justify]
+Les données récupérées selon la configuré choisie sont affichées dans l'interface graphique en faisant apparaître en rouge les excès dépassant les seuils fixés pour les données correspondantes.
+
+===== A) Packages et classes impliqués
+
+* `model/`
+** `JSONReader.java`
+* `view/`
+** `MainController.java`
+* `control/`
+** `DialogueController.java`
+** `ShowData.java`
+
+===== B) Éléments essentiels
+====== B.1 Fonctions impliquées
+
+* `JSONReader.java`
+** `getInstance`
+** `sendData`
+* `MainController.java`
+** `loadView`
+* `DialogueController.java`
+** `loadView`
+* `ShowData.java`
+** `getInstance`
+** `setData`
+** `updateBarCharts`
+** `setSeuils`
+** `updateSeuil`
+
+{empty} +
+
+[NOTE]
+====
+Pour plus d'informations à propos des fonctions et des classes impliquées, se référer à la Javadoc du code source de l'application.
+====

@@ -12,6 +12,8 @@ import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
+import java.net.URL;
+
 
 /**
  * The main controller of the application
@@ -30,8 +32,9 @@ public class DialogueController extends Application {
     public void start(Stage primaryStage) {
         try {
             // load FXML file
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/mainView.fxml")); // TO MODIFY
+            FXMLLoader loader = new FXMLLoader(
+                MainController.class.getResource("mainView.fxml")
+            );
 
             // load the view
             SplitPane root = loader.load();

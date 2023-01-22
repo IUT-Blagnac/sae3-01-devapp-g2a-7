@@ -120,11 +120,7 @@ L'application repose sur plusieurs librairies externes nécessaires à son fonct
 
 ==== 2.2 Exportation de l'application :
 [.text-justify]
-L'application est disponible à l'exécution et sans prérequis autre qu'une JRE et que le script `script.py`, sous forme de fichier JAR. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires. Les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
-
-* `DialogueController.java` ligne 34 :
-[source, java]
-loader.setLocation(getClass().getResource("../view/mainView.fxml"));
+L'application est disponible à l'exécution sous forme de fichier JAR. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires. Les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
 
 * `Config.java` ligne 63 :
 [source, java]
@@ -145,9 +141,9 @@ String path = "config.json";
 [.text-justify]
 Le code de l'application est structuré en plusieurs packages en suivant (plus ou moins) le MVC (Modèle, Vue, Contrôleur) pattern. Ce dernier est un motif d'architecture logiciel destiné aux interfaces graphiques lancé en 1978 et très populaire pour les applications web. Le motif est composé de trois types de modules ayant trois responsabilités différentes : les modèles, les vues et les contrôleurs.
 
-L'application est structurée en fonction des packages suivant :
+L'application est structurée en fonction des packages suivants :
 
-* `application` contentant les sous-packages suivant le MVC pattern et la classe ``Main.java`` lançant l'application
+* `application` contenant les sous-packages suivant le MVC pattern et la classe ``Main.java`` lançant l'application
 * `control` contenant les classes de "dialogue" contrôlant les liaisons entre les classes de traitement de données et les classes gérant l'interface graphique
 * `model` contenant les classes de traitement des données (dont des threads)
 * `view` contenant les classes "controller" et les vues FXML correspondantes pour l'affichage de l'interface graphique
@@ -177,10 +173,6 @@ L'application peut être lancée de deux manières, via un IDE Java et via le fi
 [.text-justify]
 Pour lancer l'application via un IDE Java, les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
 
-* `DialogueController.java` ligne 34 :
-[source, java]
-loader.setLocation(getClass().getResource("../view/mainView.fxml"));
-
 * `Config.java` ligne 63 :
 [source, java]
 String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
@@ -193,8 +185,10 @@ String path = System.getProperty("user.dir").replace("codeJava\\App", "codePytho
 [source, java]
 String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
 
+[.text-justify]
 La classe `Main.java` doit être la classe `application` à exécuter pour lancer toute l'application correctement.
 
+[.text-justify]
 Le script Python doit être lancé *avant* l'application Java, pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
 
 [source, bash]
@@ -209,9 +203,10 @@ python3 codePython/script.py
 
 ===== B) Lancement via l'exécutable
 [.text-justify]
-Le poste sur lequel souhaite être lancée l'application avec le fichier JAR exécutable devra préalablement être paramétré avec une JRE versionné en 1.8.
+Le poste sur lequel souhaite être lancée l'application avec le fichier JAR exécutable devra préalablement posséder une JRE versionnée en 1.8. Le répertoire `Application_IoT/Application` contient tous les fichiers nécessaires au fonctionnement de l'exécutable.
 
-Le script Python doit être placé dans le même répertoire que le fichier JAR et être lancé *avant* ce dernier. Pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
+[.text-justify]
+Le script Python `script.py` doit être lancé *avant* l'application. Pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
 
 [source, bash]
 python script.py
@@ -221,12 +216,15 @@ ou
 [source, bash]
 python3 script.py
 
-(essayez l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire englobant le script et le fichier JAR de l'application.
+(essayez l'autre si l'une ne marche pas).
+
+[.text-justify]
+Le fichier `SETENV.bat` permet de lancer l'application avec le bon encoding et le bon environnement Java qu'il faudra préciser (`clique-droit`, puis "Modifier" sur le fichier BAT).
 
 [NOTE]
 ====
 [.text-justify]
-Pour toute information concernant l'installation d'une JRE 1.8, se à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
+Pour toute information concernant l'installation d'une JRE 1.8, se référer à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
 ====
 
 {empty} +

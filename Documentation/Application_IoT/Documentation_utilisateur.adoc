@@ -1,0 +1,91 @@
+= Documentation utilisateur de l'application IoT
+:toc:
+:toc-title: Sommaire
+
+Groupe *G2A-7* : Tilian HURÉ, Vincent MIQEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
+
+{empty} +
+
+== I. Présentation générale et rôle de l'application
+[.text-justify]
+Cette application IoT (Internet of Things) a pour but de contrôler les conditions ambiantes des entrepôts de l'entreprise REVIVE en traitant des données récupérées depuis des capteurs sur un réseau MQTT.
+
+[.text-justify]
+Les utilisateurs peuvent à partir de l'interface graphique de l'application, choisir les données à afficher sous forme de diagrammes en bâton (température, humidité, taux de CO2, etc) ; ainsi que les seuils de dépassement des données qui seront affichés en rouge dans les diagrammes lorsque une donnée en dépassera un.
+
+{empty} +
+
+== II. Installation et utilisation
+=== 1. Installation et prérequis
+[.text-justify]
+Concernant l'installation de l'application et son utilisation, l'utilisateur aura besoin de certains prérequis.
+
+[.text-justify]
+Il sera d'abord indispensable de disposer d'un environnement d'exécution *Java en version 8* (JRE 1.8). Ce dernier devra être installé et configuré dans le terminal, par exemple avec *jenv* sur Mac et Linux, ou une alternative sur Windows. L'utilisateur devra aussi disposé de la dernière version de *Python3*.
+
+Références :
+
+* www.java.com/fr/download/manual.jsp
+* www.jenv.be/
+* www.python.org/downloads/
+
+{empty} +
+
+=== 2. Lancement de l'application
+[.text-justify]
+Le lancement de l'application se fait en deux étapes.
+
+[.text-justify]
+Si cela n'est pas encore fait, lancer d'abord le script Python `script.py` depuis un terminal avec les commandes suivantes :
+
+[source, bash]
+python script.py
+
+ou
+
+[source, bash]
+python3 script.py
+
+(essayez l'autre si l'une ne marche pas) en vous plaçant au préalable dans le répertoire englobant le script Python et le fichier JAR de l'application. Si ce fichier n'est pas lancé avant l'exécution de l'application, cette dernière ne pourra pas récupérer les données des capteurs depuis le réseau MQTT des entrepôts.
+
+[.text-justify]
+Lancer ensuite l'application étant un fichier JAR exécutable. Il sera préalablement nécessaire de changer l'environnement Java du poste concerné avec celle précédemment mentionnée (1.8).
+
+{empty} +
+
+== III. Fonctionnement de l'application
+=== 1. Choix des données à afficher
+[.text-justify]
+L'utilisateur peut choisir les données qu'il souhaite afficher dans l'application via des cases à côcher. Pour cela, côcher ou dé-côcher les cases à côcher correspondant aux données à afficher dans la partie "Configuration des données" (partie de gauche) de l'interface graphique.
+
+image::images/choixDonnees1.png[Interface de configuration des données (après sélection des données)]
+
+{empty} +
+
+En se faisant, les données devraient apparaître ou non sous forme de diagrammes en bâton dans la partie "Affichage des données" (partie de droite) de l'interface graphique.
+
+image::images/choixDonnees2.png[Interface d'affichage des données (après sélection des données)]
+
+{empty} +
+
+=== 2. Saisie des seuils de contrôle
+[.text-justify]
+L'utilisateur peut saisir les seuils de contrôles des données affichées. Pour cela, saisir des valeurs numériques dans les champs "Seuil" correspondant aux données à afficher dans la partie "Configuration des données" (partie de gauche) de l'interface graphique.
+
+image::images/saisieSeuils1.png[Interface de configuration des données (après saisie des seuils)]
+
+{empty} +
+
+En se faisant, les diagrammes en bâton affichés dont la donnée dépasse le seuil fixé affichera en rouge l'excès correspondant, dans la partie "Affichage des données" (partie de droite) de l'interface graphique.
+
+image::images/saisieSeuils2.png[Interface d'affichage des données (après saisie des seuils)]
+
+{empty} +
+
+=== 3. Fermeture de l'application
+[.text-justify]
+Il est recommandé de fermer l'application "normalement" en utilisant l'option correspondante de votre système d'exploitation (souvent une croix en haut à droite de la fenêtre, ou la commande `ALT+F4`, ou `Clique-droit` puis "Fermer" sur la fenêtre, etc), afin d'assurer une fermeture compléte. Si le fichier `config.json` généré par l'application (dans le répertoire `codePython`) est laissé intact, vous pourrez réouvrir l'application en récupérant votre dernière configuration.
+
+{empty} +
+
+Amusez-vous bien ;)

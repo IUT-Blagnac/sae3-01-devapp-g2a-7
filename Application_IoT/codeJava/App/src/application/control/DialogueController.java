@@ -31,7 +31,7 @@ public class DialogueController extends Application {
         try {
             // load FXML file
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../view/mainView.fxml"));
+            loader.setLocation(getClass().getResource("../view/mainView.fxml")); // TO MODIFY
 
             // load the view
             SplitPane root = loader.load();
@@ -52,7 +52,6 @@ public class DialogueController extends Application {
 
             // Launch the JSONReader Thread
             JSONReader.getInstance().start();
-
 
             // Load Config to the view
             Config.getInstance().setDialogueController(this);

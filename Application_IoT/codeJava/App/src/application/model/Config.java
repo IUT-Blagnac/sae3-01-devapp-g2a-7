@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import javafx.scene.control.Alert;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -58,7 +60,7 @@ public class Config {
      * Initialize the content of the config file
      */
     public void init() {
-        String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+        String path = "config.json"; //System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json"); // TO MODIFY
         File file = new File(path);
         if (file.exists()) {
             try {
@@ -68,7 +70,7 @@ public class Config {
                 }
                 scanner.close();
             } catch (FileNotFoundException e) {
-                System.out.println("Erreur impossible, un vrai problème est survenu ailleurs"); // TODO (faire un popup) ?
+                System.out.println("Un problème est survenu.");
                 System.out.println(e.getMessage());
                 System.exit(1);
             }
@@ -99,8 +101,11 @@ public class Config {
                 this.dialogueController.loadView((JSONObject) new JSONParser().parse(this.content));
                 JSONWriter.getInstance().setDataToCollect((JSONObject) new JSONParser().parse(this.content));
             } catch (ParseException e) {
-                System.out.println("Erreur impossible, un vrai problème est survenu"); // TODO (faire un popup) ?
-                System.out.println(e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("ERREUR :");
+                alert.setContentText("Un problème est survenu lors du chargement de la configuration.");
+                alert.showAndWait();
                 System.exit(1);
             }
         }

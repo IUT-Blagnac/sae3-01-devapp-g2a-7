@@ -48,13 +48,12 @@ NOTE: Peu importe le fichier `config.json` donné pour l'application JavaFX (fic
 [.text-justify]
 Comme évoqué précédemment, l'application utilise deux fichiers générés au format JSON :
 
-* Un fichier de configuration `config.json` généré par l'application JavaFX et dans lequel sont reseignés les données à afficher par cette dernière ainsi que leur seuil de dépassement.
+* Un fichier de configuration `config.json` généré par l'application JavaFX et dans lequel sont reseignées les données à afficher par cette dernière ainsi que leur seuil de dépassement.
 
 Répertoire : `codePython/config.json`
 
 Le fichier JSON par défaut est structuré de la manière suivante :
-[SOURCE]
-----
+[source, json]
 {
   "donnees": {
     "tvoc": true,
@@ -77,15 +76,13 @@ Le fichier JSON par défaut est structuré de la manière suivante :
     "pressure": 0.0
   }
 }
-----
 
 * Un fichier de données *data.json* généré par le script Python et dans lequel sont renseignées les données récupérées des capteurs du réseau MQTT en fonction des spécifications du fichier de configuration.
 
 Répertoire : `codePython/data.json`
 
 Le fichier JSON est structuré de la manière suivante (exemple) :
-[SOURCE]
-----
+[source, json]
 {
     "donnees": {
         "tvoc": 91,
@@ -108,12 +105,11 @@ Le fichier JSON est structuré de la manière suivante (exemple) :
         "pressure": true
     }
 }
-----
 
 {empty} +
 
 === 2. Ressources externes :
-==== 2.1. Librairies utilisées :
+==== 2.1. Librairies utilisées : [[dependances]]
 [.text-justify]
 L'application repose sur plusieurs librairies externes nécessaires à son fonctionnement.
 
@@ -124,10 +120,23 @@ L'application repose sur plusieurs librairies externes nécessaires à son fonct
 
 ==== 2.2 Exportation de l'application :
 [.text-justify]
-L'application est disponible à l'exécution et sans prérequis autre qu'une JRE, sous forme de fichier .jar. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires.
+L'application est disponible à l'exécution et sans prérequis autre qu'une JRE et que le script `script.py`, sous forme de fichier JAR. Elle peut être régénérée à partir du code source et d'un IDE Java, mais ce dernier devra disposer d'une JRE Java versionnée en 1.8 ainsi que toutes les librairies nécessaires. Les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
 
-[.text-justify]
-Pour exécuter l'application en .jar, il faut s'assurer que le poste utilisé possède une JRE en 1.8. Le répertoire `codePython/` fourni avec le code source est nécessaire pour le bon fonctionnement de l'application.
+* `DialogueController.java` ligne 34 :
+[source, java]
+loader.setLocation(getClass().getResource("../view/mainView.fxml"));
+
+* `Config.java` ligne 63 :
+[source, java]
+String path = "config.json";
+
+* `JSONReader.java` ligne 33 :
+[source, java]
+String path = "data.json";
+
+* `JSONWriter.java` ligne 49 :
+[source, java]
+String path = "config.json";
 
 {empty} +
 
@@ -158,18 +167,66 @@ Aperçu de l'arborescence :
 === 4. Éléments essentiels :
 ==== 4.1 Prérequis pour le développeur :
 [.text-justify]
-Si le code de l'application devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable une *JRE version 1.8*. Il faudra ensuite qu'il ait un environnement de développement adapté pour cette version de Java et un Workspace configuré avec *JavaFX* et potentiellement le logiciel *SceneBuilder* pour modifier les fichiers FXML.
+Si le code de l'application devait être repris pour être amélioré ou modifié, le développeur devra avoir au préalable une *JRE version 1.8*. Il faudra ensuite qu'il ait un environnement de développement adapté pour cette version de Java et un Workspace configuré avec *JavaFX* et potentiellement le logiciel *SceneBuilder* pour modifier les fichiers FXML. Les dépendances précisées <<dependances, ici>> devront également être installées.
 
 ==== 4.2 Lancement de l'application :
 [.text-justify]
-Le poste sur lequel souhaite être lancée l'application avec le fichier exécutable `ApplicationIoT.jar` ou via un IDE, devra préalablement disposer d'une JRE versionné en 1.8. Le script Python doit être lancé avant de lancer l'application Java, pour cela, les commande suivantes peuvent être utilisées dans un terminal :
+L'application peut être lancée de deux manières, via un IDE Java et via le fichier le fichier exécutable `ApplicationIoT.jar`.
 
-`python codePython/script.py` ou `python codePython/script.py` (essayer l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire `Application_IoT`.
+===== A) Lancement avec un IDE
+[.text-justify]
+Pour lancer l'application via un IDE Java, les lignes de codes suivantes doivent d'abord être modifiées pour chaque classe :
+
+* `DialogueController.java` ligne 34 :
+[source, java]
+loader.setLocation(getClass().getResource("../view/mainView.fxml"));
+
+* `Config.java` ligne 63 :
+[source, java]
+String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+
+* `JSONReader.java` ligne 33 :
+[source, java]
+String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\data.json");
+
+* `JSONWriter.java` ligne 49 :
+[source, java]
+String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+
+La classe `Main.java` doit être la classe `application` à exécuter pour lancer toute l'application correctement.
+
+Le script Python doit être lancé *avant* l'application Java, pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
+
+[source, bash]
+python codePython/script.py
+
+ou
+
+[source, bash]
+python3 codePython/script.py
+
+(essayez l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire `Application_IoT`.
+
+===== B) Lancement via l'exécutable
+[.text-justify]
+Le poste sur lequel souhaite être lancée l'application avec le fichier JAR exécutable devra préalablement être paramétré avec une JRE versionné en 1.8.
+
+Le script Python doit être placé dans le même répertoire que le fichier JAR et être lancé *avant* ce dernier. Pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
+
+[source, bash]
+python script.py
+
+ou
+
+[source, bash]
+python3 script.py
+
+(essayez l'autre si l'une ne marche pas), en vous plaçant au préalable dans le répertoire englobant le script et le fichier JAR de l'application.
 
 [NOTE]
 ====
 [.text-justify]
-Pour toute information concernant l'installation d'une JRE 1.8, merci de bien vouloir vous référer à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
+Pour toute information concernant l'installation d'une JRE 1.8, se à la *documentation utilisateur*. Et pour plus d'informations à propos du script `script.py`, se référer à la documentation de ce dernier.
 ====
 
 {empty} +

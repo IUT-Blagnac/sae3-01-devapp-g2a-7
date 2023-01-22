@@ -46,7 +46,7 @@ public class JSONWriter {
      */
     public void writeData() {
         try {
-            String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json");
+            String path = "config.json"; //System.getProperty("user.dir").replace("codeJava\\App", "codePython\\config.json"); // TO MODIFY
             File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();
@@ -59,7 +59,6 @@ public class JSONWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Données écrites");
     }
 
     /**
@@ -125,7 +124,6 @@ public class JSONWriter {
             ((JSONObject) this.dataToCollect.get("seuils")).put(key, null);
         } else {
             String replacedValue = ((String) value).replace(",", ".");
-            //System.out.println("Replaced value : " + replacedValue);
             try {
                 ((JSONObject) this.dataToCollect.get("seuils")).put(key, Double.parseDouble(replacedValue));
             } catch (Exception e) {}

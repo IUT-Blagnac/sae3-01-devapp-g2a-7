@@ -3,8 +3,6 @@ package application.model;
 
 import java.io.File;
 import java.util.Scanner;
-
-import application.control.DialogueController;
 import application.control.ShowData;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -32,7 +30,7 @@ public class JSONReader implements Runnable {
     public void run() {
         try {
             // Open data.json file
-            String path = System.getProperty("user.dir").replace("codeJava\\App", "codePython\\data.json");
+            String path = "data.json"; //System.getProperty("user.dir").replace("codeJava\\App", "codePython\\data.json"); // TO MODIFY
             File file = new File(path);
             long lastModified = (file.exists()) ? file.lastModified() : 0;
             while (this.running) {

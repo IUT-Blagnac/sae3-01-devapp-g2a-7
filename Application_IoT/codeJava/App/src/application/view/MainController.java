@@ -4,9 +4,6 @@ package application.view;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-
-import application.control.ShowData;
-import application.model.JSONReader;
 import javafx.scene.control.Label;
 import org.json.simple.JSONObject;
 import application.control.DialogueController;
@@ -130,7 +127,6 @@ public class MainController implements Initializable  {
             barCharts.get(pfKey).setPrefWidth(0);
             barCharts.get(pfKey).setVisible(false);
         }
-        System.out.println("Charts updated");
     }
 
     /**
@@ -207,9 +203,10 @@ public class MainController implements Initializable  {
     /**
         Load the view configuration from the JSON file.
         @param pfConfigView JSONObject contain the oldConfiguration of the view
+        @apiNote MAY NOT WORK SOMETIMES WHEN RESETING THE DEFAULT CONFIGURATION
+            (mostly if the user changed a spinner data by using the keyboard input before)
      */
     public void loadView(JSONObject pfConfigView) {
-        System.out.println("On est là");
         for ( Object key : pfConfigView.keySet()) {
             // cast key to String
             String keyStr = (String) key;
@@ -218,7 +215,7 @@ public class MainController implements Initializable  {
                 String keyStr2 = (String) key2;
                 if (keyStr.equals("donnees")) {
                     Boolean selected = (Boolean) ((JSONObject) pfConfigView.get(keyStr)).get(keyStr2);
-                    this.checkBoxs.get(keyStr2).setSelected((!selected ? false : true));
+                    this.checkBoxs.get(keyStr2).setSelected((selected));
                     this.checkBoxListener(keyStr2);
                 }
                 if (keyStr.equals("seuils")) {
@@ -227,7 +224,6 @@ public class MainController implements Initializable  {
                 }
             }
         }
-        System.out.println("On a fini");
     }
 
     @FXML

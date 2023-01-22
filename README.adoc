@@ -34,7 +34,7 @@ endif::[]
 // Tags
 image:{baseURL}/actions/workflows/blank.yml/badge.svg[Bidon] 
 image:{baseURL}/actions/workflows/build.yml/badge.svg[Build] 
-image:{baseURL}/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Tests] 
+// image:{baseURL}/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Tests] 
 image:https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg[License: MPL-2.0, link="https://opensource.org/licenses/MPL-2.0"]
 //---------------------------------------------------------------
 
@@ -94,7 +94,9 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 === Base de données du site web
 
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/scriptCreationBD.sql[Script SQL-LDD] : création de tables, contraintes et séquences pour la base de données
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/jeuDonneesBD%20(beta).sql[Jeu de données] (temporaire)
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/jeuDonneesBD.sql[Jeu de données réelles]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/BD/paquetageBD[Paquetage PL/SQL] : avec procédures de gestion
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/BD/triggersBD.sql[Déclencheurs PL/SQL] : contrôle et modification des données
 
 === Site web
 
@@ -114,10 +116,17 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/supprimerProduit.php[Page de suppression d'un produit] : pour les administrateurs uniquement
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/ajouterCategorie.php[Page d'ajout d'une catégorie] : pour les administrateurs uniquement
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/supprimerCategorie.php[Page de suppression d'une catégorie] : pour les administrateurs uniquement
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Documentation_technique.adoc[Documentation technique]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[cahier de recette] : tests unitaires et plans de test
 
 === Application IoT
 
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Application_IoT/codePython/script.py[Script Python] : lecture d'un fichier de configuration ``config.json`` et écriture d'un fichier ``data.json`` avec les données récupérées depuis le réseau IoT
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Application_IoT/codeJava/App[Code source de l'application Java]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Application_IoT/Application[Application exécutable] (voir la documentation technique)
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc[Documentation technique]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc[Documentation utilisateur]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Javadoc/[Documentation Javadoc]
 
 == Gestion de projet & Qualité
 
@@ -126,14 +135,14 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v3[v3]
-- Lien vers la doc technique
-- Lien vers la doc utilisateur
-- Liste des (ou lien vers les) User Stories (ToDo/Ongoing/Done) et % restant
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Tests unitaires et plans de test] (cahier de recette)
-- Indicateurs de qualité du code (dette technique)
-- ... tout autre élément que vous jugerez utiles pour démontrer la qualité de votre application
-
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v5[v5]
+- Lien vers la documentation technique : 
+  - Appication IoT : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc
+- Lien vers la documentation utilisateur :
+  - Application IoT : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc
+- Liste des (ou lien vers les) User Stories : voir documentation technique (site et application)
+- Lien vers les tests :
+  - Site web : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc
 
 === Évaluations hebdomadaires
 

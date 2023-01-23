@@ -117,7 +117,7 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/ajouterCategorie.php[Page d'ajout d'une catégorie] : pour les administrateurs uniquement
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/siteWeb/pages/supprimerCategorie.php[Page de suppression d'une catégorie] : pour les administrateurs uniquement
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Documentation_technique.adoc[Documentation technique]
-- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[cahier de recette] : tests unitaires et plans de test
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Cahier de recette] : tests unitaires et plans de test
 
 === Application IoT
 

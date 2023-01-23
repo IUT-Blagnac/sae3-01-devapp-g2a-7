@@ -1,3 +1,3 @@
-SET JDK8="C:\Program Files\Java\jre1.8.0_351\bin"
+SET JDK8="chemin_jre_1.8/bin"
 PATH=%JDK8%
 java -Dfile.encoding=UTF-8 -jar ApplicationIoT.jar

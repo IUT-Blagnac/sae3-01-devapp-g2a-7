@@ -137,12 +137,14 @@ De plus ce fichier `README.adoc` devra être à jour des informations suivantes 
 
 - Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v5[v5]
 - Lien vers la documentation technique : 
-** Appication IoT : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc[Appication IoT]
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_technique.adoc[Site web]
 - Lien vers la documentation utilisateur :
-** Application IoT : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc[Application IoT]
 - Liste des (ou lien vers les) User Stories : voir documentation technique (site et application)
 - Lien vers les tests :
-** Site web : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Site web]
+- Lien vers https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Analyse_impact/Analyse_impact.adoc[l'analyse d'impact] du site web
 
 === Évaluations hebdomadaires
 

@@ -127,6 +127,8 @@ TIP: Mettez ici toutes les informations nécessaire à l'utilisation de votre d�
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc[Documentation technique]
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc[Documentation utilisateur]
 - https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Javadoc/[Documentation Javadoc]
+- https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Cahier_de_recette.adoc[Cahier de recette] : tests unitaires et plans de test
+
 
 == Gestion de projet & Qualité
 
@@ -135,15 +137,17 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v5[v5]
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v5.5[v5.5]
 - Lien vers la documentation technique : 
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc[Appication IoT]
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_technique.adoc[Site web]
 - Lien vers la documentation utilisateur :
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc[Application IoT]
-- Liste des (ou lien vers les) User Stories : voir documentation technique (site et application)
+** Site web *(TODO)*
+- Liste des (ou lien vers les) User Stories : _voir documentation technique (site et application)_
 - Lien vers les tests :
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Site web]
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Cahier_de_recette.adoc[Application IoT]
 - Lien vers https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Analyse_impact/Analyse_impact.adoc[l'analyse d'impact] du site web
 
 === Évaluations hebdomadaires

@@ -8,7 +8,7 @@ Groupe *G2A-7* : Tilian HURÉ, Vincent MIQEU-DENJEAN, Matéo PÉPIN, Hugo WENDJA
 
 == I. Présentation du site web
 [.text-justify]
-Le site web REVIVE est un site d'e-commerce ayant été demandé par l'entreprise du même nom dont le but de vendre en ligne ses produits reconditionnés.
+Le site web REVIVE est un site d'e-commerce ayant été demandé par l'entreprise du même nom dont le but est de vendre en ligne ses produits reconditionnés.
 
 === 1. Les utilisateurs :
 [.text-justify]

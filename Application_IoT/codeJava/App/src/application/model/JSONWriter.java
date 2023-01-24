@@ -67,7 +67,7 @@ public class JSONWriter {
     @SuppressWarnings("unchecked")
     public void setSeuilsByDefault(String keys[]) {
         HashMap<String, Double> defaultSeuils = new HashMap<String, Double>();
-        defaultSeuils.put("activity", 10.0);
+        defaultSeuils.put("activity", 1000.0);
         defaultSeuils.put("co2", 10000.0);
         defaultSeuils.put("humidity", 1000.0);
         defaultSeuils.put("illumination", 1000000.0);

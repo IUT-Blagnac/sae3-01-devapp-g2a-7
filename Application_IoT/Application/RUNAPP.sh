@@ -1,5 +1,5 @@
 #!/bin/sh
-JDK8="/usr/lib/jvm/jdk1.8.0_202"
+JDK8="chemin_jre_1.8" # TO MODIFY
 # Set the JAVA_HOME temporarily to the JDK8
 JAVA_HOME=$JDK8
 # Set the PATH to include the JDK8

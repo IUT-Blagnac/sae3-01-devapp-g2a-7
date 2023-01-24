@@ -19,7 +19,7 @@ L'exécution des tests requiert :
 
 * Le répertoire `Application` nécessaire à l'exécution de l'application avec notamment :
 ** Le fichier `script.py` à lancer avant l'application
-** Le fichier `SETENV.bat` (à configurer) pour lancer l'application
+** Le fichier `RUNAPP.sh` (à configurer, voir *documentation utilisateur*) pour lancer l'application
 
 === 1. Éléments à tester :
 [.text-justify]

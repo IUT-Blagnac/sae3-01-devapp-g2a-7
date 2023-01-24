@@ -171,7 +171,7 @@ public class MainController implements Initializable  {
      */
     public void init() {
         HashMap<String, Integer> maxValues = new HashMap<String, Integer>();
-        maxValues.put("activity", 10);
+        maxValues.put("activity", 1000);
         maxValues.put("co2", 10000);
         maxValues.put("humidity", 1000);
         maxValues.put("illumination", 1000000);

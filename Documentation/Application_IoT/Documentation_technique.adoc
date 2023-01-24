@@ -44,7 +44,7 @@ Répertoire : `codeJava/App/`
 
 NOTE: Peu importe le fichier `config.json` donné pour l'application JavaFX (fichier mal-formé voire absent, etc), cette dernière regénerera toujours un fichier de configuration bien formé.
 
-==== 1.2 Fichier de données et de configuration :
+==== 1.2 Fichiers de configuration et de données :
 [.text-justify]
 Comme évoqué précédemment, l'application utilise deux fichiers générés au format JSON :
 
@@ -111,7 +111,7 @@ Le fichier JSON est structuré de la manière suivante (exemple) :
 === 2. Ressources externes :
 ==== 2.1. Librairies utilisées : [[dependances]]
 [.text-justify]
-L'application repose sur plusieurs librairies externes nécessaires à son fonctionnement.
+L'application ne fonctionne que sous le système d'exploitation *Linux* et repose sur plusieurs librairies externes nécessaires à son fonctionnement.
 
 *Librairies nécessaires :*
 
@@ -203,23 +203,13 @@ python3 codePython/script.py
 
 ===== B) Lancement via l'exécutable
 [.text-justify]
-Le poste sur lequel souhaite être lancée l'application avec le fichier JAR exécutable devra préalablement posséder une JRE versionnée en 1.8. Le répertoire `Application_IoT/Application` contient tous les fichiers nécessaires au fonctionnement de l'exécutable.
-
-[.text-justify]
-Le script Python `script.py` doit être lancé *avant* l'application. Pour cela, les commandes suivantes peuvent être utilisées dans un terminal :
+Le lancement de l'application se fait avec le fichier exécutable `RUNAPP.sh` du répertoire `Application` contenant tous les fichiers nécessaires à l'exécution de l'application. Ce fichier doit être configuré (modifié) en renseignant le chemin de la JRE 1.8 du poste dans la ligne 2 :
 
 [source, bash]
-python script.py
-
-ou
-
-[source, bash]
-python3 script.py
-
-(essayez l'autre si l'une ne marche pas).
+JDK8="chemin_jre_1.8"
 
 [.text-justify]
-Le fichier `SETENV.bat` permet de lancer l'application avec le bon encoding et le bon environnement Java qu'il faudra préciser (`clique-droit`, puis "Modifier" sur le fichier BAT).
+Une fois configuré et exécuté, ce fichier permet de lancer correctement le script Python `script.py` puis l'application Java étant le fichier `ApplicationIoT.jar`.
 
 [NOTE]
 ====
@@ -231,7 +221,7 @@ Pour toute information concernant l'installation d'une JRE 1.8, se référer à 
 
 == III. Descriptions des fonctionnalités techniques
 [.text-justify]
-L'interface graphique de l'application est divisé en deux partie :
+L'interface graphique de l'application est divisé en deux parties :
 
 * La partie gauche concernant la configuration des données (données à afficher et seuils)
 * La partie droite concernant l'affichage des données récupérées selon la configuration renseignée.
@@ -269,7 +259,7 @@ Si un fichier de configuration `config.json` existe déjà, l'application met à
 
 ==== 1.2 Sélection des données à afficher
 [.text-justify]
-L'utilisateur peut choisir via des cases à côcher quels types de données (température, humidité, etc) il souhaite afficher sur l'interface de l'application. Le fichier `config.json` est mis à jour selon les paramètrages choisis.
+L'utilisateur peut choisir via des cases à côcher quels types de données (température, humidité, etc) il souhaite afficher sur l'interface de l'application. Le fichier `config.json` est mis à jour selon les paramétrages choisis.
 
 ===== A) Packages et classes impliqués
 
@@ -296,7 +286,7 @@ L'utilisateur peut choisir via des cases à côcher quels types de données (tem
 
 ==== 1.3 Choix des seuils de contrôles des données
 [.text-justify]
-L'utilisateur peut choisir via des 'spinners' les seuils de contrôles des données récupérées. Le fichier `config.json` est mis à jour selon les paramètrages choisis.
+L'utilisateur peut choisir via des 'spinners' les seuils de contrôles des données récupérées. Le fichier `config.json` est mis à jour selon les paramétrages choisis.
 
 ===== A) Packages et classes impliqués
 
@@ -355,7 +345,7 @@ L'utilisateur peut réinitialisation les données de configuration par défaut. 
 === 2. Affichage des données
 ==== 2.1 Données et seuils
 [.text-justify]
-Les données récupérées selon la configuré choisie sont affichées dans l'interface graphique en faisant apparaître en rouge les excès dépassant les seuils fixés pour les données correspondantes.
+Les données récupérées selon la configuration choisie sont affichées dans l'interface graphique en faisant apparaître en rouge les excès dépassant les seuils fixés pour les données correspondantes.
 
 ===== A) Packages et classes impliqués
 

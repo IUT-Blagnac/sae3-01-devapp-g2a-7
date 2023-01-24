@@ -11,7 +11,7 @@ Groupe *G2A-7* : Tilian HURÉ, Vincent MIQEU-DENJEAN, Matéo PÉPIN, Hugo WENDJA
 Cette application IoT (Internet of Things) a pour but de contrôler les conditions ambiantes des entrepôts de l'entreprise REVIVE en traitant des données récupérées depuis des capteurs sur un réseau MQTT.
 
 [.text-justify]
-Les utilisateurs peuvent à partir de l'interface graphique de l'application, choisir les données à afficher sous forme de diagrammes en bâton (température, humidité, taux de CO2, etc) ; ainsi que les seuils de dépassement des données qui seront affichés en rouge dans les diagrammes lorsque une donnée en dépassera un.
+Les utilisateurs peuvent à partir de l'interface graphique de l'application, choisir les données à afficher sous forme de diagrammes en bâton (température, humidité, taux de CO2, etc) ; ainsi que les seuils de dépassement des données qui seront affichés en rouge dans les diagrammes lorsqu'une donnée en dépassera un.
 
 {empty} +
 
@@ -21,7 +21,7 @@ Les utilisateurs peuvent à partir de l'interface graphique de l'application, ch
 Concernant l'installation de l'application et son utilisation, l'utilisateur aura besoin de certains prérequis.
 
 [.text-justify]
-Il sera d'abord indispensable de disposer d'un environnement d'exécution *Java en version 8* (JRE 1.8). Ce dernier devra être installé et configuré dans le terminal, par exemple avec *JENV* sur Mac et Linux, ou une alternative sur Windows. L'utilisateur devra aussi disposer de la dernière version de *Python3*.
+Il sera d'abord indispensable de disposer d'un environnement d'exécution *Java en version 8* (JRE 1.8) sous le système d'exploitation *Linux*. Ce dernier devra être installé et configuré dans le terminal, par exemple avec *JENV* sur Mac et Linux, ou une alternative sur Windows. L'utilisateur devra aussi disposer de la dernière version de *Python3*.
 
 Références :
 
@@ -33,23 +33,13 @@ Références :
 
 === 2. Lancement de l'application
 [.text-justify]
-Le lancement de l'application se fait en deux étapes en se plaçant au préalable dans le répertoire `Application` contenant tous les fichiers nécessaires.
-
-[.text-justify]
-Si cela n'est pas encore fait, lancer d'abord le script Python `script.py` depuis un terminal avec les commandes suivantes :
+Le lancement de l'application se fait avec le fichier exécutable `RUNAPP.sh` du répertoire `Application` contenant tous les fichiers nécessaires à l'exécution de l'application. Ce fichier doit être configuré (modifié) en renseignant le chemin de la JRE 1.8 du poste dans la ligne 2 :
 
 [source, bash]
-python script.py
-
-ou
-
-[source, bash]
-python3 script.py
-
-(essayez l'autre si l'une ne marche pas). Si ce fichier n'est pas lancé avant l'exécution de l'application, cette dernière ne pourra pas récupérer les données des capteurs depuis le réseau MQTT des entrepôts.
+JDK8="chemin_jre_1.8"
 
 [.text-justify]
-Configurez en suite le fichier `SETENV.bat` permettant de lancer l'application avec le bon encoding et le bon environnement Java (`clique-droit`, puis "Modifier" sur le fichier BAT), avant de l'exécuter.
+Une fois configuré et exécuté, ce fichier permet de lancer correctement le script Python `script.py` puis l'application Java étant le fichier `ApplicationIoT.jar`.
 
 {empty} +
 
@@ -101,6 +91,6 @@ image::images/resetDonnees2.png[Interface de configuration des données (après 
 
 === 4. Fermeture de l'application
 [.text-justify]
-Il est recommandé de fermer l'application "normalement" en utilisant l'option correspondante de votre système d'exploitation (souvent une croix en haut à droite de la fenêtre, ou la commande `ALT+F4`, ou `Clique-droit` puis "Fermer" sur la fenêtre, etc), afin d'assurer une fermeture compléte. Si le fichier `config.json` généré par l'application (dans le répertoire `codePython`) est laissé intact, vous pourrez réouvrir l'application en récupérant votre dernière configuration.
+Il est recommandé de fermer l'application "normalement" en utilisant l'option correspondante de votre système d'exploitation (souvent une croix en haut à droite de la fenêtre, ou la commande `ALT+F4`, ou `Clique-droit` puis "Fermer" sur la fenêtre, etc), afin d'assurer une fermeture compléte. Si le fichier `config.json` généré par l'application (dans le répertoire `codePython`) est laissé intact, vous pourrez ré-ouvrir l'application en récupérant votre dernière configuration.
 
 {empty} +

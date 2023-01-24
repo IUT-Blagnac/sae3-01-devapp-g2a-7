@@ -1,0 +1,68 @@
+= Documentation technique du site web REVIVE
+:toc:
+:toc-title: Sommaire
+
+== Acceder au site web
+Via le réseau de l'IUT de Blagnac, le site web est accessible sur le lien suivant: http://192.168.224.139/~SAESYS07[Site web].
+
+Via un réseau externe, le site web est accessible sur le lien suivant: http://193.54.227.164/~SAESYS07[Site web].
+
+== Connexion au site web
+=== Connexion en tant qu'administrateur
+Pour se connecter en tant qu'administrateur, il faut utiliser les identifiants suivants:
+
+* Identifiant: admin@mail.com
+* Mot de passe: Motdepasse#1
+
+=== [[Connexion_utilisateur]]Connexion en tant qu'utilisateur
+Pour se connecter en tant qu'utilisateur, il faut utiliser les identifiants suivants:
+
+* Identifiant: tilian@mail.com
+* Mot de passe: Motdepasse#1
+
+== Test global du site web
+Charte graphique du site web:
+
+* [[Header]]Header: Rubant ce situant en haut de la page.
+* Footer: Rubant ce situant en bas de la page.
+* [[Menu_deroulant]]Menu déroulant: Ce situe en dans le header puis en mettant la souris sur le bouton *"NOS PRODUITS"* en bas à gauche du header.
+
+== Test de Connexion / Deconnexion
+Pour ces test, vous pouvez vous connecter en tant qu'administrateur ou en tant qu'utilisateur. +
+
+=== [[Connexion]]Test de connexion
+Pour tester la connexion, il faut se rendre sur la page d'accueil du site web et cliquer sur le bouton *"CONNEXION"* en haut au milieu du <<Header, header>>. +
+Message de mauvaise identification (identifiant ou mot de passe incorrect)
+
+=== Test de deconnexion
+Pour ce déconnecter, il faut cliquer sur le bouton "MON PROFIL" en haut au milieu de la page. +
+Puis cliquer sur le bouton *"DECONNEXION"* en bas de la page.
+
+
+== [[Recherche_produit]]Test recherche d'un produit
+=== Test Recherche des produits via menu déroulant
+
+Menu déroulant: <<Menu_deroulant, Où ce trouve t-il?>>
+
+* Passer la souris sur *"NOS PRODUITS"* puis cliquer sur *"Smartphone"*.
+* Affiche bien 13 produits.
+* Le menu déroulant ne reste pas affiché.
+
+=== Test Recherche des produits via barre de recherche
+
+Ou trouver la barre de recherche:
+Elle ce situe en haut à droite du <<Header, header>>.
+
+* Si le champ n’est pas rempli et qu’on applique la recherche, affiche tous les produits du site.
+* Si le nom d’un produit ou d’une marque et écrit et qu’on applique la recherche, affiche seulement les produits correspondant (ex : on tape *"MSI"*, le site affiche 1 résultat contenant ce mot).
+
+== [[Consultation]]Test Consultation d'un produit
+
+Pour consulter un produit, il faut cliquer sur le bouton *"Voir le produit"* en bas au milieu de chaque produit, lors de la <<Recherche_produit,recherche d'un produit>>.
+
+* Sélectionner un produit, la redirection vers la page de consultation de ce produit se fait sans erreur.
+* Le prix change en fonction des caractéristiques et du nombre de produits sélectionnés.
+* Pour les avis clients, en fonction de la case coché, seul les avis correspondant au nombre d’étoiles choisis sont affichés.
+* [[Avis]]Cliquer sur le bouton *"connectez vous pour donner un avis"* puis utiliser les identifiants et mot de passe <<Connexion_utilisateur, utilisateur>> pour se <<Connexion, connecter>>.
+* En retournant sur la page de <<Consultation ,consultation du produit>>, le bouton affiche maintenant *"Ajouter un Avis"*. En cliquant dessus on peut ensuite ajouter un <<Avis, avis>> qui sera sauvegardé et affiché sur la page.
+* La note moyenne du produit est donc modifié en fonction de ce nouveau commentaire.

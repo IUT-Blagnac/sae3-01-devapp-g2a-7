@@ -67,7 +67,7 @@
                                           </CheckBox>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
-                                                <Spinner fx:id="spinnerActivite" editable="true" prefWidth="1000.0">
+                                                <Spinner fx:id="spinnerActivite" editable="true" prefWidth="100.0">
                                                    <HBox.margin>
                                                       <Insets right="5.0" />
                                                    </HBox.margin>
@@ -275,7 +275,7 @@
                                           </CategoryAxis>
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis autoRanging="false" side="LEFT" tickUnit="1.0" upperBound="10.0" />
+                                        <NumberAxis autoRanging="false" side="LEFT" tickUnit="100.0" upperBound="1000.0" />
                                       </yAxis>
                                     </StackedBarChart>
                                     <StackedBarChart fx:id="bcCO2" animated="false" legendVisible="false" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-color: white;" styleClass="co2" stylesheets="@style.css" titleSide="BOTTOM">

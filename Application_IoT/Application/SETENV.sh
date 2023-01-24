@@ -1,5 +1,4 @@
 #!/bin/sh
-PATH_TO_APPLICATION=""
 JDK8="/usr/lib/jvm/jdk1.8.0_202"
 # Set the JAVA_HOME temporarily to the JDK8
 JAVA_HOME=$JDK8

@@ -137,7 +137,7 @@ public class MainController implements Initializable  {
      * @param pfKkey
      */
     public void spinnerListener(String pfNewValue, String pfOldValue, String pfKkey) {
-        String value = pfNewValue.matches("-{0,1}\\d*(\\.|,){0,1}\\d*") ?
+        String value = pfNewValue.matches("-{0,1}\\d{1,}(\\.|,){0,1}\\d*") ?
         pfNewValue.replace(".", ",") : pfOldValue;
         spinners.get(pfKkey).getEditor().setText((value));
     }
@@ -233,18 +233,16 @@ public class MainController implements Initializable  {
      * <a href="https://stackoverflow.com/questions/32340476/manually-typing-in-text-in-javafx-spinner-is-not-updating-the-value-unless-user">Source</a>
      */
     private <T> void commitEditorText(Spinner<T> spinner) {
-        try {
-            if (!spinner.isEditable()) return;
-            String text = spinner.getEditor().getText();
-            SpinnerValueFactory<T> valueFactory = spinner.getValueFactory();
-            if (valueFactory != null) {
-                StringConverter<T> converter = valueFactory.getConverter();
-                if (converter != null) {
-                    T value = converter.fromString(text);
-                    valueFactory.setValue(value);
-                }
+        if (!spinner.isEditable()) return;
+        String text = spinner.getEditor().getText();
+        SpinnerValueFactory<T> valueFactory = spinner.getValueFactory();
+        if (valueFactory != null) {
+            StringConverter<T> converter = valueFactory.getConverter();
+            if (converter != null) {
+                T value = converter.fromString(text);
+                valueFactory.setValue(value);
             }
-        } catch (Exception e) {}
+        }
     }
 
     @FXML

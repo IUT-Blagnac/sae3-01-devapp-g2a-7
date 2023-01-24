@@ -137,13 +137,13 @@ Utilisez pour cela les fonctionnalités de GitHub pour les https://docs.github.c
 
 De plus ce fichier `README.adoc` devra être à jour des informations suivantes :
 
-- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v5.5[v5.5]
+- Version courante : https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/releases/tag/v6[v6] *version finale*
 - Lien vers la documentation technique : 
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_technique.adoc[Appication IoT]
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_technique.adoc[Site web]
 - Lien vers la documentation utilisateur :
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc[Application IoT]
-** Site web *(TODO)*
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_utilisateur.adoc[Application IoT]
 - Liste des (ou lien vers les) User Stories : _voir documentation technique (site et application)_
 - Lien vers les tests :
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Site web]

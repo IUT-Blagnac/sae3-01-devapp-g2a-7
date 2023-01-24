@@ -143,7 +143,7 @@ De plus ce fichier `README.adoc` devra être à jour des informations suivantes 
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_technique.adoc[Site web]
 - Lien vers la documentation utilisateur :
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/Application_IoT/Documentation_utilisateur.adoc[Application IoT]
-** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_utilisateur.adoc[Application IoT]
+** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/tree/master/Documentation/siteWeb/Documentation_utilisateur.adoc[Site web]
 - Liste des (ou lien vers les) User Stories : _voir documentation technique (site et application)_
 - Lien vers les tests :
 ** https://github.com/IUT-Blagnac/sae3-01-devapp-g2a-7/blob/master/Documentation/siteWeb/Cahier_de_recette.adoc[Site web]

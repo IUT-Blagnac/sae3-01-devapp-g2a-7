@@ -7,62 +7,142 @@ Via le réseau de l'IUT de Blagnac, le site web est accessible sur le lien suiva
 
 Via un réseau externe, le site web est accessible sur le lien suivant: http://193.54.227.164/~SAESYS07[Site web].
 
-== Connexion au site web
-=== Connexion en tant qu'administrateur
-Pour se connecter en tant qu'administrateur, il faut utiliser les identifiants suivants:
+== Identification au site web
+=== Identifiant administrateur
 
 * Identifiant: admin@mail.com
 * Mot de passe: Motdepasse#1
 
-=== [[Connexion_utilisateur]]Connexion en tant qu'utilisateur
-Pour se connecter en tant qu'utilisateur, il faut utiliser les identifiants suivants:
+=== Identifiant utilisateur
 
 * Identifiant: tilian@mail.com
 * Mot de passe: Motdepasse#1
 
-== Test global du site web
-Charte graphique du site web:
+== Test
+=== Connexion
 
-* [[Header]]Header: Rubant ce situant en haut de la page.
-* Footer: Rubant ce situant en bas de la page.
-* [[Menu_deroulant]]Menu déroulant: Ce situe en dans le header puis en mettant la souris sur le bouton *"NOS PRODUITS"* en bas à gauche du header.
+. Message d'érreur si mauvaise identification  (message d’erreur différent en fonction de si l’adresse mail est connu ou pas et du mot de passe).
 
-== Test de Connexion / Deconnexion
-Pour ces test, vous pouvez vous connecter en tant qu'administrateur ou en tant qu'utilisateur. +
+. Se connecter et tester la déconnexion.
 
-=== [[Connexion]]Test de connexion
-Pour tester la connexion, il faut se rendre sur la page d'accueil du site web et cliquer sur le bouton *"CONNEXION"* en haut au milieu du <<Header, header>>. +
-Message de mauvaise identification (identifiant ou mot de passe incorrect)
+. Bonne charte graphique composé d'un Header, d'un Footer, d'un menu déroulant et page principale.
 
-=== Test de deconnexion
-Pour ce déconnecter, il faut cliquer sur le bouton "MON PROFIL" en haut au milieu de la page. +
-Puis cliquer sur le bouton *"DECONNEXION"* en bas de la page.
+=== Consultation des produits via menu déroulant
 
+. Passer la souris sur "NOS PRODUITS" puis cliquer sur "Smartphone".
 
-== [[Recherche_produit]]Test recherche d'un produit
-=== Test Recherche des produits via menu déroulant
+. affichage correcte des 13 Biens.
 
-Menu déroulant: <<Menu_deroulant, Où ce trouve t-il?>>
+. Le menu déroulant ne reste pas affiché
 
-* Passer la souris sur *"NOS PRODUITS"* puis cliquer sur *"Smartphone"*.
-* Affiche bien 13 produits.
-* Le menu déroulant ne reste pas affiché.
+=== Consultation des produits via barre de recherche
 
-=== Test Recherche des produits via barre de recherche
+. Si le champ n'est pas rempli et qu'on applique la recherche, affiche tous les produits du site.
 
-Ou trouver la barre de recherche:
-Elle ce situe en haut à droite du <<Header, header>>.
+. Si le nom d’un produit ou d’une marque est écrit et qu’on applique la recherche, affiche seulement les produits correspondants
+(ex : on tape "MSI", le site affiche 1 résultat contenant ce mot)
 
-* Si le champ n’est pas rempli et qu’on applique la recherche, affiche tous les produits du site.
-* Si le nom d’un produit ou d’une marque et écrit et qu’on applique la recherche, affiche seulement les produits correspondant (ex : on tape *"MSI"*, le site affiche 1 résultat contenant ce mot).
+=== Produits
 
-== [[Consultation]]Test Consultation d'un produit
+. Sélectionner un produit, si la redirection vers la page de consultation de ce produit se fait sans erreur.
 
-Pour consulter un produit, il faut cliquer sur le bouton *"Voir le produit"* en bas au milieu de chaque produit, lors de la <<Recherche_produit,recherche d'un produit>>.
+. Le prix change en fonction des caractéristiques et du nombre de produits sélectionnés.
 
-* Sélectionner un produit, la redirection vers la page de consultation de ce produit se fait sans erreur.
-* Le prix change en fonction des caractéristiques et du nombre de produits sélectionnés.
-* Pour les avis clients, en fonction de la case coché, seul les avis correspondant au nombre d’étoiles choisis sont affichés.
-* [[Avis]]Cliquer sur le bouton *"connectez vous pour donner un avis"* puis utiliser les identifiants et mot de passe <<Connexion_utilisateur, utilisateur>> pour se <<Connexion, connecter>>.
-* En retournant sur la page de <<Consultation ,consultation du produit>>, le bouton affiche maintenant *"Ajouter un Avis"*. En cliquant dessus on peut ensuite ajouter un <<Avis, avis>> qui sera sauvegardé et affiché sur la page.
-* La note moyenne du produit est donc modifié en fonction de ce nouveau commentaire.
+=== Avis
+
+. Pour les avis clients, en fonction de la case coché, seul les avis correspondant au nombre d’étoiles choisis sont affichés.
+
+. Cliquer sur le bouton “connectez vous pour donner un avis” puis utiliser les identifiants et mot de passe utilisateur pour se connecter.
+
+. En retournant sur la page de consultation du produit, le bouton affiche maintenant "Ajouter un Avis". En cliquant dessus on peut ensuite ajouter un avis qui sera sauvegardé et affiché sur la page.
+
+. La note moyenne du produit est donc modifié en fonction de ce nouveau commentaire
+
+=== Utilisateur
+==== Création d'un compte
+
+. Rentrer une adresse mail invalide ou déjà existante pour le site, affiche un message d’erreur.
+
+. Le mot de passe doit contenir : 
+** minimum 8 caractères
+** minimum 1 Majuscules
+** minimum 1 caractère spécial parmi : @ $ ! % * # ? &
+
+Sinon affiche un message d’erreur
+
+. Affiche un message pour confirmer que le compte à bien été créé et redirige vers la page de connexion.
+
+==== Connexion
+
+. Une fois connecté, le bouton "Connexion" du Header s’appelle maintenant "Mon Profil" et un bouton "Revendre" est apparu à côté du menu déroulant.
+
+. Cliquer sur “Mon Profil” , les informations du compte s’affiche sans erreur et le bouton “se déconnecter” fonctionne.
+
+. Le lien "modifier les données" nous renvoi vers une page ou on peut changer tous les paramètres du compte (nom, prénom, mail, mot de passe, annonces par mail). Modifier les données et valider, les nouvelles données apparaissent bien mise à jour quand on consulte de nouveau le profil.
+
+. Le bouton “Revendre” renvoi vers une page “revendreProduit.php”.
+Entrer les informations d’un produit et valider, un message de confirmation apparaît.
+
+=== Administrateur
+On ne peut pas créer de compte administrateur directement depuis le site.
+
+==== Se connecter
+
+. Un menu déroulant "Gestion" apparaît à côté du menu déroulant déjà existant.
+(Il permet d’ajouter ou de supprimer des produits ou des catégories.)
+
+===== Ajout categorie
+
+. Passer la souris sur le menu “gestion”, aller dans "catégories" puis cliquer sur "ajouter", le site vous affiche une page d’ajout de catégorie.
+
+. Créer une catégorie "testmère" qui sera une catégorie mère et une catégorie "testfille" qui sera une catégorie fille ayant pour catégorie mère "testmère".
+Celles-ci doivent ainsi apparaître dans le menu déroulant des produits.
+
+===== Ajout produit
+
+Passer la souris sur le menu "gestion", aller dans "produits" puis cliquer sur "ajouter", le site vous affiche une page d’ajout de produits.
+
+. Remplir les champs en sélectionnant "testmère" comme nom de catégorie puis cliquer sur "ajouter". Un message de confirmation d’ajout du produit s’affiche.
+
+. Faire de même pour un deuxième produit en sélectionnant “testfille” comme nom de catégorie.
+
+. En allant dans le menu déroulant “Nos Produits”, cliquer sur test “testmère”, les 2 produits ajoutés doivent apparaître. Et passant la souris sur “testmère” puis en cliquant sur “testfille” seul le produit ajouté dans la catégorie fille doit apparaître.
+
+. Cliquer sur "voir le produit". Les informations renseigné à la création du produit doivent toutes correspondrent. Par défaut, seul les choix de "Condition" "Parfait état", "Très bon état" "Etat correct" doivent apparaître.
+
+===== Supprimer produit
+
+. Retourner dans le menu "Gestion", passer la souris sur "Catégories" puis cliquer sur "Supprimer". Une page de suppression de catégorie doit apparaître, dans la liste déroulante, aucune catégorie n’est sélectionnable.
+
+. Retourner dans le menu "Gestion", passer la souris sur "Produits" puis cliquer sur "Supprimer". Une page de suppression de produits doit apparaître, dans la liste déroulante, sélectionner un des deux produits précédemment créés puis valider, un message de confirmation apparaît.
+
+. Essayer d’afficher les deux produits précédemment créé, un seul doit apparaître (celui qui n’a pas été supprimé).
+
+. Supprimer ce deuxième produit, puis essayer de nouveau de supprimer une catégorie. Seule la catégorie "testfille" doit être sélectionnable. La sélectionner puis valider, un message de confirmation apparaît.
+
+. Dans le menu déroulant "Nos Produits", la catégorie "testfille" n'apparaît plus.
+Retourner dans le menu de gestion et supprimer la catégorie "testmère" qui est maintenant sélectionnable.
+
+=== Panier
+
+. Quand le panier est vide, affiche un message “Votre panier est vide”.
+
+-> Se connecter
+
+. Depuis la page de consultation des produits, ajouter des produits au panier.
+Cliquer sur "Panier" dans le Header, les produits ajoutés doivent apparaître correctement avec les options et quantités sélectionnées.
+
+. Modifier les quantités, les prix doivent être modifiés correctement.
+
+. Cliquer sur le logo en forme de corbeille à droite du prix d’un produit, le produit est supprimé du produit et le montant de celui-ci est soustrait au montant total de la commande correctement.
+
+-> Se déconnecter
+
+. Le panier doit être vide une fois déconnecté. Ajouter à nouveau des produits différents de ceux précédents.
+
+-> Se reconnecter
+
+. Soit en utilisant “Connexion” dans le Header, soit en utilisant le bouton “Se connecter pour valider ma commande” dans le panier.
+
+. Les deux panier ont été correctement fusionnés (les articles ajoutés en étant déconnectés apparaissent à côté de ceux ajoutés en étant connectés).
+

@@ -1,0 +1,1 @@
+{"donnees": {"tvoc": 104, "activity": 0, "temperature": 18.9, "humidity": 29, "infrared": 8, "pressure": 1004.7}, "seuils": {"tvoc": false, "activity": false, "temperature": false, "humidity": false, "infrared": false, "pressure": false}}

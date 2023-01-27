@@ -1,0 +1,113 @@
+section {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+}
+
+section > div {
+    position: relative;
+    display: block;
+    box-shadow: 1px 1px 5px var(--dark-grey);
+    padding: 30px;
+    width: 30%;
+    min-width: 350px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+section div h1 {
+    position: relative;
+    display: block;
+    text-align: center;
+    color: var(--green-blue);
+    font-size:35px;
+}
+
+section div p {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 25px;
+}
+
+section div form {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+}
+
+section div form div {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    gap: 5px;
+}
+
+section div form div label {
+    position: relative;
+    display: block;
+    color: var(--dark-grey);
+    font-size: 20px;
+}
+
+section div form div input,
+section div form div select {
+    position: relative;
+    display: block;
+    color: var(--dark-grey);
+    border: 1px solid var(--dark-grey);
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    outline-color: var(--green-blue);
+    box-sizing: border-box;
+}
+
+section div form div input::placeholder,
+section div form div select::placeholder {
+    color:var(--grey);
+}
+
+section div form div img {
+    position: relative;
+    display: none;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    object-fit: contain;
+    border: 1px solid var(--dark-grey);
+}
+
+section div form input[type="submit"] {
+    position: relative;
+    display: block;
+    background-color: var(--green-blue);
+    border-radius: 10px;
+    border: 1px solid white;
+    color:white;
+    padding: 15px;
+    width: 40%;
+    transition-duration: 0.2s;
+}
+
+section div form input[type="submit"]:hover {
+    border: 1px solid var(--green-blue);
+    color: var(--green-blue);
+    background-color:white;
+    cursor:pointer;
+}

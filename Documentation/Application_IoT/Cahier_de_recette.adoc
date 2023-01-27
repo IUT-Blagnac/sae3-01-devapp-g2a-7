@@ -1,0 +1,165 @@
+= Cahier De Recette de l'application IoT
+:toc:
+:toc-title: Sommaire
+
+Groupe *G2A-7* : Tilian HURÉ, Vincent MIQUEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
+
+{empty} +
+
+== I. Introduction
+=== 1. Objet :
+[.text-justify]
+Ce document a été produit dans le cadre de la conception d'une application IoT de contrôle pour l'entreprise REVIVE. Ce document spécifie l'ensemble des cas testés pour cette dernière.
+
+{empty} +
+
+== II. Pre-Requis :
+[.text-justify]
+L'exécution des tests requiert :
+
+* Le répertoire `Application` nécessaire à l'exécution de l'application avec notamment :
+** Le fichier `script.py` à lancer avant l'application
+** Le fichier `RUNAPP.sh` (à configurer, voir *documentation utilisateur*) pour lancer l'application
+
+=== 1. Éléments à tester :
+[.text-justify]
+Les éléments testés concernent les Use-Case spécifiées dans la *documentation technique*.
+
+{empty} +
+
+=== 2. Environnement de test :
+[.text-justify]
+Un poste avec le système d'exploitation *Linux* et un environnement Java 8 (JRE 1.8).
+
+{empty} +
+
+== III. Cas de test :
+=== 1. Configuration des données :
+==== 1.1 Sélection des données à afficher :
+
+|====
+
+>|Cas de test 3+|Test-01-01-01
+>|Titre 3+|Sélection des données à afficher
+>|Objectif 3+| Vérifier qu'il est possible de choisir quelles données afficher dans l'interface de l'application
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Côcher une case correspondant à une donnée  ^|Affiche le diagramme en bâton correspondant ^|OK
+^|2 ^|Dé-côcher une case correspondant à une donnée ^|Enlève le diagramme en bâton correspondant ^|OK
+
+|====
+
+==== 1.2 Saisie des seuils de contrôle :
+
+|====
+
+>|Cas de test 3+|Test-01-02-01
+>|Titre 3+|Saisie d'un seuil de contrôle via les spinner
+>|Objectif 3+| Vérifier qu'il est possible de choisir les seuils de contrôle des données avec les boutons des spinners correspondant sur l'interface de l'application
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Cliquer sur le bouton `haut` d'un spinner correspondant à une donnée  ^|Incrémentation de la valeur du spinner ^|OK
+^|2 ^|Cliquer sur le bouton `bas` d'un spinner correspondant à une donnée ^|Décrémentation de la valeur du spinner ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-02-02
+>|Titre 3+|Saisie d'un seuil de contrôle via le clavier
+>|Objectif 3+| Vérifier qu'il est possible de choisir les seuils de contrôle des données en saisissant une valeur dans les champs des spinners correspondant sur l'interface de l'application
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisie d'une valeur entière (`10`)  ^|Prise en compte de la valeur sans erreurs ^|OK
+^|2 ^|Saisie d'une valeur décimale avec `,` (`5,4`) ^|Prise en compte de la valeur sans erreurs ^|OK
+^|3 ^|Saisie d'une valeur décimale avec `.` (`5.4`) ^|Modification de la valeur avec `,` en `5,4` ^|OK
+^|3 ^|Saisie d'un caractère invalide (`a`) ^|Saisie non prise en compte, le champ reste le même ^|OK
+
+|====
+
+==== 1.3 Réinitialisation de la configuration :
+
+|====
+
+>|Cas de test 3+|Test-01-03-01
+>|Titre 3+|Réinitialisation des données de configuration par défaut
+>|Objectif 3+| Vérifier qu'il est possible de réinitialiser les données de configuration de l'interface avec les données de configuration par défaut
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Cliquer sur le bouton "Réinitialiser"  ^|Ré-affichages de toutes les données dans l'interface ^|OK
+^|2 ^|Cliquer sur le bouton "Réinitialiser" ^|Réinitialisation des valeurs des spinner liés aux seuils de contrôle ^|OK
+
+|====
+
+
+==== 1.4 Chargement d'une configuration :
+
+|====
+
+>|Cas de test 3+|Test-01-04-01
+>|Titre 3+|Chargement d'une configuration existante
+>|Objectif 3+| Vérifier que la dernière configuration est bien chargée lors de la réouverture de l'application
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Saisir des données de configuration autres que les données par défaut ^|Mise à jour du fichier de configuration `config.json` ^|OK
+^|2 ^|Fermer l'application ^|Fermeture complète de l'application (arrêt de ses threads) ^|OK
+^|3 ^|Relancer l'application ^|Chargement de l'interface avec les dernières données de configurations saisies ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-01-04-02
+>|Titre 3+|Chargement d'une configuration par défaut
+>|Objectif 3+| Vérifier qu'il est possible de recharger une configuration par défaut si le fichier `config.json` est supprimé
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Supprimer le fichier `config.json` ^| ^|OK
+^|2 ^|Lancer l'application ^|Recréation d'un fichier `config.json` avec les données de configuration par défaut ^|OK
+^|3 ^|Lancer l'application ^|Chargement de l'interface avec les données de configurations par défaut ^|OK
+
+|====
+
+{empty} +
+
+=== 2. Affichage des données
+
+|====
+
+>|Cas de test 3+|Test-02-01-01
+>|Titre 3+|Affichage des données respectant leur seuil de contrôle
+>|Objectif 3+| Vérifier que les données récupérées et respectant leur seuil de contrôle sont correctement affichées dans le diagramme en bâton correspondant
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Mettre à jour le fichier `data.json` sans dépassement de seuil ^|Affichage des données dans les diagrammes en bâton correspondant dans l'interface ^|OK
+^|2 ^|Mettre à jour le fichier `data.json` sans dépassement de seuil ^|Affichage des données avec une seule couleur par données ^|OK
+
+|====
+
+|====
+
+>|Cas de test 3+|Test-02-01-02
+>|Titre 3+|Affichage des données ne respectant pas leur seuil de contrôle
+>|Objectif 3+| Vérifier que les données récupérées et ne respectant pas leur seuil de contrôle sont correctement affichées dans le diagramme en bâton correspondant
+
+4+|
+
+^|ID ^|Action ^|Comportement attendu ^|Résultat
+^|1 ^|Mettre à jour le fichier `data.json` avec dépassement de seuil ^|Affichage de la partie des données n'excédant pas le seuil correspondant avec une seule couleur dans les diagrammes en bâton correspondant dans l'interface ^|OK
+^|2 ^|Mettre à jour le fichier `data.json` avec dépassement de seuil ^|Affichage de la partie des données excédant le seuil correspondant en rouge dans les diagrammes en bâton correspondant dans l'interface ^|OK
+
+|====

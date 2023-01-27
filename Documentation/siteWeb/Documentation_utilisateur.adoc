@@ -2,7 +2,7 @@
 :toc:
 :toc-title: Sommaire
 
-Groupe *G2A-7* : Tilian HURÉ, Vincent MIQEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
+Groupe *G2A-7* : Tilian HURÉ, Vincent MIQUEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
 
 {empty} +
 
@@ -17,7 +17,7 @@ Le site web peut être utilisé par n'importe qu'elle type d'utilisateur non-con
 
 == II. Accès au site
 [.text-justify]
-Il faut que l'utilisateur ait accès à internet, avec un navigateur web. En cas de connexion sur le réseau interne à l'IUT, utiliser http://192.168.224.139/~SAESYS07/[l'adresse interne], dans le cas contraitre, utiliser http://193.54.227.164/~SAESYS07/[l'adresse externe].
+Il faut que l'utilisateur ait accès à internet, avec un navigateur web. En cas de connexion sur le réseau interne à l'IUT, utiliser http://192.168.224.139/~SAESYS07/[l'adresse interne], dans le cas contraire, utiliser http://193.54.227.164/~SAESYS07/[l'adresse externe].
 
 {empty} +
 

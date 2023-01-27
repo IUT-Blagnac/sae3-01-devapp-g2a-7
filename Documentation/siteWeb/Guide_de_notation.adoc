@@ -1,0 +1,152 @@
+= Guide de notation du site web REVIVE
+:toc:
+:toc-title: Sommaire
+
+Groupe *G2A-7* : Tilian HURÉ, Vincent MIQUEU-DENJEAN, Matéo PÉPIN, Hugo WENDJANEH
+
+{empty} +
+
+== I. Accès au site
+[.text-justify]
+Il faut que l'utilisateur ait accès à internet, avec un navigateur web. En cas de connexion sur le réseau interne à l'IUT, utiliser http://192.168.224.139/~SAESYS07/[l'adresse interne], dans le cas contraire, utiliser http://193.54.227.164/~SAESYS07/[l'adresse externe].
+
+{empty} +
+
+== II. Tests de notation
+=== 1. Connexion et données de compte (total : 4 pts)
+==== 1.1 Création d'un compte client
+. Se rendre sur la page de connexion en cliquant sur "Connexion" dans le header
+. Sur la page de connexion, cliquer sur "Pas de compte ? Créez-en un !"
+. Rentrer une adresse mail invalide ou déjà existante pour le site, affiche un message d’erreur (*0.25 pts*)
+
+. Le mot de passe doit contenir :
+* Au minimum 8 caractères
+* Au moins 1 majuscule
+* Au moins 1 caractère spécial parmi "@", "$", "!", "%", "*", "#", "?" ou "&"
+
+Sinon affiche un message d’erreur (*0.25 pts*)
+
+. Affiche un message pour confirmer que le compte à bien été créé et redirige vers la page de connexion (*0.5 pts*)
+
+==== 1.2 Connexion et déconnexion
+. Se rendre sur la page de connexion en cliquant sur "Connexion" dans le header
+. Message d'erreur si mauvaise identification (différent en fonction de si l’adresse mail est connue ou non et du mot de passe) (*0.25 pts*)
+. Se connecter en tant que client avec les identifiants suivants : [[connexion_client]]
+* Email : `tilian@mail.com`
+* Mot de passe : `Motdepasse#1`
+. Une fois connecté, le bouton "Connexion" du Header s’appelle "Mon Profil" et un bouton "Revendre" est apparu à côté du menu déroulant "Nos produits" (*0.25 pts*)
+. Cliquer sur "Mon Profil" dans le Header, puis sur le bouton “Se déconnecter” de la page affichée, ce dernier doit déconnecter l'utilisateur et le rediriger vers la page d'accueil (*0.25 pts*)
+. Se connecter en tant qu'administrateur avec les identifiants suivants : [[connexion_admin]]
+* Email : `admin@mail.com`
+* Mot de passe : `Motdepasse#1`
+. Une fois connecté, le bouton "Connexion" du Header s’appelle "Mon Profil" et un menu déroulant "Gestion" apparaît à côté du menu déroulant "Nos produits" (*0.25 pts*)
+
+==== 1.3 Consultation des données d'un compte
+. Se re-connecter en tant que client ou administrateur (<<connexion_client, voir ici>>, si ce n'est pas déjà fait)
+. Cliquer sur "Mon Profil" dans le Header
+. La page affichée présente les informations du compte de l'utilisateur (*0.25 pts*)
+. Cette page redirige vers la page de connexion si on essaye d'y accéder sans être connecté (*0.25 pts*)
+
+==== 1.4 Modification des données d'un compte
+. Sur la page de consultation d'un compte, cliquer sur "Modifier les données"
+. Cette page redirige vers la page de connexion si on essaye d'y accéder sans être connecté (*0.25 pts*)
+. Rentrer une adresse mail invalide ou déjà existante pour le site, affiche un message d’erreur *0.25 pts*)
+. Le nouveau mot de passe doit contenir :
+* Au minimum 8 caractères
+* Au moins 1 Majuscules
+* Au moins 1 caractère spécial parmi "@", "$", "!", "%", "*", "#", "?" ou "&"
+
+Sinon affiche un message d’erreur (*0.25 pts*)
+
+. L'ancien mot de passe doit être correct, sinon affiche un message d'erreur (*0.25 pts*)
+. Saisir des données correctes puis valider
+. Redirection vers la page de connexion avec un message invitant à se reconnecter (*0.25 pts*)
+. Se reconnecter et ré-accéder à la page de consultation des données
+. Les nouvelles données apparaissent bien mises à jour (*0.25 pts*)
+. Cliquer sur "Se déconnecter"
+
+{empty} +
+
+=== 2. Listage et recherche des produits (total : 3 pts)
+==== 2.1 Listage de tous les produits
+. Dans le Header, effectuer une recherche sans remplir le champ via la barre de recherche
+. Tous les produits du site doivent être listés (*1 pts*)
+
+==== 2.2 Listage par catégorie
+. Dans le menu déroulant "Nos produits", sélectionner puis cliquer sur "Smartphone"
+. Affichage correct des 13 produits concernés (*1 pts*)
+
+==== 2.3 Listage des produits recherchés
+. Dans le Header, effectuer une recherche via la barre de recherche
+. Affiche seulement les produits correspondants (_exemple_ : rechercher "MSI" -> 1 résultat pour ce mot) (*1 pts*)
+
+{empty} +
+
+=== 3. Consultation des produits et avis (total : 4 pts)
+==== 3.1 Consultation d'un produit
+. Dans la page de listage des produits, cliquer sur un des produits affichés
+. La page affichée renseigne des informations et des caractéristiques sur le produit (*1 pts*)
+. Le prix du produit change en fonction des choix et de la quantité sélectionnés (*0.5 pts*)
+. Cliquer sur "Ajouter au panier"
+. Dans le header cliquer sur "Panier"
+. Le produit doit être ajouté au panier (*1 pts*)
+
+==== 3.2 Avis client et notes
+. Dans la page de consultation d'un produit, scroller vers le bas pour consulter l'espaces notes et avis clients
+. Il est possible d'afficher les avis avec leur note en fonction de la tranche sélectionnée (*0.5 pts*)
+. Se re-connecter en tant que client (<<connexion_client, voir ici>>, si ce n'est pas déjà fait)
+. Cliquer sur "Ajouter un avis" et ajouter un avis via le formulaire présenté
+. Revenir sur la page de consultation du même produit, l'avis ajouté doit être présent avec la note correspondante (*1 pts*)
+
+{empty} +
+
+=== 4. Panier (total : 5 pts)
+. Se re-connecter en tant que client (<<connexion_client, voir ici>>, si ce n'est pas déjà fait)
+. Ajouter des produits via leur page de consultation
+. Dans le Header, cliquer sur "Panier"
+. Les produits ajoutés doivent apparaitre (*1 pts*)
+. Modifier la quantité des produits ajoutés et en supprimer un, le prix total du panier doit changer (*0.5 pts*)
+. Se déconnecter
+. Ajouter des produits via leur page de consultation sans être connecté
+. Consulter à nouveau le panier, les produits ajoutés doivent apparaitre (*1 pts*)
+. Modifier la quantité des produits ajoutés et en supprimer un, le prix total du panier doit changer (*0.5 pts*)
+. Se reconnecter en tant que client (<<connexion_client, voir ici>>)
+. Les articles ajoutés sans être connecté doivent avoir été ajoutés en plus de ceux déjà ajoutés en étant connecté (*1 pts*)
+. Cliquer sur "Valider ma commande", le panier doit être vidé et un message de confirmation doit s'afficher (*0.5 pts*)
+. Quand le panier est vide, affiche un message “Votre panier est vide” (*0.5 pts*)
+
+{empty} +
+
+=== 5. Pages de gestion (administrateur) (total : 4 pts)
+==== 5.1 Ajout d'une catégorie
+. Se re-connecter en tant qu'administrateur (<<connexion_admin, voir ici>>, si ce n'est pas déjà fait)
+. Dans le menu déroulant "Gestion", sélectionner "Catégorie" puis cliquer sur "Ajouter"
+. Cette page redirige vers la page de connexion si on essaye d'y accéder sans être connecté (*0.25 pts*)
+. Créer une catégorie sans renseigner de catégorie mère dans le champ correspondant
+. La catégorie doit être apparue dans le menu déroulant "Nos produits" (*0.25 pts*)
+. Créer une autre catégorie et lui renseigner la catégorie précédemment créée (ou une autre) en tant que catégorie mère, un message de confirmation doit s'afficher (*0.25 pts*)
+. Dans le menu déroulant "Nos produits", sélectionner la catégorie mère assignée à la dernière catégorie créée, cette dernière doit apparaître dans la sous-liste affichée (*0.25 pts*)
+
+==== 5.2 Suppression d'une catégorie
+. Se re-connecter en tant qu'administrateur (<<connexion_admin, voir ici>>, si ce n'est pas déjà fait)
+. Dans le menu déroulant "Gestion", sélectionner "Catégorie" puis cliquer sur "Supprimer"
+. Cette page redirige vers la page de connexion si on essaye d'y accéder sans être connecté (*0.25 pts*)
+. Seules les catégories ne possédant plus de catégories filles ou de produits assignés sont présentées dans la liste de sélection de la catégorie à supprimer (*0.25 pts*)
+. Supprimer une catégorie répondant aux critères précédents (en créer une si besoin), un message de confirmation doit s'afficher (*0.25 pts*)
+. La catégorie supprimée ne doit plus apparaitre dans tout le menu déroulant "Nos produits" (*0.25 pts*)
+
+==== 5.3 Ajout d'un produit
+. Se re-connecter en tant qu'administrateur (<<connexion_admin, voir ici>>, si ce n'est pas déjà fait)
+. Dans le menu déroulant "Gestion", sélectionner "Produit" puis cliquer sur "Ajouter"
+. Cette page redirige vers la page de connexion si on essaye d'y accéder sans être connecté (*0.25 pts*)
+. Remplir tous les champs et ajouter un produit, l'assigner à une catégorie, un message de confirmation doit s'afficher (*0.5 pts*)
+. Rechercher et cliquer via le menu déroulant "Nos produits" sur la catégorie qui a été assignée au produit ajouté
+. Le produit doit apparaître parmi ceux présentés (*0.25 pts*)
+. Accéder à la page de consultation du produit, toutes les informations renseignées doivent être affichées et par défaut, seuls les choix de type "Condition" ("Parfait état", "Très bon état" et "État correct") doivent apparaître (*0.25 pts*)
+
+==== 5.4 Suppression d'un produit
+. Se re-connecter en tant qu'administrateur (<<connexion_admin, voir ici>>, si ce n'est pas déjà fait)
+. Dans le menu déroulant "Gestion", sélectionner "Produit" puis cliquer sur "Supprimer"
+. Cette page redirige vers la page de connexion si on essaye d'y accéder sans être connecté (*0.25 pts*)
+. Supprimer un produit, un message de confirmation doit s'afficher (*0.25 pts*)
+. Rechercher le produit via le menu déroulant "Nos produits" ou la barre de recherche, ce dernier ne doit plus apparaître sur tout le site (*0.25 pts*)
